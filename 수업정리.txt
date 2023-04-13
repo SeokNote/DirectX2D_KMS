@@ -200,7 +200,7 @@ Directx 부터는 디바이스를 사용해 어뎁터로 그래픽카드와 연동해서 사용한다.(그래픽
 
 
 
-04-10
+04-105
 Transform 구조 변경
 AbsoluteScale
 AbsoluteScale
