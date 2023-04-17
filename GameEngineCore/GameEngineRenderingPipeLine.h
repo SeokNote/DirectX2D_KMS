@@ -15,37 +15,50 @@ public:
 	GameEngineRenderingPipeLine& operator=(const GameEngineRenderingPipeLine& _Other) = delete;
 	GameEngineRenderingPipeLine& operator=(GameEngineRenderingPipeLine&& _Other) noexcept = delete;
 
-	void InputAssembler1();
-	void VertexShader();
-	void InputAssembler2();
-	// Lod라는 개념이 있는데
-	// 레벨 오브 디테일이라는 개념으로 버텍스버퍼 + 인덱스버퍼(매쉬)를 단계에 따라서 n개 만든다
-	// 5개 만들었다고 치고
-	// 100개
-	// 1000개
-	// 4000개
-	// 8000개
-	// 10000개
-	// 캐릭터가 멀리 있어서 자세히 봎
-	// void HullShader(); 버텍스를 쪼개기 위한 표시를 새기고
-	// void Tessellator(); 쪼갠다.
-	// 
-	// 
-	// void DomainShader(); 입자처리
-	// void GeometryShaeder(); 버텍스 생성.
-	//                         인스턴싱
-
-	// 이건 진짜 미친듯이 중요합니다.
-	void Rasterizer();
-	void PixelShader();
-	void OutputMerger();
-
 	void SetVertexBuffer(const std::string_view& _Value);
+	void SetIndexBuffer(const std::string_view& _Value);
+	void SetVertexShader(const std::string_view& _Value);
+	void SetRasterizer(const std::string_view& _Value);
+	void SetPixelShader(const std::string_view& _Value);
+
+	inline void SetFILL_MODE(D3D11_FILL_MODE _Value)
+	{
+		FILL_MODE = _Value;
+	}
+
+	void Render();
 
 protected:
 
 private:
-	std::shared_ptr<class GameEngineVertexBuffer> VertexBuffer;
+
+	// Directx11 랜더링 파이프라인의 단계에는 2가지 구분이 있는데.
+	// 고정기능 단계 => 내가 옵션정도만 넘겨서 만드는 단계
+	// 프로그래밍 가능 단계 => 특정 규칙만 지키면 나머지는 이제 내가 마음대로 짤수 있는 단계를 의미한다.
+	// 쉐이더 계열은 다 프로그래밍 가능 단계 단계와 
+	// 나머지들은 고정기능 단계라고 부른다.
+
+	void InputAssembler1();
+	void VertexShader();
+	void InputAssembler2();
+	void HullShader();
+	void Tessellator();
+	void DomainShader();
+	void GeometryShaeder();
+	void Rasterizer();
+	void PixelShader();
+	void OutputMerger();
+
+
+	D3D11_FILL_MODE FILL_MODE = D3D11_FILL_MODE::D3D11_FILL_SOLID;
+	D3D11_PRIMITIVE_TOPOLOGY TOPOLOGY = D3D11_PRIMITIVE_TOPOLOGY::D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
+
+	std::shared_ptr<class GameEngineInputLayOut> InputLayOutPtr;
+	std::shared_ptr<class GameEngineVertexBuffer> VertexBufferPtr;
+	std::shared_ptr<class GameEngineIndexBuffer> IndexBufferPtr;
+	std::shared_ptr<class GameEngineVertexShader> VertexShaderPtr;
+	std::shared_ptr<class GameEngineRasterizer> RasterizerPtr;
+	std::shared_ptr<class GameEnginePixelShader> PixelShaderPtr;
 
 };
 

@@ -1,11 +1,11 @@
 #include "PrecompileHeader.h"
-#include "GameEngineVertexShader.h"
+#include "GameEnginePixelShader.h"
 
-GameEngineVertexShader::GameEngineVertexShader()
+GameEnginePixelShader::GameEnginePixelShader()
 {
 }
 
-GameEngineVertexShader::~GameEngineVertexShader()
+GameEnginePixelShader::~GameEnginePixelShader()
 {
 	if (nullptr != ShaderPtr)
 	{
@@ -14,12 +14,12 @@ GameEngineVertexShader::~GameEngineVertexShader()
 	}
 }
 
-void GameEngineVertexShader::ShaderLoad(const std::string_view& _Path
+void GameEnginePixelShader::ShaderLoad(const std::string_view& _Path
 	, const std::string_view& _EntryPoint
 	, UINT _VersionHigh /*= 5*/
 	, UINT _VersionLow /*= 0*/)
 {
-	CreateVersion("vs", _VersionHigh, _VersionLow);
+	CreateVersion("ps", _VersionHigh, _VersionLow);
 	SetEntryPoint(_EntryPoint);
 
 	unsigned int Flag = 0;
@@ -56,7 +56,7 @@ void GameEngineVertexShader::ShaderLoad(const std::string_view& _Path
 		return;
 	}
 
-	if (S_OK != GameEngineDevice::GetDevice()->CreateVertexShader
+	if (S_OK != GameEngineDevice::GetDevice()->CreatePixelShader
 	(
 		BinaryCode->GetBufferPointer(),
 		BinaryCode->GetBufferSize(),
@@ -69,12 +69,12 @@ void GameEngineVertexShader::ShaderLoad(const std::string_view& _Path
 	}
 }
 
-void GameEngineVertexShader::Setting()
+void GameEnginePixelShader::Setting()
 {
 	if (nullptr == ShaderPtr)
 	{
 		MsgAssert("버텍스 쉐이더가 존재하지 않습니다 세팅에 실패했습니다.");
 	}
 
-	GameEngineDevice::GetContext()->VSSetShader(ShaderPtr, nullptr, 0);
+	GameEngineDevice::GetContext()->PSSetShader(ShaderPtr, nullptr, 0);
 }
