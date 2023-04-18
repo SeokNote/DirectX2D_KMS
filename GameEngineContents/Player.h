@@ -20,6 +20,9 @@ protected:
 	void Update(float _Delta) override;
 	void Render(float _Delta) override;
 
+	float4 TestColor;
+	float4 TestColor1;
+
 private:
 	float Angle = 0.0f;
 	std::shared_ptr<class GameEngineRenderer> Render0;

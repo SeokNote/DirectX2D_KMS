@@ -10,9 +10,6 @@
 #include "GameEnginePixelShader.h"
 #include "GameEngineShaderResHelper.h"
 
-
-//렌더링 하기위한 클래스로 셋팅된 파이프라인을 렌더하는 곳이다.
-
 GameEngineRenderer::GameEngineRenderer()
 {
 }
@@ -24,8 +21,22 @@ GameEngineRenderer::~GameEngineRenderer()
 
 void GameEngineRenderer::Render(float _Delta)
 {
+	std::shared_ptr<GameEngineCamera> MainCamera = GetLevel()->GetMainCamera();
+
+	if (nullptr == MainCamera)
+	{
+		assert(false);
+		return;
+	}
+
+	GetTransform()->SetCameraMatrix(MainCamera->GetView(), MainCamera->GetProjection());
+
+
 	// GameEngineDevice::GetContext()->VSSetConstantBuffers();
 	// GameEngineDevice::GetContext()->PSSetConstantBuffers();
+
+	// 텍스처 세팅 상수버퍼 세팅 이런것들이 전부다 처리 된다.
+	ShaderResHelper.Setting();
 
 	Pipe->Render();
 }
@@ -44,5 +55,12 @@ void GameEngineRenderer::SetPipeLine(const std::string_view& _Name)
 		ShaderResHelper.Copy(Res);
 	}
 
+	if (true == ShaderResHelper.IsConstantBuffer("TransformData"))
+	{
+		const float4x4& World = GetTransform()->GetWorldViewProjectionMatrixRef();
+		ShaderResHelper.SetConstantBufferLink("TransformData", World);
+	}
 
+
+	GetTransform()->GetWorldMatrix();
 }
