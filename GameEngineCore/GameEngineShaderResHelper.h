@@ -2,6 +2,8 @@
 #include "GameEngineConstantBuffer.h"
 #include "GameEngineTexture.h"
 
+//GameEngineShaderResHelper : 렌더러가 리소스까지 갖고있으면 너무 넘쳐나니까 도움을 주는 클래스 
+
 // 모든 텍스처건 상수버퍼건 
 class GameEngineShaderResources
 {
@@ -26,7 +28,7 @@ public:
 class GameEngineShaderResHelper
 {
 private:
-	std::multimap<std::string, GameEngineConstantBufferSetter> ConstantBuffer;
+	std::multimap<std::string, GameEngineConstantBufferSetter> ConstantBuffer; //멀티맵을 쓴 이유 ?
 
 public:
 	void CreateConstantBufferSetter(const GameEngineConstantBufferSetter& _Buffer)

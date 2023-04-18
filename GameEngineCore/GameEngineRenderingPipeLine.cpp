@@ -19,9 +19,13 @@ GameEngineRenderingPipeLine::~GameEngineRenderingPipeLine()
 
 // 매쉬 + 머티리얼
 
-// 점에 대한 정보를 준비하고
+// 선생님: 점에 대한 정보를 준비하고
+//IA1에서는 버텍스 버퍼를 셋팅하고 버텍스 쉐이더 단계에 들어가기전에 필요한 정보를 셋팅해준다.ex)InputLayOut
 void GameEngineRenderingPipeLine::InputAssembler1()
 {
+	//InputLayOut은 버텍스 쉐이더에서 첫번째 인자로 무엇이 들어오는지 쉐이더는 모르기
+	// 때문에 첫번째 인자가 무엇이고 몇바이트 크기를 갖는지 알려주기위함
+	// 꼭 셋팅해야함
 	if (nullptr == InputLayOutPtr)
 	{
 		MsgAssert("인풋 레이아웃이 존재하지 않아서 인풋어셈블러1 과정을 실행할 수 없습니다.");
@@ -45,7 +49,9 @@ void GameEngineRenderingPipeLine::InputAssembler1()
 	VertexBufferPtr->Setting();
 	// GameEngineDevice::GetContext()->IASetVertexBuffers()
 }
-// 로컬에 존재하는 점을 우리가 만든 행렬을 통해서 변환하고.
+// 선생님: 로컬에 존재하는 점을 우리가 만든 행렬을 통해서 변환하고
+// 입력한 쉐이더가(TextureShader) 파이프라인들 타고 버텍스 쉐이더 단계에 오게되면 쉐이더에서 Texture_VS를 통해  IA에서 셋팅해준 버텍스
+// 버퍼를 갖고 컬러나 위치,월드행렬을 곱하여 정해진 SV_Posion과 Color를 리턴해준다.
 void GameEngineRenderingPipeLine::VertexShader()
 {
 	if (nullptr == VertexShaderPtr)
@@ -57,7 +63,10 @@ void GameEngineRenderingPipeLine::VertexShader()
 	VertexShaderPtr->Setting();
 }
 
-// 점의 정보를 토대로 어떤 순서로 그릴지 정하고
+// 선생님: 점의 정보를 토대로 어떤 순서로 그릴지 정하고
+// InputAssembler2단계에서는 각 정점들을 토대로 어떤 순서로 삼각형을 그려 출력할지 정해주는 단계이다.
+// 우리의 엔진에서는 -z 즉 뒤에서 바라보기 때문에 반시계로 출력을 해야하는데 선생님이 설정에서 뒤집기를 true로 해줘서 시계방향 순서로 그린다(?)
+// 카메라 변환,노말라이즈,투영행렬곱 해줌
 void GameEngineRenderingPipeLine::InputAssembler2()
 {
 	GameEngineDevice::GetContext()->IASetPrimitiveTopology(TOPOLOGY);
@@ -90,10 +99,13 @@ void GameEngineRenderingPipeLine::GeometryShaeder()
 }
 // 여기까지는 화면과는 사실 관련 없음
 
-// w나누기를 해줍니다. 
-// 뷰포트도 곱해줍니다.
+// w나누기를 해줍니다. 해주는 이유 : 클리핑 영역이 바로 우리 화면에 출력되어야하는 영역인데 이 클리핑영역은 
+// z = -1~0 , 0~1 ,x ,y 는 -1~1로 표현이 되는데 . 이전 단계에서 노말라이즈가 되어 각 정점들은 클리핑영역에 출력이 되는데
+// 3차원 좌표를 2차원인 화면에 출력하려면 z로 나눠줘야하는데 이 z가 투영행렬연산에 의해 w 값에 저장되어 있기 때문에 w로 나눠주는것이다.
+// 뷰포트도 곱해줍니다. : -1~1의 위치하면 안보이기에 현재 윈도우 크기만큼 곱해서 물체를 키우는것.
 // 화면 컬링 
 // 픽셀 건지기
+
 void GameEngineRenderingPipeLine::Rasterizer()
 {
 	if (nullptr == RasterizerPtr)
@@ -102,13 +114,13 @@ void GameEngineRenderingPipeLine::Rasterizer()
 		return;
 	}
 
-	RasterizerPtr->SetFILL_MODE(FILL_MODE);
+	RasterizerPtr->SetFILL_MODE(FILL_MODE); // fill_mode란 2개의 옵션이 있는데 선으로 그릴거냐 면으로 그릴거냐를 선택함
 	RasterizerPtr->Setting();
 
 	// GameEngineDevice::GetContext()->RSSetState
 }
 
-
+//각 픽셀의 데이터를 생성하는 단계이다. 최종 색상과 어느 렌더타겟에 그릴지를 리턴해준다.
 void GameEngineRenderingPipeLine::PixelShader()
 {
 	if (nullptr == PixelShaderPtr)

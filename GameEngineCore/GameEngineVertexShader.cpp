@@ -56,7 +56,7 @@ void GameEngineVertexShader::ShaderLoad(const std::string_view& _Path
 		MsgAssert(ErrorString);
 		return;
 	}
-
+	//만들어지지 않았다면 만들어라?
 	if (S_OK != GameEngineDevice::GetDevice()->CreateVertexShader
 	(
 		BinaryCode->GetBufferPointer(),

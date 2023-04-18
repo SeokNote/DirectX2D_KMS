@@ -2,10 +2,12 @@
 #include "GameEngineResource.h"
 #include "GameEngineShader.h"
 
-// 설명 :
+// 설명 :GameEngineVertexShader는 모든 쉐이더가 필요한 공통의 요소를 갖는 GameEngineShader를 상속받고
+// 쉐이더리소스중 하나이기 때문에 GameEngineResource<GameEngineVertexShader>를 상속받는다.
+
 class GameEngineVertexShader : public GameEngineResource<GameEngineVertexShader>, public GameEngineShader
 {
-	friend class GameEngineInputLayOut;
+	friend class GameEngineInputLayOut; //InputLayOut을 버텍스 단계에서 셋팅해줘야해서 friend처리함
 
 public:
 	// constrcuter destructer

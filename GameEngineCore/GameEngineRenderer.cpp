@@ -10,6 +10,9 @@
 #include "GameEnginePixelShader.h"
 #include "GameEngineShaderResHelper.h"
 
+
+//렌더링 하기위한 클래스로 셋팅된 파이프라인을 렌더하는 곳이다.
+
 GameEngineRenderer::GameEngineRenderer()
 {
 }
