@@ -2,6 +2,7 @@
 #include "PlayLevel.h"
 #include "Player.h"
 #include <GameEngineCore/GameEngineCamera.h>
+#include <GameEngineCore/GameEngineTexture.h>
 
 PlayLevel::PlayLevel()
 {
@@ -14,10 +15,29 @@ PlayLevel::~PlayLevel()
 
 void PlayLevel::Start()
 {
-	//카메라 타입을 정해주는것. 원근투영이냐 직교투영이냐
-	GetMainCamera()->SetProjectionType(CameraType::Perspective);
+	{
+		GameEngineDirectory NewDir;
+		NewDir.MoveParentToDirectory("ContentResources");
+		NewDir.Move("ContentResources");
 
+		std::vector<GameEngineFile> File = NewDir.GetAllFile({ ".Png", });
+
+
+		for (size_t i = 0; i < File.size(); i++)
+		{
+			GameEngineTexture::Load(File[i].GetFullPath());
+		}
+
+		int a = 0;
+
+	}
+
+
+
+	GetMainCamera()->SetProjectionType(CameraType::Perspective);
 	GetMainCamera()->GetTransform()->SetLocalPosition({ 0, 0, -1000.0f });
+
+
 
 	std::shared_ptr<Player> NewPlayer = CreateActor<Player>("Player");
 
