@@ -82,12 +82,10 @@ void Player::Update(float _DeltaTime)
 
 	if (true == GameEngineInput::IsPress("PlayerScaleY+"))
 	{
-		TestColor.x += _DeltaTime;
 		GetTransform()->AddLocalScale({ 0.0f, ScaleSpeed * _DeltaTime, 0.0f });
 	}
 	if (true == GameEngineInput::IsPress("PlayerScaleY-"))
 	{
-		TestColor.x -= _DeltaTime;
 		GetTransform()->AddLocalScale({ 0.0f, -ScaleSpeed * _DeltaTime, 0.0f });
 	}
 	if (true == GameEngineInput::IsPress("PlayerScaleZ+"))

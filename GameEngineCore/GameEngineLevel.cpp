@@ -22,6 +22,13 @@ void GameEngineLevel::Start()
 
 void GameEngineLevel::Update(float _DeltaTime)
 {
+	//프리컴파일 모드가 되면 카메라 이외의 업데이트를 안돌림.
+	if (true == MainCamera->IsFreeCamera())
+	{
+		MainCamera->Update(_DeltaTime);
+		return;
+	}
+
 	for (std::pair<int, std::list<std::shared_ptr<GameEngineActor>>> OrderGroup : Actors)
 	{
 		std::list<std::shared_ptr<GameEngineActor>>& ActorList = OrderGroup.second;
