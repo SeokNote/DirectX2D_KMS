@@ -62,7 +62,7 @@ void GameEngineShader::ShaderResCheck()
 		std::string Name = ResDesc.Name;
 		//이 쉐이더 리소스의 타입은? : 여기선 상수버퍼
 		D3D_SHADER_INPUT_TYPE Type = ResDesc.Type;
-		
+		std::string UpperName = GameEngineString::ToUpper(ResDesc.Name);
 
 		switch (Type)
 		{
@@ -77,16 +77,16 @@ void GameEngineShader::ShaderResCheck()
 			D3D11_SHADER_BUFFER_DESC BufferDesc;
 			CBufferPtr->GetDesc(&BufferDesc);
 
+			std::shared_ptr<GameEngineConstantBuffer> Res = GameEngineConstantBuffer::CreateAndFind(BufferDesc.Size, UpperName, BufferDesc);
 
 
-			std::shared_ptr<GameEngineConstantBuffer> Buffer = GameEngineConstantBuffer::CreateAndFind(BufferDesc.Size, UpperName, BufferDesc);
 
 			GameEngineConstantBufferSetter Setter;
 
 			Setter.ParentShader = this;
 			Setter.Name = UpperName;
 			Setter.BindPoint = ResDesc.BindPoint;
-			Setter.Res = Buffer;
+			Setter.Res = Res;
 
 			ResHelper.CreateConstantBufferSetter(Setter);
 
@@ -97,12 +97,28 @@ void GameEngineShader::ShaderResCheck()
 		}
 		case D3D_SIT_TEXTURE:
 		{
-			// 이 리소스는 텍스처 입니다.
+			std::shared_ptr<GameEngineTexture> Res = GameEngineTexture::Find("EngineBaseTex.png");
+
+			GameEngineTextureSetter Setter;
+			Setter.ParentShader = this;
+			Setter.Name = UpperName;
+			Setter.BindPoint = ResDesc.BindPoint;
+			Setter.Res = Res;
+
+			ResHelper.CreateTextureSetter(Setter);
 			break;
 		}
 		case D3D_SIT_SAMPLER:
 		{
-			// 이 리소스는 샘플러 입니다.
+			std::shared_ptr<GameEngineSampler> Res = GameEngineSampler::Find(UpperName);
+
+			GameEngineSamplerSetter Setter;
+			Setter.ParentShader = this;
+			Setter.Name = UpperName;
+			Setter.BindPoint = ResDesc.BindPoint;
+			Setter.Res = Res;
+
+			ResHelper.CreateSamplerSetter(Setter);
 			break;
 		}
 		default:

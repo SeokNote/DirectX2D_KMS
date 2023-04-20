@@ -30,6 +30,17 @@ void GameEngineVertexShader::ShaderLoad(const std::string_view& _Path
 #endif
 
 	// 상수버퍼 할때 이옵션이 관련이 있습니다.
+	// 원래는 상수버퍼에 행렬을 넣게 되면 
+	// 1 2 3 4
+	// 0 0 0 0 
+	// 0 0 0 0 
+	// 0 0 0 0 
+	// 이 상수버퍼로는 
+	//1 0 0 0
+	//2 0 0 0
+	//3 0 0 0 
+	//4 0 0 0 
+	// 이렇게 들어게 해주는 옵션
 	Flag |= D3DCOMPILE_PACK_MATRIX_ROW_MAJOR;
 
 	ID3DBlob* Error;
