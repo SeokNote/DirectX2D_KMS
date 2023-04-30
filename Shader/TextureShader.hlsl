@@ -29,10 +29,6 @@ cbuffer TransformData : register(b0)
     float4x4 ViewPort;
     float4x4 WorldViewProjectionMatrix;
 
-    float DeltaTime;
-    float Padding1;
-    float Padding2;
-    float Padding3;
 }
 
 // 어떤 정보가 들어올지 구조체로 만들어야 합니다.
