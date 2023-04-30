@@ -6,7 +6,9 @@
 #include "GameEngineVertexShader.h"
 #include "GameEngineRasterizer.h"
 #include "GameEnginePixelShader.h"
+#include "GameEngineBlend.h"
 #include "GameEngineInputLayOut.h"
+#include "GameEngineDepthState.h"
 
 GameEngineRenderingPipeLine::GameEngineRenderingPipeLine()
 {
@@ -26,6 +28,9 @@ void GameEngineRenderingPipeLine::InputAssembler1()
 	//InputLayOut은 버텍스 쉐이더에서 첫번째 인자로 무엇이 들어오는지 쉐이더는 모르기
 	// 때문에 첫번째 인자가 무엇이고 몇바이트 크기를 갖는지 알려주기위함
 	// 꼭 셋팅해야함
+	//
+	// 랜더링을 위해서는 점으로 면을 만드는게 기본이다.
+	// 그래픽카드는 점이 어떠한 구성을 가지고 있는지 알지 못한다.
 	if (nullptr == InputLayOutPtr)
 	{
 		MsgAssert("인풋 레이아웃이 존재하지 않아서 인풋어셈블러1 과정을 실행할 수 없습니다.");
@@ -68,8 +73,8 @@ void GameEngineRenderingPipeLine::VertexShader()
 // 우리의 엔진에서는 -z 즉 뒤에서 바라보기 때문에 반시계로 출력을 해야하는데 선생님이 설정에서 뒤집기를 true로 해줘서 시계방향 순서로 그린다(?)
 // 카메라 변환,노말라이즈,투영행렬곱 해줌
 void GameEngineRenderingPipeLine::InputAssembler2()
-{
-	GameEngineDevice::GetContext()->IASetPrimitiveTopology(TOPOLOGY);
+{	// 그리는 순서에 대한 데이터를 넣어준다.
+
 
 	if (nullptr == IndexBufferPtr)
 	{
@@ -77,7 +82,11 @@ void GameEngineRenderingPipeLine::InputAssembler2()
 		return;
 	}
 
+	// 012023
 	IndexBufferPtr->Setting();
+
+	// 012 023 <=3개씩 끊어서 면으로 만들어라는 여기서 처리가 되었다.
+	GameEngineDevice::GetContext()->IASetPrimitiveTopology(TOPOLOGY);
 }
 
 // 여기서부터
@@ -114,7 +123,7 @@ void GameEngineRenderingPipeLine::Rasterizer()
 		return;
 	}
 
-	RasterizerPtr->SetFILL_MODE(FILL_MODE); // fill_mode란 2개의 옵션이 있는데 선으로 그릴거냐 면으로 그릴거냐를 선택함
+	RasterizerPtr->SetFILL_MODE(D3D11_FILL_MODE::D3D11_FILL_SOLID); // fill_mode란 2개의 옵션이 있는데 선으로 그릴거냐 면으로 그릴거냐를 선택함
 	RasterizerPtr->Setting();
 
 	// GameEngineDevice::GetContext()->RSSetState
@@ -136,6 +145,21 @@ void GameEngineRenderingPipeLine::PixelShader()
 }
 void GameEngineRenderingPipeLine::OutputMerger()
 {
+	if (nullptr == BlendStatePtr)
+	{
+		MsgAssert("블랜드가 존재하지 않아 아웃풋 머저 과정을 완료할수가 없습니다.");
+		return;
+	}
+
+
+	BlendStatePtr->Setting();
+
+	if (nullptr == DepthStatePtr)
+	{
+		MsgAssert("블랜드가 존재하지 않아 아웃풋 머저 과정을 완료할수가 없습니다.");
+		return;
+	}
+	DepthStatePtr->Setting();
 	// GameEngineDevice::GetContext()->OMSetRenderTargets
 }
 
@@ -201,6 +225,31 @@ void GameEngineRenderingPipeLine::SetPixelShader(const std::string_view& _Value)
 	}
 }
 
+
+void GameEngineRenderingPipeLine::SetBlendState(const std::string_view& _Value)
+{
+	std::string UpperName = GameEngineString::ToUpper(_Value);
+	BlendStatePtr = GameEngineBlend::Find(UpperName);
+
+	if (nullptr == BlendStatePtr)
+	{
+		MsgAssert("존재하지 않는 블랜드를 세팅하려고 했습니다.");
+		return;
+	}
+}
+
+void GameEngineRenderingPipeLine::SetDepthState(const std::string_view& _Value)
+{
+	std::string UpperName = GameEngineString::ToUpper(_Value);
+	DepthStatePtr = GameEngineDepthState::Find(UpperName);
+
+	if (nullptr == DepthStatePtr)
+	{
+		MsgAssert("존재하지 않는 블랜드를 세팅하려고 했습니다.");
+		return;
+	}
+}
+
 void GameEngineRenderingPipeLine::SetRasterizer(const std::string_view& _Value)
 {
 	std::string UpperName = GameEngineString::ToUpper(_Value);
@@ -211,9 +260,7 @@ void GameEngineRenderingPipeLine::SetRasterizer(const std::string_view& _Value)
 		MsgAssert("존재하지 않는 레스터라이저를 사용하려고 했습니다.");
 	}
 }
-
-// 매쉬 + 머티리얼
-void GameEngineRenderingPipeLine::Render()
+void GameEngineRenderingPipeLine::RenderingPipeLineSetting()
 {
 	// 랜더라고 하는 부분은 랜더링 파이프라인을 한바뀌 돌리는 것.
 	InputAssembler1();
@@ -226,6 +273,13 @@ void GameEngineRenderingPipeLine::Render()
 	Rasterizer();
 	PixelShader();
 	OutputMerger();
+}
+
+
+// 매쉬 + 머티리얼
+void GameEngineRenderingPipeLine::Render()
+{
+
 
 	// GameEngineDevice::GetContext()->VSSetConstantBuffers()
 

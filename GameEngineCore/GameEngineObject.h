@@ -5,7 +5,10 @@
 #include <GameEngineCore/GameEngineNameObject.h>
 
 // Ό³Έν :
-class GameEngineObject : public GameEngineObjectBase, public GameEngineNameObject
+class GameEngineObject :
+	public GameEngineObjectBase,
+	public GameEngineNameObject,
+	public std::enable_shared_from_this<GameEngineObject>
 {
 	friend class GameEngineLevel;
 
@@ -28,6 +31,13 @@ public:
 	{
 		return &Transform;
 	}
+
+	template<typename PtrType>
+	std::shared_ptr<PtrType> Shared_This_dynamic_pointer()
+	{
+		return std::dynamic_pointer_cast<PtrType>(std::enable_shared_from_this<GameEngineObject>::shared_from_this());
+	}
+
 
 
 private:

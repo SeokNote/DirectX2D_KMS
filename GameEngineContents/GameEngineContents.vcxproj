@@ -137,6 +137,7 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>PrecompileHeader.h</PrecompiledHeaderFile>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -167,6 +168,14 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Forest.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Mountain.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Player.h">
       <SubType>
       </SubType>
@@ -179,13 +188,29 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Sky.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="TitleLevel.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Town.h">
       <SubType>
       </SubType>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Forest.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Mountain.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -201,7 +226,15 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Sky.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="TitleLevel.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Town.cpp">
       <SubType>
       </SubType>
     </ClCompile>

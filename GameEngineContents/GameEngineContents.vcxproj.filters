@@ -12,6 +12,18 @@
       <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="PrecompileHeader.h" />
+    <ClInclude Include="Sky.h">
+      <Filter>BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="Mountain.h">
+      <Filter>BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="Forest.h">
+      <Filter>BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="Town.h">
+      <Filter>BackGround</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -25,6 +37,18 @@
       <Filter>Object</Filter>
     </ClCompile>
     <ClCompile Include="PrecompileHeader.cpp" />
+    <ClCompile Include="Sky.cpp">
+      <Filter>BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="Mountain.cpp">
+      <Filter>BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="Forest.cpp">
+      <Filter>BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="Town.cpp">
+      <Filter>BackGround</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Levels">
@@ -32,6 +56,9 @@
     </Filter>
     <Filter Include="Object">
       <UniqueIdentifier>{df11f953-5c45-4952-85fb-a35bec5d2a60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="BackGround">
+      <UniqueIdentifier>{4be67c3d-f968-4287-9008-174c889fc9bf}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

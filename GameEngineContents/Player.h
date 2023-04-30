@@ -15,19 +15,25 @@ public:
 	Player& operator=(const Player& _Other) = delete;
 	Player& operator=(Player&& _Other) noexcept = delete;
 
+
+	static Player* MainPlayer;
+
 protected:
 	void Start();
 	void Update(float _Delta) override;
 	void Render(float _Delta) override;
 
 	float4 TestColor;
-	float4 TestColor1;
 
 private:
+
+
 	float Angle = 0.0f;
-	std::shared_ptr<class GameEngineRenderer> Render0;
-	std::shared_ptr<class GameEngineRenderer> Render1;
-	std::shared_ptr<class GameEngineRenderer> Render2;
+	std::shared_ptr<class GameEngineSpriteRenderer> Render0;
+	std::shared_ptr<class GameEngineSpriteRenderer> Render1;
+	std::shared_ptr<class GameEngineSpriteRenderer> Render2;
+	std::shared_ptr<class GameEngineSpriteRenderer> Render3;
+	std::shared_ptr<class GameEngineSpriteRenderer> Render4;
 
 };
 

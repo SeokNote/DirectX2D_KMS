@@ -1,6 +1,11 @@
 #include "PrecompileHeader.h"
 #include "PlayLevel.h"
 #include "Player.h"
+#include "Forest.h"
+#include "Mountain.h"
+#include "Sky.h"
+#include "Town.h"
+
 #include <GameEngineCore/GameEngineCamera.h>
 #include <GameEngineCore/GameEngineTexture.h>
 
@@ -33,13 +38,37 @@ void PlayLevel::Start()
 	}
 
 
-
-	GetMainCamera()->SetProjectionType(CameraType::Perspective);
+	GetMainCamera()->SetProjectionType(CameraType::Orthogonal);
 	GetMainCamera()->GetTransform()->SetLocalPosition({ 0, 0, -1000.0f });
 
+	float4 CamPos = GetMainCamera()->GetTransform()->GetWorldPosition();
+	float4 CamSize = GameEngineWindow::GetScreenSize();
 
 
-	std::shared_ptr<Player> NewPlayer = CreateActor<Player>("Player");
+	//CreateActor<Forest>();
 
+	{
+		std::shared_ptr<Sky> SkyBG = CreateActor<Sky>("Sky");
+	}
+	{
+		std::shared_ptr<Mountain> MountainBG = CreateActor<Mountain>("Mountain");
+	}
+	{
+		std::shared_ptr<Forest> ForestBG = CreateActor<Forest>("Forest");
+	}
+	{
+		std::shared_ptr<Town> TownBG = CreateActor<Town>("Town");
+
+	}
+	{
+		std::shared_ptr<Player> NewPlayer = CreateActor<Player>("Player");
+	}
+
+}
+
+
+
+void PlayLevel::Update(float _DeltaTime)
+{
 
 }

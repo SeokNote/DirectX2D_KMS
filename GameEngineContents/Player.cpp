@@ -1,10 +1,15 @@
 #include "PrecompileHeader.h"
 #include "Player.h"
+#include <GameEngineCore/GameEngineSpriteRenderer.h>
+
 #include <GameEnginePlatform/GameEngineWindow.h>
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/GameEngineCamera.h>
 #include <GameEngineCore/GameEngineRenderer.h>
 #include <GameEnginePlatform/GameEngineInput.h>
+
+
+Player* Player::MainPlayer = nullptr;
 
 Player::Player()
 {
@@ -17,10 +22,11 @@ Player::~Player()
 
 void Player::Update(float _DeltaTime)
 {
-
+	MainPlayer = this;
 	float RotSpeed = 180.0f;
 
 	float Speed = 200.0f;
+	GetLevel()->GetMainCamera()->GetTransform()->SetWorldPosition(GetTransform()->GetWorldPosition());
 
 	if (true == GameEngineInput::IsPress("PlayerSpeedBoost"))
 	{
@@ -43,17 +49,17 @@ void Player::Update(float _DeltaTime)
 	{
 		GetTransform()->AddLocalPosition(float4::Down * Speed * _DeltaTime);
 	}
-	if (true == GameEngineInput::IsPress("PlayerMoveForward"))
-	{
-		GetTransform()->AddLocalPosition(GetTransform()->GetLocalForwardVector() * Speed * _DeltaTime);
-		// GetTransform()->AddLocalPosition(float4::Forward * Speed * _DeltaTime);
-	}
-	if (true == GameEngineInput::IsPress("PlayerMoveBack"))
-	{
-		GetTransform()->AddLocalPosition(float4::Back * Speed * _DeltaTime);
-	}
+	//if (true == GameEngineInput::IsPress("PlayerMoveForward"))
+	//{
+	//	GetTransform()->AddLocalPosition(GetTransform()->GetLocalForwardVector() * Speed * _DeltaTime);
+	//	// GetTransform()->AddLocalPosition(float4::Forward * Speed * _DeltaTime);
+	//}
+	//if (true == GameEngineInput::IsPress("PlayerMoveBack"))
+	//{
+	//	GetTransform()->AddLocalPosition(float4::Back * Speed * _DeltaTime);
+	//}
 
-	if (true == GameEngineInput::IsPress("PlayerRotY+"))
+	/*if (true == GameEngineInput::IsPress("PlayerRotY+"))
 	{
 		GetTransform()->AddLocalRotation({ 0.0f, RotSpeed * _DeltaTime, 0.0f });
 	}
@@ -103,7 +109,7 @@ void Player::Update(float _DeltaTime)
 	if (true == GameEngineInput::IsPress("PlayerScaleX-"))
 	{
 		GetTransform()->AddLocalScale({ -ScaleSpeed * _DeltaTime, 0.0f, 0.0f });
-	}
+	}*/
 }
 
 void Player::Start()
@@ -136,20 +142,34 @@ void Player::Start()
 
 
 	// 나는 스케일을 1로 고정해 놓는게 좋다.
-	Render0 = CreateComponent<GameEngineRenderer>();
-	Render0->SetPipeLine("2DTexture");
-//	Render0->GetShaderResHelper().SetConstantBufferLink("OutPixelColor", TestColor);
-	// Render0->GetShaderResHelper().SetConstantBufferLink("TransformData", TestColor);
-	Render0->GetTransform()->SetLocalScale({ 100.0f, 100.0f , 100.0f });
-	Render0->GetTransform()->SetLocalPosition({ -500.0f,0.0f,0.0f,1.0f });
+	//Render2 = CreateComponent<GameEngineSpriteRenderer>();
+	//Render2->SetTexture("Sky_DayxS.png");
+	//Render2->GetTransform()->SetLocalPosition({ 0.0f,0.0f,0.0f });
+	//Render2->GetTransform()->SetLocalScale({ 5120.0f,1408.0f,0.0f });
 
-	Render1 = CreateComponent<GameEngineRenderer>();
-	Render1->SetPipeLine("2DTexture");
-//	Render1->GetShaderResHelper().SetConstantBufferLink("OutPixelColor", TestColor1);
-	Render1->GetTransform()->SetLocalScale({ 100.0f, 100.0f , 100.0f });
-	Render1->GetTransform()->SetLocalPosition({ 500.0f,0.0f,0.0f,1.0f });
-	TestColor = { 0.0f, 0.0f, 0.0f, 1.0f };
-	TestColor1 = { 1.0f,0.0f,1.0f,1.0f };
+	//Render3 = CreateComponent<GameEngineSpriteRenderer>();
+	//Render3->SetTexture("BG2.png");
+	//Render3->GetTransform()->SetLocalPosition({ 0.0f,-420.0f,0.0f });
+	//Render3->GetTransform()->SetLocalScale({ 5120.0f,568,0.0f });
+
+	//Render4 = CreateComponent<GameEngineSpriteRenderer>();
+	//Render4->SetTexture("BG3.png");
+	//Render4->GetTransform()->SetLocalPosition({ 0.0f,-516.0f,0.0f });
+	//Render4->GetTransform()->SetLocalScale({ 5120.0f,380,0.0f });
+
+	//Render0 = CreateComponent<GameEngineSpriteRenderer>();
+	//Render0->SetTexture("townbg.png");
+	//Render0->GetTransform()->SetLocalScale({ 5120.0f,1408.0f,0.0f });
+
+
+
+	Render1 = CreateComponent<GameEngineSpriteRenderer>();
+	Render1->SetTexture("CharIdle0.png");
+	Render1->GetTransform()->SetLocalPosition({0.0f,0.0f,0.0f });
+	Render1->GetTransform()->SetLocalScale({ 128.0f, 128.0f });
+
+
+
 }
 
 // 이건 디버깅용도나 

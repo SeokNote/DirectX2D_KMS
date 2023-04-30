@@ -17,9 +17,9 @@ public:
 
 protected:
 	void Start() override;
-
+	void Update(float _DeltaTime) override;
 
 private:
-
+	float4 TownScale = float4::Zero;
 };
 

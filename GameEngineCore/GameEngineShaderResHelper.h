@@ -83,6 +83,7 @@ public:
 	{
 		SetConstantBufferLink(_Name, reinterpret_cast<const void*>(&_Data), sizeof(DataType));
 	}
+	void SetTexture(const std::string_view& _SettingName, const std::string_view& _ImageName);
 
 	void SetConstantBufferLink(const std::string_view& _Name, const void* _Data, UINT _Size);
 
