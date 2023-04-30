@@ -23,7 +23,7 @@ void Sky::Start()
 	SkyRender = CreateComponent<GameEngineSpriteRenderer>();
 	SkyRender->SetTexture("Sky_Day.png");
 
-	SkyRender->GetTransform()->SetLocalScale({ 1280.0f,720.0f,0.0f });
+	SkyRender->GetTransform()->SetLocalScale({ 1280.0f,720.0f,-1.0f });
 //	SkyRender->GetTransform()->SetLocalPosition({0.0f,0.0f,0.0f});
 
 }
@@ -32,7 +32,7 @@ void Sky::Start()
 void Sky::Update(float _DeltaTime)
 {
 	float4 sadwa = GetLevel()->GetMainCamera()->GetTransform()->GetWorldPosition();
-	sadwa.z = 0;
+	sadwa.z = -1;
 	SkyRender->GetTransform()->SetLocalPosition(sadwa);
 
 }

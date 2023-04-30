@@ -12,17 +12,38 @@
       <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="PrecompileHeader.h" />
-    <ClInclude Include="Sky.h">
-      <Filter>BackGround</Filter>
+    <ClInclude Include="Forest.h">
+      <Filter>BackGround\Town</Filter>
     </ClInclude>
     <ClInclude Include="Mountain.h">
-      <Filter>BackGround</Filter>
+      <Filter>BackGround\Town</Filter>
     </ClInclude>
-    <ClInclude Include="Forest.h">
-      <Filter>BackGround</Filter>
+    <ClInclude Include="Sky.h">
+      <Filter>BackGround\Town</Filter>
     </ClInclude>
     <ClInclude Include="Town.h">
-      <Filter>BackGround</Filter>
+      <Filter>BackGround\Town</Filter>
+    </ClInclude>
+    <ClInclude Include="FrontCloud.h">
+      <Filter>BackGround\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="BackCloud.h">
+      <Filter>BackGround\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="MainLogo.h">
+      <Filter>BackGround\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="StartButton.h">
+      <Filter>BackGround\Title\ButtonUI</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundButton.h">
+      <Filter>BackGround\Title\ButtonUI</Filter>
+    </ClInclude>
+    <ClInclude Include="EndButton.h">
+      <Filter>BackGround\Title\ButtonUI</Filter>
+    </ClInclude>
+    <ClInclude Include="MidCloud.h">
+      <Filter>BackGround\Title</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -37,17 +58,38 @@
       <Filter>Object</Filter>
     </ClCompile>
     <ClCompile Include="PrecompileHeader.cpp" />
-    <ClCompile Include="Sky.cpp">
-      <Filter>BackGround</Filter>
+    <ClCompile Include="Forest.cpp">
+      <Filter>BackGround\Town</Filter>
     </ClCompile>
     <ClCompile Include="Mountain.cpp">
-      <Filter>BackGround</Filter>
+      <Filter>BackGround\Town</Filter>
     </ClCompile>
-    <ClCompile Include="Forest.cpp">
-      <Filter>BackGround</Filter>
+    <ClCompile Include="Sky.cpp">
+      <Filter>BackGround\Town</Filter>
     </ClCompile>
     <ClCompile Include="Town.cpp">
-      <Filter>BackGround</Filter>
+      <Filter>BackGround\Town</Filter>
+    </ClCompile>
+    <ClCompile Include="FrontCloud.cpp">
+      <Filter>BackGround\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="BackCloud.cpp">
+      <Filter>BackGround\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="MainLogo.cpp">
+      <Filter>BackGround\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="StartButton.cpp">
+      <Filter>BackGround\Title\ButtonUI</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundButton.cpp">
+      <Filter>BackGround\Title\ButtonUI</Filter>
+    </ClCompile>
+    <ClCompile Include="EndButton.cpp">
+      <Filter>BackGround\Title\ButtonUI</Filter>
+    </ClCompile>
+    <ClCompile Include="MidCloud.cpp">
+      <Filter>BackGround\Title</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -59,6 +101,15 @@
     </Filter>
     <Filter Include="BackGround">
       <UniqueIdentifier>{4be67c3d-f968-4287-9008-174c889fc9bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="BackGround\Title">
+      <UniqueIdentifier>{c6bec758-f0e5-4192-8d18-ca59c24c02ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="BackGround\Town">
+      <UniqueIdentifier>{4c306d38-7512-421e-9710-bb04c2bdbc43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="BackGround\Title\ButtonUI">
+      <UniqueIdentifier>{e08ebb49-23ac-4acc-befb-ca67fe667ec1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

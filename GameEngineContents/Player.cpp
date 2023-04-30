@@ -13,16 +13,22 @@ Player* Player::MainPlayer = nullptr;
 
 Player::Player()
 {
+	MainPlayer = this;
+
 }
 
 Player::~Player()
 {
+	if (this == MainPlayer)
+	{
+		MainPlayer = nullptr;
+	}
+
 }
 
 
 void Player::Update(float _DeltaTime)
 {
-	MainPlayer = this;
 	float RotSpeed = 180.0f;
 
 	float Speed = 200.0f;
@@ -165,7 +171,7 @@ void Player::Start()
 
 	Render1 = CreateComponent<GameEngineSpriteRenderer>();
 	Render1->SetTexture("CharIdle0.png");
-	Render1->GetTransform()->SetLocalPosition({0.0f,0.0f,0.0f });
+	Render1->GetTransform()->SetLocalPosition({0.0f,0.0f,-1.0f });
 	Render1->GetTransform()->SetLocalScale({ 128.0f, 128.0f });
 
 

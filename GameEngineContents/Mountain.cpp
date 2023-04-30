@@ -23,8 +23,8 @@ void Mountain::Start()
 	MountainRender->SetTexture("BG2.png");
 	MountainRender->GetTransform()->SetLocalPosition({ 0.0f,-180.0f,0.0f });
 	MountainRender->GetTransform()-> SetLocalScale({ 5120.0f,380.0f,0.0f });
-	float PlayerPos = 0;
-	PlayerPos = Player::MainPlayer->GetTransform()->GetLocalPosition().x;
+	float4 PlayerPos = float4::Zero;
+	PlayerPos = Player::MainPlayer->GetPlayerPtr()->GetTransform()->GetWorldPosition();
 	int a = 0;
 }
 

@@ -5,6 +5,8 @@
 class Player : public GameEngineActor
 {
 public:
+	static Player* MainPlayer;
+
 	// constrcuter destructer
 	Player();
 	~Player();
@@ -16,7 +18,11 @@ public:
 	Player& operator=(Player&& _Other) noexcept = delete;
 
 
-	static Player* MainPlayer;
+
+	std::shared_ptr<class GameEngineSpriteRenderer> GetPlayerPtr()
+	{
+		return Render1;
+	}
 
 protected:
 	void Start();
@@ -24,6 +30,7 @@ protected:
 	void Render(float _Delta) override;
 
 	float4 TestColor;
+
 
 private:
 

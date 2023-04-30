@@ -164,11 +164,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BackCloud.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="ContentsCore.h">
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="EndButton.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Forest.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="FrontCloud.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="MainLogo.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -192,6 +208,18 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="MidCloud.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="SoundButton.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="StartButton.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="TitleLevel.h">
       <SubType>
       </SubType>
@@ -202,11 +230,27 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BackCloud.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="ContentsCore.cpp">
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="EndButton.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Forest.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="FrontCloud.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="MainLogo.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -227,6 +271,18 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Sky.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="MidCloud.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="SoundButton.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="StartButton.cpp">
       <SubType>
       </SubType>
     </ClCompile>

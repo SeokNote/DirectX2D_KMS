@@ -1,7 +1,6 @@
 #include "PrecompileHeader.h"
 #include "GameEngineTransform.h"
 #include "GameEngineObject.h"
-
 GameEngineTransform::GameEngineTransform()
 {
 	TransformUpdate();
@@ -70,7 +69,6 @@ void GameEngineTransform::TransformUpdate()
 	TransData.WorldMatrix.Decompose(TransData.WorldScale, TransData.WorldQuaternion, TransData.WorldPosition);
 	TransData.WorldRotation = TransData.WorldQuaternion.QuaternionToEulerDeg();
 	// ParentWorldMatrix.Decompose(PScale, PRoatation, PPosition);
-
 }
 
 void GameEngineTransform::SetParent(GameEngineTransform* _Parent)

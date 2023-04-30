@@ -8,6 +8,9 @@
 
 #include <GameEngineCore/GameEngineCamera.h>
 #include <GameEngineCore/GameEngineTexture.h>
+#include <GameEnginePlatform/GameEngineInput.h>
+#include <GameEngineCore/GameEngineCore.h>
+
 
 PlayLevel::PlayLevel()
 {
@@ -20,24 +23,28 @@ PlayLevel::~PlayLevel()
 
 void PlayLevel::Start()
 {
+	//{
+	//	GameEngineDirectory NewDir;
+	//	NewDir.MoveParentToDirectory("ContentResources");
+	//	NewDir.Move("ContentResources");
+
+	//	std::vector<GameEngineFile> File = NewDir.GetAllFile({ ".Png", });
+
+
+	//	for (size_t i = 0; i < File.size(); i++)
+	//	{
+	//		GameEngineTexture::Load(File[i].GetFullPath());
+	//	}
+
+	//	int a = 0;
+
+	//}
+
+	if (false == GameEngineInput::IsKey("LevelChange"))
 	{
-		GameEngineDirectory NewDir;
-		NewDir.MoveParentToDirectory("ContentResources");
-		NewDir.Move("ContentResources");
-
-		std::vector<GameEngineFile> File = NewDir.GetAllFile({ ".Png", });
-
-
-		for (size_t i = 0; i < File.size(); i++)
-		{
-			GameEngineTexture::Load(File[i].GetFullPath());
-		}
-
-		int a = 0;
-
+		GameEngineInput::CreateKey("LevelChange", 'Z');
+	
 	}
-
-
 	GetMainCamera()->SetProjectionType(CameraType::Orthogonal);
 	GetMainCamera()->GetTransform()->SetLocalPosition({ 0, 0, -1000.0f });
 
@@ -46,7 +53,9 @@ void PlayLevel::Start()
 
 
 	//CreateActor<Forest>();
-
+	{
+		std::shared_ptr<Player> NewPlayer = CreateActor<Player>("Player");
+	}
 	{
 		std::shared_ptr<Sky> SkyBG = CreateActor<Sky>("Sky");
 	}
@@ -60,9 +69,8 @@ void PlayLevel::Start()
 		std::shared_ptr<Town> TownBG = CreateActor<Town>("Town");
 
 	}
-	{
-		std::shared_ptr<Player> NewPlayer = CreateActor<Player>("Player");
-	}
+
+
 
 }
 
@@ -70,5 +78,9 @@ void PlayLevel::Start()
 
 void PlayLevel::Update(float _DeltaTime)
 {
+	if (GameEngineInput::IsDown("LevelChange"))
+	{
+		GameEngineCore::ChangeLevel("TitleLevel");
+	}
 
 }
