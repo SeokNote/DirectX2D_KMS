@@ -21,7 +21,7 @@ Town::~Town()
 void Town::Start()
 {
 	TownRender = CreateComponent<GameEngineSpriteRenderer>();
-	TownRender->SetTexture("townbg.png");
+	TownRender->SetTexture("Town_0.png");
 	TownRender->GetTransform()->SetLocalPosition({ 0.0f,0.0f,0.0f });
 	TownRender->GetTransform()->SetLocalScale(TownScale);
 

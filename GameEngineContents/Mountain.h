@@ -23,6 +23,8 @@ private:
 	float4 MountainScale = { 5120.0f,568.0f,0.0f };
 	std::shared_ptr<class GameEngineSpriteRenderer> MountainRender;
 
+	float Num = 0.0f;
+	float4 PlayerPos = float4::Zero;
 	float4 MoveValue = float4::Zero;
 	float4 Center = { MountainScale.x / 2.0f , MountainScale.y / 2.0f, 0.0f };
 };

@@ -22,5 +22,7 @@ protected:
 private:
 	float4 FrontCloudScale = { 2560.0f,720.0f,0.0f };
 	std::shared_ptr<class GameEngineSpriteRenderer> FrontCloudRender;
+	std::shared_ptr<class GameEngineSpriteRenderer> FrontCloudRender_1;
+
 };
 

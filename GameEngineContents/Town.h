@@ -20,7 +20,7 @@ protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
 private:
-	float4 TownScale = { 5120.0f,1402.0f,0.0f };
+	float4 TownScale = { 5120.0f,1440.0f,0.0f };
 	std::shared_ptr<class GameEngineSpriteRenderer> TownRender;
 };
 

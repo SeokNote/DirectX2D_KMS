@@ -20,17 +20,18 @@ Mountain::~Mountain()
 void Mountain::Start()
 {
 	MountainRender = CreateComponent<GameEngineSpriteRenderer>();
-	MountainRender->SetTexture("BG2.png");
-	MountainRender->GetTransform()->SetLocalPosition({ 0.0f,-180.0f,0.0f });
-	MountainRender->GetTransform()-> SetLocalScale({ 5120.0f,380.0f,0.0f });
-	float4 PlayerPos = float4::Zero;
-	PlayerPos = Player::MainPlayer->GetPlayerPtr()->GetTransform()->GetWorldPosition();
-	int a = 0;
+	MountainRender->SetTexture("MountineBG.png");
+	MountainRender->GetTransform()->SetLocalPosition({ 0.0f,-300.0f,0.0f });
+	MountainRender->GetTransform()-> SetLocalScale({ 5120.0f,568.0f,0.0f });
 }
 
 
 void Mountain::Update(float _DeltaTime)
 {
+	PlayerPos = Player::MainPlayer->GetPlayerPtr()->GetTransform()->GetWorldPosition();
+	float asda1 = (PlayerPos.x - Center.x) * (1.0f - 0.1f);
+	asda1 += 2000.0f;
+	MountainRender->GetTransform()->SetLocalPosition({ asda1,-300.0f,0.0f });
 
 }
 

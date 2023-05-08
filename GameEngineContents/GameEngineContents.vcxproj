@@ -168,10 +168,15 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="CameraCtr.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="ContentsCore.h">
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="ContentsEnums.h" />
     <ClInclude Include="EndButton.h">
       <SubType>
       </SubType>
@@ -184,7 +189,15 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Logo.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="MainLogo.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="MapDataBase.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -216,6 +229,14 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Stage_1.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Stage_2.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="StartButton.h">
       <SubType>
       </SubType>
@@ -231,6 +252,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BackCloud.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="CameraCtr.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -250,7 +275,15 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Logo.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="MainLogo.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="MapDataBase.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -279,6 +312,14 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="SoundButton.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Stage_1.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Stage_2.cpp">
       <SubType>
       </SubType>
     </ClCompile>

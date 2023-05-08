@@ -5,8 +5,10 @@
 #include "MidCloud.h"
 #include "MainLogo.h"
 #include "StartButton.h"
-#include "EndButton.h"
 #include "SoundButton.h"
+#include "EndButton.h"
+#include "Logo.h"
+
 
 
 
@@ -29,7 +31,11 @@ TitleLevel::~TitleLevel()
 void TitleLevel::Start()
 {
 
+	if (false == GameEngineInput::IsKey("LevelChange"))
+	{
+		GameEngineInput::CreateKey("LevelChange", 'Z');
 
+	}
 	GetMainCamera()->SetProjectionType(CameraType::Orthogonal);
 	GetMainCamera()->GetTransform()->SetLocalPosition({ 0, 0, -1000.0f });
 	{
@@ -52,8 +58,22 @@ void TitleLevel::Start()
 		std::shared_ptr<SoundButton> SoundButtonPtr = CreateActor<SoundButton>("SoundButton");
 		std::shared_ptr<EndButton> EndButtonPtr = CreateActor<EndButton>("EndButton");
 	}
+	{
+		std::shared_ptr<Logo> LogoPtr = CreateActor<Logo>("Logo");
+
+	}
 
 
+
+}
+
+void TitleLevel::Update(float _DeltaTime)
+{
+
+	if (GameEngineInput::IsDown("LevelChange"))
+	{
+		GameEngineCore::ChangeLevel("PlayLevel");
+	}
 
 
 }

@@ -8,22 +8,7 @@
     <ClInclude Include="PlayLevel.h">
       <Filter>Levels</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Object</Filter>
-    </ClInclude>
     <ClInclude Include="PrecompileHeader.h" />
-    <ClInclude Include="Forest.h">
-      <Filter>BackGround\Town</Filter>
-    </ClInclude>
-    <ClInclude Include="Mountain.h">
-      <Filter>BackGround\Town</Filter>
-    </ClInclude>
-    <ClInclude Include="Sky.h">
-      <Filter>BackGround\Town</Filter>
-    </ClInclude>
-    <ClInclude Include="Town.h">
-      <Filter>BackGround\Town</Filter>
-    </ClInclude>
     <ClInclude Include="FrontCloud.h">
       <Filter>BackGround\Title</Filter>
     </ClInclude>
@@ -45,6 +30,37 @@
     <ClInclude Include="MidCloud.h">
       <Filter>BackGround\Title</Filter>
     </ClInclude>
+    <ClInclude Include="Sky.h">
+      <Filter>BackGround\Town\BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="Forest.h">
+      <Filter>BackGround\Town\BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="Mountain.h">
+      <Filter>BackGround\Town\BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="Town.h">
+      <Filter>BackGround\Town\BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Object\MainPlayer</Filter>
+    </ClInclude>
+    <ClInclude Include="Logo.h">
+      <Filter>BackGround\Title\ButtonUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage_1.h">
+      <Filter>Map\Stage1</Filter>
+    </ClInclude>
+    <ClInclude Include="ContentsEnums.h" />
+    <ClInclude Include="CameraCtr.h">
+      <Filter>보류</Filter>
+    </ClInclude>
+    <ClInclude Include="MapDataBase.h">
+      <Filter>보류</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage_2.h">
+      <Filter>Map\Stage1</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -54,22 +70,7 @@
     <ClCompile Include="PlayLevel.cpp">
       <Filter>Levels</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Object</Filter>
-    </ClCompile>
     <ClCompile Include="PrecompileHeader.cpp" />
-    <ClCompile Include="Forest.cpp">
-      <Filter>BackGround\Town</Filter>
-    </ClCompile>
-    <ClCompile Include="Mountain.cpp">
-      <Filter>BackGround\Town</Filter>
-    </ClCompile>
-    <ClCompile Include="Sky.cpp">
-      <Filter>BackGround\Town</Filter>
-    </ClCompile>
-    <ClCompile Include="Town.cpp">
-      <Filter>BackGround\Town</Filter>
-    </ClCompile>
     <ClCompile Include="FrontCloud.cpp">
       <Filter>BackGround\Title</Filter>
     </ClCompile>
@@ -91,6 +92,36 @@
     <ClCompile Include="MidCloud.cpp">
       <Filter>BackGround\Title</Filter>
     </ClCompile>
+    <ClCompile Include="Forest.cpp">
+      <Filter>BackGround\Town\BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="Mountain.cpp">
+      <Filter>BackGround\Town\BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="Sky.cpp">
+      <Filter>BackGround\Town\BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="Town.cpp">
+      <Filter>BackGround\Town\BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Object\MainPlayer</Filter>
+    </ClCompile>
+    <ClCompile Include="Logo.cpp">
+      <Filter>BackGround\Title\ButtonUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage_1.cpp">
+      <Filter>Map\Stage1</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraCtr.cpp">
+      <Filter>보류</Filter>
+    </ClCompile>
+    <ClCompile Include="MapDataBase.cpp">
+      <Filter>보류</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage_2.cpp">
+      <Filter>Map\Stage1</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Levels">
@@ -110,6 +141,33 @@
     </Filter>
     <Filter Include="BackGround\Title\ButtonUI">
       <UniqueIdentifier>{e08ebb49-23ac-4acc-befb-ca67fe667ec1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="BackGround\Town\BackGround">
+      <UniqueIdentifier>{ae7590d5-f428-45e8-a26d-3827633c2f00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="BackGround\Town\Npc">
+      <UniqueIdentifier>{ccafa14f-1dc5-4f66-9923-81ff3b07bcf1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="BackGround\Town\Dungeon">
+      <UniqueIdentifier>{de619b22-6730-4e2c-b7ac-6586726b1505}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\MainPlayer">
+      <UniqueIdentifier>{e24a7f00-5c85-4a52-8e95-fc867e9bb81c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Map">
+      <UniqueIdentifier>{7deac199-21a2-4db2-8eac-665a9a6af86b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Map\Stage1">
+      <UniqueIdentifier>{047cec08-53de-47e5-bcc7-559552b12155}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="보류">
+      <UniqueIdentifier>{490208eb-ab65-4346-9cc6-47cf5847f56f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\MainPlayer\Monster">
+      <UniqueIdentifier>{9a513c87-2f7f-499f-9b87-7a9897238e14}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Boss">
+      <UniqueIdentifier>{3316eae2-a4da-4464-8615-e45e2ae7790c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

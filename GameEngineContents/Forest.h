@@ -22,5 +22,10 @@ protected:
 private:
 	float4 ForestScale = { 5120.0f,380.0f,0.0f};
 	std::shared_ptr<class GameEngineSpriteRenderer> ForestRender;
+
+	float4 MoveValue = float4::Zero;
+	float4 Center = { ForestScale.x / 2.0f , ForestScale.y / 2.0f, 0.0f };
+	float4 PlayerPos = float4::Zero;
+
 };
 

@@ -41,7 +41,7 @@ void GameEngineLevel::ActorUpdate(float _DeltaTime)
 	if (true == MainCamera->IsFreeCamera())
 	{
 		MainCamera->Update(_DeltaTime);
-		return;
+		//return;
 	}
 
 	for (std::pair<int, std::list<std::shared_ptr<GameEngineActor>>> OrderGroup : Actors)

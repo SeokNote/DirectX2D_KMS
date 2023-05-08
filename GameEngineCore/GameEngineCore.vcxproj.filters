@@ -255,6 +255,9 @@
     <Filter Include="Object\Rendering\Component\2D">
       <UniqueIdentifier>{4ebd865a-ec48-49e0-8dd0-06eb9a9e43c1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="IMGUI">
+      <UniqueIdentifier>{fc03e46a-4b93-4550-ae03-4b556f839273}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ThirdParty\DirectXTex\inc\DirectXTex.inl">

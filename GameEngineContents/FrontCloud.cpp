@@ -25,6 +25,10 @@ void FrontCloud::Start()
 	FrontCloudRender->GetTransform()->SetLocalPosition({ 0.0f,0.0f,0.0f });
 	FrontCloudRender->GetTransform()->SetLocalScale(FrontCloudScale);
 
+	FrontCloudRender_1 = CreateComponent<GameEngineSpriteRenderer>();
+	FrontCloudRender_1->SetTexture("FrontCloud.png");
+	FrontCloudRender_1->GetTransform()->SetLocalPosition({ 2560.0f,0.0f,0.0f });
+	FrontCloudRender_1->GetTransform()->SetLocalScale(FrontCloudScale);
 }
 
 
@@ -32,8 +36,12 @@ void FrontCloud::Update(float _DeltaTime)
 {
 
 	FrontCloudRender->GetTransform()->AddLocalPosition({ -0.05f,0.f,0.f });
-	//if (-640.0f>FrontCloudRender->GetTransform()->GetLocalPosition().x) {
-	//	FrontCloudRender->GetTransform()->SetLocalPosition({ 0.0f,0.0f,0.0f });
-	//}
+	if (-2560.0f >= FrontCloudRender->GetTransform()->GetLocalPosition().x) {
+		FrontCloudRender->GetTransform()->SetLocalPosition({2560.0f, 0.0f, 0.0f});
+	}
+	FrontCloudRender_1->GetTransform()->AddLocalPosition({ -0.05f,0.f,0.f });
+	if (-2560.0f >= FrontCloudRender_1->GetTransform()->GetLocalPosition().x) {
+		FrontCloudRender_1->GetTransform()->SetLocalPosition({ 2560.0f, 0.0f, 0.0f });
+	}
 }
 
