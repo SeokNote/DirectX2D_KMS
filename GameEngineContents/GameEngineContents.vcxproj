@@ -237,6 +237,14 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Stage_3.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Stage_4.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="StartButton.h">
       <SubType>
       </SubType>
@@ -320,6 +328,14 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Stage_2.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Stage_3.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Stage_4.cpp">
       <SubType>
       </SubType>
     </ClCompile>

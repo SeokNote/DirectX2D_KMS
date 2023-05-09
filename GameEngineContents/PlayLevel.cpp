@@ -10,6 +10,8 @@
 
 #include "Stage_1.h"
 #include "Stage_2.h"
+#include "Stage_3.h"
+#include "Stage_4.h"
 
 #include <GameEngineCore/GameEngineCamera.h>
 #include <GameEngineCore/GameEngineTexture.h>
@@ -57,7 +59,7 @@ void PlayLevel::Start()
 
 	//	Town
 	
-		std::shared_ptr<Player> NewPlayer = CreateActor<Player>(1);
+		static std::shared_ptr<Player> NewPlayer = CreateActor<Player>(1);
 		NewPlayer->GetTransform()->SetLocalPosition({ -2450,0.0f,100.0f });
 	
 	{
@@ -77,6 +79,8 @@ void PlayLevel::Start()
 	
 	std::shared_ptr<Stage_1> Stage1 = CreateActor<Stage_1>(-16);
 	std::shared_ptr<Stage_2> Stage2 = CreateActor<Stage_2>(-16);
+	std::shared_ptr<Stage_3> Stage3 = CreateActor<Stage_3>(-16);
+	std::shared_ptr<Stage_4> Stage4 = CreateActor<Stage_4>(-16);
 
 	
 
@@ -93,13 +97,19 @@ void PlayLevel::Update(float _DeltaTime)
 	//MapDataBase::MapDataPtr->SetMapName();
 	//MapDataBase::MapDataPtr->GetMapName(CurMap);
 	if (CurMap == MyMap::Town) {
-		CameraMove(-2560.0f,2560.0f,720.0f,-720.0f);
+		CameraColMove(-2560.0f,2560.0f,720.0f,-720.0f);
 	}
 	if (CurMap == MyMap::Stage1_1) {
-		CameraMove(2660.0f, 3940.0f, 360,-360);
+		CameraColMove(2660.0f, 3940.0f, 360,-360);
 	}
 	if (CurMap == MyMap::Stage1_2) {
-		CameraMove(4040.0f, 6600, 640, -640);
+		CameraColMove(4040.0f, 6600, 640, -640);
+	}
+	if (CurMap == MyMap::Stage1_3) {
+		CameraColMove(6700.0f, 9260.0f, 640, -640);
+	}
+	if (CurMap == MyMap::Stage1_4) {
+		CameraColMove(9360.0f, 11280, 360, -360);
 	}
 	if (GameEngineInput::IsDown("LevelChange"))
 	{
@@ -123,9 +133,17 @@ MyMap PlayLevel::GetMyMap(MyMap _MyMap)
 		_MyMap = MyMap::Stage1_2;
 		return _MyMap;
 	}
+	if (PlayerPos.x > 6600 && PlayerPos.x < 9160) {
+		_MyMap = MyMap::Stage1_3;
+		return _MyMap;
+	}
+	if (PlayerPos.x > 9260 && PlayerPos.x < 11180) {
+		_MyMap = MyMap::Stage1_4;
+		return _MyMap;
+	}
 }
 
-void PlayLevel::CameraMove(float _X,float _X1, float _Y,float _Y1)
+void PlayLevel::CameraColMove(float _X,float _X1, float _Y,float _Y1)
 {
 	GetMainCamera()->GetTransform()->SetWorldPosition(Player::MainPlayer->GetTransform()->GetWorldPosition());
 

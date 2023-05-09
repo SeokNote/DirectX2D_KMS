@@ -21,7 +21,7 @@ Stage_2::~Stage_2()
 void Stage_2::Start()
 {
 	Stage_2Render = CreateComponent<GameEngineSpriteRenderer>();
-	Stage_2Render->SetTexture("Stage_03.png");
+	Stage_2Render->SetTexture("Stage_2.png");
 	Stage_2Render->GetTransform()->SetLocalPosition({ 5320.0f,0.0f,0.0f });
 	Stage_2Render->GetTransform()->SetLocalScale(Stage_2Scale);
 

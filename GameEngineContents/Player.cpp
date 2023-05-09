@@ -54,6 +54,8 @@ void Player::Start()
 }
 bool awds = false;
 bool awds1 = false;
+bool awds2 = false;
+bool awds3 = false;
 
 void Player::Update(float _DeltaTime)
 {
@@ -89,9 +91,17 @@ void Player::Update(float _DeltaTime)
 		awds = true;
 	}
 	if (awds1 == false && CurColPos > 3909.0f) {
-		GetTransform()->SetLocalPosition({ 4250,-219 });
+		GetTransform()->SetLocalPosition({ 4250,-319 });
 		awds1 = true;
 	}
+	if (awds2 == false && CurColPos > 6389) {
+		GetTransform()->SetLocalPosition({ 8023,560 });
+		awds2 = true;
+	}
+	//if (awds3 == false && CurColPos > 6900) {
+	//	GetTransform()->SetLocalPosition({ 8600,560 });
+	//	awds3 = true;
+	//}
 
 }
 // 이건 디버깅용도나 

@@ -61,6 +61,12 @@
     <ClInclude Include="Stage_2.h">
       <Filter>Map\Stage1</Filter>
     </ClInclude>
+    <ClInclude Include="Stage_3.h">
+      <Filter>Map\Stage1</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage_4.h">
+      <Filter>Map\Stage1</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -122,6 +128,12 @@
     <ClCompile Include="Stage_2.cpp">
       <Filter>Map\Stage1</Filter>
     </ClCompile>
+    <ClCompile Include="Stage_3.cpp">
+      <Filter>Map\Stage1</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage_4.cpp">
+      <Filter>Map\Stage1</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Levels">
@@ -163,11 +175,11 @@
     <Filter Include="보류">
       <UniqueIdentifier>{490208eb-ab65-4346-9cc6-47cf5847f56f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Object\MainPlayer\Monster">
-      <UniqueIdentifier>{9a513c87-2f7f-499f-9b87-7a9897238e14}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Object\Boss">
       <UniqueIdentifier>{3316eae2-a4da-4464-8615-e45e2ae7790c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Monster">
+      <UniqueIdentifier>{9a513c87-2f7f-499f-9b87-7a9897238e14}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
