@@ -221,51 +221,55 @@ void PlayLevel::CameraMoveSet()
 	}
 }
 
-bool CheckValue_0 = false;
-bool CheckValue_1 = false;
-bool CheckValue_2 = false;
+bool CheckUICtr_0 = false;
+bool CheckUICtr_1 = false;
+bool CheckUICtr_2 = false;
 
 void PlayLevel::UICtr()
 {
-	if (false == CheckValue_2 && GameEngineInput::IsDown("Inven"))
+	if (false == CheckUICtr_2 && GameEngineInput::IsDown("Inven"))
 	{
 		if (true == Stat->IsDeath())
 		{
 			Inventory = CreateActor<InventoryUI>(-10);
 		}
 		Inventory->On();
-		CheckValue_2 = true;
+		CheckUICtr_2 = true;
 	}
-	else if (true == CheckValue_2 && GameEngineInput::IsDown("Inven"))
+	else if (true == CheckUICtr_2 && GameEngineInput::IsDown("Inven"))
 	{
 		Inventory->Off();
-		CheckValue_2 = false;
+		CheckUICtr_2 = false;
 	}
 
-	if (false == CheckValue_0 && GameEngineInput::IsDown("StatUI"))
+	if (false == CheckUICtr_0 && GameEngineInput::IsDown("StatUI"))
 	{
 		if (true == Stat->IsDeath())
 		{
 			Stat = CreateActor<PlayerStat>(-10);
 		}
 		Stat->On();
-		CheckValue_0 = true;
+		CheckUICtr_0 = true;
 	}
-	else if (true == CheckValue_0 && GameEngineInput::IsDown("StatUI"))
+	else if (true == CheckUICtr_0 && GameEngineInput::IsDown("StatUI"))
 	{
 		Stat->Off();
-		CheckValue_0 = false;
+		CheckUICtr_0 = false;
 	}
 	if (CurMap == MyMap::Town) {
-		if (false == CheckValue_1 && GameEngineInput::IsDown("MapTabUI"))
+		if (false == CheckUICtr_1 && GameEngineInput::IsDown("MapTabUI"))
 		{
+			if (true == MapTab->IsDeath())
+			{
+				MapTab = CreateActor<MapTabUI>(-10);
+			}
 			MapTab->On();
-			CheckValue_1 = true;
+			CheckUICtr_1 = true;
 		}
-		else if (true == CheckValue_1 && GameEngineInput::IsDown("MapTabUI"))
+		else if (true == CheckUICtr_1 && GameEngineInput::IsDown("MapTabUI"))
 		{
-			MapTab->Off();
-			CheckValue_1 = false;
+			MapTab->Death();
+			CheckUICtr_1 = false;
 		}
 	}
 }
