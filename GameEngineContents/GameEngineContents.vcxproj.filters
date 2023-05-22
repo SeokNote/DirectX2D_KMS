@@ -9,15 +9,6 @@
       <Filter>Levels</Filter>
     </ClInclude>
     <ClInclude Include="PrecompileHeader.h" />
-    <ClInclude Include="FrontCloud.h">
-      <Filter>Map\Title</Filter>
-    </ClInclude>
-    <ClInclude Include="BackCloud.h">
-      <Filter>Map\Title</Filter>
-    </ClInclude>
-    <ClInclude Include="MainLogo.h">
-      <Filter>Map\Title</Filter>
-    </ClInclude>
     <ClInclude Include="StartButton.h">
       <Filter>Map\Title\ButtonUI</Filter>
     </ClInclude>
@@ -26,9 +17,6 @@
     </ClInclude>
     <ClInclude Include="EndButton.h">
       <Filter>Map\Title\ButtonUI</Filter>
-    </ClInclude>
-    <ClInclude Include="MidCloud.h">
-      <Filter>Map\Title</Filter>
     </ClInclude>
     <ClInclude Include="Sky.h">
       <Filter>Map\Town\BackGround</Filter>
@@ -107,6 +95,39 @@
       <Filter>Map\Town</Filter>
     </ClInclude>
     <ClInclude Include="PixelCollision.h" />
+    <ClInclude Include="BackCloud.h">
+      <Filter>Map\Title\Cloud</Filter>
+    </ClInclude>
+    <ClInclude Include="FrontCloud.h">
+      <Filter>Map\Title\Cloud</Filter>
+    </ClInclude>
+    <ClInclude Include="MainLogo.h">
+      <Filter>Map\Title\Cloud</Filter>
+    </ClInclude>
+    <ClInclude Include="MidCloud.h">
+      <Filter>Map\Title\Cloud</Filter>
+    </ClInclude>
+    <ClInclude Include="Bird.h">
+      <Filter>Map\Title\Bird</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayStartWindow.h">
+      <Filter>Map\Title\TitleActor</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerStat.h">
+      <Filter>Object\UI\Stat</Filter>
+    </ClInclude>
+    <ClInclude Include="MapTabUI.h">
+      <Filter>Object\UI\MapTab</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleMouse.h">
+      <Filter>Object\UI\MouseCusor</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayMouse.h">
+      <Filter>Object\UI\MouseCusor</Filter>
+    </ClInclude>
+    <ClInclude Include="InventoryUI.h">
+      <Filter>Object\UI\Inventory</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -117,15 +138,6 @@
       <Filter>Levels</Filter>
     </ClCompile>
     <ClCompile Include="PrecompileHeader.cpp" />
-    <ClCompile Include="FrontCloud.cpp">
-      <Filter>Map\Title</Filter>
-    </ClCompile>
-    <ClCompile Include="BackCloud.cpp">
-      <Filter>Map\Title</Filter>
-    </ClCompile>
-    <ClCompile Include="MainLogo.cpp">
-      <Filter>Map\Title</Filter>
-    </ClCompile>
     <ClCompile Include="StartButton.cpp">
       <Filter>Map\Title\ButtonUI</Filter>
     </ClCompile>
@@ -134,9 +146,6 @@
     </ClCompile>
     <ClCompile Include="EndButton.cpp">
       <Filter>Map\Title\ButtonUI</Filter>
-    </ClCompile>
-    <ClCompile Include="MidCloud.cpp">
-      <Filter>Map\Title</Filter>
     </ClCompile>
     <ClCompile Include="Forest.cpp">
       <Filter>Map\Town\BackGround</Filter>
@@ -214,6 +223,39 @@
       <Filter>Map\Town</Filter>
     </ClCompile>
     <ClCompile Include="PixelCollision.cpp" />
+    <ClCompile Include="BackCloud.cpp">
+      <Filter>Map\Title\Cloud</Filter>
+    </ClCompile>
+    <ClCompile Include="FrontCloud.cpp">
+      <Filter>Map\Title\Cloud</Filter>
+    </ClCompile>
+    <ClCompile Include="MainLogo.cpp">
+      <Filter>Map\Title\Cloud</Filter>
+    </ClCompile>
+    <ClCompile Include="MidCloud.cpp">
+      <Filter>Map\Title\Cloud</Filter>
+    </ClCompile>
+    <ClCompile Include="Bird.cpp">
+      <Filter>Map\Title\Bird</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayStartWindow.cpp">
+      <Filter>Map\Title\TitleActor</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerStat.cpp">
+      <Filter>Object\UI\Stat</Filter>
+    </ClCompile>
+    <ClCompile Include="MapTabUI.cpp">
+      <Filter>Object\UI\MapTab</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleMouse.cpp">
+      <Filter>Object\UI\MouseCusor</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayMouse.cpp">
+      <Filter>Object\UI\MouseCusor</Filter>
+    </ClCompile>
+    <ClCompile Include="InventoryUI.cpp">
+      <Filter>Object\UI\Inventory</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Levels">
@@ -266,6 +308,30 @@
     </Filter>
     <Filter Include="Map\DunGeon\Stage2\Stage2BG">
       <UniqueIdentifier>{6d0e5254-a75d-4ed0-a8b7-abe76fbf141d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Map\Title\Cloud">
+      <UniqueIdentifier>{7501b04a-5870-4216-ac52-9d8bf2dbc83f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Map\Title\Bird">
+      <UniqueIdentifier>{b63d4af0-66ab-4037-ac5d-1e5a86bab558}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Map\Title\TitleActor">
+      <UniqueIdentifier>{5b9e82aa-332a-4ec6-a0de-80ffb2ec48c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\UI">
+      <UniqueIdentifier>{34bba71b-7c24-485d-a009-a6d7877dec3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\UI\Stat">
+      <UniqueIdentifier>{f34619f5-98be-4983-8af1-bce01329aaef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\UI\MapTab">
+      <UniqueIdentifier>{aeecd136-843f-4c51-ab9b-49f7660fb0a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\UI\MouseCusor">
+      <UniqueIdentifier>{55cbac6b-60c9-433b-bdfa-55767c6a46a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\UI\Inventory">
+      <UniqueIdentifier>{b42d6347-4a8d-4451-a29c-d17ac09b2a5b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

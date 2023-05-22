@@ -24,5 +24,8 @@ private:
 	std::shared_ptr<class GameEngineSpriteRenderer> StartButtonRender_1;
 	std::shared_ptr<class GameEngineSpriteRenderer> StartButtonRender_2;
 
+	std::shared_ptr<class GameEngineCollision> StartButtonCollsion;
+
+
 };
 

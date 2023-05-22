@@ -24,7 +24,7 @@ void Sky::Start()
 	SkyRender = CreateComponent<GameEngineSpriteRenderer>();
 	SkyRender->SetTexture("Sky_Day.png");
 
-	SkyRender->GetTransform()->SetLocalScale({ 1280.0f,720.0f,-1.0f });
+	SkyRender->GetTransform()->SetLocalScale({ 1280.0f,720.0f,0.0f });
 //	SkyRender->GetTransform()->SetLocalPosition({0.0f,0.0f,0.0f});
 	SkyRender->Off();
 }
@@ -34,7 +34,7 @@ void Sky::Update(float _DeltaTime)
 {
 	float4 PlayerPos = Player::MainPlayer->GetPlayerPtr()->GetTransform()->GetWorldPosition();
 	float4 XMove = GetLevel()->GetMainCamera()->GetTransform()->GetWorldPosition();
-	XMove.z = -1;
+	XMove.z = 0.0f;
 	if (PlayerPos.x < 2560.0f && -2560 < PlayerPos.x) {
 		SkyRender->GetTransform()->SetLocalPosition(XMove);
 		SkyRender->On();

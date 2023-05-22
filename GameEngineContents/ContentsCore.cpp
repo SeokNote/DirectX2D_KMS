@@ -20,6 +20,7 @@ void ContentsCore::ContentsResourcesCreate()
 	GameEngineDirectory NewDir;
 	NewDir.MoveParentToDirectory("ContentResources");
 	NewDir.Move("ContentResources");
+	NewDir.Move("Texture");
 
 	std::vector<GameEngineFile> File = NewDir.GetAllFile({ ".Png", });
 

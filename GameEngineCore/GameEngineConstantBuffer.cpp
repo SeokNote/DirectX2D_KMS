@@ -35,14 +35,10 @@ void GameEngineConstantBuffer::ChangeData(const void* _Data, UINT _Size)
 		return;
 	}
 
-	//Map호출을 위한 변수 즉 하위 리소스에 대한 엑세스를제공하는 변수이다.
 	D3D11_MAPPED_SUBRESOURCE SettingResources = { 0, };
 
 	// 그래픽카드야 너한테 보낼께있어 잠깐 멈춰봐 
 	// D3D11_MAP_WRITE_DISCARD 최대한 빠르게 처리하는 
-	//map,unmap이란 동적 사용을 위한 텍스쳐 , 상수 버퍼를 만들기 위해 사용되는 것이다. 
-	// 이를 쓰기위해서 cpuflag값을 write로 바꿔놨던 것.
-	//우린 헬퍼에게 copy받은 세터가 있는데 거기서 값을 바꿔서 넣어주면 그값이 cpu에 바뀌어서 전달되게 하기 위해 있는 코드
 	GameEngineDevice::GetContext()->Map(Buffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &SettingResources);
 
 	if (SettingResources.pData == nullptr)
@@ -51,7 +47,6 @@ void GameEngineConstantBuffer::ChangeData(const void* _Data, UINT _Size)
 		MsgAssert(Name + " 그래픽카드에게 메모리 접근을 허가받지 못했습니다.");
 		return;
 	}
-	//새 데이터 쓰기단계 즉 원래 갖고있던 데이터 부분에 새로 받는 데이터를 덧씌우는 작업 그리고 unmap을 해주면 된다.
 	memcpy_s(SettingResources.pData, BufferInfo.ByteWidth, _Data, BufferInfo.ByteWidth);
 
 	GameEngineDevice::GetContext()->Unmap(Buffer, 0);

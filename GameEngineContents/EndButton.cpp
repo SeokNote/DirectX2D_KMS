@@ -8,6 +8,7 @@
 #include <GameEngineCore/GameEngineCamera.h>
 #include <GameEngineCore/GameEngineRenderer.h>
 #include <GameEnginePlatform/GameEngineInput.h>
+#include <GameEngineCore/GameEngineCollision.h>
 
 
 EndButton::EndButton()
@@ -30,11 +31,29 @@ void EndButton::Start()
 	EndButtonRender_2->GetTransform()->SetLocalPosition({ 0,-200,0 });
 	EndButtonRender_2->GetTransform()->SetLocalScale(EndButtonScale);
 	EndButtonRender_2->Off();
+
+	EndButtonCollsion = CreateComponent<GameEngineCollision>();
+	EndButtonCollsion->GetTransform()->SetLocalPosition({ 0,-200,0 });
+	EndButtonCollsion->GetTransform()->SetLocalScale(EndButtonScale);
+	EndButtonCollsion->SetOrder(2999);
+
 }					
 
 
 void EndButton::Update(float _DeltaTime)
 {
+	if (EndButtonCollsion->Collision(3000, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	{
+		if (GameEngineInput::IsDown("ClickMouse")) {
+			int a = 0;
+		}
+		EndButtonRender_1->Off();
+		EndButtonRender_2->On();
+	}
+	else {
+		EndButtonRender_1->On();
+		EndButtonRender_2->Off();
+	}
 
 }
 

@@ -2,6 +2,9 @@
 #include "ContentsEnums.h"
 #include "PlayLevel.h"
 #include "Player.h"
+#include "PlayerStat.h"
+#include "MapTabUI.h"
+#include "PlayMouse.h"
 #include "Forest.h"
 #include "Mountain.h"
 #include "Sky.h"
@@ -57,10 +60,11 @@ void PlayLevel::Start()
 {
 
 
-	if (false == GameEngineInput::IsKey("LevelChange"))
+	if (false == GameEngineInput::IsKey("StatUI"))
 	{
-		GameEngineInput::CreateKey("LevelChange", 'Z');
-	
+		GameEngineInput::CreateKey("StatUI", 'C');
+		GameEngineInput::CreateKey("Inven", 'V');
+		GameEngineInput::CreateKey("MapTabUI", VK_TAB);
 	}
 	GetMainCamera()->SetProjectionType(CameraType::Orthogonal);
 
@@ -72,9 +76,9 @@ void PlayLevel::Start()
 	//}
 	//	Player
 	{
-		static std::shared_ptr<Player> NewPlayer = CreateActor<Player>(1);
+		static std::shared_ptr<Player> NewPlayer = CreateActor<Player>(-10);
 		//NewPlayer->GetTransform()->SetLocalPosition({ 13150.0f,-39.0f,0.0f });
-		NewPlayer->GetTransform()->SetLocalPosition({ 0.0f,0.0f,0.0f });
+		NewPlayer->GetTransform()->SetLocalPosition({ 0.0f,0.0f,-1.0f });
 	}
 
 	{	//Town
@@ -109,21 +113,34 @@ void PlayLevel::Start()
 		std::shared_ptr<Stage3_1> Stage1= CreateActor<Stage3_1>(-16);
 		std::shared_ptr<Stage3_Boss> BossStage_3 = CreateActor<Stage3_Boss>(-16);
 	}
+	{
+		//UI
+		Stat = CreateActor<PlayerStat>(-10);
+		Stat->Off();
+		Inventory = CreateActor<InventoryUI>(-10);
+		Inventory->Off();
+		MapTab = CreateActor<MapTabUI>(-10);
+		MapTab->Off();
+		//Cusor
+		std::shared_ptr<PlayMouse> PlayMouseCusor = CreateActor<PlayMouse>(-1);
 
+		
+	}
 
-
+	
 }
 
 
 void PlayLevel::Update(float _DeltaTime)
 {
-	CameraMoveSet();
-	//CurMap = SetMyMap(CurMap);
-	
+	CameraMoveSet();	
+	UICtr();
 	if (GameEngineInput::IsDown("LevelChange"))
 	{
 		GameEngineCore::ChangeLevel("TitleLevel");
 	}
+
+
 }
 
 
@@ -201,5 +218,54 @@ void PlayLevel::CameraMoveSet()
 	}
 	if (CurMap == MyMap::Stage3_Boss) {
 		CameraColMove(17668.0f, 20228.0f, 360.0f, -360.0f);
+	}
+}
+
+bool CheckValue_0 = false;
+bool CheckValue_1 = false;
+bool CheckValue_2 = false;
+
+void PlayLevel::UICtr()
+{
+	if (false == CheckValue_2 && GameEngineInput::IsDown("Inven"))
+	{
+		if (true == Stat->IsDeath())
+		{
+			Inventory = CreateActor<InventoryUI>(-10);
+		}
+		Inventory->On();
+		CheckValue_2 = true;
+	}
+	else if (true == CheckValue_2 && GameEngineInput::IsDown("Inven"))
+	{
+		Inventory->Off();
+		CheckValue_2 = false;
+	}
+
+	if (false == CheckValue_0 && GameEngineInput::IsDown("StatUI"))
+	{
+		if (true == Stat->IsDeath())
+		{
+			Stat = CreateActor<PlayerStat>(-10);
+		}
+		Stat->On();
+		CheckValue_0 = true;
+	}
+	else if (true == CheckValue_0 && GameEngineInput::IsDown("StatUI"))
+	{
+		Stat->Off();
+		CheckValue_0 = false;
+	}
+	if (CurMap == MyMap::Town) {
+		if (false == CheckValue_1 && GameEngineInput::IsDown("MapTabUI"))
+		{
+			MapTab->On();
+			CheckValue_1 = true;
+		}
+		else if (true == CheckValue_1 && GameEngineInput::IsDown("MapTabUI"))
+		{
+			MapTab->Off();
+			CheckValue_1 = false;
+		}
 	}
 }

@@ -287,6 +287,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="GameEngineUIRenderer.h" />
     <ClInclude Include="GameEngineVertex.h">
       <SubType>
       </SubType>
@@ -440,6 +441,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="GameEngineUIRenderer.cpp" />
     <ClCompile Include="GameEngineVertex.cpp">
       <SubType>
       </SubType>

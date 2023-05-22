@@ -23,6 +23,7 @@ private:
 	float4 EndButtonScale = { 84.0f,48.0f,0.0f };
 	std::shared_ptr<class GameEngineSpriteRenderer> EndButtonRender_1;
 	std::shared_ptr<class GameEngineSpriteRenderer> EndButtonRender_2;
+	std::shared_ptr<class GameEngineCollision> EndButtonCollsion;
 
 };
 

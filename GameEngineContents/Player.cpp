@@ -47,7 +47,7 @@ void Player::Start()
 
 	Render1 = CreateComponent<GameEngineSpriteRenderer>();
 	Render1->SetTexture("CharIdle0.png");
-	Render1->GetTransform()->SetLocalPosition({0.0f,0.0f,-1000.0f });
+	Render1->GetTransform()->SetLocalPosition({0.0f,0.0f,0.0f });
 	Render1->GetTransform()->SetLocalScale({ 128.0f, 128.0f });
 
 
@@ -77,7 +77,7 @@ void Player::Update(float _DeltaTime)
 	GameEnginePixelColor Pixel = Ptr->GetPixel(ColPlayerPos.x, ColPlayerPos.y+65);
 	Pixel.a = 0;
 	if (Pixel == GameEnginePixelColor::Black) {
-		GetTransform()->AddLocalPosition(-float4::Down * Speed * _DeltaTime);
+		//GetTransform()->AddLocalPosition(-float4::Down * Speed * _DeltaTime);
 	}
 
 		//CulMap = PlayLevel::MainPlayLevel->GetMyMap(CulMap);
@@ -135,7 +135,7 @@ void Player::Update(float _DeltaTime)
 
 MyMap Player::SetMyMap(MyMap _MyMap)
 {
-	float4 PlayerPos = Player::MainPlayer->GetTransform()->GetLocalPosition();
+	float4 PlayerPos = GetTransform()->GetLocalPosition();
 	if (PlayerPos.x > -2560.0f && PlayerPos.x < 2560) {
 		_MyMap = MyMap::Town;
 		return _MyMap;

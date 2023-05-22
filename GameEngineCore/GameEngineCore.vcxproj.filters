@@ -141,6 +141,9 @@
       <Filter>Resources\UI\SubWindow</Filter>
     </ClInclude>
     <ClInclude Include="EngineContentRenderingStruct.h" />
+    <ClInclude Include="GameEngineUIRenderer.h">
+      <Filter>Object\Rendering\Component\2D</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEngineCore.cpp" />
@@ -277,6 +280,9 @@
     </ClCompile>
     <ClCompile Include="GameEngineCoreWindow.cpp">
       <Filter>Resources\UI\SubWindow</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngineUIRenderer.cpp">
+      <Filter>Object\Rendering\Component\2D</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

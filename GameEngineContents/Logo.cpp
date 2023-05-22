@@ -22,7 +22,7 @@ void Logo::Start()
 {
 	LogoRender = CreateComponent<GameEngineSpriteRenderer>();
 	LogoRender->SetTexture("Copyright.png");
-	LogoRender->GetTransform()->SetLocalPosition({ 0,-300,0 });
+	LogoRender->GetTransform()->SetLocalPosition({ 0,-320,0 });
 	LogoRender->GetTransform()->SetLocalScale(LogoScale);
 
 }

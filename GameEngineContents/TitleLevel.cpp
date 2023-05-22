@@ -9,7 +9,9 @@
 #include "EndButton.h"
 #include "Logo.h"
 
-
+#include "Bird.h"
+#include "TitleMouse.h"
+#include "PlayStartWindow.h"
 
 
 #include <GameEngineBase\GameEngineDebug.h>
@@ -30,6 +32,11 @@ TitleLevel::~TitleLevel()
 
 void TitleLevel::Start()
 {
+	if (false == GameEngineInput::IsKey("ClickMouse"))
+	{
+		GameEngineInput::CreateKey("ClickMouse", VK_LBUTTON);
+
+	}
 
 	if (false == GameEngineInput::IsKey("LevelChange"))
 	{
@@ -50,6 +57,7 @@ void TitleLevel::Start()
 			std::shared_ptr<MidCloud> MidCloudRenderPtr_4 = CreateActorToName<MidCloud>("MidCloud");
 			MidCloudRenderPtr_4->GetTransform()->SetLocalPosition({ 0,-300,0 });
 		}
+		std::shared_ptr<Bird> BirdPtr = CreateActorToName<Bird>("Bird");
 		std::shared_ptr<FrontCloud> FrontCloudPtr = CreateActorToName<FrontCloud>("FrontCloud");
 		std::shared_ptr<MainLogo> MainLogoPtr = CreateActorToName<MainLogo>("MainLogo");
 	} 
@@ -62,7 +70,8 @@ void TitleLevel::Start()
 		std::shared_ptr<Logo> LogoPtr = CreateActorToName<Logo>("Logo");
 
 	}
-
+	
+		std::shared_ptr<TitleMouse> TitleMousePtr = CreateActor<TitleMouse>(3001);
 
 
 }

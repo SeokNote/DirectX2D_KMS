@@ -23,5 +23,8 @@ private:
 	float4 SoundButtonScale = { 80.0f,48.0f,0.0f };
 	std::shared_ptr<class GameEngineSpriteRenderer> SoundButtonRender_1;
 	std::shared_ptr<class GameEngineSpriteRenderer> SoundButtonRender_2;
+
+	std::shared_ptr<class GameEngineCollision> SoundButtonCollsion;
+
 };
 

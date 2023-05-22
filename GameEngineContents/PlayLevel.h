@@ -2,6 +2,9 @@
 #include <GameEngineCore\GameEngineLevel.h>
 #include "MapDataBase.h"
 #include "ContentsEnums.h"
+#include "PlayerStat.h"
+#include "MapTabUI.h"
+#include "InventoryUI.h"
 // Ό³Έν :
 class PlayLevel : public GameEngineLevel
 {
@@ -35,7 +38,7 @@ private:
 	void CameraColMove(float _X, float _X1, float _Y, float _Y1);
 	void CameraMoveSet();
 	
-	
+	void UICtr();
 	
 	float4 TownScale = float4::Zero;
 
@@ -46,5 +49,9 @@ private:
 
 	void PlayerTelPo();
 
-};
 
+	std::shared_ptr<PlayerStat> Stat;
+	std::shared_ptr<MapTabUI> MapTab;
+	std::shared_ptr<InventoryUI> Inventory;
+
+};
