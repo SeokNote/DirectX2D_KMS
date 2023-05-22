@@ -4,6 +4,44 @@
 #include <GameEngineBase/GameEngineMath.h>
 #include "GameEngineObjectBase.h"
 
+enum class ColType
+{
+	// 캡슐
+	// 2D에서의 충돌은 모두가 한축이 같아야 한다.
+	POINT2D, // z를 0으로 만들고 충돌
+	SPHERE2D, // z를 0으로 만들고 충돌
+	AABBBOX2D, // z를 0으로 만들고 충돌
+	OBBBOX2D, // z를 0으로 만들고 충돌
+	POINT3D,
+	SPHERE3D,
+	AABBBOX3D,
+	OBBBOX3D,
+	MAX,
+};
+
+class CollisionData
+{
+public:
+	union
+	{
+		DirectX::BoundingSphere SPHERE;
+		DirectX::BoundingBox AABB;
+		DirectX::BoundingOrientedBox OBB;
+	};
+
+	CollisionData()
+	{
+
+	}
+};
+
+class CollisionParameter
+{
+public:
+	class GameEngineTransform* _OtherTrans = nullptr;
+	ColType ThisType = ColType::SPHERE3D;
+	ColType OtherType = ColType::SPHERE3D;
+};
 
 struct TransformData
 {
@@ -49,8 +87,12 @@ public:
 };
 
 // 설명 : 특정한 문체의 크기 회전 이동에 관련된 기하속성을 관리해준다.
+class GameEngineObject;
 class GameEngineTransform : public GameEngineObjectBase
 {
+	friend class GameEngineObject;
+	friend class GameEngineLevel;
+
 public:
 	// constrcuter destructer
 	GameEngineTransform();
@@ -61,6 +103,18 @@ public:
 	GameEngineTransform(GameEngineTransform&& _Other) noexcept = delete;
 	GameEngineTransform& operator=(const GameEngineTransform& _Other) = delete;
 	GameEngineTransform& operator=(GameEngineTransform&& _Other) noexcept = delete;
+
+	void SetLocalPositiveScaleX()
+	{
+		TransData.Scale.x = abs(TransData.Scale.x);
+		SetLocalScale(TransData.Scale);
+	}
+
+	void SetLocalNegativeScaleX()
+	{
+		TransData.Scale.x = -abs(TransData.Scale.x);
+		SetLocalScale(TransData.Scale);
+	}
 
 	void SetWorldScale(const float4& _Value)
 	{
@@ -149,6 +203,7 @@ public:
 		SetWorldPosition(TransData.Position + _Value);
 	}
 
+
 	float4 GetWorldForwardVector()
 	{
 		return TransData.WorldMatrix.ArrVector[2].NormalizeReturn();
@@ -182,9 +237,11 @@ public:
 	float4 GetLocalPosition();
 	float4 GetLocalScale();
 	float4 GetLocalRotation();
+	float4 GetLocalQuaternion();
 	float4 GetWorldPosition();
 	float4 GetWorldScale();
 	float4 GetWorldRotation();
+	float4 GetWorldQuaternion();
 
 
 	float4 GetLocalForwardVector()
@@ -201,24 +258,6 @@ public:
 	{
 		return TransData.LocalWorldMatrix.ArrVector[0].NormalizeReturn();
 	}
-
-
-
-	//float4 GetWorldPosition()
-	//{
-	//	return WorldPosition;
-	//}
-
-	//float4 GetWorldScale()
-	//{
-	//	return WorldScale;
-	//}
-
-	//float4 GetWorldRotation()
-	//{
-	//	return WorldRotation;
-	//}
-
 
 	float4x4 GetLocalWorldMatrix()
 	{
@@ -265,7 +304,12 @@ public:
 
 	void CalChild();
 
-	void SetParent(GameEngineTransform* _Parent);
+	void SetParent(GameEngineTransform* _Parent, bool _IsParentWorld = true);
+
+	GameEngineTransform* GetParent()
+	{
+		return Parent;
+	}
 
 	const TransformData& GetTransDataRef()
 	{
@@ -280,6 +324,14 @@ public:
 protected:
 
 private:
+
+	void WorldDecompose();
+	void LocalDecompose();
+
+	void WorldCalculation();
+
+	void AbsoluteReset();
+
 	void TransformUpdate();
 
 	TransformData TransData;
@@ -290,5 +342,60 @@ private:
 
 	GameEngineTransform* Parent = nullptr;
 	std::list<GameEngineTransform*> Child;
+
+private:
+	void AllAccTime(float _DeltaTime);
+
+	void AllUpdate(float _DeltaTime);
+
+	void AllRender(float _DeltaTime);
+
+	void AllRelease();
+
+	void ChildRelease();
+
+	void SetMaster(GameEngineObject* _Master);
+
+	GameEngineObject* GetMaster()
+	{
+		return Master;
+	}
+
+	GameEngineObject* Master = nullptr;
+
+
+public:
+	bool Collision(const CollisionParameter& Data);
+
+private:
+	friend class InitColFunction;
+
+	CollisionData ColData;
+
+	static std::function<bool(GameEngineTransform*, GameEngineTransform*)> ArrColFunction[static_cast<int>(ColType::MAX)][static_cast<int>(ColType::MAX)];
+
+	static bool SphereToSpehre(GameEngineTransform* _Left, GameEngineTransform* _Right);
+	static bool SphereToAABB(GameEngineTransform* _Left, GameEngineTransform* _Right);
+	static bool SphereToOBB(GameEngineTransform* _Left, GameEngineTransform* _Right);
+
+	static bool AABBToSpehre(GameEngineTransform* _Left, GameEngineTransform* _Right);
+	static bool AABBToAABB(GameEngineTransform* _Left, GameEngineTransform* _Right);
+	static bool AABBToOBB(GameEngineTransform* _Left, GameEngineTransform* _Right);
+
+	static bool OBBToSpehre(GameEngineTransform* _Left, GameEngineTransform* _Right);
+	static bool OBBToAABB(GameEngineTransform* _Left, GameEngineTransform* _Right);
+	static bool OBBToOBB(GameEngineTransform* _Left, GameEngineTransform* _Right);
+
+	static bool Sphere2DToSpehre2D(GameEngineTransform* _Left, GameEngineTransform* _Right);
+	static bool Sphere2DToAABB2D(GameEngineTransform* _Left, GameEngineTransform* _Right);
+	static bool Sphere2DToOBB2D(GameEngineTransform* _Left, GameEngineTransform* _Right);
+
+	static bool AABB2DToSpehre2D(GameEngineTransform* _Left, GameEngineTransform* _Right);
+	static bool AABB2DToAABB2D(GameEngineTransform* _Left, GameEngineTransform* _Right);
+	static bool AABB2DToOBB2D(GameEngineTransform* _Left, GameEngineTransform* _Right);
+
+	static bool OBB2DToSpehre2D(GameEngineTransform* _Left, GameEngineTransform* _Right);
+	static bool OBB2DToAABB2D(GameEngineTransform* _Left, GameEngineTransform* _Right);
+	static bool OBB2DToOBB2D(GameEngineTransform* _Left, GameEngineTransform* _Right);
 };
 

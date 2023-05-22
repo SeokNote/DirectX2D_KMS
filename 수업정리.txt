@@ -320,3 +320,82 @@ z값은 먼저 그려져야 할 이미지의 z값을 따로 만든 텍스처에 
 get2dpixel
 
 GetMetaData
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+잡코드
+//MyMap PlayLevel::SetMyMap(MyMap _MyMap)
+//{
+//	float4 PlayerPos = Player::MainPlayer->GetTransform()->GetLocalPosition();
+//	if (PlayerPos.x > -2560.0f && PlayerPos.x < 2560) {
+//		_MyMap = MyMap::Town;
+//		CameraColMove(-2560.0f, 2560.0f, 720.0f, -720.0f);
+//		return _MyMap;
+//	}
+//	if (PlayerPos.x > 2660.0f && PlayerPos.x < 3940) {
+//		_MyMap = MyMap::Stage1_1;
+//		CameraColMove(2660.0f, 3940.0f, 360.0f, -360.0f);
+//
+//		return _MyMap;
+//	}
+//	if (PlayerPos.x > 3940 && PlayerPos.x < 6600) {
+//		_MyMap = MyMap::Stage1_2;
+//		CameraColMove(4040.0f, 6600, 640, -640);
+//
+//		return _MyMap;
+//	}
+//	if (PlayerPos.x > 6700.0f && PlayerPos.x < 9260.0f) {
+//		_MyMap = MyMap::Stage1_3;
+//		CameraColMove(6700.0f, 9260.0f, 640, -640);
+//
+//		return _MyMap;
+//	}
+//	if (PlayerPos.x > 9360.0f && PlayerPos.x < 11280.0f) {
+//		_MyMap = MyMap::Stage1_4;
+//		CameraColMove(9360.0f, 11280.0f, 360, -360);
+//
+//		return _MyMap;
+//	}
+//	if (PlayerPos.x > 11380.0f && PlayerPos.x < 12788.0f) {
+//		_MyMap = MyMap::Stage1_Boss;
+//		CameraColMove(11380.0f, 12788.0f, 672.0f, -672.0f);
+//
+//		return _MyMap;
+//	}
+//	if (PlayerPos.x > 12888.0f && PlayerPos.x < 14168.0f) {
+//		_MyMap = MyMap::Stage2_1;
+//		CameraColMove(12888.0f, 14168.0f, 360.0f, -360.0f);
+//
+//		return _MyMap;
+//	}
+//	if (PlayerPos.x > 14268.0f && PlayerPos.x < 15868.0f) {
+//		_MyMap = MyMap::Stage2_Boss;
+//		CameraColMove(14268.0f, 15868.0f, 450.0f, -450.0f);
+//
+//		return _MyMap;
+//	}
+//	if (PlayerPos.x > 15968.0f && PlayerPos.x < 17568.0f) {
+//		_MyMap = MyMap::Stage3_1;
+//		CameraColMove(15968.0f, 17568.0f, 360.0f, -360.0f);
+//
+//		return _MyMap;
+//	}
+//	if (PlayerPos.x > 17668.0f && PlayerPos.x < 20228.0f) {
+//		CameraColMove(17668.0f, 20228.0f, 360.0f, -360.0f);
+//
+//		_MyMap = MyMap::Stage3_Boss;
+//		return _MyMap;
+//	}
+//}

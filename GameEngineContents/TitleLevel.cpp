@@ -39,27 +39,27 @@ void TitleLevel::Start()
 	GetMainCamera()->SetProjectionType(CameraType::Orthogonal);
 	GetMainCamera()->GetTransform()->SetLocalPosition({ 0, 0, -1000.0f });
 	{
-		std::shared_ptr<BackCloud> BackCloudPtr = CreateActor<BackCloud>("BackCloud");
+		std::shared_ptr<BackCloud> BackCloudPtr = CreateActorToName<BackCloud>("BackCloud");
 		{
-			std::shared_ptr<MidCloud> MidCloudRenderPtr_1 = CreateActor<MidCloud>("MidCloud");
+			std::shared_ptr<MidCloud> MidCloudRenderPtr_1 = CreateActorToName<MidCloud>("MidCloud");
 			MidCloudRenderPtr_1->GetTransform()->SetLocalPosition({ 500,600,0 });
-			std::shared_ptr<MidCloud> MidCloudRenderPtr_2 = CreateActor<MidCloud>("MidCloud");
+			std::shared_ptr<MidCloud> MidCloudRenderPtr_2 = CreateActorToName<MidCloud>("MidCloud");
 			MidCloudRenderPtr_2->GetTransform()->SetLocalPosition({600,-400,0 });
-			std::shared_ptr<MidCloud> MidCloudRenderPtr_3 = CreateActor<MidCloud>("MidCloud");
+			std::shared_ptr<MidCloud> MidCloudRenderPtr_3 = CreateActorToName<MidCloud>("MidCloud");
 			MidCloudRenderPtr_3->GetTransform()->SetLocalPosition({ 700,100,0 });
-			std::shared_ptr<MidCloud> MidCloudRenderPtr_4 = CreateActor<MidCloud>("MidCloud");
+			std::shared_ptr<MidCloud> MidCloudRenderPtr_4 = CreateActorToName<MidCloud>("MidCloud");
 			MidCloudRenderPtr_4->GetTransform()->SetLocalPosition({ 0,-300,0 });
 		}
-		std::shared_ptr<FrontCloud> FrontCloudPtr = CreateActor<FrontCloud>("FrontCloud");
-		std::shared_ptr<MainLogo> MainLogoPtr = CreateActor<MainLogo>("MainLogo");
+		std::shared_ptr<FrontCloud> FrontCloudPtr = CreateActorToName<FrontCloud>("FrontCloud");
+		std::shared_ptr<MainLogo> MainLogoPtr = CreateActorToName<MainLogo>("MainLogo");
 	} 
 	{
-		std::shared_ptr<StartButton> StartButtonPtr = CreateActor<StartButton>("StartButton");
-		std::shared_ptr<SoundButton> SoundButtonPtr = CreateActor<SoundButton>("SoundButton");
-		std::shared_ptr<EndButton> EndButtonPtr = CreateActor<EndButton>("EndButton");
+		std::shared_ptr<StartButton> StartButtonPtr = CreateActorToName<StartButton>("StartButton");
+		std::shared_ptr<SoundButton> SoundButtonPtr = CreateActorToName<SoundButton>("SoundButton");
+		std::shared_ptr<EndButton> EndButtonPtr = CreateActorToName<EndButton>("EndButton");
 	}
 	{
-		std::shared_ptr<Logo> LogoPtr = CreateActor<Logo>("Logo");
+		std::shared_ptr<Logo> LogoPtr = CreateActorToName<Logo>("Logo");
 
 	}
 

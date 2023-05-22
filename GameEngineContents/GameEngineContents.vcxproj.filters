@@ -10,46 +10,43 @@
     </ClInclude>
     <ClInclude Include="PrecompileHeader.h" />
     <ClInclude Include="FrontCloud.h">
-      <Filter>BackGround\Title</Filter>
+      <Filter>Map\Title</Filter>
     </ClInclude>
     <ClInclude Include="BackCloud.h">
-      <Filter>BackGround\Title</Filter>
+      <Filter>Map\Title</Filter>
     </ClInclude>
     <ClInclude Include="MainLogo.h">
-      <Filter>BackGround\Title</Filter>
+      <Filter>Map\Title</Filter>
     </ClInclude>
     <ClInclude Include="StartButton.h">
-      <Filter>BackGround\Title\ButtonUI</Filter>
+      <Filter>Map\Title\ButtonUI</Filter>
     </ClInclude>
     <ClInclude Include="SoundButton.h">
-      <Filter>BackGround\Title\ButtonUI</Filter>
+      <Filter>Map\Title\ButtonUI</Filter>
     </ClInclude>
     <ClInclude Include="EndButton.h">
-      <Filter>BackGround\Title\ButtonUI</Filter>
+      <Filter>Map\Title\ButtonUI</Filter>
     </ClInclude>
     <ClInclude Include="MidCloud.h">
-      <Filter>BackGround\Title</Filter>
+      <Filter>Map\Title</Filter>
     </ClInclude>
     <ClInclude Include="Sky.h">
-      <Filter>BackGround\Town\BackGround</Filter>
+      <Filter>Map\Town\BackGround</Filter>
     </ClInclude>
     <ClInclude Include="Forest.h">
-      <Filter>BackGround\Town\BackGround</Filter>
+      <Filter>Map\Town\BackGround</Filter>
     </ClInclude>
     <ClInclude Include="Mountain.h">
-      <Filter>BackGround\Town\BackGround</Filter>
-    </ClInclude>
-    <ClInclude Include="Town.h">
-      <Filter>BackGround\Town\BackGround</Filter>
+      <Filter>Map\Town\BackGround</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Object\MainPlayer</Filter>
     </ClInclude>
     <ClInclude Include="Logo.h">
-      <Filter>BackGround\Title\ButtonUI</Filter>
+      <Filter>Map\Title\ButtonUI</Filter>
     </ClInclude>
     <ClInclude Include="Stage_1.h">
-      <Filter>Map\Stage1</Filter>
+      <Filter>Map\DunGeon\Stage1</Filter>
     </ClInclude>
     <ClInclude Include="ContentsEnums.h" />
     <ClInclude Include="CameraCtr.h">
@@ -59,14 +56,57 @@
       <Filter>보류</Filter>
     </ClInclude>
     <ClInclude Include="Stage_2.h">
-      <Filter>Map\Stage1</Filter>
+      <Filter>Map\DunGeon\Stage1</Filter>
     </ClInclude>
     <ClInclude Include="Stage_3.h">
-      <Filter>Map\Stage1</Filter>
+      <Filter>Map\DunGeon\Stage1</Filter>
     </ClInclude>
     <ClInclude Include="Stage_4.h">
-      <Filter>Map\Stage1</Filter>
+      <Filter>Map\DunGeon\Stage1</Filter>
     </ClInclude>
+    <ClInclude Include="BossStage_1.h">
+      <Filter>Map\DunGeon\Stage1</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage2_1.h">
+      <Filter>Map\DunGeon\Stage2</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage2_Boss.h">
+      <Filter>Map\DunGeon\Stage2</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage2_Layout_1.h">
+      <Filter>Map\DunGeon\Stage2\Stage2BG</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage2_Layout_2.h">
+      <Filter>Map\DunGeon\Stage2\Stage2BG</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage3_1.h">
+      <Filter>Map\DunGeon\Stage3</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage3_Boss.h">
+      <Filter>Map\DunGeon\Stage3</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage3_BG_1.h">
+      <Filter>Map\DunGeon\Stage3\Stage3_BG</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage3_BG_2.h">
+      <Filter>Map\DunGeon\Stage3\Stage3_BG</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage3_BG_3.h">
+      <Filter>Map\DunGeon\Stage3\Stage3_BG</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage3_BG_4.h">
+      <Filter>Map\DunGeon\Stage3\Stage3_BG</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage2_Layout_3.h">
+      <Filter>Map\DunGeon\Stage2\Stage2BG</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage2_Layout_4.h">
+      <Filter>Map\DunGeon\Stage2\Stage2BG</Filter>
+    </ClInclude>
+    <ClInclude Include="Town.h">
+      <Filter>Map\Town</Filter>
+    </ClInclude>
+    <ClInclude Include="PixelCollision.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -78,46 +118,43 @@
     </ClCompile>
     <ClCompile Include="PrecompileHeader.cpp" />
     <ClCompile Include="FrontCloud.cpp">
-      <Filter>BackGround\Title</Filter>
+      <Filter>Map\Title</Filter>
     </ClCompile>
     <ClCompile Include="BackCloud.cpp">
-      <Filter>BackGround\Title</Filter>
+      <Filter>Map\Title</Filter>
     </ClCompile>
     <ClCompile Include="MainLogo.cpp">
-      <Filter>BackGround\Title</Filter>
+      <Filter>Map\Title</Filter>
     </ClCompile>
     <ClCompile Include="StartButton.cpp">
-      <Filter>BackGround\Title\ButtonUI</Filter>
+      <Filter>Map\Title\ButtonUI</Filter>
     </ClCompile>
     <ClCompile Include="SoundButton.cpp">
-      <Filter>BackGround\Title\ButtonUI</Filter>
+      <Filter>Map\Title\ButtonUI</Filter>
     </ClCompile>
     <ClCompile Include="EndButton.cpp">
-      <Filter>BackGround\Title\ButtonUI</Filter>
+      <Filter>Map\Title\ButtonUI</Filter>
     </ClCompile>
     <ClCompile Include="MidCloud.cpp">
-      <Filter>BackGround\Title</Filter>
+      <Filter>Map\Title</Filter>
     </ClCompile>
     <ClCompile Include="Forest.cpp">
-      <Filter>BackGround\Town\BackGround</Filter>
+      <Filter>Map\Town\BackGround</Filter>
     </ClCompile>
     <ClCompile Include="Mountain.cpp">
-      <Filter>BackGround\Town\BackGround</Filter>
+      <Filter>Map\Town\BackGround</Filter>
     </ClCompile>
     <ClCompile Include="Sky.cpp">
-      <Filter>BackGround\Town\BackGround</Filter>
-    </ClCompile>
-    <ClCompile Include="Town.cpp">
-      <Filter>BackGround\Town\BackGround</Filter>
+      <Filter>Map\Town\BackGround</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Object\MainPlayer</Filter>
     </ClCompile>
     <ClCompile Include="Logo.cpp">
-      <Filter>BackGround\Title\ButtonUI</Filter>
+      <Filter>Map\Title\ButtonUI</Filter>
     </ClCompile>
     <ClCompile Include="Stage_1.cpp">
-      <Filter>Map\Stage1</Filter>
+      <Filter>Map\DunGeon\Stage1</Filter>
     </ClCompile>
     <ClCompile Include="CameraCtr.cpp">
       <Filter>보류</Filter>
@@ -126,14 +163,57 @@
       <Filter>보류</Filter>
     </ClCompile>
     <ClCompile Include="Stage_2.cpp">
-      <Filter>Map\Stage1</Filter>
+      <Filter>Map\DunGeon\Stage1</Filter>
     </ClCompile>
     <ClCompile Include="Stage_3.cpp">
-      <Filter>Map\Stage1</Filter>
+      <Filter>Map\DunGeon\Stage1</Filter>
     </ClCompile>
     <ClCompile Include="Stage_4.cpp">
-      <Filter>Map\Stage1</Filter>
+      <Filter>Map\DunGeon\Stage1</Filter>
     </ClCompile>
+    <ClCompile Include="BossStage_1.cpp">
+      <Filter>Map\DunGeon\Stage1</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage2_1.cpp">
+      <Filter>Map\DunGeon\Stage2</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage2_Boss.cpp">
+      <Filter>Map\DunGeon\Stage2</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage2_Layout_1.cpp">
+      <Filter>Map\DunGeon\Stage2\Stage2BG</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage2_Layout_2.cpp">
+      <Filter>Map\DunGeon\Stage2\Stage2BG</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage3_1.cpp">
+      <Filter>Map\DunGeon\Stage3</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage3_Boss.cpp">
+      <Filter>Map\DunGeon\Stage3</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage3_BG_1.cpp">
+      <Filter>Map\DunGeon\Stage3\Stage3_BG</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage3_BG_2.cpp">
+      <Filter>Map\DunGeon\Stage3\Stage3_BG</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage3_BG_3.cpp">
+      <Filter>Map\DunGeon\Stage3\Stage3_BG</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage3_BG_4.cpp">
+      <Filter>Map\DunGeon\Stage3\Stage3_BG</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage2_Layout_3.cpp">
+      <Filter>Map\DunGeon\Stage2\Stage2BG</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage2_Layout_4.cpp">
+      <Filter>Map\DunGeon\Stage2\Stage2BG</Filter>
+    </ClCompile>
+    <ClCompile Include="Town.cpp">
+      <Filter>Map\Town</Filter>
+    </ClCompile>
+    <ClCompile Include="PixelCollision.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Levels">
@@ -142,35 +222,11 @@
     <Filter Include="Object">
       <UniqueIdentifier>{df11f953-5c45-4952-85fb-a35bec5d2a60}</UniqueIdentifier>
     </Filter>
-    <Filter Include="BackGround">
-      <UniqueIdentifier>{4be67c3d-f968-4287-9008-174c889fc9bf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="BackGround\Title">
-      <UniqueIdentifier>{c6bec758-f0e5-4192-8d18-ca59c24c02ca}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="BackGround\Town">
-      <UniqueIdentifier>{4c306d38-7512-421e-9710-bb04c2bdbc43}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="BackGround\Title\ButtonUI">
-      <UniqueIdentifier>{e08ebb49-23ac-4acc-befb-ca67fe667ec1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="BackGround\Town\BackGround">
-      <UniqueIdentifier>{ae7590d5-f428-45e8-a26d-3827633c2f00}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="BackGround\Town\Npc">
-      <UniqueIdentifier>{ccafa14f-1dc5-4f66-9923-81ff3b07bcf1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="BackGround\Town\Dungeon">
-      <UniqueIdentifier>{de619b22-6730-4e2c-b7ac-6586726b1505}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Object\MainPlayer">
       <UniqueIdentifier>{e24a7f00-5c85-4a52-8e95-fc867e9bb81c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Map">
       <UniqueIdentifier>{7deac199-21a2-4db2-8eac-665a9a6af86b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Map\Stage1">
-      <UniqueIdentifier>{047cec08-53de-47e5-bcc7-559552b12155}</UniqueIdentifier>
     </Filter>
     <Filter Include="보류">
       <UniqueIdentifier>{490208eb-ab65-4346-9cc6-47cf5847f56f}</UniqueIdentifier>
@@ -180,6 +236,36 @@
     </Filter>
     <Filter Include="Object\Monster">
       <UniqueIdentifier>{9a513c87-2f7f-499f-9b87-7a9897238e14}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Map\Title">
+      <UniqueIdentifier>{c6bec758-f0e5-4192-8d18-ca59c24c02ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Map\Title\ButtonUI">
+      <UniqueIdentifier>{e08ebb49-23ac-4acc-befb-ca67fe667ec1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Map\Town">
+      <UniqueIdentifier>{4c306d38-7512-421e-9710-bb04c2bdbc43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Map\Town\BackGround">
+      <UniqueIdentifier>{ae7590d5-f428-45e8-a26d-3827633c2f00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Map\DunGeon">
+      <UniqueIdentifier>{c3c097dd-dbba-42a2-b12e-92e88fab656a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Map\DunGeon\Stage3">
+      <UniqueIdentifier>{6cb2a46a-43f9-4453-949d-a8ac018b0298}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Map\DunGeon\Stage3\Stage3_BG">
+      <UniqueIdentifier>{d1e14a87-e5bc-4f43-b55c-fed00daeb24e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Map\DunGeon\Stage1">
+      <UniqueIdentifier>{047cec08-53de-47e5-bcc7-559552b12155}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Map\DunGeon\Stage2">
+      <UniqueIdentifier>{73ea495d-5402-4d10-84b0-24d0627cc3c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Map\DunGeon\Stage2\Stage2BG">
+      <UniqueIdentifier>{6d0e5254-a75d-4ed0-a8b7-abe76fbf141d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

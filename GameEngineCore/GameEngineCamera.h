@@ -44,6 +44,7 @@ public:
 	}
 
 	void Update(float _DeltaTime) override;
+	void Render(float _DeltaTime) override;
 
 protected:
 	void Start() override;
@@ -54,9 +55,7 @@ private:
 	float4x4 View;
 	float4x4 Projection;
 	float4x4 ViewPort;
-	
 
-	//OldData 카메라에서 원래처음 위치를 기억하기 위한 변수
 	TransformData OldData;
 
 	CameraType ProjectionType = CameraType::None;
@@ -69,5 +68,7 @@ private:
 	float FOV = 60.0f;
 	float Near = 0.1f;
 	float Far = 10000.0f;
+
+	void RenderRelease();
 };
 

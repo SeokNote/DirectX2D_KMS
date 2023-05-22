@@ -1,6 +1,7 @@
 #include "PrecompileHeader.h"
 #include "GameEngineActor.h"
 #include "GameEngineComponent.h"
+#include "GameEngineLevel.h"
 
 GameEngineActor::GameEngineActor()
 {
@@ -10,48 +11,29 @@ GameEngineActor::~GameEngineActor()
 {
 }
 
-void GameEngineActor::ComponentInit(std::shared_ptr<class GameEngineComponent> _Component)
+void GameEngineActor::ComponentInit(std::shared_ptr<class GameEngineComponent> _Component, int _Order)
 {
 	_Component->Actor = this;
-	_Component->GetTransform()->SetParent(GetTransform());
+	_Component->Level = GetLevel();
+	_Component->GetTransform()->SetParent(GetTransform(), false);
+	_Component->SetOrder(_Order);
 	_Component->Start();
 
-	ComponentsList.push_back(_Component);
+	// PushChild(_Component); << SetParent 문제로 child가 두 번 들어가서 뺌
 }
 
-
-void GameEngineActor::ComponentsUpdate(float _DeltaTime)
+void GameEngineActor::SetOrder(int _Order)
 {
-	for (std::shared_ptr<class GameEngineComponent>& Component : ComponentsList)
-	{
-		if (false == Component->IsUpdate())
-		{
-			continue;
-		}
 
-		Component->Update(_DeltaTime);
-	}
-}
+	std::shared_ptr<GameEngineActor> ConThis = DynamicThis<GameEngineActor>();
 
-void GameEngineActor::ComponentsRender(float _DeltaTime)
-{
-	for (std::shared_ptr<class GameEngineComponent>& Component : ComponentsList)
-	{
-		if (false == Component->IsUpdate())
-		{
-			continue;
-		}
+	// 기존의 그룹에서 나를 지우고
+	std::list<std::shared_ptr<GameEngineActor>>& Group = GetLevel()->Actors[GetOrder()];
+	Group.remove(ConThis);
 
-		Component->Render(_DeltaTime);
-	}
-}
+	GameEngineObjectBase::SetOrder(_Order);
 
-void GameEngineActor::AccLiveTime(float _LiveTime)
-{
-	GameEngineUpdateObject::AccLiveTime(_LiveTime);
+	// 새로운 그룹에 나를 추가한다.
+	GetLevel()->Actors[GetOrder()].push_back(ConThis);
 
-	for (std::shared_ptr<class GameEngineComponent>& Component : ComponentsList)
-	{
-		Component->AccLiveTime(_LiveTime);
-	}
 }

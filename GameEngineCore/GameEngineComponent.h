@@ -2,7 +2,7 @@
 #include "GameEngineActor.h"
 
 // Ό³Έν :
-class GameEngineComponent : public GameEngineUpdateObject
+class GameEngineComponent : public GameEngineObject
 {
 	friend class GameEngineActor;
 
@@ -20,11 +20,6 @@ public:
 	class GameEngineActor* GetActor()
 	{
 		return Actor;
-	}
-
-	class GameEngineLevel* GetLevel()
-	{
-		return Actor->GetLevel();
 	}
 
 protected:

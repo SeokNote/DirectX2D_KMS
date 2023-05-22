@@ -28,7 +28,6 @@ cbuffer TransformData : register(b0)
     float4x4 Projection;
     float4x4 ViewPort;
     float4x4 WorldViewProjectionMatrix;
-
 }
 
 // 어떤 정보가 들어올지 구조체로 만들어야 합니다.
@@ -49,6 +48,15 @@ struct OutPut
 };
 
 
+cbuffer AtlasData : register(b1)
+{
+    // 0.0 0.5
+    float2 FramePos;
+    // 0.5 0.5 
+    float2 FrameScale;
+    // float4 AtlasUV;
+}
+
 // 월드뷰프로젝션
 
 OutPut Texture_VS(Input _Value)
@@ -57,14 +65,27 @@ OutPut Texture_VS(Input _Value)
 
     _Value.Pos.w = 1.0f;
     OutPutValue.Pos = mul(_Value.Pos, WorldViewProjectionMatrix);
-    OutPutValue.UV = _Value.UV;
+    // OutPutValue.UV = _Value.UV;
+
+    // [][]
+    // [][]
+
+    // 0.5 0.0  0.5 0.5 
+
+    // 0,0    1,0
+    //
+    //
+    // 0,1    1,1
+    OutPutValue.UV.x = (_Value.UV.x * FrameScale.x) + FramePos.x;
+    OutPutValue.UV.y = (_Value.UV.y * FrameScale.y) + FramePos.y;
 
     return OutPutValue;
 }
 
-cbuffer OutPixelColor : register(b0)
+cbuffer ColorOption : register(b0)
 {
-    float4 OutColor;
+    float4 MulColor;
+    float4 PlusColor;
 }
 
 Texture2D DiffuseTex : register(t0);
@@ -73,5 +94,9 @@ SamplerState WRAPSAMPLER : register(s0);
 float4 Texture_PS(OutPut _Value) : SV_Target0
 {
     float4 Color = DiffuseTex.Sample(WRAPSAMPLER, _Value.UV.xy);
+
+    Color *= MulColor;
+    Color += PlusColor;
+
     return Color;
 }

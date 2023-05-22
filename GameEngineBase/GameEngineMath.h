@@ -11,8 +11,7 @@
 #include <d3d11_4.h>
 #include <d3dcompiler.h>
 #include <DirectXPackedVector.h>
-
-
+#include <DirectXCollision.h>
 
 
 
@@ -121,6 +120,14 @@ public:
 			float w;
 		};
 
+		struct
+		{
+			float r;
+			float g;
+			float b;
+			float a;
+		};
+
 		float Arr1D[4];
 
 
@@ -129,6 +136,16 @@ public:
 		DirectX::XMFLOAT3 DirectFloat3;
 		DirectX::XMFLOAT4 DirectFloat4;
 		DirectX::XMVECTOR DirectVector;
+
+
+		struct
+		{
+			float PosX;
+			float PosY;
+			float SizeX;
+			float SizeY;
+		};
+
 	};
 
 	float4()
@@ -276,6 +293,12 @@ public:
 	{
 		return GetAnagleRadZ() * GameEngineMath::RadToDeg;
 	}
+
+	float MaxFloat() const
+	{
+		return (x < y) ? (y < z ? z : y) : (x < z ? z : x);
+	}
+
 
 	float4 RotaitonXDegReturn(float _Deg)
 	{
@@ -540,7 +563,7 @@ public:
 
 };
 
-class CollisionData
+class CollisionDataAPI
 {
 public:
 	float4 Position;

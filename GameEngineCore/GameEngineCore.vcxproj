@@ -164,10 +164,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="EngineContentRenderingStruct.h" />
     <ClInclude Include="GameEngineBlend.h">
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="GameEngineCoreWindow.h" />
     <ClInclude Include="GameEngineDepthState.h">
       <SubType>
       </SubType>
@@ -205,6 +207,8 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="GameEngineFSM.h" />
+    <ClInclude Include="GameEngineGUI.h" />
     <ClInclude Include="GameEngineIndexBuffer.h">
       <SubType>
       </SubType>
@@ -269,6 +273,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="GameEngineSprite.h" />
     <ClInclude Include="GameEngineSpriteRenderer.h">
       <SubType>
       </SubType>
@@ -277,11 +282,8 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="GameEngineTileMapRenderer.h" />
     <ClInclude Include="GameEngineTransform.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="GameEngineUpdateObject.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -344,6 +346,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="GameEngineCoreWindow.cpp" />
     <ClCompile Include="GameEngineCore_Resources.cpp" />
     <ClCompile Include="GameEngineDepthState.cpp">
       <SubType>
@@ -357,6 +360,8 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="GameEngineFSM.cpp" />
+    <ClCompile Include="GameEngineGUI.cpp" />
     <ClCompile Include="GameEngineIndexBuffer.cpp">
       <SubType>
       </SubType>
@@ -421,6 +426,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="GameEngineSprite.cpp" />
     <ClCompile Include="GameEngineSpriteRenderer.cpp">
       <SubType>
       </SubType>
@@ -429,11 +435,8 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="GameEngineTileMapRenderer.cpp" />
     <ClCompile Include="GameEngineTransform.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="GameEngineUpdateObject.cpp">
       <SubType>
       </SubType>
     </ClCompile>

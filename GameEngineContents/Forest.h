@@ -1,5 +1,6 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
+#include "MapDataBase.h"
 
 // Ό³Έν :
 class Forest : public GameEngineActor
@@ -27,5 +28,6 @@ private:
 	float4 Center = { ForestScale.x / 2.0f , ForestScale.y / 2.0f, 0.0f };
 	float4 PlayerPos = float4::Zero;
 
+	MyMap TownMap = MyMap::None;
 };
 

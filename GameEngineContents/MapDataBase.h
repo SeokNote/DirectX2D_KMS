@@ -9,9 +9,15 @@ enum class MyMap
 	Stage1_1,
 	Stage1_2,
 	Stage1_3,
-	Stage1_4
+	Stage1_4,
+	Stage1_Boss,
 
+	Stage2_1,
+	Stage2_Boss,
 
+	Stage3_1,
+	Stage3_Boss,
+	
 };
 
 

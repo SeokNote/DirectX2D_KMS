@@ -168,6 +168,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="BossStage_1.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="CameraCtr.h">
       <SubType>
       </SubType>
@@ -205,6 +209,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="PixelCollision.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Player.h">
       <SubType>
       </SubType>
@@ -226,6 +234,54 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="SoundButton.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Stage2_1.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Stage2_Boss.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Stage2_Layout_1.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Stage2_Layout_2.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Stage2_Layout_3.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Stage2_Layout_4.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Stage3_1.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Stage3_BG_1.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Stage3_BG_2.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Stage3_BG_3.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Stage3_BG_4.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Stage3_Boss.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -260,6 +316,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BackCloud.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="BossStage_1.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -299,6 +359,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="PixelCollision.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Player.cpp">
       <SubType>
       </SubType>
@@ -320,6 +384,54 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="SoundButton.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Stage2_1.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Stage2_Boss.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Stage2_Layout_1.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Stage2_Layout_2.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Stage2_Layout_3.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Stage2_Layout_4.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Stage3_1.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Stage3_BG_1.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Stage3_BG_2.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Stage3_BG_3.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Stage3_BG_4.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Stage3_Boss.cpp">
       <SubType>
       </SubType>
     </ClCompile>

@@ -1,6 +1,7 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
-
+#include "PlayLevel.h"
+#include "PixelCollision.h"
 // Ό³Έν :
 class Player : public GameEngineActor
 {
@@ -23,6 +24,12 @@ public:
 	{
 		return Render1;
 	}
+	MyMap SetMyMap(MyMap _MyMap);
+
+	//MyMap GetMyMap(MyMap _MyMap) {
+	//	SetMyMap(CurMap) = _MyMap;
+	//	return CurMap;
+	//}
 
 protected:
 	void Start();
@@ -42,5 +49,6 @@ private:
 	std::shared_ptr<class GameEngineSpriteRenderer> Render3;
 	std::shared_ptr<class GameEngineSpriteRenderer> Render4;
 
+	MyMap CurMap = MyMap::None;
+	PixelCollision* NomalPixel = nullptr;
 };
-

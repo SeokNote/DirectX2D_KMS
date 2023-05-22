@@ -85,8 +85,6 @@ void GameEngineCore::CoreResourcesInit()
 	{
 		D3D11_SAMPLER_DESC SamperData = {};
 
-		// 
-
 		SamperData.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
 		SamperData.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
 		SamperData.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
@@ -119,12 +117,16 @@ void GameEngineCore::CoreResourcesInit()
 		GameEngineIndexBuffer::Create("Rect", ArrIndex);
 
 	}
+
 	{
 		// 블랜드
 		D3D11_BLEND_DESC Desc = { 0, };
 
 		// 자동으로 알파부분을 제거해서 출력해주는 건데
 		// 졸라느립니다.
+		// Desc.AlphaToCoverageEnable = false;
+
+		// 
 		Desc.AlphaToCoverageEnable = false;
 		// 블랜드를 여러개 넣을거냐
 		// TRUE면 블랜드를 여러개 넣습니다.
@@ -143,7 +145,9 @@ void GameEngineCore::CoreResourcesInit()
 
 		GameEngineBlend::Create("AlphaBlend", Desc);
 	}
-		//깊이버퍼 셋팅
+
+
+
 	{
 		D3D11_DEPTH_STENCIL_DESC Desc = { 0, };
 		//BOOL DepthEnable;
@@ -209,6 +213,7 @@ void GameEngineCore::CoreResourcesInit()
 		GameEngineDirectory NewDir;
 		NewDir.MoveParentToDirectory("Shader");
 		NewDir.Move("Shader");
+
 
 		std::vector<GameEngineFile> Files = NewDir.GetAllFile({ ".hlsl", ".fx" });
 
@@ -297,4 +302,5 @@ void GameEngineCore::CoreResourcesEnd()
 	GameEngineRenderTarget::ResourcesClear();
 	GameEngineConstantBuffer::ResourcesClear();
 	GameEngineRenderingPipeLine::ResourcesClear();
+
 }

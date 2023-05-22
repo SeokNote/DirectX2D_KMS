@@ -93,6 +93,10 @@ public:
 		return NewTexture;
 	}
 
+	ID3D11ShaderResourceView* GetSRV()
+	{
+		return SRV;
+	}
 
 	ID3D11RenderTargetView* GetRTV()
 	{
@@ -112,6 +116,11 @@ public:
 	int GetHeight()
 	{
 		return Desc.Height;
+	}
+
+	float4 GetScale()
+	{
+		return float4(static_cast<float>(Desc.Width), static_cast<float>(Desc.Height));
 	}
 
 	GameEnginePixelColor GetPixel(int _X, int _Y, GameEnginePixelColor DefaultColor = GameEnginePixelColor::Black);

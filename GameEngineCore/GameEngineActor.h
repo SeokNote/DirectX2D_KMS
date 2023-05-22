@@ -1,8 +1,8 @@
 #pragma once
-#include "GameEngineUpdateObject.h"
+#include "GameEngineObject.h"
 
 // 설명 :
-class GameEngineActor : public GameEngineUpdateObject
+class GameEngineActor : public GameEngineObject
 {
 	friend class GameEngineLevel;
 
@@ -17,40 +17,32 @@ public:
 	GameEngineActor& operator=(const GameEngineActor& _Other) = delete;
 	GameEngineActor& operator=(GameEngineActor&& _Other) noexcept = delete;
 
-	inline class GameEngineLevel* GetLevel() const
+	template<typename ActorType, typename EnumType>
+	std::shared_ptr<ActorType> CreateComponent(EnumType _Order)
 	{
-		return Level;
+		return CreateComponent<ActorType>(static_cast<int>(_Order));
 	}
 
 	template<typename ComponentType>
-	std::shared_ptr<ComponentType> CreateComponent()
+	std::shared_ptr<ComponentType> CreateComponent(int _Order = 0)
 	{
 		std::shared_ptr<class GameEngineComponent> NewComponent = std::make_shared<ComponentType>();
 
-		ComponentInit(NewComponent);
+		ComponentInit(NewComponent, _Order);
 
 		return std::dynamic_pointer_cast<ComponentType>(NewComponent);
 	}
+
+	void SetOrder(int _Order) override;
 
 protected:
 	virtual void Start() {}
 	virtual void Update(float _DeltaTime) {}
 	virtual void Render(float _DeltaTime) {}
 
-	void AccLiveTime(float _LiveTime) override;
-
-
 private:
-	class GameEngineLevel* Level = nullptr;
+	void ComponentInit(std::shared_ptr<class GameEngineComponent> _Component, int _Order = 0);
 
-	//// 이걸 컴포넌트 구조라고 합니다.
-	std::list<std::shared_ptr<class GameEngineComponent>> ComponentsList;
-
-	void ComponentInit(std::shared_ptr<class GameEngineComponent> _Component);
-
-	void ComponentsUpdate(float _DeltaTime);
-
-	void ComponentsRender(float _DeltaTime);
 
 };
 

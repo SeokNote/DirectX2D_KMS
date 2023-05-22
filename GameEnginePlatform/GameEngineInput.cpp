@@ -6,6 +6,7 @@
 
 std::map<std::string, GameEngineInput::GameEngineKey> GameEngineInput::Keys;
 bool GameEngineInput::IsAnyKeyValue = false;
+bool GameEngineInput::IsFocus = true;
 
 float4 GameEngineInput::MousePos;
 float4 GameEngineInput::PrevMousePos;
@@ -142,14 +143,25 @@ GameEngineInput::~GameEngineInput()
 
 void GameEngineInput::Update(float _DeltaTime)
 {
-
 	MousePos = GameEngineWindow::GetMousePosition();
-	
+
 	MouseDirection.w = 0.0f;
-	//마우스의 방향벡터는 현재 마우스에서 이전 마우스포스를 뺴면 나옴
 	MouseDirection = MousePos - PrevMousePos;
 
 	PrevMousePos = MousePos;
+
+	if (false == IsFocus)
+	{
+		std::map<std::string, GameEngineKey>::iterator StartKeyIter = Keys.begin();
+		std::map<std::string, GameEngineKey>::iterator EndKeyIter = Keys.end();
+
+		for (; StartKeyIter != EndKeyIter; ++StartKeyIter)
+		{
+			StartKeyIter->second.Reset();
+		}
+
+		return;
+	}
 
 	std::map<std::string, GameEngineKey>::iterator StartKeyIter = Keys.begin();
 	std::map<std::string, GameEngineKey>::iterator EndKeyIter = Keys.end();

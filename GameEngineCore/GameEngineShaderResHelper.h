@@ -47,6 +47,10 @@ private:
 	std::multimap<std::string, GameEngineSamplerSetter> SamplerSetters;
 
 public:
+	GameEngineTextureSetter* GetTextureSetter(const std::string_view& _View);
+
+	std::vector<GameEngineTextureSetter*> GetTextureSetters(const std::string_view& _View);
+
 	void CreateTextureSetter(const GameEngineTextureSetter& _Setter)
 	{
 		TextureSetters.insert(std::make_pair(_Setter.Name, _Setter));
@@ -83,9 +87,12 @@ public:
 	{
 		SetConstantBufferLink(_Name, reinterpret_cast<const void*>(&_Data), sizeof(DataType));
 	}
-	void SetTexture(const std::string_view& _SettingName, const std::string_view& _ImageName);
 
 	void SetConstantBufferLink(const std::string_view& _Name, const void* _Data, UINT _Size);
+
+	void SetTexture(const std::string_view& _SettingName, const std::string_view& _ImageName);
+
+	void SetTexture(const std::string_view& _SettingName, std::shared_ptr<GameEngineTexture> _Texture);
 
 	void Copy(const GameEngineShaderResHelper& _ResHelper);
 
