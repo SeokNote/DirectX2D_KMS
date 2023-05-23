@@ -22,18 +22,18 @@ SoundButton::~SoundButton()
 void SoundButton::Start()
 {
 	SoundButtonRender_1 = CreateComponent<GameEngineSpriteRenderer>();
-	SoundButtonRender_1->SetTexture("OptionOff_Kor.png");
-	SoundButtonRender_1->GetTransform()->SetLocalPosition({ 0,-150,0 });
+	SoundButtonRender_1->SetTexture("OptionOff.png");
+	SoundButtonRender_1->GetTransform()->SetLocalPosition({ -2,-155,0 });
 	SoundButtonRender_1->GetTransform()->SetLocalScale(SoundButtonScale);
 
 	SoundButtonRender_2 = CreateComponent<GameEngineSpriteRenderer>();
-	SoundButtonRender_2->SetTexture("OptionOn_Kor.png");
-	SoundButtonRender_2->GetTransform()->SetLocalPosition({ 0,-150,0 });
+	SoundButtonRender_2->SetTexture("OptionOn.png");
+	SoundButtonRender_2->GetTransform()->SetLocalPosition({ -2,-155,0 });
 	SoundButtonRender_2->GetTransform()->SetLocalScale(SoundButtonScale);
 	SoundButtonRender_2->Off();
 
 	SoundButtonCollsion = CreateComponent<GameEngineCollision>();
-	SoundButtonCollsion->GetTransform()->SetLocalPosition({ 0,-150,0 });
+	SoundButtonCollsion->GetTransform()->SetLocalPosition({ -2,-155,0 });
 	SoundButtonCollsion->GetTransform()->SetLocalScale(SoundButtonScale);
 	SoundButtonCollsion->SetOrder(2999);
 

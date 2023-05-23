@@ -22,18 +22,18 @@ EndButton::~EndButton()
 void EndButton::Start()
 {
 	EndButtonRender_1 = CreateComponent<GameEngineSpriteRenderer>();
-	EndButtonRender_1->SetTexture("ExitOff_Kor.png");
-	EndButtonRender_1->GetTransform()->SetLocalPosition({ 0,-200,0 });
+	EndButtonRender_1->SetTexture("ExitOff.png");
+	EndButtonRender_1->GetTransform()->SetLocalPosition({ 0,-210,0 });
 	EndButtonRender_1->GetTransform()->SetLocalScale(EndButtonScale);
 	
 	EndButtonRender_2 = CreateComponent<GameEngineSpriteRenderer>();
-	EndButtonRender_2->SetTexture("ExitOn_Kor.png");
-	EndButtonRender_2->GetTransform()->SetLocalPosition({ 0,-200,0 });
+	EndButtonRender_2->SetTexture("ExitOn.png");
+	EndButtonRender_2->GetTransform()->SetLocalPosition({ 0,-210,0 });
 	EndButtonRender_2->GetTransform()->SetLocalScale(EndButtonScale);
 	EndButtonRender_2->Off();
 
 	EndButtonCollsion = CreateComponent<GameEngineCollision>();
-	EndButtonCollsion->GetTransform()->SetLocalPosition({ 0,-200,0 });
+	EndButtonCollsion->GetTransform()->SetLocalPosition({ 0,-210,0 });
 	EndButtonCollsion->GetTransform()->SetLocalScale(EndButtonScale);
 	EndButtonCollsion->SetOrder(2999);
 

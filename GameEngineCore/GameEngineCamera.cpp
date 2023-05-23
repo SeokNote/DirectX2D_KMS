@@ -155,7 +155,27 @@ void GameEngineCamera::Render(float _DeltaTime)
 	for (; RenderGroupStartIter != RenderGroupEndIter; ++RenderGroupStartIter)
 	{
 		std::list<std::shared_ptr<GameEngineRenderer>>& RenderGroup = RenderGroupStartIter->second;
+		int Order = RenderGroupStartIter->first;
+		std::map<int, SortType>::iterator SortIter = SortValues.find(Order);
 
+		if (SortIter != SortValues.end() && SortIter->second != SortType::None)
+		{
+			if (SortIter->second == SortType::ZSort)
+			{
+				for (std::shared_ptr<GameEngineRenderer>& Render : RenderGroup)
+				{
+					Render->CalSortZ(this);
+				}
+
+				// 퀵소트 내일
+				RenderGroup.sort([](std::shared_ptr<GameEngineRenderer>& _Left, std::shared_ptr<GameEngineRenderer>& _Right)
+					{
+						return _Left->CalZ > _Right->CalZ;
+					});
+			}
+
+			// 정렬을 하겠다는 뜻으로 본다.
+		}
 		std::list<std::shared_ptr<GameEngineRenderer>>::iterator StartRenderer = RenderGroup.begin();
 		std::list<std::shared_ptr<GameEngineRenderer>>::iterator EndRenderer = RenderGroup.end();
 

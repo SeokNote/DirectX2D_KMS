@@ -22,7 +22,7 @@ void BossStage_1::Start()
 {
 	BossStage_1Render = CreateComponent<GameEngineSpriteRenderer>();
 	BossStage_1Render->SetTexture("BossRoom_1.png");
-	BossStage_1Render->GetTransform()->SetLocalPosition({ 12084.0f,0.0f,0.0f });
+	BossStage_1Render->GetTransform()->SetLocalPosition({ 12084.0f,0.0f,-10.0f });
 	BossStage_1Render->GetTransform()->SetLocalScale(BossStage_1Scale);
 
 }

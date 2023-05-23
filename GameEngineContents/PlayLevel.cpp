@@ -74,12 +74,6 @@ void PlayLevel::Start()
 	//	Window->Test = std::bind(&PlayLevel::PlayerTelPo, this);
 
 	//}
-	//	Player
-	{
-		static std::shared_ptr<Player> NewPlayer = CreateActor<Player>(-10);
-		//NewPlayer->GetTransform()->SetLocalPosition({ 13150.0f,-39.0f,0.0f });
-		NewPlayer->GetTransform()->SetLocalPosition({ 0.0f,0.0f,-1.0f });
-	}
 
 	{	//Town
 		std::shared_ptr<Sky> SkyBG = CreateActor<Sky>(-20);
@@ -126,8 +120,10 @@ void PlayLevel::Start()
 
 		
 	}
-
-	
+	//	Player
+	static std::shared_ptr<Player> NewPlayer = CreateActor<Player>(0);
+	//NewPlayer->GetTransform()->SetLocalPosition({ 13150.0f,-39.0f,0.0f });
+	NewPlayer->GetTransform()->SetLocalPosition({ 0.0f,0.0f,-1.0f });
 }
 
 

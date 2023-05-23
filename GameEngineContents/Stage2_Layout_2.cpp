@@ -39,7 +39,7 @@ void Stage2_Layout_2::Update(float _DeltaTime)
 	float YMove = (CameraPos.y - Center.y) * (1.0f - 0.2f);
 	XMove += 2250.0f;
 	Stage2_Layout_2Render->GetTransform()->SetLocalPosition({ XMove,YMove+500.0f,0.0f });
-	if (PlayerPos.x > 11380.0f && 15868.0f > PlayerPos.x)
+	if (PlayerPos.x > 12888.0f && 15868.0f > PlayerPos.x)
 	{
 		Stage2_Layout_2Render->On();
 

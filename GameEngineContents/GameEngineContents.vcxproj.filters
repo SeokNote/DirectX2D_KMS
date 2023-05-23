@@ -128,6 +128,21 @@
     <ClInclude Include="InventoryUI.h">
       <Filter>Object\UI\Inventory</Filter>
     </ClInclude>
+    <ClInclude Include="ShopNpc.h">
+      <Filter>Object\Npc</Filter>
+    </ClInclude>
+    <ClInclude Include="BuilderNpc.h">
+      <Filter>Object\Npc</Filter>
+    </ClInclude>
+    <ClInclude Include="CommanderNpc.h">
+      <Filter>Object\Npc</Filter>
+    </ClInclude>
+    <ClInclude Include="TempleNpc.h">
+      <Filter>Object\Npc</Filter>
+    </ClInclude>
+    <ClInclude Include="DungeonIn.h">
+      <Filter>Object\Npc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -256,6 +271,21 @@
     <ClCompile Include="InventoryUI.cpp">
       <Filter>Object\UI\Inventory</Filter>
     </ClCompile>
+    <ClCompile Include="ShopNpc.cpp">
+      <Filter>Object\Npc</Filter>
+    </ClCompile>
+    <ClCompile Include="BuilderNpc.cpp">
+      <Filter>Object\Npc</Filter>
+    </ClCompile>
+    <ClCompile Include="CommanderNpc.cpp">
+      <Filter>Object\Npc</Filter>
+    </ClCompile>
+    <ClCompile Include="TempleNpc.cpp">
+      <Filter>Object\Npc</Filter>
+    </ClCompile>
+    <ClCompile Include="DungeonIn.cpp">
+      <Filter>Object\Npc</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Levels">
@@ -332,6 +362,9 @@
     </Filter>
     <Filter Include="Object\UI\Inventory">
       <UniqueIdentifier>{b42d6347-4a8d-4451-a29c-d17ac09b2a5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Npc">
+      <UniqueIdentifier>{e52349ee-9c2d-4021-bfd8-82de640b24f7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
