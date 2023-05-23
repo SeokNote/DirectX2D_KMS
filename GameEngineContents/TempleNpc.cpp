@@ -37,7 +37,7 @@ void TempleNpc::Start()
 		// std::vector<GameEngineFile> File = NewDir.GetAllFile({ ".Png", });
 	}
 
-	TempleNpcRender = CreateComponent<GameEngineSpriteRenderer>();
+	TempleNpcRender = CreateComponent<GameEngineSpriteRenderer>(1);
 	TempleNpcRender->SetTexture("NPC_Inn0.png");
 	TempleNpcRender->GetTransform()->SetLocalPosition(TempleNpcPos1);
 	TempleNpcRender->GetTransform()->SetLocalScale(TempleNpcScale);

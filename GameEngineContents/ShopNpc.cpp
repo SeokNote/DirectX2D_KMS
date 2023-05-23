@@ -37,7 +37,7 @@ void ShopNpc::Start()
 		// std::vector<GameEngineFile> File = NewDir.GetAllFile({ ".Png", });
 	}
 
-	ShopNpcRender = CreateComponent<GameEngineSpriteRenderer>();
+	ShopNpcRender = CreateComponent<GameEngineSpriteRenderer>(1);
 	ShopNpcRender->SetTexture("NPC_Merchant0.png");
 	ShopNpcRender->GetTransform()->SetLocalPosition(ShopNpcPos1);
 	ShopNpcRender->GetTransform()->SetLocalScale(ShopNpcScale);

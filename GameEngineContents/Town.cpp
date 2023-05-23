@@ -20,9 +20,9 @@ Town::~Town()
 
 void Town::Start()
 {
-	TownRender = CreateComponent<GameEngineSpriteRenderer>();
+	TownRender = CreateComponent<GameEngineSpriteRenderer>(1);
 	TownRender->SetTexture("Town_0.png");
-	TownRender->GetTransform()->SetLocalPosition({ 0.0f,0.0f,0.0f });
+	TownRender->GetTransform()->SetLocalPosition({ 0.0f,0.0f,-700.0f });
 	TownRender->GetTransform()->SetLocalScale(TownScale);
 
 }

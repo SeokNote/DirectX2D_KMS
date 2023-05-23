@@ -1,7 +1,7 @@
 #include "PrecompileHeader.h"
 #include "BuilderNpc.h"
 #include "Trainning.h"
-
+#include "Player.h"
 
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEnginePlatform/GameEngineWindow.h>
@@ -38,7 +38,7 @@ void BuilderNpc::Start()
 		// std::vector<GameEngineFile> File = NewDir.GetAllFile({ ".Png", });
 	}
 
-	BuilderNpcRender = CreateComponent<GameEngineSpriteRenderer>();
+	BuilderNpcRender = CreateComponent<GameEngineSpriteRenderer>(1);
 	BuilderNpcRender->SetTexture("NPC_Builder0.png");
 	BuilderNpcRender->GetTransform()->SetLocalPosition(BuilderNpcPos1);
 	BuilderNpcRender->GetTransform()->SetLocalScale(BuilderNpcScale);
@@ -63,7 +63,8 @@ void BuilderNpc::Update(float _DeltaTime)
 	{
 		int a = 0;
 		if (false == Dawhagalmunok) {
-			GetLevel()->CreateActor<Trainning>(-11);
+			GetLevel()->CreateActor<Trainning>(1);
+			//Player::MainPlayer->GetTransform()->AddLocalPosition({ 0.0f,0.f,-10.0f });
 			Dawhagalmunok = true;
 		}
 	}

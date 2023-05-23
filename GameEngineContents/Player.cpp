@@ -46,9 +46,9 @@ void Player::Start()
 
 
 
-	Render1 = CreateComponent<GameEngineSpriteRenderer>();
+	Render1 = CreateComponent<GameEngineSpriteRenderer>(1);
 	Render1->SetTexture("CharIdle0.png");
-	Render1->GetTransform()->SetLocalPosition({0.0f,0.0f,0.0f });
+	Render1->GetTransform()->SetLocalPosition({0.0f,0.0f,-1.0f });
 	Render1->GetTransform()->SetLocalScale({ 128.0f, 128.0f });
 
 
@@ -72,7 +72,7 @@ void Player::Update(float _DeltaTime)
 	PlayerCol->GetTransform()->SetLocalPosition({ PlayerPos.x,PlayerPos.y,0.0f});
 
 	CurMap =SetMyMap(CurMap);
-	int Speed = 300.0f;
+	float Speed = 300.0f;
 	std::string Name = "";
 	Name = "Stage_1";
 	//NomalPixel->GetMapPixel(Name.c_str(), { 0,0,0 }, { 2560,720,0 });
@@ -81,10 +81,10 @@ void Player::Update(float _DeltaTime)
 	float4 ColPlayerPos = MapCenter + TransColPos - PlayerPos;
 	std::shared_ptr<GameEngineTexture> Ptr = GameEngineTexture::Find("TownCol_1.png");
 
-	GameEnginePixelColor Pixel = Ptr->GetPixel(ColPlayerPos.x, ColPlayerPos.y+65);
+	GameEnginePixelColor Pixel = Ptr->GetPixel(static_cast<int>(ColPlayerPos.x), static_cast<int>(ColPlayerPos.y+65.0f));
 	Pixel.a = 0;
 	if (Pixel == GameEnginePixelColor::Black) {
-		//GetTransform()->AddLocalPosition(-float4::Down * Speed * _DeltaTime);
+		GetTransform()->AddLocalPosition(-float4::Down * Speed * _DeltaTime);
 	}
 
 		//CulMap = PlayLevel::MainPlayLevel->GetMyMap(CulMap);

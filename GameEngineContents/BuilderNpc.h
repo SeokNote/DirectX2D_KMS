@@ -27,9 +27,9 @@ private:
 
 
 	//Position
-	float4 BuilderNpcPos1 = { -3.0f,-528.0f,0.f };
+	float4 BuilderNpcPos1 = { -3.0f,-528.0f,-750.f };
 
-
+	BuilderNpc* awdas = nullptr;
 	std::shared_ptr<class GameEngineCollision> BuilderNpcCol;
 
 };

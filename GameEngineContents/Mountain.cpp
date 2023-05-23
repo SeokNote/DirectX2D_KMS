@@ -19,9 +19,9 @@ Mountain::~Mountain()
 
 void Mountain::Start()
 {
-	MountainRender = CreateComponent<GameEngineSpriteRenderer>();
+	MountainRender = CreateComponent<GameEngineSpriteRenderer>(1);
 	MountainRender->SetTexture("MountineBG.png");
-	MountainRender->GetTransform()->SetLocalPosition({ 0.0f,-300.0f,0.0f });
+	MountainRender->GetTransform()->SetLocalPosition({ 0.0f,-300.0f,-500.0f });
 	MountainRender->GetTransform()-> SetLocalScale({ 5120.0f,568.0f,0.0f });
 	MountainRender->Off();
 }
@@ -40,7 +40,7 @@ void Mountain::Update(float _DeltaTime)
 		MountainRender->On();		
 
 		XMove += 2000.0f;
-		MountainRender->GetTransform()->SetLocalPosition({ XMove,YMove + 150.0f,0.0f });
+		MountainRender->GetTransform()->SetLocalPosition({ XMove,YMove + 150.0f,-500.0f });
 
 	}
 	else {

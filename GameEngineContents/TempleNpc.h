@@ -27,7 +27,7 @@ private:
 
 
 	//Position
-	float4 TempleNpcPos1 = { -1815.0f,45.0f,0.f };
+	float4 TempleNpcPos1 = { -1815.0f,45.0f,-750.f };
 
 
 

@@ -3,7 +3,7 @@
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/GameEngineCamera.h>
 #include <GameEnginePlatform/GameEngineInput.h>
-
+#include <GameEngineCore/GameEngineUIRenderer.h>
 InventoryUI::InventoryUI()
 {
 }

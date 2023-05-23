@@ -20,9 +20,9 @@ Forest::~Forest()
 
 void Forest::Start()
 {
-	ForestRender = CreateComponent<GameEngineSpriteRenderer>();
+	ForestRender = CreateComponent<GameEngineSpriteRenderer>(1);
 	ForestRender->SetTexture("BG3.png");
-	ForestRender->GetTransform()->SetLocalPosition({ 0.0f,-400.0f,0.0f });
+	ForestRender->GetTransform()->SetLocalPosition({ 0.0f,-400.0f,-600.0f });
 	ForestRender->GetTransform()->SetLocalScale({ 5120.0f,380.0f,0.0f });
 	ForestRender->Off();
 
@@ -39,7 +39,7 @@ void Forest::Update(float _DeltaTime)
 	XMove -= 400.0f;
 	if (PlayerPos.x <2560.0f && -2560<PlayerPos.x) {
 
-		ForestRender->GetTransform()->SetLocalPosition({ XMove,YMove-300.0f,0 });
+		ForestRender->GetTransform()->SetLocalPosition({ XMove,YMove-300.0f,-600.0f });
 
 		ForestRender->On();
 	}

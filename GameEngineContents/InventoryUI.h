@@ -1,6 +1,5 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
-#include <GameEngineCore/GameEngineUIRenderer.h>
 
 // 설명 :
 class InventoryUI : public GameEngineActor
@@ -24,8 +23,8 @@ private:
 
 	float4 InventoryUIScale = { 492.0f,720.0f,0.0f };
 
-	std::shared_ptr<GameEngineUIRenderer> InventoryUIRender;
-	std::shared_ptr<GameEngineUIRenderer> MapTabBaseBG;
+	std::shared_ptr<class GameEngineUIRenderer> InventoryUIRender;
+	std::shared_ptr<class GameEngineUIRenderer> MapTabBaseBG;
 };
 
 //텝과 인벤토리 기초적인 틀만 만들기

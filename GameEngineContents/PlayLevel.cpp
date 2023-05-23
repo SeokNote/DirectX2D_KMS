@@ -70,6 +70,7 @@ void PlayLevel::Start()
 		GameEngineInput::CreateKey("MapTabUI", VK_TAB);
 	}
 	GetMainCamera()->SetProjectionType(CameraType::Orthogonal);
+	GetMainCamera()->SetSortType(1, SortType::ZSort);
 
 	//std::shared_ptr<GameEngineCoreWindow> Window = GameEngineGUI::FindGUIWindowConvert<GameEngineCoreWindow>("CoreWindow");
 
@@ -79,10 +80,10 @@ void PlayLevel::Start()
 	//}
 
 	{	//Town
-		std::shared_ptr<Sky> SkyBG = CreateActor<Sky>(-20);
-		std::shared_ptr<Mountain> MountainBG = CreateActor<Mountain>(-19);
-		std::shared_ptr<Forest> ForestBG = CreateActor<Forest>(-18);
-		std::shared_ptr<Town> TownBG = CreateActor<Town>(-17);
+		std::shared_ptr<Sky> SkyBG = CreateActor<Sky>(1);
+		std::shared_ptr<Mountain> MountainBG = CreateActor<Mountain>(1);
+		std::shared_ptr<Forest> ForestBG = CreateActor<Forest>(1);
+		std::shared_ptr<Town> TownBG = CreateActor<Town>(1);
 	}
 	{	//	Stage_1
 		std::shared_ptr<Stage_1> Stage1 = CreateActor<Stage_1>(-16);
@@ -125,9 +126,9 @@ void PlayLevel::Start()
 	}
 	{
 		//NPC
-		std::shared_ptr<ShopNpc> ShopNpcPtr = CreateActor<ShopNpc>(-2);
-		std::shared_ptr<BuilderNpc> BuilderNpcPtr = CreateActor<BuilderNpc>(-2);
-		std::shared_ptr<TempleNpc> FoodNpcPtr = CreateActor<TempleNpc>(-2);
+		std::shared_ptr<ShopNpc> ShopNpcPtr = CreateActor<ShopNpc>(1);
+		std::shared_ptr<BuilderNpc> BuilderNpcPtr = CreateActor<BuilderNpc>(1);
+		std::shared_ptr<TempleNpc> FoodNpcPtr = CreateActor<TempleNpc>(1);
 		
 
 	}
@@ -136,9 +137,9 @@ void PlayLevel::Start()
 	
 
 	//	Player
-	static std::shared_ptr<Player> NewPlayer = CreateActor<Player>(0);
+	static std::shared_ptr<Player> NewPlayer = CreateActor<Player>(1);
 	//NewPlayer->GetTransform()->SetLocalPosition({ 13150.0f,-39.0f,0.0f });
-	NewPlayer->GetTransform()->SetLocalPosition({ 0.0f,0.0f,-1.0f });
+	NewPlayer->GetTransform()->SetLocalPosition({ 0.0f,0.0f,-801.0f });
 }
 
 
@@ -158,9 +159,9 @@ void PlayLevel::Update(float _DeltaTime)
 
 void PlayLevel::CameraColMove(float _X,float _X1, float _Y,float _Y1)
 {
-	GetMainCamera()->GetTransform()->SetWorldPosition(Player::MainPlayer->GetTransform()->GetWorldPosition());
-
 	float4 PlayerPos = Player::MainPlayer->GetTransform()->GetLocalPosition();
+	GetMainCamera()->GetTransform()->SetWorldPosition({ PlayerPos.x, PlayerPos.y,-1000.0f });
+
 	float4 PlayerWorldPos = Player::MainPlayer->GetTransform()->GetWorldPosition();
 
 	WindowSizeHalf = GameEngineWindow::GetScreenSize() / 2;

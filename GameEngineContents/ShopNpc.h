@@ -27,7 +27,7 @@ private:
 
 
 	//Position
-	float4 ShopNpcPos1 = { 1790.0f,43.0f,0.f };
+	float4 ShopNpcPos1 = { 1790.0f,43.0f,-750.f };
 
 
 

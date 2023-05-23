@@ -155,6 +155,7 @@ void GameEngineCamera::Render(float _DeltaTime)
 	for (; RenderGroupStartIter != RenderGroupEndIter; ++RenderGroupStartIter)
 	{
 		std::list<std::shared_ptr<GameEngineRenderer>>& RenderGroup = RenderGroupStartIter->second;
+
 		int Order = RenderGroupStartIter->first;
 		std::map<int, SortType>::iterator SortIter = SortValues.find(Order);
 
@@ -176,6 +177,7 @@ void GameEngineCamera::Render(float _DeltaTime)
 
 			// 정렬을 하겠다는 뜻으로 본다.
 		}
+
 		std::list<std::shared_ptr<GameEngineRenderer>>::iterator StartRenderer = RenderGroup.begin();
 		std::list<std::shared_ptr<GameEngineRenderer>>::iterator EndRenderer = RenderGroup.end();
 
