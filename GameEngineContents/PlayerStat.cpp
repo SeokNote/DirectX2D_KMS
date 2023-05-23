@@ -62,7 +62,7 @@ void PlayerStat::Update(float _Delta)
 		ExitButton->Off();
 		ExitButtonSelect->On();
 		if (GameEngineInput::IsDown("ClickMouse")) {
-			Death();
+			Off();
 		}
 	}
 	else {

@@ -119,6 +119,7 @@ void PlayLevel::Start()
 		MapTab = CreateActor<MapTabUI>(-10);
 		MapTab->Off();
 		//Cusor
+		std::shared_ptr<PlayMouse> PlayMouseCusor = CreateActor<PlayMouse>(-1);
 
 		
 	}
@@ -131,7 +132,6 @@ void PlayLevel::Start()
 
 	}
 	{
-		std::shared_ptr<PlayMouse> PlayMouseCusor = CreateActor<PlayMouse>(-1);
 	}
 	
 
@@ -279,7 +279,7 @@ void PlayLevel::UICtr()
 		}
 		else if (true == CheckUICtr_1 && GameEngineInput::IsDown("MapTabUI"))
 		{
-			MapTab->Death();
+			MapTab->Off();
 			CheckUICtr_1 = false;
 		}
 	}
