@@ -7,6 +7,7 @@
 #include <GameEngineCore/GameEngineCamera.h>
 #include <GameEngineCore/GameEngineRenderer.h>
 #include <GameEnginePlatform/GameEngineInput.h>
+#include <GameEngineCore/GameEngineCollision.h>
 #include "PixelCollision.h"
 
 Player* Player::MainPlayer = nullptr;
@@ -51,6 +52,9 @@ void Player::Start()
 	Render1->GetTransform()->SetLocalScale({ 128.0f, 128.0f });
 
 
+	PlayerCol = CreateComponent<GameEngineCollision>();
+	PlayerCol->GetTransform()->SetLocalScale({ 30.0f, 30.0f });
+	PlayerCol->SetOrder(3333);
 
 }
 bool awds = false;
@@ -63,12 +67,15 @@ bool awds6 = false;
 
 void Player::Update(float _DeltaTime)
 {
+	float4 PlayerPos = GetTransform()->GetLocalPosition();
+
+	PlayerCol->GetTransform()->SetLocalPosition({ PlayerPos.x,PlayerPos.y,0.0f});
+
 	CurMap =SetMyMap(CurMap);
 	int Speed = 300.0f;
 	std::string Name = "";
 	Name = "Stage_1";
 	//NomalPixel->GetMapPixel(Name.c_str(), { 0,0,0 }, { 2560,720,0 });
-	float4 PlayerPos = GetTransform()->GetLocalPosition();
 	float4 MapCenter = { 0.0f,0.0f,0.0f };
 	float4 TransColPos = { 2560.0f,720 };
 	float4 ColPlayerPos = MapCenter + TransColPos - PlayerPos;

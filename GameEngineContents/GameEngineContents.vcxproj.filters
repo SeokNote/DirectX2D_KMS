@@ -143,6 +143,9 @@
     <ClInclude Include="DungeonIn.h">
       <Filter>Object\Npc</Filter>
     </ClInclude>
+    <ClInclude Include="Trainning.h">
+      <Filter>Map\Town</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -285,6 +288,9 @@
     </ClCompile>
     <ClCompile Include="DungeonIn.cpp">
       <Filter>Object\Npc</Filter>
+    </ClCompile>
+    <ClCompile Include="Trainning.cpp">
+      <Filter>Map\Town</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

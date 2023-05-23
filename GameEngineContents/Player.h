@@ -43,11 +43,11 @@ private:
 
 
 	float Angle = 0.0f;
-	std::shared_ptr<class GameEngineSpriteRenderer> Render0;
 	std::shared_ptr<class GameEngineSpriteRenderer> Render1;
-	std::shared_ptr<class GameEngineSpriteRenderer> Render2;
-	std::shared_ptr<class GameEngineSpriteRenderer> Render3;
-	std::shared_ptr<class GameEngineSpriteRenderer> Render4;
+
+	std::shared_ptr<class GameEngineCollision> PlayerCol;
+
+
 
 	MyMap CurMap = MyMap::None;
 	PixelCollision* NomalPixel = nullptr;

@@ -41,7 +41,7 @@ void PlayMouse::Update(float _DeltaTime)
 	float4 MousePos = GameEngineWindow::GetMousePosition();
 	MousePos.x -= 640.0f;
 	MousePos.y -= 360.0f;
-	PlayMouseRender->GetTransform()->SetLocalPosition({ MousePos.x, -MousePos.y,0.0f });
+	PlayMouseRender->GetTransform()->SetLocalPosition({ MousePos.x, -MousePos.y,-1.0f });
 	PlayMouseCollsion->GetTransform()->SetLocalPosition({ MousePos.x, -MousePos.y,0.0f });
 }
 

@@ -30,9 +30,6 @@ void ContentsCore::ContentsResourcesCreate()
 		GameEngineTexture::Load(File[i].GetFullPath());
 	}
 
-	int a = 0;
-
-
 }
 void ContentsCore::GameStart() 
 {

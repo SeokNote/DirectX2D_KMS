@@ -10,6 +10,9 @@
 #include "Sky.h"
 #include "Town.h"
 
+#include "ShopNpc.h"
+#include "BuilderNpc.h"
+#include "TempleNpc.h"
 
 #include "Stage_1.h"
 #include "Stage_2.h"
@@ -116,10 +119,22 @@ void PlayLevel::Start()
 		MapTab = CreateActor<MapTabUI>(-10);
 		MapTab->Off();
 		//Cusor
-		std::shared_ptr<PlayMouse> PlayMouseCusor = CreateActor<PlayMouse>(-1);
 
 		
 	}
+	{
+		//NPC
+		std::shared_ptr<ShopNpc> ShopNpcPtr = CreateActor<ShopNpc>(-2);
+		std::shared_ptr<BuilderNpc> BuilderNpcPtr = CreateActor<BuilderNpc>(-2);
+		std::shared_ptr<TempleNpc> FoodNpcPtr = CreateActor<TempleNpc>(-2);
+		
+
+	}
+	{
+		std::shared_ptr<PlayMouse> PlayMouseCusor = CreateActor<PlayMouse>(-1);
+	}
+	
+
 	//	Player
 	static std::shared_ptr<Player> NewPlayer = CreateActor<Player>(0);
 	//NewPlayer->GetTransform()->SetLocalPosition({ 13150.0f,-39.0f,0.0f });

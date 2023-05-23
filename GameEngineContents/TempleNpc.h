@@ -1,7 +1,8 @@
 #pragma once
+#include <GameEngineCore/GameEngineActor.h>
 
 // Ό³Έν :
-class TempleNpc
+class TempleNpc : public GameEngineActor
 {
 public:
 	// constrcuter destructer
@@ -16,7 +17,19 @@ public:
 
 protected:
 
+	void Start() override;
+	void Update(float _DeltaTime) override;
 private:
+	float4 TempleNpcScale = { 60.0f,92.0f,0.0f };
+	std::shared_ptr<class GameEngineSpriteRenderer> TempleNpcRender;
+
+
+
+
+	//Position
+	float4 TempleNpcPos1 = { -1815.0f,45.0f,0.f };
+
+
 
 };
 

@@ -21,13 +21,14 @@ Bird::~Bird()
 
 void Bird::Start()
 {
-	if (nullptr == GameEngineSprite::Find("CHAc_Ground_Run"))
+	if (nullptr == GameEngineSprite::Find("BirdIdle"))
 	{
 		GameEngineDirectory NewDir;
 		NewDir.MoveParentToDirectory("ContentResources");
 		NewDir.Move("ContentResources");
 		NewDir.Move("Animation");
-
+		NewDir.Move("TitleAnimation");
+		
 		// TestAnimation.png
 
 		GameEngineSprite::LoadFolder(NewDir.GetPlusFileName("BirdIdle").GetFullPath());
