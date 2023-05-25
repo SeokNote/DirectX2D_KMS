@@ -61,6 +61,14 @@ void PlayLevel::PlayerTelPo(/*Playlevel* this*/)
 
 void PlayLevel::Start()
 {
+	if (false == GameEngineInput::IsKey("LeftMove"))
+	{
+		GameEngineInput::CreateKey("LeftMove", 'A');
+		GameEngineInput::CreateKey("RightMove", 'D');
+		GameEngineInput::CreateKey("UpMove", 'W');
+		GameEngineInput::CreateKey("DownMove", 'S');
+	}
+
 
 
 	if (false == GameEngineInput::IsKey("StatUI"))
@@ -139,7 +147,7 @@ void PlayLevel::Start()
 	//	Player
 	static std::shared_ptr<Player> NewPlayer = CreateActor<Player>(1);
 	//NewPlayer->GetTransform()->SetLocalPosition({ 13150.0f,-39.0f,0.0f });
-	NewPlayer->GetTransform()->SetLocalPosition({ 0.0f,0.0f,-801.0f });
+	NewPlayer->GetTransform()->SetLocalPosition({ -1800.0f,-500.0f,-801.0f });
 }
 
 
@@ -205,7 +213,7 @@ void PlayLevel::CameraMoveSet()
 		CameraColMove(-2560.0f, 2560.0f, 720.0f, -720.0f);
 	}
 	if (CurMap == MyMap::Stage1_1) {
-		CameraColMove(2660.0f, 3940.0f, 360, -360);
+		CameraColMove(2660.0f, 3940.0f, 360.0f, -360.0f);
 	}
 	if (CurMap == MyMap::Stage1_2) {
 		CameraColMove(4040.0f, 6600, 640, -640);

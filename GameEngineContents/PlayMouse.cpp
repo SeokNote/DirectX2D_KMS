@@ -9,10 +9,12 @@
 #include <GameEngineCore/GameEngineRenderer.h>
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore/GameEngineCollision.h>
-
+PlayMouse* PlayMouse::MainPlayMouse = nullptr;
 
 PlayMouse::PlayMouse()
 {
+	MainPlayMouse = this;
+
 }
 
 PlayMouse::~PlayMouse()

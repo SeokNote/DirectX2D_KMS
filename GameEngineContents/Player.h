@@ -3,6 +3,12 @@
 #include "PlayLevel.h"
 #include "PixelCollision.h"
 // Ό³Έν :
+enum class PlayerState
+{
+	IDLE,
+	MOVE,
+	JUMP,
+};
 class Player : public GameEngineActor
 {
 public:
@@ -22,7 +28,7 @@ public:
 
 	std::shared_ptr<class GameEngineSpriteRenderer> GetPlayerPtr()
 	{
-		return Render1;
+		return PlayerRender;
 	}
 	MyMap SetMyMap(MyMap _MyMap);
 
@@ -30,7 +36,8 @@ public:
 	//	SetMyMap(CurMap) = _MyMap;
 	//	return CurMap;
 	//}
-
+	bool GroundCheck();
+	float4 PixelCalculation(float4 _TargetPos, float4 _MapCenterPos, float4 _TransColPos);
 protected:
 	void Start();
 	void Update(float _Delta) override;
@@ -40,15 +47,57 @@ protected:
 
 
 private:
-
+	void Filp();
 
 	float Angle = 0.0f;
-	std::shared_ptr<class GameEngineSpriteRenderer> Render1;
+	std::shared_ptr<class GameEngineSpriteRenderer> PlayerRender;
+
+	std::shared_ptr<class GameEngineSpriteRenderer> PlayerTopRender;
+	std::shared_ptr<class GameEngineSpriteRenderer> PlayerBottoomRender;
+	std::shared_ptr<class GameEngineSpriteRenderer> PlayerSideRender;
 
 	std::shared_ptr<class GameEngineCollision> PlayerCol;
-
-
-
+	std::shared_ptr<class GameEngineTexture> Ptr = nullptr;
+	bool IsGround = false;
+	bool Fall = false;
+	GameEnginePixelColor Pixel = GameEnginePixelColor::Black;
 	MyMap CurMap = MyMap::None;
 	PixelCollision* NomalPixel = nullptr;
+
+
+	std::shared_ptr<class GameEngineSpriteRenderer> TestColMap;
+
+	float4 MapCenter = float4::Zero;
+	float4 TransColPos = float4::Zero;
+	float4 TargetPos = float4::Zero;
+	float4 PixelMapResultPos = float4::Zero;
+	std::string DirString = "Player_";
+
+
+	void DirCheck(const std::string_view& _AnimationName);
+
+	// State
+	void ChangeState(PlayerState _State);
+	void UpdateState(float _Time);
+
+	void IdleStart();
+	void IdleUpdate(float _Time);
+	void IdleEnd();
+
+	void MoveStart();
+	void MoveUpdate(float _Time);
+	void MoveEnd();
+
+	void JumpStart();
+	void JumpUpdate(float _Time);
+	void JumpEnd();
+	PlayerState StateValue = PlayerState::IDLE;
+	float4 MoveDir = float4::Zero;
+	float4 MoveRange = float4::Zero;
+	float MoveSpeed = 300.f;
+
+
+	float JumpTime = 0.0f;
+	float4 JumpDir = float4::One;
+	int JumpCount = 0;
 };

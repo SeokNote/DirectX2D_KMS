@@ -1,14 +1,16 @@
 #include "PrecompileHeader.h"
 #include "Player.h"
+#include "PixelCollision.h"
+#include "PlayMouse.h"
+#include <GameEngineCore/GameEngineTexture.h>
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
-
 #include <GameEnginePlatform/GameEngineWindow.h>
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/GameEngineCamera.h>
 #include <GameEngineCore/GameEngineRenderer.h>
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore/GameEngineCollision.h>
-#include "PixelCollision.h"
+#include <GameEngineCore/GameEngineSprite.h>
 
 Player* Player::MainPlayer = nullptr;
 
@@ -31,29 +33,59 @@ Player::~Player()
 
 
 
+
 void Player::Start()
 {
-	if (false == GameEngineInput::IsKey("PlayerMoveLeft"))
+
+	if (nullptr == GameEngineSprite::Find("PlayerDead"))
 	{
-		GameEngineInput::CreateKey("PlayerMoveLeft", 'A');
-		GameEngineInput::CreateKey("PlayerMoveRight", 'D');
-		GameEngineInput::CreateKey("PlayerMoveUp", 'Q');
-		GameEngineInput::CreateKey("PlayerMoveDown", 'E');
-		GameEngineInput::CreateKey("PlayerMoveForward", 'W');
-		GameEngineInput::CreateKey("PlayerMoveBack", 'S');
+		GameEngineDirectory NewDir;
+		NewDir.MoveParentToDirectory("ContentResources");
+		NewDir.Move("ContentResources");
+		NewDir.Move("Animation");
+		NewDir.Move("MainLevelAnimation");
+		NewDir.Move("MainPlayer");
+		GameEngineSprite::LoadFolder(NewDir.GetPlusFileName("PlayerDead").GetFullPath());
+		GameEngineSprite::LoadFolder(NewDir.GetPlusFileName("PlayerIdle").GetFullPath());
+		GameEngineSprite::LoadFolder(NewDir.GetPlusFileName("PlayerJump").GetFullPath());
+		GameEngineSprite::LoadFolder(NewDir.GetPlusFileName("PlayerRun").GetFullPath());
+
 	}
 
 
 
+	PlayerRender = CreateComponent<GameEngineSpriteRenderer>(1);
+	PlayerRender->SetTexture("CharIdle0.png");
+	PlayerRender->GetTransform()->SetLocalScale({ 128.0f, 128.0f });
+	PlayerRender->CreateAnimation({ .AnimationName = "Player_Dead", .SpriteName = "PlayerDead", .ScaleToTexture = false });
+	PlayerRender->CreateAnimation({ .AnimationName = "Player_Idle", .SpriteName = "PlayerIdle", .ScaleToTexture = false });
+	PlayerRender->CreateAnimation({ .AnimationName = "Player_Jump", .SpriteName = "PlayerJump", .ScaleToTexture = false });
+	PlayerRender->CreateAnimation({ .AnimationName = "Player_Move", .SpriteName = "PlayerRun",.FrameInter = 0.09f,.ScaleToTexture = false });
 
-	Render1 = CreateComponent<GameEngineSpriteRenderer>(1);
-	Render1->SetTexture("CharIdle0.png");
-	Render1->GetTransform()->SetLocalPosition({0.0f,0.0f,-1.0f });
-	Render1->GetTransform()->SetLocalScale({ 128.0f, 128.0f });
+	PlayerRender->ChangeAnimation("Player_Idle");
 
+
+	PlayerTopRender = CreateComponent<GameEngineSpriteRenderer>(1);
+	PlayerTopRender->SetTexture("TopBottom.png");
+	PlayerTopRender->GetTransform()->SetLocalScale({ 58.0f, 4.0f });
+
+	PlayerBottoomRender = CreateComponent<GameEngineSpriteRenderer>(1);
+	PlayerBottoomRender->SetTexture("TopBottom.png");
+	PlayerBottoomRender->GetTransform()->SetLocalScale({ 58.0f, 4.0f });
+
+	//PlayerSideRender = CreateComponent<GameEngineSpriteRenderer>(1);
+	//PlayerSideRender->SetTexture("PlayerSideCol.png");
+	//PlayerSideRender->GetTransform()->SetLocalScale({ 128.0f, 128.0f });
+
+
+
+
+	TestColMap = CreateComponent<GameEngineSpriteRenderer>(1);
+	TestColMap->SetTexture("TownCol_0.png");
+	TestColMap->GetTransform()->SetLocalScale({ 5120.0f,1440.0f,-710.0f });
 
 	PlayerCol = CreateComponent<GameEngineCollision>();
-	PlayerCol->GetTransform()->SetLocalScale({ 30.0f, 30.0f });
+	PlayerCol->GetTransform()->SetLocalScale({ 64.0f, 64.0f });
 	PlayerCol->SetOrder(3333);
 
 }
@@ -69,76 +101,55 @@ void Player::Update(float _DeltaTime)
 {
 	float4 PlayerPos = GetTransform()->GetLocalPosition();
 
-	PlayerCol->GetTransform()->SetLocalPosition({ PlayerPos.x,PlayerPos.y,0.0f});
-
+	PlayerCol->GetTransform()->SetWorldPosition({ PlayerPos.x,PlayerPos.y,0.0f});
+	PlayerTopRender->GetTransform()->SetWorldPosition({ PlayerPos.x,PlayerPos.y+15.0f,PlayerPos.z });
+	PlayerBottoomRender->GetTransform()->SetWorldPosition({ PlayerPos.x,PlayerPos.y - 60.0f,PlayerPos.z });
+	
 	CurMap =SetMyMap(CurMap);
-	float Speed = 300.0f;
-	std::string Name = "";
-	Name = "Stage_1";
-	//NomalPixel->GetMapPixel(Name.c_str(), { 0,0,0 }, { 2560,720,0 });
-	float4 MapCenter = { 0.0f,0.0f,0.0f };
-	float4 TransColPos = { 2560.0f,720 };
-	float4 ColPlayerPos = MapCenter + TransColPos - PlayerPos;
-	std::shared_ptr<GameEngineTexture> Ptr = GameEngineTexture::Find("TownCol_1.png");
 
-	GameEnginePixelColor Pixel = Ptr->GetPixel(static_cast<int>(ColPlayerPos.x), static_cast<int>(ColPlayerPos.y+65.0f));
-	Pixel.a = 0;
-	if (Pixel == GameEnginePixelColor::Black) {
-		GetTransform()->AddLocalPosition(-float4::Down * Speed * _DeltaTime);
+	if (true == GroundCheck()) 
+	{
+		GetTransform()->SetLocalPosition(PlayerPos);
 	}
+	/*else if (false == GroundCheck()) {
+		GetTransform()->AddLocalPosition(float4::Down *500.0f* _DeltaTime);
+	}*/
+	UpdateState(_DeltaTime);
+	GetTransform()->AddLocalPosition(MoveDir * MoveSpeed * _DeltaTime);
+	Filp();
 
-		//CulMap = PlayLevel::MainPlayLevel->GetMyMap(CulMap);
-		float CurColPos = GetTransform()->GetLocalPosition().x;
-		float CurColPosY = GetTransform()->GetLocalPosition().y;
-		
-
-	if (true == GameEngineInput::IsPress("PlayerMoveLeft"))
-	{
-		GetTransform()->AddLocalPosition(float4::Left * Speed * _DeltaTime);
-	}
-	if (true == GameEngineInput::IsPress("PlayerMoveRight"))
-	{
-		GetTransform()->AddLocalPosition(float4::Right * Speed * _DeltaTime);
-	}
-	if (true == GameEngineInput::IsPress("PlayerMoveUp"))
-	{
-		GetTransform()->AddLocalPosition(float4::Up * Speed * _DeltaTime);
-	}
-	if (true == GameEngineInput::IsPress("PlayerMoveDown"))
-	{
-		GetTransform()->AddLocalPosition(float4::Down * Speed * _DeltaTime);
-	}
 
 	//충돌이 나오면던전에 충돌하면 1초뒤에 이동하자
-	if (awds==false && CurColPos > 1400.0f) {
-		GetTransform()->SetLocalPosition({ 3030,-219 }); //스테이지 1  2660~ 3940
+	if (awds==false && PlayerPos.x > 1400.0f) {
+		GetTransform()->SetLocalPosition({ 3030,-189,-801 }); //스테이지 1  2660~ 3940
 		awds = true;
 	}
-	if (awds1 == false && CurColPos > 3909.0f) {
-		GetTransform()->SetLocalPosition({ 4250,-319 }); //스테이지 2 4040 ~ 6600
+	if (awds1 == false && PlayerPos.x > 3909.0f) {
+		GetTransform()->SetLocalPosition({ 4250,-319 ,-801 }); //스테이지 2 4040 ~ 6600
 		awds1 = true;
 	}
-	if (awds2 == false && CurColPos > 6389) {
+	if (awds2 == false && PlayerPos.x > 6389) {
 		GetTransform()->SetLocalPosition({ 8023,560 }); //스테이지 3 6700 ~ 9260
 		awds2 = true;
 	}
-	if (awds3 == false && CurColPos > 8500) {
+	if (awds3 == false && PlayerPos.x > 8500) {
 		GetTransform()->SetLocalPosition({ 9500,560 }); //스테이지 4 9360~ 11280
 		awds3 = true;
 	}
-	if (awds4 == false && CurColPos > 10500) {
+	if (awds4 == false && PlayerPos.x > 10500) {
 		GetTransform()->SetLocalPosition({ 11480,560 }); // 1층 보스 11380 ~ 12388
 		awds4 = true;
 	}
-	if (awds5 == false && CurColPos > 12750) {
+	if (awds5 == false && PlayerPos.x > 12750) {
 		GetTransform()->SetLocalPosition({ 13150 ,-38 }); // 2층 보스전스테이지 12888 ~ 14168
 		awds5 = true;
 	}
-	if (awds6 == false && CurColPos > 14000) {
+	if (awds6 == false && PlayerPos.x > 14000) {
 		GetTransform()->SetLocalPosition({ 14368,38 }); // 2층 보스 14268.0f ~ 15868.0f
 		awds6 = true;
 	}
 }
+
 
 MyMap Player::SetMyMap(MyMap _MyMap)
 {
@@ -193,8 +204,102 @@ MyMap Player::SetMyMap(MyMap _MyMap)
 		return _MyMap;
 	}
 }
+
+bool Player::GroundCheck()
+{
+	float4 PlayerPos = GetTransform()->GetLocalPosition();
+	float4 BottomPos = PlayerBottoomRender->GetTransform()->GetWorldPosition();
+	CurMap = SetMyMap(CurMap);
+	switch (CurMap)
+	{
+	case MyMap::None:
+		break;
+	case MyMap::Town:
+		PixelMapResultPos = PixelCalculation(BottomPos,{0.0f,0.0f,0.0f},{2560.f,720.0f});
+		Ptr = GameEngineTexture::Find("TownCol_2.png");
+		Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y));
+		Pixel.a = 0;
+		if (Pixel == GameEnginePixelColor::Black)
+		{
+			return true;
+			PlayerRender->ChangeAnimation("Player_Idle");
+		}
+		else 
+		{
+			return false;
+		}
+		break;
+	case MyMap::Stage1_1:
+		PixelMapResultPos = PixelCalculation(BottomPos, { 3300.0f,0.0f,0.0f }, { 640.0f,360 });
+		Ptr = GameEngineTexture::Find("StageCol_1.png");
+		Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y));
+		Pixel.a = 0;
+		if (Pixel == GameEnginePixelColor::Black)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+		break;
+	case MyMap::Stage1_2:
+		break;
+	case MyMap::Stage1_3:
+		break;
+	case MyMap::Stage1_4:
+		break;
+	case MyMap::Stage1_Boss:
+		break;
+	case MyMap::Stage2_1:
+		break;
+	case MyMap::Stage2_Boss:
+		break;
+	case MyMap::Stage3_1:
+		break;
+	case MyMap::Stage3_Boss:
+		break;
+	default:
+		break;
+	}
+
+}
+
+float4 Player::PixelCalculation(float4 _TargetPos, float4 _MapCenterPos, float4 _TransColPos)
+{
+	TargetPos = _TargetPos;
+	PixelMapResultPos.x = _TargetPos.x + _TransColPos.x - _MapCenterPos.x;
+	PixelMapResultPos.y = _TransColPos.y - _TargetPos.y;
+	return PixelMapResultPos;
+}
+void Player::Filp()
+{
+	float4 MousePos = GameEngineWindow::GetMousePosition();
+	MousePos.x -= 640.0f;
+	if (0 > MousePos.x) {
+		PlayerRender->GetTransform()->SetLocalNegativeScaleX();
+	}
+	else {
+		PlayerRender->GetTransform()->SetLocalPositiveScaleX();
+
+	}
+
+};
+
+
+//void Player::DirCheck(const std::string_view& _AnimationName)
+//{
+//	std::string PrevDirString = DirString;
+//	PlayerRender->ChangeAnimation(DirString + _AnimationName.data());
+//
+//	if (PrevDirString != DirString)
+//	{
+//		PlayerRender->ChangeAnimation(DirString + _AnimationName.data());
+//	}
+//}a
+
 // 이건 디버깅용도나 
 void Player::Render(float _Delta)
 {
 	// GetTransform()->AddLocalRotation({0.0f, 0.0f, 360.0f * _Delta});
-};
+}

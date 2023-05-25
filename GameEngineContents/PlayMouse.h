@@ -15,6 +15,7 @@ public:
 	PlayMouse(PlayMouse&& _Other) noexcept = delete;
 	PlayMouse& operator=(const PlayMouse& _Other) = delete;
 	PlayMouse& operator=(PlayMouse&& _Other) noexcept = delete;
+	static PlayMouse* MainPlayMouse;
 protected:
 
 	void Start() override;

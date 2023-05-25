@@ -51,7 +51,7 @@ void BuilderNpc::Start()
 
 	BuilderNpcCol = CreateComponent<GameEngineCollision>();
 	BuilderNpcCol->GetTransform()->SetLocalScale(BuilderNpcScale);
-	BuilderNpcCol->GetTransform()->SetLocalPosition(BuilderNpcPos1);
+	BuilderNpcCol->GetTransform()->SetLocalPosition({ -3.0f,-528.0f,0.0f });
 	BuilderNpcCol->SetOrder(3011);
 }
 

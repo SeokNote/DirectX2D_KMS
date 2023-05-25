@@ -20,7 +20,7 @@ protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
 private:
-	float4 Stage_1Scale = { 1280.0f,800.0f,0.0f };
+	float4 Stage_1Scale = { 1280.0f,720.0f,0.0f };
 	std::shared_ptr<class GameEngineSpriteRenderer> Stage_1Render;
 };
 
