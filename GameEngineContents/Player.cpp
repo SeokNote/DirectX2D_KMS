@@ -107,17 +107,22 @@ void Player::Update(float _DeltaTime)
 	
 	CurMap =SetMyMap(CurMap);
 
-	if (true == GroundCheck()) 
+	if (true == GroundCheck())
 	{
 		GetTransform()->SetLocalPosition(PlayerPos);
 	}
-	/*else if (false == GroundCheck()) {
-		GetTransform()->AddLocalPosition(float4::Down *500.0f* _DeltaTime);
-	}*/
+
+		if (true == IsGround) {
+			GetTransform()->SetLocalPosition({ PlayerPos.x,PlayerPos.y,PlayerPos.z});
+
+		}
+	
 	UpdateState(_DeltaTime);
 	GetTransform()->AddLocalPosition(MoveDir * MoveSpeed * _DeltaTime);
 	Filp();
-
+	if (true == MiddleCheck()) {
+		int a = 0;
+	}
 
 	//충돌이 나오면던전에 충돌하면 1초뒤에 이동하자
 	if (awds==false && PlayerPos.x > 1400.0f) {
@@ -263,6 +268,63 @@ bool Player::GroundCheck()
 		break;
 	}
 
+}
+
+bool Player::MiddleCheck()
+{
+	float4 PlayerPos = GetTransform()->GetLocalPosition();
+	float4 BottomPos = PlayerTopRender->GetTransform()->GetWorldPosition();
+	CurMap = SetMyMap(CurMap);
+	switch (CurMap)
+	{
+	case MyMap::None:
+		break;
+	case MyMap::Town:
+		PixelMapResultPos = PixelCalculation(BottomPos, { 0.0f,0.0f,0.0f }, { 2560.f,720.0f });
+		Ptr = GameEngineTexture::Find("TownCol_1.png");
+		Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y+80.0f));
+		if (true == Falling && Pixel == MiddleGround)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+		break;
+	case MyMap::Stage1_1:
+		PixelMapResultPos = PixelCalculation(BottomPos, { 3300.0f,0.0f,0.0f }, { 640.0f,360 });
+		Ptr = GameEngineTexture::Find("StageCol_1.png");
+		Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y));
+		Pixel.a = 0;
+		if (Falling==false && Pixel == GameEnginePixelColor::Black)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+		break;
+	case MyMap::Stage1_2:
+		break;
+	case MyMap::Stage1_3:
+		break;
+	case MyMap::Stage1_4:
+		break;
+	case MyMap::Stage1_Boss:
+		break;
+	case MyMap::Stage2_1:
+		break;
+	case MyMap::Stage2_Boss:
+		break;
+	case MyMap::Stage3_1:
+		break;
+	case MyMap::Stage3_Boss:
+		break;
+	default:
+		break;
+	}
 }
 
 float4 Player::PixelCalculation(float4 _TargetPos, float4 _MapCenterPos, float4 _TransColPos)

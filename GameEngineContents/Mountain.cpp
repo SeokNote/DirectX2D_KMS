@@ -31,7 +31,7 @@ void Mountain::Update(float _DeltaTime)
 {
 	PlayerPos = Player::MainPlayer->GetPlayerPtr()->GetTransform()->GetWorldPosition();
 	float4 CameraPos = GetLevel()->GetMainCamera()->GetTransform()->GetWorldPosition();
-	float XMove = (PlayerPos.x - Center.x) * (1.0f - 0.1f);
+	float XMove = (CameraPos.x - Center.x) * (1.0f - 0.1f);
 	float YMove = (CameraPos.y - Center.y) * (1.0f - 0.1f);
 
 	//	float asda = (Center.x - PlayerPos.x) * (1.0f - 0.8f);

@@ -8,6 +8,7 @@ enum class PlayerState
 	IDLE,
 	MOVE,
 	JUMP,
+	FALL,
 };
 class Player : public GameEngineActor
 {
@@ -37,6 +38,8 @@ public:
 	//	return CurMap;
 	//}
 	bool GroundCheck();
+	bool MiddleCheck();
+
 	float4 PixelCalculation(float4 _TargetPos, float4 _MapCenterPos, float4 _TransColPos);
 protected:
 	void Start();
@@ -91,6 +94,10 @@ private:
 	void JumpStart();
 	void JumpUpdate(float _Time);
 	void JumpEnd();
+
+	void FallStart();
+	void FallUpdate(float _Time);
+	void FallEnd();
 	PlayerState StateValue = PlayerState::IDLE;
 	float4 MoveDir = float4::Zero;
 	float4 MoveRange = float4::Zero;
@@ -100,4 +107,11 @@ private:
 	float JumpTime = 0.0f;
 	float4 JumpDir = float4::One;
 	int JumpCount = 0;
+
+	float StartYpos = 0.0f;
+	float EndYpos = 0.0f;
+	GameEnginePixelColor MiddleGround = { 255, 0, 255, 255 };
+	bool Falling = false;
+	bool IsMiddle = false;
+
 };

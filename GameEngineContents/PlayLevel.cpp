@@ -67,8 +67,10 @@ void PlayLevel::Start()
 		GameEngineInput::CreateKey("RightMove", 'D');
 		GameEngineInput::CreateKey("UpMove", 'W');
 		GameEngineInput::CreateKey("DownMove", 'S');
-	}
+		GameEngineInput::CreateKey("UpMove_1", VK_SPACE);
 
+	}
+	
 
 
 	if (false == GameEngineInput::IsKey("StatUI"))
