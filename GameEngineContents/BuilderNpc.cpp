@@ -48,10 +48,16 @@ void BuilderNpc::Start()
 
 	BuilderNpcRender->ChangeAnimation("BuilderNpcIdle");
 
+	FRender = CreateComponent<GameEngineSpriteRenderer>(1);
+	FRender->SetTexture("Keyboard_F.png");
+	FRender->GetTransform()->SetLocalPosition(FRenderPos);
+	FRender->GetTransform()->SetLocalScale(FScale);
+	FRender->ColorOptionValue.MulColor.a = 0.8f;
+	FRender->Off();
 
 	BuilderNpcCol = CreateComponent<GameEngineCollision>();
 	BuilderNpcCol->GetTransform()->SetLocalScale(BuilderNpcScale);
-	BuilderNpcCol->GetTransform()->SetLocalPosition({ -3.0f,-528.0f,0.0f });
+	BuilderNpcCol->GetTransform()->SetLocalPosition(BuilderNpcPos1);
 	BuilderNpcCol->SetOrder(3011);
 }
 
@@ -61,12 +67,15 @@ void BuilderNpc::Update(float _DeltaTime)
 
 	if (BuilderNpcCol->Collision(3333, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
-		int a = 0;
-		if (false == Dawhagalmunok) {
+		FRender->On();
+			if (false == Dawhagalmunok && GameEngineInput::IsDown("NpcInteraction")) {
 			GetLevel()->CreateActor<Trainning>(1);
-			//Player::MainPlayer->GetTransform()->AddLocalPosition({ 0.0f,0.f,-10.0f });
 			Dawhagalmunok = true;
 		}
+	}
+	else 
+	{
+		FRender->Off();
 	}
 
 

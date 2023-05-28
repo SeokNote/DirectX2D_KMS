@@ -64,7 +64,6 @@ void Player::Start()
 
 	PlayerRender->ChangeAnimation("Player_Idle");
 
-
 	PlayerTopRender = CreateComponent<GameEngineSpriteRenderer>(1);
 	PlayerTopRender->SetTexture("TopBottom.png");
 	PlayerTopRender->GetTransform()->SetLocalScale({ 58.0f, 4.0f });
@@ -103,56 +102,42 @@ void Player::Update(float _DeltaTime)
 
 	PlayerCol->GetTransform()->SetWorldPosition({ PlayerPos.x,PlayerPos.y,0.0f});
 	PlayerTopRender->GetTransform()->SetWorldPosition({ PlayerPos.x,PlayerPos.y+15.0f,PlayerPos.z });
-	PlayerBottoomRender->GetTransform()->SetWorldPosition({ PlayerPos.x,PlayerPos.y - 60.0f,PlayerPos.z });
-	
+	PlayerBottoomRender->GetTransform()->SetWorldPosition({ PlayerPos.x,PlayerPos.y - 65.0f,PlayerPos.z });
+
 	CurMap =SetMyMap(CurMap);
-
-	if (true == GroundCheck())
-	{
-		GetTransform()->SetLocalPosition(PlayerPos);
-	}
-
-		if (true == IsGround) {
-			GetTransform()->SetLocalPosition({ PlayerPos.x,PlayerPos.y,PlayerPos.z});
-
-		}
-	
 	UpdateState(_DeltaTime);
 	GetTransform()->AddLocalPosition(MoveDir * MoveSpeed * _DeltaTime);
 	Filp();
-	if (true == MiddleCheck()) {
-		int a = 0;
-	}
 
 	//충돌이 나오면던전에 충돌하면 1초뒤에 이동하자
-	if (awds==false && PlayerPos.x > 1400.0f) {
-		GetTransform()->SetLocalPosition({ 3030,-189,-801 }); //스테이지 1  2660~ 3940
-		awds = true;
-	}
-	if (awds1 == false && PlayerPos.x > 3909.0f) {
-		GetTransform()->SetLocalPosition({ 4250,-319 ,-801 }); //스테이지 2 4040 ~ 6600
-		awds1 = true;
-	}
-	if (awds2 == false && PlayerPos.x > 6389) {
-		GetTransform()->SetLocalPosition({ 8023,560 }); //스테이지 3 6700 ~ 9260
-		awds2 = true;
-	}
-	if (awds3 == false && PlayerPos.x > 8500) {
-		GetTransform()->SetLocalPosition({ 9500,560 }); //스테이지 4 9360~ 11280
-		awds3 = true;
-	}
-	if (awds4 == false && PlayerPos.x > 10500) {
-		GetTransform()->SetLocalPosition({ 11480,560 }); // 1층 보스 11380 ~ 12388
-		awds4 = true;
-	}
-	if (awds5 == false && PlayerPos.x > 12750) {
-		GetTransform()->SetLocalPosition({ 13150 ,-38 }); // 2층 보스전스테이지 12888 ~ 14168
-		awds5 = true;
-	}
-	if (awds6 == false && PlayerPos.x > 14000) {
-		GetTransform()->SetLocalPosition({ 14368,38 }); // 2층 보스 14268.0f ~ 15868.0f
-		awds6 = true;
-	}
+	//if (awds==false && PlayerPos.x > 1400.0f) {
+	//	GetTransform()->SetLocalPosition({ 3030,-189,-801 }); //스테이지 1  2660~ 3940
+	//	awds = true;
+	//}
+	//if (awds1 == false && PlayerPos.x > 3909.0f) {
+	//	GetTransform()->SetLocalPosition({ 4250,-319 ,-801 }); //스테이지 2 4040 ~ 6600
+	//	awds1 = true;
+	//}
+	//if (awds2 == false && PlayerPos.x > 6389) {
+	//	GetTransform()->SetLocalPosition({ 8023,560 }); //스테이지 3 6700 ~ 9260
+	//	awds2 = true;
+	//}
+	//if (awds3 == false && PlayerPos.x > 8500) {
+	//	GetTransform()->SetLocalPosition({ 9500,560 }); //스테이지 4 9360~ 11280
+	//	awds3 = true;
+	//}
+	//if (awds4 == false && PlayerPos.x > 10500) {
+	//	GetTransform()->SetLocalPosition({ 11480,560 }); // 1층 보스 11380 ~ 12388
+	//	awds4 = true;
+	//}
+	//if (awds5 == false && PlayerPos.x > 12750) {
+	//	GetTransform()->SetLocalPosition({ 13150 ,-38 }); // 2층 보스전스테이지 12888 ~ 14168
+	//	awds5 = true;
+	//}
+	//if (awds6 == false && PlayerPos.x > 14000) {
+	//	GetTransform()->SetLocalPosition({ 14368,38 }); // 2층 보스 14268.0f ~ 15868.0f
+	//	awds6 = true;
+	//}
 }
 
 
@@ -221,7 +206,7 @@ bool Player::GroundCheck()
 		break;
 	case MyMap::Town:
 		PixelMapResultPos = PixelCalculation(BottomPos,{0.0f,0.0f,0.0f},{2560.f,720.0f});
-		Ptr = GameEngineTexture::Find("TownCol_2.png");
+		Ptr = GameEngineTexture::Find("TownCol_3.png");
 		Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y));
 		Pixel.a = 0;
 		if (Pixel == GameEnginePixelColor::Black)
@@ -281,7 +266,7 @@ bool Player::MiddleCheck()
 		break;
 	case MyMap::Town:
 		PixelMapResultPos = PixelCalculation(BottomPos, { 0.0f,0.0f,0.0f }, { 2560.f,720.0f });
-		Ptr = GameEngineTexture::Find("TownCol_1.png");
+		Ptr = GameEngineTexture::Find("TownCol_3.png");
 		Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y+80.0f));
 		if (true == Falling && Pixel == MiddleGround)
 		{
@@ -348,19 +333,7 @@ void Player::Filp()
 
 };
 
-
-//void Player::DirCheck(const std::string_view& _AnimationName)
-//{
-//	std::string PrevDirString = DirString;
-//	PlayerRender->ChangeAnimation(DirString + _AnimationName.data());
-//
-//	if (PrevDirString != DirString)
-//	{
-//		PlayerRender->ChangeAnimation(DirString + _AnimationName.data());
-//	}
-//}a
-
-// 이건 디버깅용도나 
+//디버깅용도나 
 void Player::Render(float _Delta)
 {
 	// GetTransform()->AddLocalRotation({0.0f, 0.0f, 360.0f * _Delta});

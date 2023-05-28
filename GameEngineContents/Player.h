@@ -77,8 +77,6 @@ private:
 	std::string DirString = "Player_";
 
 
-	void DirCheck(const std::string_view& _AnimationName);
-
 	// State
 	void ChangeState(PlayerState _State);
 	void UpdateState(float _Time);
@@ -105,7 +103,6 @@ private:
 
 
 	float JumpTime = 0.0f;
-	float4 JumpDir = float4::One;
 	int JumpCount = 0;
 
 	float StartYpos = 0.0f;
@@ -113,5 +110,5 @@ private:
 	GameEnginePixelColor MiddleGround = { 255, 0, 255, 255 };
 	bool Falling = false;
 	bool IsMiddle = false;
-
+	float CheckTime = 0.0f;
 };

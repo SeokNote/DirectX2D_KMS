@@ -113,14 +113,14 @@ void Player::IdleUpdate(float _Time)
 	{
 		MoveDir = float4::Zero;
 	}
-	if (false == GroundCheck() && false == MiddleCheck())
+	if (false == GroundCheck() && false == IsMiddle)
 	{
 			ChangeState(PlayerState::FALL);
 	}
-	if (true == GroundCheck() || IsGround == true) {
+	if (true == GroundCheck() || IsMiddle == true) {
 		Falling = false;
 	}
-
+	
 }
 void Player::IdleEnd() {
 
@@ -132,19 +132,30 @@ void Player::MoveStart()
 }
 void Player::MoveUpdate(float _Time)
 {
+	if (true == IsMiddle)
+	{
+		Falling = true;
+	}
+	if (GroundCheck() == true)
+	{
+		Falling = false;
+	}
+
 	if(false == GroundCheck() && false == MiddleCheck())
 	{
 		ChangeState(PlayerState::FALL);
+		Falling = false;
 	}
 	if (
 		false == GameEngineInput::IsPress("LeftMove") &&
 		false == GameEngineInput::IsPress("RightMove")
 		)
 	{
-		if (GroundCheck() == true || true == MiddleCheck()) {
+		if (GroundCheck() == true || true == IsMiddle) {
 			ChangeState(PlayerState::IDLE);
+			Falling = false;
 		}
-
+		
 	}
 
 	if (true == GameEngineInput::IsPress("LeftMove"))
@@ -152,6 +163,7 @@ void Player::MoveUpdate(float _Time)
 		MoveDir.x = -1.0f;
 		if (true == GameEngineInput::IsDown("UpMove") || true ==GameEngineInput::IsDown("UpMove_1"))
 			{
+				Falling = false;
 				ChangeState(PlayerState::JUMP);
 			}
 	}
@@ -161,6 +173,7 @@ void Player::MoveUpdate(float _Time)
 		MoveDir.x = 1.0f;
 		if (true == GameEngineInput::IsDown("UpMove") || true ==GameEngineInput::IsDown("UpMove_1"))
 		{
+			Falling = false;
 			ChangeState(PlayerState::JUMP);
 		}
 
@@ -175,21 +188,20 @@ void Player::JumpStart()
 {
 	StartYpos = GetTransform()->GetLocalPosition().y;
 	PlayerRender->ChangeAnimation("Player_Jump");
-	MoveDir.y += 3.3f;
+	MoveDir.y += 3.1f;
 }
 void Player::JumpUpdate(float _Time)
 {
 	EndYpos = GetTransform()->GetLocalPosition().y;
 	float Pos = EndYpos - StartYpos;
 	float PushTime = GameEngineInput::GetPressTime("UpMove");
-	bool asdwa = Falling;
-	if (Pos >= 193.0f) 
+	if (Pos >= 184.0f) 
 	{
 		Check111 = true;
 	}
 	if (Check111 == true)
 	{
-		if (Pos <= 193.0f)
+		if (Pos <= 184.0f)
 		{
 			Falling = true;
 		}
@@ -199,7 +211,7 @@ void Player::JumpUpdate(float _Time)
 	{
 		MoveDir.x = -1.0f;
 	}
-
+	
 	else if (true == GameEngineInput::IsPress("RightMove"))
 	{
 		MoveDir.x = 1.0f;
@@ -212,8 +224,9 @@ void Player::JumpUpdate(float _Time)
 			JumpCheck = false;
 			MoveDir.y = 0.0f;
 			Check111 = false;
-			IsGround = true;
+			IsMiddle = true; 
 			ChangeState(PlayerState::IDLE);
+			Falling = false;
 		}
 	}
 	if (false == MiddleCheck() && false == GroundCheck())
@@ -226,7 +239,7 @@ void Player::JumpUpdate(float _Time)
 				PushTime = 0.0f;
 			}
 			else  {
-				MoveDir.y -= 8.0f * _Time;
+				MoveDir.y -= 7.5f * _Time;
 			}
 		}
 	}
@@ -243,8 +256,10 @@ void Player::FallStart()
 }
 void Player::FallUpdate(float _Time)
 {
+	CheckTime += _Time;
 	if (Fall == false) 
 	{
+		Falling = true;
 		if (true == GameEngineInput::IsPress("LeftMove"))
 		{
 			MoveDir.x = -1.0f;
@@ -256,7 +271,7 @@ void Player::FallUpdate(float _Time)
 		}
 		if (false == MiddleCheck())
 		{
-			MoveDir.y -= 8.0f * _Time;;
+			MoveDir.y -= 7.5f * _Time;;
 		}
 		else
 		{
@@ -267,6 +282,12 @@ void Player::FallUpdate(float _Time)
 		{
 			MoveDir.y = 0.0f;
 			ChangeState(PlayerState::IDLE);
+		}
+		if (true == MiddleCheck())
+		{ 
+			MoveDir.y = 0.0f;
+			ChangeState(PlayerState::IDLE);
+			Falling = false;
 		}
 		if (
 			true == GameEngineInput::IsPress("LeftMove") &&
@@ -279,23 +300,32 @@ void Player::FallUpdate(float _Time)
 	}
 	else 
 	{
-		MoveDir.y -= 8.0f * _Time;;
+		if (CheckTime > 0.3f) {
+			Falling = true;
+		}
+		MoveDir.y -= 7.5f * _Time;;
 		if (true == GroundCheck())
 		{
 			MoveDir.y = 0.0f;
 			ChangeState(PlayerState::IDLE);
+			IsMiddle = false;
+
+			Fall = false;
 		}	
 		// 밑점프를 눌렀을 때 들어오는곳 
 		// 이때는 미들체크를 하면 안됐다.
 		if (true == MiddleCheck())
 		{
-			MoveDir.y = 0.0f;
+			CheckTime = 0.0f;
 			ChangeState(PlayerState::IDLE);
+			Falling = false;
+			MoveDir.y = 0.0f;
+			IsMiddle = true;
+			Fall = false;
 		}
 	}
 
 }
 void Player::FallEnd()
 {
-
 }

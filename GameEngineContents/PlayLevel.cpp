@@ -68,6 +68,8 @@ void PlayLevel::Start()
 		GameEngineInput::CreateKey("UpMove", 'W');
 		GameEngineInput::CreateKey("DownMove", 'S');
 		GameEngineInput::CreateKey("UpMove_1", VK_SPACE);
+		GameEngineInput::CreateKey("NpcInteraction", 'F');
+		GameEngineInput::CreateKey("ESC", VK_ESCAPE);
 
 	}
 	
