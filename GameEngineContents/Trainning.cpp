@@ -56,6 +56,14 @@ void Trainning::Start()
 
 	TrainningBotRender->ChangeAnimation("TrainningBotIdle");
 	
+	TrainningBotRender_1 = CreateComponent<GameEngineSpriteRenderer>(1);
+	TrainningBotRender_1->SetTexture("NPC_Trainee0.png");
+	TrainningBotRender_1->GetTransform()->SetLocalPosition(TrainBotPos_1);
+	TrainningBotRender_1->GetTransform()->SetLocalScale(TrainBotScale);
+	TrainningBotRender_1->GetTransform()->SetLocalNegativeScaleX();
+	TrainningBotRender_1->CreateAnimation({ .AnimationName = "TrainningBotIdle", .SpriteName = "TranningMan", .ScaleToTexture = false });
+					  
+	TrainningBotRender_1->ChangeAnimation("TrainningBotIdle");
 
 	TrainningNpcCol = CreateComponent<GameEngineCollision>();
 	TrainningNpcCol->GetTransform()->SetLocalScale({ 1.0f,1.0f,1.0f });

@@ -22,8 +22,9 @@ protected:
 	void Update(float _DeltaTime) override;
 private:
 	float4 TrainningSchoolScale = { 1080.0f,308.0f,0.0f };
-	float4 TrainNpcPos = { -1600.0f,-523.0f,-770.f };
+	float4 TrainNpcPos = { -1700.0f,-523.0f,-770.f };
 	float4 TrainBotPos = { -1400.0f,-523.0f,-770.f };
+	float4 TrainBotPos_1 = { -1550.0f,-523.0f,-770.f };
 
 	float4 TrainNpcScale = { 92.0f,100.0f,0.f };
 	float4 TrainBotScale = { 88.0f,88.0f,0.f };
@@ -31,6 +32,7 @@ private:
 	std::shared_ptr<class GameEngineSpriteRenderer> TrainningSchoolRender;
 	std::shared_ptr<class GameEngineSpriteRenderer> TrainningNpicRender;
 	std::shared_ptr<class GameEngineSpriteRenderer> TrainningBotRender;
+	std::shared_ptr<class GameEngineSpriteRenderer> TrainningBotRender_1;
 
 
 

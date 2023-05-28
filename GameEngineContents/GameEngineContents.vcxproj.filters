@@ -149,6 +149,9 @@
     <ClInclude Include="ShopUI.h">
       <Filter>Object\UI\Shop</Filter>
     </ClInclude>
+    <ClInclude Include="FoodUI.h">
+      <Filter>Object\UI\FoodShop</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -301,6 +304,9 @@
     <ClCompile Include="ShopUI.cpp">
       <Filter>Object\UI\Shop</Filter>
     </ClCompile>
+    <ClCompile Include="FoodUI.cpp">
+      <Filter>Object\UI\FoodShop</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Levels">
@@ -383,6 +389,9 @@
     </Filter>
     <Filter Include="Object\UI\Shop">
       <UniqueIdentifier>{64d715c6-54d5-421f-bddc-950e14e184d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\UI\FoodShop">
+      <UniqueIdentifier>{233f1f1e-6b9d-4751-9a07-f6fbf79fa0ad}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
