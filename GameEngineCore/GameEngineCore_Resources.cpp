@@ -36,6 +36,7 @@ void GameEngineCore::CoreResourcesInit()
 		for (size_t i = 0; i < File.size(); i++)
 		{
 			GameEngineTexture::Load(File[i].GetFullPath());
+
 		}
 	}
 
@@ -159,9 +160,9 @@ void GameEngineCore::CoreResourcesInit()
 		Desc.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
 		Desc.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;
 
-		Desc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
-		Desc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_SRC_ALPHA;
-		Desc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_INV_SRC_ALPHA;
+		Desc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_MAX;
+		Desc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;
+		Desc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ONE;
 
 		GameEngineBlend::Create("AlphaBlend", Desc);
 	}

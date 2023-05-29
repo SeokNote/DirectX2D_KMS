@@ -28,12 +28,12 @@ void FoodUI::Start()
 	FoodUIRender->GetTransform()->SetLocalScale(FoodUIScale);
 
 	ExitButtonRender = CreateComponent<GameEngineUIRenderer>();
-	ExitButtonRender->SetTexture("ExitButton.png");
+	ExitButtonRender->SetTexture("ExitButton1_1.png");
 	ExitButtonRender->GetTransform()->SetLocalScale(ExitButtonScale);
 	ExitButtonRender->GetTransform()->SetLocalPosition(ExitButtonPos);
 
 	ExitButtonSelectRender = CreateComponent<GameEngineUIRenderer>();
-	ExitButtonSelectRender->SetTexture("ExitButton_Selected.png");
+	ExitButtonSelectRender->SetTexture("ExitButton1_0.png");
 	ExitButtonSelectRender->GetTransform()->SetLocalScale(ExitButtonScale);
 	ExitButtonSelectRender->GetTransform()->SetLocalPosition(ExitButtonPos);
 	ExitButtonSelectRender->Off();

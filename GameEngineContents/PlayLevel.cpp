@@ -61,7 +61,19 @@ void PlayLevel::PlayerTelPo(/*Playlevel* this*/)
 
 void PlayLevel::Start()
 {
+	GameEngineDirectory NewDir;
+	NewDir.MoveParentToDirectory("ContentResources");
+	NewDir.Move("ContentResources");
+	NewDir.Move("Texture");
+	NewDir.Move("Play");
 
+	std::vector<GameEngineFile> File = NewDir.GetAllFile({ ".Png", });
+
+
+	for (size_t i = 0; i < File.size(); i++)
+	{
+		GameEngineTexture::Load(File[i].GetFullPath());
+	}
 	if (false == GameEngineInput::IsKey("LeftMove"))
 	{
 		GameEngineInput::CreateKey("LeftMove", 'A');
@@ -297,4 +309,15 @@ void PlayLevel::UICtr()
 			CheckUICtr_1 = false;
 		}
 	}
+}
+void PlayLevel::LevelChangeStart()
+{
+	GameEngineLevel::LevelChangeStart();
+	int a = 0;
+}
+
+void PlayLevel::LevelChangeEnd()
+{
+	GameEngineLevel::LevelChangeEnd();
+	int a = 0;
 }

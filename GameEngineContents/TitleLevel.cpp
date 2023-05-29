@@ -36,6 +36,7 @@ void TitleLevel::Start()
 	NewDir.MoveParentToDirectory("ContentResources");
 	NewDir.Move("ContentResources");
 	NewDir.Move("Texture");
+	NewDir.Move("Title");
 
 	std::vector<GameEngineFile> File = NewDir.GetAllFile({ ".Png", });
 
@@ -100,3 +101,12 @@ void TitleLevel::Update(float _DeltaTime)
 
 }
 
+void TitleLevel::LevelChangeStart()
+{
+	GameEngineLevel::LevelChangeStart();
+}
+
+void TitleLevel::LevelChangeEnd()
+{
+	GameEngineLevel::LevelChangeEnd();
+}
