@@ -164,7 +164,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\source\repos\DirectX_2D\DirectX2D_KMS\GameEngineContents\MyContentSpriteRenderer.h" />
     <ClInclude Include="BackCloud.h">
       <SubType>
       </SubType>
@@ -238,6 +237,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="MyContentSpriteRenderer.h" />
     <ClInclude Include="PixelCollision.h">
       <SubType>
       </SubType>
@@ -376,7 +376,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\source\repos\DirectX_2D\DirectX2D_KMS\GameEngineContents\MyContentSpriteRenderer.cpp" />
     <ClCompile Include="BackCloud.cpp">
       <SubType>
       </SubType>
@@ -449,6 +448,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="MyContentSpriteRenderer.cpp" />
     <ClCompile Include="PixelCollision.cpp">
       <SubType>
       </SubType>

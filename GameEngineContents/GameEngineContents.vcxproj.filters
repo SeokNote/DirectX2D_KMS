@@ -152,7 +152,7 @@
     <ClInclude Include="FoodUI.h">
       <Filter>Object\UI\FoodShop</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\source\repos\DirectX_2D\DirectX2D_KMS\GameEngineContents\MyContentSpriteRenderer.h" />
+    <ClInclude Include="MyContentSpriteRenderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -308,7 +308,7 @@
     <ClCompile Include="FoodUI.cpp">
       <Filter>Object\UI\FoodShop</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\repos\DirectX_2D\DirectX2D_KMS\GameEngineContents\MyContentSpriteRenderer.cpp" />
+    <ClCompile Include="MyContentSpriteRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Levels">
