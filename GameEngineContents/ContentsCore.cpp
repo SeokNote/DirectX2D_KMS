@@ -3,6 +3,8 @@
 #include <GameEngineCore\GameEngineCore.h>
 #include "PlayLevel.h"
 #include "TitleLevel.h"
+#include "IntroLevel.h"
+
 #include <GameEngineCore/GameEngineTexture.h>
 #include <GameEngineCore/GameEngineVertexShader.h>
 #include <GameEngineCore/GameEnginePixelShader.h>
@@ -21,9 +23,10 @@ void ContentsCore::GameStart()
 	new int();
 	ContentsResourcesCreate();
 
+	GameEngineCore::CreateLevel<IntroLevel>();
 	GameEngineCore::CreateLevel<TitleLevel>();
 	GameEngineCore::CreateLevel<PlayLevel>();
-	GameEngineCore::ChangeLevel("TitleLevel");
+	GameEngineCore::ChangeLevel("IntroLevel");
 }
 
 void ContentsCore::GameEnd() 

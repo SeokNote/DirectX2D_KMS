@@ -20,6 +20,8 @@
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore/GameEngineCore.h>
 #include <GameEngineBase/GameEngineDirectory.h>
+#include <GameEngineCore/GameEngineCoreWindow.h>
+#include "FadeEffect.h"
 
 TitleLevel::TitleLevel()
 {
@@ -59,6 +61,8 @@ void TitleLevel::Start()
 	}
 	GetMainCamera()->SetProjectionType(CameraType::Orthogonal);
 	GetMainCamera()->GetTransform()->SetLocalPosition({ 0, 0, -1000.0f });
+	FEffect = GetLastTarget()->CreateEffect<FadeEffect>();
+
 	{
 		std::shared_ptr<BackCloud> BackCloudPtr = CreateActorToName<BackCloud>("BackCloud");
 		{
@@ -103,6 +107,7 @@ void TitleLevel::Update(float _DeltaTime)
 
 void TitleLevel::LevelChangeStart()
 {
+	FEffect->FadeOut();
 	GameEngineLevel::LevelChangeStart();
 }
 

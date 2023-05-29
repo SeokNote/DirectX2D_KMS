@@ -158,6 +158,12 @@
     <ClInclude Include="PixelCollision.h">
       <Filter>보류</Filter>
     </ClInclude>
+    <ClInclude Include="IntroLevel.h">
+      <Filter>Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="Intro.h">
+      <Filter>Object\UI\IntroStart</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -320,6 +326,12 @@
       <Filter>보류</Filter>
     </ClCompile>
     <ClCompile Include="Contents_Resources.cpp" />
+    <ClCompile Include="IntroLevel.cpp">
+      <Filter>Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="Intro.cpp">
+      <Filter>Object\UI\IntroStart</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Levels">
@@ -408,6 +420,9 @@
     </Filter>
     <Filter Include="PostEffect">
       <UniqueIdentifier>{3a9a6c3b-5e70-4b9f-873c-863c245b24a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\UI\IntroStart">
+      <UniqueIdentifier>{8fcc2338-2e04-4105-880a-60e129d21896}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

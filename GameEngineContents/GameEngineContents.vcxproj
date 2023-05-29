@@ -214,6 +214,14 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Intro.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="IntroLevel.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="InventoryUI.h">
       <SubType>
       </SubType>
@@ -424,6 +432,14 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="FrontCloud.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Intro.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="IntroLevel.cpp">
       <SubType>
       </SubType>
     </ClCompile>

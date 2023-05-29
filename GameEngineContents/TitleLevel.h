@@ -15,6 +15,9 @@ public:
 	TitleLevel& operator=(const TitleLevel& _Other) = delete;
 	TitleLevel& operator=(TitleLevel&& _Other) noexcept = delete;
 
+	std::shared_ptr<class FadeEffect> FEffect;
+
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
