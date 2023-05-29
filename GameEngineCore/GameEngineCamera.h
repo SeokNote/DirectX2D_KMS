@@ -80,7 +80,6 @@ public:
 		SortValues[_Index] = _Sort;
 	}
 
-
 protected:
 	void Start() override;
 

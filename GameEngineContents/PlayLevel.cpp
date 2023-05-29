@@ -61,6 +61,7 @@ void PlayLevel::PlayerTelPo(/*Playlevel* this*/)
 
 void PlayLevel::Start()
 {
+
 	if (false == GameEngineInput::IsKey("LeftMove"))
 	{
 		GameEngineInput::CreateKey("LeftMove", 'A');

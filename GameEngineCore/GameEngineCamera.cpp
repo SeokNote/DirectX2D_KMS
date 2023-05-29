@@ -255,6 +255,11 @@ void GameEngineCamera::PushRenderer(std::shared_ptr<GameEngineRenderer> _Render)
 
 bool GameEngineCamera::IsView(const TransformData& _TransData)
 {
+	if (true == IsFreeCamera())
+	{
+		return true;
+	}
+
 	// Width, Height, Near, Far;
 
 	switch (ProjectionType)
