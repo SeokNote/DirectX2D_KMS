@@ -39,7 +39,6 @@ void IntroLevel::Start()
 	}
 	GetMainCamera()->SetProjectionType(CameraType::Orthogonal);
 	GetMainCamera()->GetTransform()->SetLocalPosition({ 0, 0, -1000.0f });
-	FEffect = GetLastTarget()->CreateEffect<FadeEffect>();
 
 	std::shared_ptr<Intro> IntroPtr = CreateActor<Intro>();
 
@@ -56,13 +55,3 @@ void IntroLevel::Update(float _DeltaTime)
 	}
 
 }
-
-//void IntroLevel::LevelChangeStart()
-//{
-//	GameEngineLevel::LevelChangeStart();
-//}
-//
-//void IntroLevel::LevelChangeEnd()
-//{
-//	GameEngineLevel::LevelChangeEnd();
-//}

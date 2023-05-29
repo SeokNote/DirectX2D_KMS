@@ -1,6 +1,5 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
-#include "MapDataBase.h"
 
 // Ό³Έν :
 class Town : public GameEngineActor

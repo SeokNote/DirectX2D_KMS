@@ -1,6 +1,5 @@
 #pragma once
-#include "MapDataBase.h"
-
+#include "ContentsEnums.h"
 // Ό³Έν :
 class GameEnginePixelColor;
 class PixelCollision

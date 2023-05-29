@@ -1,7 +1,6 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
-#include "MapDataBase.h"
-
+#include "ContentsEnums.h"
 // Ό³Έν :
 class Forest : public GameEngineActor
 {

@@ -13,7 +13,7 @@
 #include "ShopNpc.h"
 #include "BuilderNpc.h"
 #include "TempleNpc.h"
-
+#include "DungeonIn.h"
 #include "Stage_1.h"
 #include "Stage_2.h"
 #include "Stage_3.h"
@@ -42,6 +42,7 @@
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore/GameEngineCore.h>
 #include <GameEngineCore/GameEngineCoreWindow.h>
+#include "FadeEffect.h"
 
 //Å×½ºÆ®
 PlayLevel* PlayLevel::MainPlayLevel = nullptr;
@@ -96,6 +97,7 @@ void PlayLevel::Start()
 	}
 	GetMainCamera()->SetProjectionType(CameraType::Orthogonal);
 	GetMainCamera()->SetSortType(1, SortType::ZSort);
+	FEffect = GetLastTarget()->CreateEffect<FadeEffect>();
 
 	//std::shared_ptr<GameEngineCoreWindow> Window = GameEngineGUI::FindGUIWindowConvert<GameEngineCoreWindow>("CoreWindow");
 
@@ -154,7 +156,8 @@ void PlayLevel::Start()
 		std::shared_ptr<ShopNpc> ShopNpcPtr = CreateActor<ShopNpc>(1);
 		std::shared_ptr<BuilderNpc> BuilderNpcPtr = CreateActor<BuilderNpc>(1);
 		std::shared_ptr<TempleNpc> FoodNpcPtr = CreateActor<TempleNpc>(1);
-		
+		std::shared_ptr<DungeonIn> DungeonInPtr = CreateActor<DungeonIn>(1);
+
 
 	}
 	{
@@ -164,7 +167,7 @@ void PlayLevel::Start()
 	//	Player
 	static std::shared_ptr<Player> NewPlayer = CreateActor<Player>(1);
 	//NewPlayer->GetTransform()->SetLocalPosition({ 13150.0f,-39.0f,0.0f });
-	NewPlayer->GetTransform()->SetLocalPosition({ -1800.0f,-500.0f,-801.0f });
+	NewPlayer->GetTransform()->SetLocalPosition({ -2390.0f,-500.0f,-801.0f });
 }
 
 

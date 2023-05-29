@@ -1,6 +1,5 @@
 #pragma once
 #include <GameEngineCore\GameEngineLevel.h>
-#include "MapDataBase.h"
 #include "ContentsEnums.h"
 #include "PlayerStat.h"
 #include "MapTabUI.h"
@@ -21,11 +20,7 @@ public:
 	PlayLevel& operator=(const PlayLevel& _Other) = delete;
 	PlayLevel& operator=(PlayLevel&& _Other) noexcept = delete;
 
-	//MyMap SetMyMap(MyMap _MyMap);
-	//MyMap GetMyMap(MyMap _MyMap) {
-	//	CurMap = _MyMap;
-	//	return CurMap;
-	//}
+	std::shared_ptr<class FadeEffect> FEffect;
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
@@ -46,7 +41,6 @@ private:
 
 	MyMap CurMap = MyMap::None;
 
-	std::shared_ptr<MapDataBase> MapDataBasePtr = nullptr;
 	float4 WindowSizeHalf = float4::Zero;
 
 	void PlayerTelPo();

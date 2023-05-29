@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "PixelCollision.h"
 #include "PlayMouse.h"
+#include "ContentsEnums.h"
 #include <GameEngineCore/GameEngineTexture.h>
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEnginePlatform/GameEngineWindow.h>
@@ -88,13 +89,6 @@ void Player::Start()
 	PlayerCol->SetOrder(3333);
 
 }
-bool awds = false;
-bool awds1 = false;
-bool awds2 = false;
-bool awds3 = false;
-bool awds4 = false;
-bool awds5 = false;
-bool awds6 = false;
 
 void Player::Update(float _DeltaTime)
 {
@@ -109,35 +103,6 @@ void Player::Update(float _DeltaTime)
 	GetTransform()->AddLocalPosition(MoveDir * MoveSpeed * _DeltaTime);
 	Filp();
 
-	//충돌이 나오면던전에 충돌하면 1초뒤에 이동하자
-	//if (awds==false && PlayerPos.x > 1400.0f) {
-	//	GetTransform()->SetLocalPosition({ 3030,-189,-801 }); //스테이지 1  2660~ 3940
-	//	awds = true;
-	//}
-	//if (awds1 == false && PlayerPos.x > 3909.0f) {
-	//	GetTransform()->SetLocalPosition({ 4250,-319 ,-801 }); //스테이지 2 4040 ~ 6600
-	//	awds1 = true;
-	//}
-	//if (awds2 == false && PlayerPos.x > 6389) {
-	//	GetTransform()->SetLocalPosition({ 8023,560 }); //스테이지 3 6700 ~ 9260
-	//	awds2 = true;
-	//}
-	//if (awds3 == false && PlayerPos.x > 8500) {
-	//	GetTransform()->SetLocalPosition({ 9500,560 }); //스테이지 4 9360~ 11280
-	//	awds3 = true;
-	//}
-	//if (awds4 == false && PlayerPos.x > 10500) {
-	//	GetTransform()->SetLocalPosition({ 11480,560 }); // 1층 보스 11380 ~ 12388
-	//	awds4 = true;
-	//}
-	//if (awds5 == false && PlayerPos.x > 12750) {
-	//	GetTransform()->SetLocalPosition({ 13150 ,-38 }); // 2층 보스전스테이지 12888 ~ 14168
-	//	awds5 = true;
-	//}
-	//if (awds6 == false && PlayerPos.x > 14000) {
-	//	GetTransform()->SetLocalPosition({ 14368,38 }); // 2층 보스 14268.0f ~ 15868.0f
-	//	awds6 = true;
-	//}
 }
 
 

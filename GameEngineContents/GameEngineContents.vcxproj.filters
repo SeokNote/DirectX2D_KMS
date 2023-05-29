@@ -37,12 +37,6 @@
       <Filter>Map\DunGeon\Stage1</Filter>
     </ClInclude>
     <ClInclude Include="ContentsEnums.h" />
-    <ClInclude Include="CameraCtr.h">
-      <Filter>보류</Filter>
-    </ClInclude>
-    <ClInclude Include="MapDataBase.h">
-      <Filter>보류</Filter>
-    </ClInclude>
     <ClInclude Include="Stage_2.h">
       <Filter>Map\DunGeon\Stage1</Filter>
     </ClInclude>
@@ -164,6 +158,7 @@
     <ClInclude Include="Intro.h">
       <Filter>Object\UI\IntroStart</Filter>
     </ClInclude>
+    <ClInclude Include="FadeMgr.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -200,12 +195,6 @@
     </ClCompile>
     <ClCompile Include="Stage_1.cpp">
       <Filter>Map\DunGeon\Stage1</Filter>
-    </ClCompile>
-    <ClCompile Include="CameraCtr.cpp">
-      <Filter>보류</Filter>
-    </ClCompile>
-    <ClCompile Include="MapDataBase.cpp">
-      <Filter>보류</Filter>
     </ClCompile>
     <ClCompile Include="Stage_2.cpp">
       <Filter>Map\DunGeon\Stage1</Filter>
@@ -332,6 +321,7 @@
     <ClCompile Include="Intro.cpp">
       <Filter>Object\UI\IntroStart</Filter>
     </ClCompile>
+    <ClCompile Include="FadeMgr.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Levels">
