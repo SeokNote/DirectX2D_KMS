@@ -32,6 +32,19 @@ TitleLevel::~TitleLevel()
 
 void TitleLevel::Start()
 {
+	GameEngineDirectory NewDir;
+	NewDir.MoveParentToDirectory("ContentResources");
+	NewDir.Move("ContentResources");
+	NewDir.Move("Texture");
+
+	std::vector<GameEngineFile> File = NewDir.GetAllFile({ ".Png", });
+
+
+	for (size_t i = 0; i < File.size(); i++)
+	{
+		GameEngineTexture::Load(File[i].GetFullPath());
+	}
+
 	if (false == GameEngineInput::IsKey("ClickMouse"))
 	{
 		GameEngineInput::CreateKey("ClickMouse", VK_LBUTTON);

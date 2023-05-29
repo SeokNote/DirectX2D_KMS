@@ -164,6 +164,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\source\repos\DirectX_2D\DirectX2D_KMS\GameEngineContents\MyContentSpriteRenderer.h" />
     <ClInclude Include="BackCloud.h">
       <SubType>
       </SubType>
@@ -375,6 +376,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\source\repos\DirectX_2D\DirectX2D_KMS\GameEngineContents\MyContentSpriteRenderer.cpp" />
     <ClCompile Include="BackCloud.cpp">
       <SubType>
       </SubType>
