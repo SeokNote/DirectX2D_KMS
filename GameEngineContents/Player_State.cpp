@@ -93,22 +93,26 @@ void Player::IdleStart()
 }
 void Player::IdleUpdate(float _Time)
 {
-
-	if (GameEngineInput::IsPress("LeftMove") || GameEngineInput::IsPress("RightMove"))
+	if (UICount == 0) 
 	{
-		ChangeState(PlayerState::MOVE);
-	}
+		if (GameEngineInput::IsPress("LeftMove") || GameEngineInput::IsPress("RightMove"))
+		{
+			ChangeState(PlayerState::MOVE);
+		}
+		if (GameEngineInput::IsPress("DownMove") && GameEngineInput::IsDown("UpMove_1"))
+		{
+			Fall = true;
+			ChangeState(PlayerState::FALL);
+		}
+		else if (GameEngineInput::IsDown("UpMove") || GameEngineInput::IsDown("UpMove_1"))
+		{
+			ChangeState(PlayerState::JUMP);
 
-	if (GameEngineInput::IsPress("DownMove") && GameEngineInput::IsDown("UpMove_1"))
-	{
-		Fall = true;
-		ChangeState(PlayerState::FALL);
+		}
 	}
-	else if (GameEngineInput::IsDown("UpMove") || GameEngineInput::IsDown("UpMove_1"))
-	{
-		ChangeState(PlayerState::JUMP);
+	
 
-	}
+	
 	if (false == GameEngineInput::IsDown("UpMove") && false == GameEngineInput::IsDown("UpMove_1"))
 	{
 		MoveDir = float4::Zero;
@@ -121,6 +125,7 @@ void Player::IdleUpdate(float _Time)
 		Falling = false;
 	}
 	
+	
 }
 void Player::IdleEnd() {
 
@@ -132,6 +137,11 @@ void Player::MoveStart()
 }
 void Player::MoveUpdate(float _Time)
 {
+	if (UICount != 0)
+	{
+		MoveDir.x = 0.0f;
+		ChangeState(PlayerState::IDLE);
+	}
 	if (true == IsMiddle)
 	{
 		Falling = true;
@@ -212,7 +222,7 @@ void Player::JumpUpdate(float _Time)
 		MoveDir.x = -1.0f;
 	}
 	
-	else if (true == GameEngineInput::IsPress("RightMove"))
+	else if (UICount == 0 && true == GameEngineInput::IsPress("RightMove"))
 	{
 		MoveDir.x = 1.0f;
 	}
@@ -256,6 +266,11 @@ void Player::FallStart()
 }
 void Player::FallUpdate(float _Time)
 {
+	if (UICount != 0)
+	{
+		MoveDir.x = 0.0f;
+		ChangeState(PlayerState::IDLE);
+	}
 	CheckTime += _Time;
 	if (Fall == false) 
 	{

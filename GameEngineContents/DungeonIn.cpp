@@ -58,6 +58,7 @@ void DungeonIn::Update(float _DeltaTime)
 {
 	if (DungeonInCol->Collision(3333, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
+		Player::MainPlayer->SetUICount(1);
 		if (IndexCount == 0) 
 		{
 			IndexCount++;
@@ -86,6 +87,7 @@ void DungeonIn::Update(float _DeltaTime)
 		if (CheckTime > 1.5f)
 		{
 			CheckTime = 0.0f;
+			Player::MainPlayer->SetUICount(0);
 			Player::MainPlayer->On();
 			Player::MainPlayer->GetTransform()->SetLocalPosition({ 3046,-195.0f,-801.0f });
 			FEffect->FadeOut();

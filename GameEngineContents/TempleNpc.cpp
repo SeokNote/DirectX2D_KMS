@@ -2,7 +2,7 @@
 #include "TempleNpc.h"
 #include "FoodUI.h"
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
-
+#include "Player.h"
 #include <GameEnginePlatform/GameEngineWindow.h>
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/GameEngineCamera.h>
@@ -71,11 +71,13 @@ void TempleNpc::Update(float _DeltaTime)
 		if (IndexCount < 1 && GameEngineInput::IsDown("NpcInteraction"))
 		{
 			IndexCount++;
+			Player::MainPlayer->SetUICount(1);
 			FoodUIPtr = GetLevel()->CreateActor<FoodUI>();
 			FoodUIPtr->SetNpc(DynamicThis<TempleNpc>());
 		}
 		if (IndexCount == 1 && GameEngineInput::IsDown("ESC"))
 		{
+			Player::MainPlayer->SetUICount(0);
 			IndexCount--;
 			FoodUIPtr->Death();
 		}

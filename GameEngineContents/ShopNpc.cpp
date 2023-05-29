@@ -1,4 +1,5 @@
 #include "PrecompileHeader.h"
+#include "Player.h"
 #include "ShopNpc.h"
 #include "ShopUI.h"
 #include "InventoryUI.h"
@@ -73,10 +74,12 @@ void ShopNpc::Update(float _DeltaTime)
 			IndexCount++;
 			ShopUIPtr = GetLevel()->CreateActor<ShopUI>(1);
 			InventoryUIPtr = GetLevel()->CreateActor<InventoryUI>(1);
+			Player::MainPlayer->SetUICount(1);
 
 		}
 		if (IndexCount == 1 && GameEngineInput::IsDown("ESC"))
 		{
+			Player::MainPlayer->SetUICount(0);
 			IndexCount--;
 			ShopUIPtr->Death();
 			InventoryUIPtr->Death();

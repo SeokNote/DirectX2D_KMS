@@ -1,6 +1,7 @@
 #include "PrecompileHeader.h"
 #include "FoodUI.h"
 #include "TempleNpc.h"
+#include "Player.h"
 
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/GameEngineCamera.h>
@@ -54,6 +55,7 @@ void FoodUI::Update(float _Delta)
 		if (GameEngineInput::IsDown("ClickMouse"))
 		{
 			TempleNpcPtr->SetIndexCount(0);
+			Player::MainPlayer->SetUICount(0);
 			Death();
 		}
 	}

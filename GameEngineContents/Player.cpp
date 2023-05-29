@@ -30,11 +30,6 @@ Player::~Player()
 
 }
 
-
-
-
-
-
 void Player::Start()
 {
 
@@ -298,8 +293,6 @@ void Player::Filp()
 
 };
 
-//디버깅용도나 
 void Player::Render(float _Delta)
 {
-	// GetTransform()->AddLocalRotation({0.0f, 0.0f, 360.0f * _Delta});
 }

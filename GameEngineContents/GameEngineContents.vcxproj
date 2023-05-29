@@ -189,6 +189,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="ContentsEnums.h" />
+    <ClInclude Include="CountCheckMgr.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="DungeonIn.h">
       <SubType>
       </SubType>
@@ -198,10 +202,6 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="FadeEffect.h" />
-    <ClInclude Include="FadeMgr.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="FoodUI.h">
       <SubType>
       </SubType>
@@ -406,6 +406,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Contents_Resources.cpp" />
+    <ClCompile Include="CountCheckMgr.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="DungeonIn.cpp">
       <SubType>
       </SubType>
@@ -415,10 +419,6 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="FadeEffect.cpp" />
-    <ClCompile Include="FadeMgr.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
     <ClCompile Include="FoodUI.cpp">
       <SubType>
       </SubType>

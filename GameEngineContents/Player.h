@@ -33,14 +33,16 @@ public:
 	}
 	MyMap SetMyMap(MyMap _MyMap);
 
-	//MyMap GetMyMap(MyMap _MyMap) {
-	//	SetMyMap(CurMap) = _MyMap;
-	//	return CurMap;
-	//}
 	bool GroundCheck();
 	bool MiddleCheck();
 
 	float4 PixelCalculation(float4 _TargetPos, float4 _MapCenterPos, float4 _TransColPos);
+
+
+	int SetUICount(int _Value) {
+		UICount = _Value;
+		return UICount;
+	}
 protected:
 	void Start();
 	void Update(float _Delta) override;
@@ -74,7 +76,6 @@ private:
 	float4 TransColPos = float4::Zero;
 	float4 TargetPos = float4::Zero;
 	float4 PixelMapResultPos = float4::Zero;
-	std::string DirString = "Player_";
 
 
 	// State
@@ -111,4 +112,6 @@ private:
 	bool Falling = false;
 	bool IsMiddle = false;
 	float CheckTime = 0.0f;
+
+	int UICount = 0;
 };
