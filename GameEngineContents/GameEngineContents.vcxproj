@@ -201,6 +201,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="FadeEffect.h" />
     <ClInclude Include="FoodUI.h">
       <SubType>
       </SubType>
@@ -404,6 +405,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Contents_Resources.cpp" />
     <ClCompile Include="DungeonIn.cpp">
       <SubType>
       </SubType>
@@ -412,6 +414,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="FadeEffect.cpp" />
     <ClCompile Include="FoodUI.cpp">
       <SubType>
       </SubType>

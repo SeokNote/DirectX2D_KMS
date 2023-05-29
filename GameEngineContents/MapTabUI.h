@@ -53,5 +53,3 @@ private:
 	std::shared_ptr<GameEngineCollision> Menu_ShopCol;
 	std::shared_ptr<GameEngineCollision> Menu_TemPleCol;
 };
-
-//텝과 인벤토리 기초적인 틀만 만들기

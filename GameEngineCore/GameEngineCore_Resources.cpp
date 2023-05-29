@@ -248,14 +248,16 @@ void GameEngineCore::CoreResourcesInit()
 
 		std::vector<GameEngineFile> Files = NewDir.GetAllFile({ ".hlsl", ".fx" });
 
-		GameEngineVertexShader::Load(Files[0].GetFullPath(), "Merge_VS");
-		GameEnginePixelShader::Load(Files[0].GetFullPath(), "Merge_PS");
+		for (size_t i = 0; i < Files.size(); i++)
+		{
+			GameEngineShader::AutoCompile(Files[i]);
+		}
 
-		GameEngineVertexShader::Load(Files[1].GetFullPath(), "Texture_VS");
-		GameEnginePixelShader::Load(Files[1].GetFullPath(), "Texture_PS");
-		//for (size_t i = 0; i < Files.size(); i++)
-		//{
-		//}
+		//GameEngineVertexShader::Load(Files[0].GetFullPath(), "Merge_VS");
+		//GameEnginePixelShader::Load(Files[0].GetFullPath(), "Merge_PS");
+
+		//GameEngineVertexShader::Load(Files[1].GetFullPath(), "Texture_VS");
+		//G
 
 	}
 

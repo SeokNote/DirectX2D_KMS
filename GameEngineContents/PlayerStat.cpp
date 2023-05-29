@@ -50,7 +50,6 @@ void PlayerStat::Start()
 	ExitButtonCollsion->GetTransform()->SetLocalScale(ButtonScale);
 	ExitButtonCollsion->SetOrder(2998);
 	
-//	
 
 }
 bool OnOff = false;

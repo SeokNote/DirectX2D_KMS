@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="..\..\source\repos\DirectX_2D\DirectX2D_KMS\ContentsShader\MyShader.fx" />
+    <FxCompile Include="FadeShader.hlsl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

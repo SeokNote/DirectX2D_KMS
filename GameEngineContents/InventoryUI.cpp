@@ -25,8 +25,6 @@ void InventoryUI::Start()
 	InventoryUIRender->GetTransform()->SetLocalScale(InventoryUIScale);
 
 
-	//	
-
 }
 void InventoryUI::Update(float _Delta)
 {

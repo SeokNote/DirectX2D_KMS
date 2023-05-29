@@ -26,5 +26,3 @@ private:
 	std::shared_ptr<class GameEngineUIRenderer> InventoryUIRender;
 	std::shared_ptr<class GameEngineUIRenderer> MapTabBaseBG;
 };
-
-//텝과 인벤토리 기초적인 틀만 만들기

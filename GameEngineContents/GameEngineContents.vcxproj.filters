@@ -94,7 +94,6 @@
     <ClInclude Include="Town.h">
       <Filter>Map\Town</Filter>
     </ClInclude>
-    <ClInclude Include="PixelCollision.h" />
     <ClInclude Include="BackCloud.h">
       <Filter>Map\Title\Cloud</Filter>
     </ClInclude>
@@ -153,6 +152,12 @@
       <Filter>Object\UI\FoodShop</Filter>
     </ClInclude>
     <ClInclude Include="MyContentSpriteRenderer.h" />
+    <ClInclude Include="FadeEffect.h">
+      <Filter>PostEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="PixelCollision.h">
+      <Filter>보류</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -247,7 +252,6 @@
     <ClCompile Include="Town.cpp">
       <Filter>Map\Town</Filter>
     </ClCompile>
-    <ClCompile Include="PixelCollision.cpp" />
     <ClCompile Include="BackCloud.cpp">
       <Filter>Map\Title\Cloud</Filter>
     </ClCompile>
@@ -309,6 +313,13 @@
       <Filter>Object\UI\FoodShop</Filter>
     </ClCompile>
     <ClCompile Include="MyContentSpriteRenderer.cpp" />
+    <ClCompile Include="FadeEffect.cpp">
+      <Filter>PostEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="PixelCollision.cpp">
+      <Filter>보류</Filter>
+    </ClCompile>
+    <ClCompile Include="Contents_Resources.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Levels">
@@ -394,6 +405,9 @@
     </Filter>
     <Filter Include="Object\UI\FoodShop">
       <UniqueIdentifier>{233f1f1e-6b9d-4751-9a07-f6fbf79fa0ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PostEffect">
+      <UniqueIdentifier>{3a9a6c3b-5e70-4b9f-873c-863c245b24a3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
