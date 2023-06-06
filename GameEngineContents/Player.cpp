@@ -147,6 +147,7 @@ bool Player::GroundCheck()
 	switch (CurMap)
 	{
 	case MyMap::None:
+		return false;
 		break;
 	case MyMap::Town:
 		PixelMapResultPos = PixelCalculation(BottomPos,{0.0f,0.0f,0.0f},{2560.f,720.0f});
@@ -311,6 +312,7 @@ bool Player::MiddleCheck()
 	switch (CurMap)
 	{
 	case MyMap::None:
+		return false;
 		break;
 	case MyMap::Town:
 		PixelMapResultPos = PixelCalculation(BottomPos, { 0.0f,0.0f,0.0f }, { 2560.f,720.0f });
@@ -426,6 +428,7 @@ bool Player::TopCheck()
 	switch (CurMap)
 	{
 	case MyMap::None:
+		return false;
 		break;
 	case MyMap::Town:
 		PixelMapResultPos = PixelCalculation(TopPos, { 0.0f,0.0f,0.0f }, { 2560.f,720.0f });
@@ -580,6 +583,7 @@ bool Player::LeftSideCheck()
 	switch (CurMap)
 	{
 	case MyMap::None:
+		return false;
 		break;
 	case MyMap::Town:
 		PixelMapResultPos = PixelCalculation(LeftPos, { 0.0f,0.0f,0.0f }, { 2560.f,720.0f });
@@ -734,6 +738,7 @@ bool Player::RightSideCheck()
 	switch (CurMap)
 	{
 	case MyMap::None:
+		return false;
 		break;
 	case MyMap::Town:
 		PixelMapResultPos = PixelCalculation(RightPos, { 0.0f,0.0f,0.0f }, { 2560.f,720.0f });
@@ -907,9 +912,9 @@ void Player::ColRenderSet()
 
 	PlayerCol->GetTransform()->SetWorldPosition({ PlayerPos.x,PlayerPos.y,0.0f });
 	PlayerTopRender->GetTransform()->SetWorldPosition({ PlayerPos.x,PlayerPos.y + 15.0f,PlayerPos.z });
-	//PlayerTopRender->Off();
+	PlayerTopRender->Off();
 	PlayerBottoomRender->GetTransform()->SetWorldPosition({ PlayerPos.x,PlayerPos.y - 65.0f,PlayerPos.z });
-	//PlayerTopRender->Off();
+	PlayerBottoomRender->Off();
 
 
 }

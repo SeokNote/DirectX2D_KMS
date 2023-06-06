@@ -420,5 +420,8 @@
     <Filter Include="Object\UI\IntroStart">
       <UniqueIdentifier>{8fcc2338-2e04-4105-880a-60e129d21896}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\UI\PlayerUI">
+      <UniqueIdentifier>{f5a55213-92ee-4459-9d18-aea5dfe71012}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

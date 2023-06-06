@@ -54,11 +54,6 @@ PlayLevel::PlayLevel()
 PlayLevel::~PlayLevel()
 {
 }
-void PlayLevel::PlayerTelPo(/*Playlevel* this*/)
-{
-	int a = 0;
-
-}
 
 void PlayLevel::Start()
 {
@@ -99,12 +94,7 @@ void PlayLevel::Start()
 	GetMainCamera()->SetSortType(1, SortType::ZSort);
 	FEffect = GetLastTarget()->CreateEffect<FadeEffect>();
 
-	//std::shared_ptr<GameEngineCoreWindow> Window = GameEngineGUI::FindGUIWindowConvert<GameEngineCoreWindow>("CoreWindow");
 
-	//{
-	//	Window->Test = std::bind(&PlayLevel::PlayerTelPo, this);
-
-	//}
 
 	{	//Town
 		std::shared_ptr<Sky> SkyBG = CreateActor<Sky>(1);

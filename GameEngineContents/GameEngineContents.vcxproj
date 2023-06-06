@@ -189,7 +189,7 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="ContentsEnums.h" />
-    <ClInclude Include="CountCheckMgr.h">
+    <ClInclude Include="Door.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -410,7 +410,7 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Contents_Resources.cpp" />
-    <ClCompile Include="CountCheckMgr.cpp">
+    <ClCompile Include="Door.cpp">
       <SubType>
       </SubType>
     </ClCompile>
