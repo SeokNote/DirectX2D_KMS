@@ -272,6 +272,177 @@ bool Player::MiddleCheck()
 	}
 }
 
+bool Player::TopCheck()
+{
+	float4 PlayerPos = GetTransform()->GetLocalPosition();
+	float4 TopPos = PlayerPos + PlayerTop;
+	CurMap = SetMyMap(CurMap);
+	switch (CurMap)
+	{
+	case MyMap::None:
+		break;
+	case MyMap::Town:
+		PixelMapResultPos = PixelCalculation(TopPos, { 0.0f,0.0f,0.0f }, { 2560.f,720.0f });
+		Ptr = GameEngineTexture::Find("TownCol_3.png");
+		Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y+80.0f));
+		if (Pixel == GameEnginePixelColor::Black)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+		break;
+	case MyMap::Stage1_1:
+		PixelMapResultPos = PixelCalculation(TopPos, { 3300.0f,0.0f,0.0f }, { 640.0f,360 });
+		Ptr = GameEngineTexture::Find("StageCol_1.png");
+		Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y));
+		Pixel.a = 0;
+		if (Pixel == GameEnginePixelColor::Black)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+		break;
+	case MyMap::Stage1_2:
+		break;
+	case MyMap::Stage1_3:
+		break;
+	case MyMap::Stage1_4:
+		break;
+	case MyMap::Stage1_Boss:
+		break;
+	case MyMap::Stage2_1:
+		break;
+	case MyMap::Stage2_Boss:
+		break;
+	case MyMap::Stage3_1:
+		break;
+	case MyMap::Stage3_Boss:
+		break;
+	default:
+		break;
+	}
+}
+
+bool Player::LeftSideCheck()
+{
+	float4 PlayerPos = GetTransform()->GetLocalPosition();
+	float4 LeftPos = PlayerPos + PlayerSide;
+	CurMap = SetMyMap(CurMap);
+	switch (CurMap)
+	{
+	case MyMap::None:
+		break;
+	case MyMap::Town:
+		PixelMapResultPos = PixelCalculation(LeftPos, { 0.0f,0.0f,0.0f }, { 2560.f,720.0f });
+		Ptr = GameEngineTexture::Find("TownCol_3.png");
+		Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y));
+		if (Pixel == GameEnginePixelColor::Black)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+		break;
+	case MyMap::Stage1_1:
+		PixelMapResultPos = PixelCalculation(LeftPos, { 3300.0f,0.0f,0.0f }, { 640.0f,360 });
+		Ptr = GameEngineTexture::Find("StageCol_1.png");
+		Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y));
+		Pixel.a = 0;
+		if (Pixel == GameEnginePixelColor::Black)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+		break;
+	case MyMap::Stage1_2:
+		break;
+	case MyMap::Stage1_3:
+		break;
+	case MyMap::Stage1_4:
+		break;
+	case MyMap::Stage1_Boss:
+		break;
+	case MyMap::Stage2_1:
+		break;
+	case MyMap::Stage2_Boss:
+		break;
+	case MyMap::Stage3_1:
+		break;
+	case MyMap::Stage3_Boss:
+		break;
+	default:
+		break;
+	}
+}
+
+bool Player::RightSideCheck()
+{
+	float4 PlayerPos = GetTransform()->GetLocalPosition();
+	float4 RightPos = PlayerPos - PlayerSide;
+	CurMap = SetMyMap(CurMap);
+	switch (CurMap)
+	{
+	case MyMap::None:
+		break;
+	case MyMap::Town:
+		PixelMapResultPos = PixelCalculation(RightPos, { 0.0f,0.0f,0.0f }, { 2560.f,720.0f });
+		Ptr = GameEngineTexture::Find("TownCol_3.png");
+		Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y));
+		if (Pixel == GameEnginePixelColor::Black)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+		break;
+	case MyMap::Stage1_1:
+		PixelMapResultPos = PixelCalculation(RightPos, { 3300.0f,0.0f,0.0f }, { 640.0f,360 });
+		Ptr = GameEngineTexture::Find("StageCol_1.png");
+		Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y));
+		Pixel.a = 0;
+		if (Pixel == GameEnginePixelColor::Black)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+		break;
+	case MyMap::Stage1_2:
+		break;
+	case MyMap::Stage1_3:
+		break;
+	case MyMap::Stage1_4:
+		break;
+	case MyMap::Stage1_Boss:
+		break;
+	case MyMap::Stage2_1:
+		break;
+	case MyMap::Stage2_Boss:
+		break;
+	case MyMap::Stage3_1:
+		break;
+	case MyMap::Stage3_Boss:
+		break;
+	default:
+		break;
+	}
+}
+
 float4 Player::PixelCalculation(float4 _TargetPos, float4 _MapCenterPos, float4 _TransColPos)
 {
 	TargetPos = _TargetPos;

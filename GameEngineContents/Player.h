@@ -35,7 +35,9 @@ public:
 
 	bool GroundCheck();
 	bool MiddleCheck();
-
+	bool TopCheck();
+	bool LeftSideCheck();
+	bool RightSideCheck();
 	float4 PixelCalculation(float4 _TargetPos, float4 _MapCenterPos, float4 _TransColPos);
 
 
@@ -112,6 +114,7 @@ private:
 	bool Falling = false;
 	bool IsMiddle = false;
 	float CheckTime = 0.0f;
-
+	float4 PlayerTop = { 0.0f,15.0f,0.f };
+	float4 PlayerSide = { -25.0f,0.0f,0.f };
 	int UICount = 0;
 };

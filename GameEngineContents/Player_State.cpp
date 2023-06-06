@@ -170,7 +170,15 @@ void Player::MoveUpdate(float _Time)
 
 	if (true == GameEngineInput::IsPress("LeftMove"))
 	{
-		MoveDir.x = -1.0f;
+		if(true == LeftSideCheck())
+		{
+			MoveDir.x = 0.0f;
+		}
+		else
+		{
+			MoveDir.x = -1.0f;
+
+		}
 		if (true == GameEngineInput::IsDown("UpMove") || true ==GameEngineInput::IsDown("UpMove_1"))
 			{
 				Falling = false;
@@ -180,8 +188,15 @@ void Player::MoveUpdate(float _Time)
 
 	else if (true == GameEngineInput::IsPress("RightMove"))
 	{
-		MoveDir.x = 1.0f;
-		if (true == GameEngineInput::IsDown("UpMove") || true ==GameEngineInput::IsDown("UpMove_1"))
+		if (true == RightSideCheck())
+		{
+			MoveDir.x = 0.0f;
+		}
+		else
+		{
+			MoveDir.x = 1.0f;
+
+		}		if (true == GameEngineInput::IsDown("UpMove") || true ==GameEngineInput::IsDown("UpMove_1"))
 		{
 			Falling = false;
 			ChangeState(PlayerState::JUMP);
@@ -202,6 +217,7 @@ void Player::JumpStart()
 }
 void Player::JumpUpdate(float _Time)
 {
+
 	EndYpos = GetTransform()->GetLocalPosition().y;
 	float Pos = EndYpos - StartYpos;
 	float PushTime = GameEngineInput::GetPressTime("UpMove");
@@ -216,15 +232,35 @@ void Player::JumpUpdate(float _Time)
 			Falling = true;
 		}
 	}
-
+	if(true == TopCheck())
+	{
+		MoveDir.y = 0.0f;
+		ChangeState(PlayerState::FALL);
+	}
 	if (true == GameEngineInput::IsPress("LeftMove"))
 	{
-		MoveDir.x = -1.0f;
+		if (true == LeftSideCheck())
+		{
+			MoveDir.x = 0.0f;
+		}
+		else
+		{
+			MoveDir.x = -1.0f;
+
+		}
 	}
 	
-	else if (UICount == 0 && true == GameEngineInput::IsPress("RightMove"))
+	else if (true == GameEngineInput::IsPress("RightMove"))
 	{
-		MoveDir.x = 1.0f;
+		if (true == RightSideCheck())
+		{
+			MoveDir.x = 0.0f;
+		}
+		else
+		{
+			MoveDir.x = 1.0f;
+
+		}
 	}
 	//떨어지는 상태일때
 	if(Falling ==true)
@@ -277,12 +313,28 @@ void Player::FallUpdate(float _Time)
 		Falling = true;
 		if (true == GameEngineInput::IsPress("LeftMove"))
 		{
-			MoveDir.x = -1.0f;
+			if (true == LeftSideCheck())
+			{
+				MoveDir.x = 0.0f;
+			}
+			else
+			{
+				MoveDir.x = -1.0f;
+
+			}
 		}
 
 		else if (true == GameEngineInput::IsPress("RightMove"))
 		{
-			MoveDir.x = 1.0f;
+			if (true == RightSideCheck())
+			{
+				MoveDir.x = 0.0f;
+			}
+			else
+			{
+				MoveDir.x = 1.0f;
+
+			}
 		}
 		if (false == MiddleCheck())
 		{
