@@ -301,9 +301,13 @@ void PlayLevel::UICtr()
 			if (true == MapTab->IsDeath())
 			{
 				MapTab = CreateActor<MapTabUI>(-10);
+				CheckUICtr_1 = true;
 			}
-			MapTab->On();
-			CheckUICtr_1 = true;
+			else 
+			{
+				MapTab->On();
+				CheckUICtr_1 = true;
+			}
 		}
 		else if (true == CheckUICtr_1 && GameEngineInput::IsDown("MapTabUI"))
 		{

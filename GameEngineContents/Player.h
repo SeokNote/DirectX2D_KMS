@@ -98,6 +98,8 @@ private:
 	void FallStart();
 	void FallUpdate(float _Time);
 	void FallEnd();
+
+	void ColRenderSet();
 	PlayerState StateValue = PlayerState::IDLE;
 	float4 MoveDir = float4::Zero;
 	float4 MoveRange = float4::Zero;

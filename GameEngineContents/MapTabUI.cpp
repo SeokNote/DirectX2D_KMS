@@ -1,5 +1,6 @@
 #include "PrecompileHeader.h"
 #include "MapTabUI.h"
+#include "Player.h"
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/GameEngineCamera.h>
 #include <GameEnginePlatform/GameEngineInput.h>
@@ -129,6 +130,8 @@ void MapTabUI::Update(float _Delta)
 		Menu_BuilderSelect->On();
 		if (GameEngineInput::IsDown("ClickMouse")) 
 		{
+			Player::MainPlayer->GetTransform()->SetLocalPosition(BuilderNpcPos1);
+			Death();
 		}
 	}
 	else {
@@ -142,6 +145,8 @@ void MapTabUI::Update(float _Delta)
 		Menu_CommanderSelect->On();
 		if (GameEngineInput::IsDown("ClickMouse")) 
 		{
+			Player::MainPlayer->GetTransform()->SetLocalPosition(TrainNpcPos);
+			Death();
 		}
 	}
 	else {
@@ -155,6 +160,9 @@ void MapTabUI::Update(float _Delta)
 		Menu_DungeonSelect->On();
 		if (GameEngineInput::IsDown("ClickMouse")) 
 		{
+			Player::MainPlayer->GetTransform()->SetLocalPosition(DungeonInPos1);
+			Death();
+
 		}
 	}
 	else {
@@ -168,7 +176,8 @@ void MapTabUI::Update(float _Delta)
 		Menu_ShopSelect->On();
 		if (GameEngineInput::IsDown("ClickMouse")) 
 		{
-
+			Player::MainPlayer->GetTransform()->SetLocalPosition(ShopNpcPos1);
+			Death();
 		}
 	}
 	else {
@@ -182,6 +191,9 @@ void MapTabUI::Update(float _Delta)
 		Menu_TemPleSelect->On();
 		if (GameEngineInput::IsDown("ClickMouse")) 
 		{
+			Player::MainPlayer->GetTransform()->SetLocalPosition(TempleNpcPos1);
+			Death();
+
 		}
 	}
 	else {

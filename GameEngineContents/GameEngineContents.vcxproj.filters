@@ -159,6 +159,9 @@
       <Filter>Object\UI\IntroStart</Filter>
     </ClInclude>
     <ClInclude Include="CountCheckMgr.h" />
+    <ClInclude Include="MapMoveBase.h">
+      <Filter>보류</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -322,6 +325,9 @@
       <Filter>Object\UI\IntroStart</Filter>
     </ClCompile>
     <ClCompile Include="CountCheckMgr.cpp" />
+    <ClCompile Include="MapMoveBase.cpp">
+      <Filter>보류</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Levels">

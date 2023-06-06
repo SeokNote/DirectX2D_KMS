@@ -74,24 +74,14 @@ void Player::Start()
 	PlayerCol->SetOrder(3333);
 
 }
-bool awds = false;
 void Player::Update(float _DeltaTime)
 {
-	float4 PlayerPos = GetTransform()->GetLocalPosition();
-
-	PlayerCol->GetTransform()->SetWorldPosition({ PlayerPos.x,PlayerPos.y,0.0f});
-	PlayerTopRender->GetTransform()->SetWorldPosition({ PlayerPos.x,PlayerPos.y+15.0f,PlayerPos.z });
-	PlayerBottoomRender->GetTransform()->SetWorldPosition({ PlayerPos.x,PlayerPos.y - 65.0f,PlayerPos.z });
-
-	CurMap =SetMyMap(CurMap);
+	CurMap = SetMyMap(CurMap);
+	ColRenderSet();
 	UpdateState(_DeltaTime);
 	GetTransform()->AddLocalPosition(MoveDir * MoveSpeed * _DeltaTime);
 	Filp();
 
-	//if (awds==false && PlayerPos.x > 3910) {
-	//	GetTransform()->SetLocalPosition({ 4240.0f,-100.0f,-801.0f });
-	//	awds = true;
-	//}
 }
 
 
@@ -910,6 +900,19 @@ void Player::Filp()
 	}
 
 };
+
+void Player::ColRenderSet()
+{
+	float4 PlayerPos = GetTransform()->GetLocalPosition();
+
+	PlayerCol->GetTransform()->SetWorldPosition({ PlayerPos.x,PlayerPos.y,0.0f });
+	PlayerTopRender->GetTransform()->SetWorldPosition({ PlayerPos.x,PlayerPos.y + 15.0f,PlayerPos.z });
+	//PlayerTopRender->Off();
+	PlayerBottoomRender->GetTransform()->SetWorldPosition({ PlayerPos.x,PlayerPos.y - 65.0f,PlayerPos.z });
+	//PlayerTopRender->Off();
+
+
+}
 
 void Player::Render(float _Delta)
 {

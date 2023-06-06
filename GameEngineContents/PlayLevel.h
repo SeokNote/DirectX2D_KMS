@@ -38,13 +38,8 @@ private:
 	void UICtr();
 	
 	float4 TownScale = float4::Zero;
-
 	MyMap CurMap = MyMap::None;
-
 	float4 WindowSizeHalf = float4::Zero;
-
-	void PlayerTelPo();
-
 
 	std::shared_ptr<PlayerStat> Stat;
 	std::shared_ptr<MapTabUI> MapTab;

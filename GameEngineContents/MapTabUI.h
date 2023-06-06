@@ -52,4 +52,12 @@ private:
 	std::shared_ptr<GameEngineCollision> Menu_DungeonCol;
 	std::shared_ptr<GameEngineCollision> Menu_ShopCol;
 	std::shared_ptr<GameEngineCollision> Menu_TemPleCol;
+
+
+	float4 BuilderNpcPos1 = { -53.0f,-508.0f,-801.f };
+	float4 ShopNpcPos1 = { 1740.0f,63.0f,-801.f };
+	float4 TrainNpcPos = { -1650.0f,-503.0f,-801.f };
+	float4 DungeonInPos1 = { 1235.0f,-508.0f,-801.f };
+	float4 TempleNpcPos1 = { -1765.0f,65.0f,-801.f };
+
 };
