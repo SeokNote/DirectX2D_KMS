@@ -61,7 +61,6 @@ private:
 
 	std::shared_ptr<class GameEngineSpriteRenderer> PlayerTopRender;
 	std::shared_ptr<class GameEngineSpriteRenderer> PlayerBottoomRender;
-	std::shared_ptr<class GameEngineSpriteRenderer> PlayerSideRender;
 
 	std::shared_ptr<class GameEngineCollision> PlayerCol;
 	std::shared_ptr<class GameEngineTexture> Ptr = nullptr;
@@ -117,4 +116,6 @@ private:
 	float4 PlayerTop = { 0.0f,15.0f,0.f };
 	float4 PlayerSide = { -25.0f,0.0f,0.f };
 	int UICount = 0;
+
+	float4 BottomPos_0 = float4::Zero;
 };

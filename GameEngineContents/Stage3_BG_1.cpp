@@ -32,6 +32,7 @@ void Stage3_BG_1::Update(float _DeltaTime)
 {
 	float4 PlayerPos = Player::MainPlayer->GetPlayerPtr()->GetTransform()->GetWorldPosition();
 	float4 CameraPos = GetLevel()->GetMainCamera()->GetTransform()->GetWorldPosition();
+	CameraPos.z = 0.0f;
 	if (PlayerPos.x > 15968.0f && 20228 > PlayerPos.x) {
 		Stage3_BG_1Render->On();
 		Stage3_BG_1Render->GetTransform()->SetLocalPosition(CameraPos);

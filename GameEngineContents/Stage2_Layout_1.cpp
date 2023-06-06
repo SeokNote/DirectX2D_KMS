@@ -33,7 +33,7 @@ void Stage2_Layout_1::Update(float _DeltaTime)
 {
 	float4 PlayerPos = Player::MainPlayer->GetPlayerPtr()->GetTransform()->GetWorldPosition();
 	float4 CameraPos = GetLevel()->GetMainCamera()->GetTransform()->GetWorldPosition();
-	CameraPos.z = -1;
+	CameraPos.z = 0;
 	if (PlayerPos.x > 12888.0f && 15868.0f > PlayerPos.x) {
 		Stage2_Layout_1Render->GetTransform()->SetLocalPosition(CameraPos);
 		Stage2_Layout_1Render->On();

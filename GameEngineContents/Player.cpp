@@ -68,23 +68,13 @@ void Player::Start()
 	PlayerBottoomRender->SetTexture("TopBottom.png");
 	PlayerBottoomRender->GetTransform()->SetLocalScale({ 58.0f, 4.0f });
 
-	//PlayerSideRender = CreateComponent<GameEngineSpriteRenderer>(1);
-	//PlayerSideRender->SetTexture("PlayerSideCol.png");
-	//PlayerSideRender->GetTransform()->SetLocalScale({ 128.0f, 128.0f });
-
-
-
-
-	TestColMap = CreateComponent<GameEngineSpriteRenderer>(1);
-	TestColMap->SetTexture("TownCol_0.png");
-	TestColMap->GetTransform()->SetLocalScale({ 5120.0f,1440.0f,-710.0f });
 
 	PlayerCol = CreateComponent<GameEngineCollision>();
 	PlayerCol->GetTransform()->SetLocalScale({ 64.0f, 64.0f });
 	PlayerCol->SetOrder(3333);
 
 }
-
+bool awds = false;
 void Player::Update(float _DeltaTime)
 {
 	float4 PlayerPos = GetTransform()->GetLocalPosition();
@@ -98,6 +88,10 @@ void Player::Update(float _DeltaTime)
 	GetTransform()->AddLocalPosition(MoveDir * MoveSpeed * _DeltaTime);
 	Filp();
 
+	//if (awds==false && PlayerPos.x > 3910) {
+	//	GetTransform()->SetLocalPosition({ 4240.0f,-100.0f,-801.0f });
+	//	awds = true;
+	//}
 }
 
 
@@ -180,7 +174,7 @@ bool Player::GroundCheck()
 		}
 		break;
 	case MyMap::Stage1_1:
-		PixelMapResultPos = PixelCalculation(BottomPos, { 3300.0f,0.0f,0.0f }, { 640.0f,360 });
+		PixelMapResultPos = PixelCalculation(BottomPos, { 3300.0f,0.0f,0.0f }, { 640.0f,360.0f });
 		Ptr = GameEngineTexture::Find("StageCol_1.png");
 		Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y));
 		Pixel.a = 0;
@@ -194,22 +188,126 @@ bool Player::GroundCheck()
 		}
 		break;
 	case MyMap::Stage1_2:
+		PixelMapResultPos = PixelCalculation(BottomPos, { 5320.0f,0.0f,0.0f }, { 1280.0f,720.0f });
+		Ptr = GameEngineTexture::Find("StageCol_2.png");
+		Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y+75.0f));
+		Pixel.a = 0;
+		if (Pixel == GameEnginePixelColor::Black)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 		break;
 	case MyMap::Stage1_3:
+		PixelMapResultPos = PixelCalculation(BottomPos, { 7980.0f,0.0f,0.0f }, { 1280.f,640.0f });
+		Ptr = GameEngineTexture::Find("StageCol_3.png");
+		Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y+5.0f));
+		Pixel.a = 0;
+		if (Pixel == GameEnginePixelColor::Black)
+		{
+			return true;
+			PlayerRender->ChangeAnimation("Player_Idle");
+		}
+		else
+		{
+			return false;
+		}
 		break;
 	case MyMap::Stage1_4:
+		PixelMapResultPos = PixelCalculation(BottomPos, { 10320.0f,0.0f,0.0f }, { 960.f,360.0f });
+		Ptr = GameEngineTexture::Find("StageCol_4.png");
+		Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y));
+		Pixel.a = 0;
+		if (Pixel == GameEnginePixelColor::Black)
+		{
+			return true;
+			PlayerRender->ChangeAnimation("Player_Idle");
+		}
+		else
+		{
+			return false;
+		}
 		break;
 	case MyMap::Stage1_Boss:
+		PixelMapResultPos = PixelCalculation(BottomPos, { 12084.0f,0.0f,0.0f }, { 704.0f,672.0f });
+		Ptr = GameEngineTexture::Find("BossRoomCol_1.png");
+		Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y));
+		Pixel.a = 0;
+		if (Pixel == GameEnginePixelColor::Black)
+		{
+			return true;
+			PlayerRender->ChangeAnimation("Player_Idle");
+		}
+		else
+		{
+			return false;
+		}
 		break;
 	case MyMap::Stage2_1:
+		PixelMapResultPos = PixelCalculation(BottomPos, { 13528.0f,0.0f,0.0f }, { 640.0f,360.0f });
+		Ptr = GameEngineTexture::Find("TunakReadyCol_1.png");
+		Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y));
+		Pixel.a = 0;
+		if (Pixel == GameEnginePixelColor::Black)
+		{
+			return true;
+			PlayerRender->ChangeAnimation("Player_Idle");
+		}
+		else
+		{
+			return false;
+		}
 		break;
 	case MyMap::Stage2_Boss:
+		PixelMapResultPos = PixelCalculation(BottomPos, { 15068.0f,0.0f,0.0f }, { 800.f,450.0f });
+		Ptr = GameEngineTexture::Find("TunakFinalCol_1.png");
+		Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y));
+		Pixel.a = 0;
+		if (Pixel == GameEnginePixelColor::Black)
+		{
+			return true;
+			PlayerRender->ChangeAnimation("Player_Idle");
+		}
+		else
+		{
+			return false;
+		}
 		break;
 	case MyMap::Stage3_1:
+		PixelMapResultPos = PixelCalculation(BottomPos, { 16768.0f,0.0f,0.0f }, { 800.f,360.0f });
+		Ptr = GameEngineTexture::Find("Stage3Col_1.png");
+		Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y));
+		Pixel.a = 0;
+		if (Pixel == GameEnginePixelColor::Black)
+		{
+			return true;
+			PlayerRender->ChangeAnimation("Player_Idle");
+		}
+		else
+		{
+			return false;
+		}
 		break;
 	case MyMap::Stage3_Boss:
+		PixelMapResultPos = PixelCalculation(BottomPos, { 18948.0f,0.0f,0.0f }, { 1280.0f,360.0f });
+		Ptr = GameEngineTexture::Find("Stage3Col_Boss11.png");
+		Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y));
+		Pixel.a = 0;
+		if (Pixel == GameEnginePixelColor::Black)
+		{
+			return true;
+			PlayerRender->ChangeAnimation("Player_Idle");
+		}
+		else
+		{
+			return false;
+		}
 		break;
 	default:
+		return false;
 		break;
 	}
 
@@ -226,7 +324,7 @@ bool Player::MiddleCheck()
 		break;
 	case MyMap::Town:
 		PixelMapResultPos = PixelCalculation(BottomPos, { 0.0f,0.0f,0.0f }, { 2560.f,720.0f });
-		Ptr = GameEngineTexture::Find("TownCol_3.png");
+		Ptr = GameEngineTexture::Find("TownCol_1.png");
 		Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y+80.0f));
 		if (true == Falling && Pixel == MiddleGround)
 		{
@@ -241,8 +339,7 @@ bool Player::MiddleCheck()
 		PixelMapResultPos = PixelCalculation(BottomPos, { 3300.0f,0.0f,0.0f }, { 640.0f,360 });
 		Ptr = GameEngineTexture::Find("StageCol_1.png");
 		Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y));
-		Pixel.a = 0;
-		if (Falling==false && Pixel == GameEnginePixelColor::Black)
+		if (true == Falling && Pixel == MiddleGround)
 		{
 			return true;
 		}
@@ -252,22 +349,81 @@ bool Player::MiddleCheck()
 		}
 		break;
 	case MyMap::Stage1_2:
+		PixelMapResultPos = PixelCalculation(BottomPos, { 5320.0f,0.0f,0.0f }, { 1280.0f,720.0f });
+		Ptr = GameEngineTexture::Find("StageCol_2.png");
+		Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y + 120.0f));
+		if (true == Falling && Pixel == MiddleGround)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 		break;
 	case MyMap::Stage1_3:
+		PixelMapResultPos = PixelCalculation(BottomPos, { 7980.0f,0.0f,0.0f }, { 1280.f,640.0f });
+		Ptr = GameEngineTexture::Find("StageCol_3.png");
+		Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y + 80.0f));
+		if (true == Falling && Pixel == MiddleGround)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 		break;
 	case MyMap::Stage1_4:
+		PixelMapResultPos = PixelCalculation(BottomPos, { 10320.0f,0.0f,0.0f }, { 960.f,360.0f });
+		Ptr = GameEngineTexture::Find("StageCol_4.png");
+		Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y + 80.0f));
+		if (true == Falling && Pixel == MiddleGround)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 		break;
 	case MyMap::Stage1_Boss:
+		PixelMapResultPos = PixelCalculation(BottomPos, { 12084.0f,0.0f,0.0f }, { 704.0f,672.0f });
+		Ptr = GameEngineTexture::Find("BossRoomCol_1.png");
+		Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y + 80.0f));
+		if (true == Falling && Pixel == MiddleGround)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 		break;
 	case MyMap::Stage2_1:
+		return false;
 		break;
 	case MyMap::Stage2_Boss:
+		return false;
 		break;
 	case MyMap::Stage3_1:
+		return false;
 		break;
 	case MyMap::Stage3_Boss:
+		PixelMapResultPos = PixelCalculation(BottomPos, { 18948.0f,0.0f,0.0f }, { 1280.0f,360.0f });
+		Ptr = GameEngineTexture::Find("Stage3Col_Boss11.png");
+		Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y + 80.0f));
+		if (true == Falling && Pixel == MiddleGround)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 		break;
 	default:
+		return false;
 		break;
 	}
 }
@@ -309,22 +465,119 @@ bool Player::TopCheck()
 		}
 		break;
 	case MyMap::Stage1_2:
+		PixelMapResultPos = PixelCalculation(TopPos, { 5320.0f,0.0f,0.0f }, { 1280.0f,720.0f });
+		Ptr = GameEngineTexture::Find("StageCol_2.png");
+		Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y+60.0f));
+		Pixel.a = 0;
+		if (Pixel == GameEnginePixelColor::Black)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 		break;
 	case MyMap::Stage1_3:
+		PixelMapResultPos = PixelCalculation(TopPos, { 7980.0f,0.0f,0.0f }, { 1280.f,640.0f });
+		Ptr = GameEngineTexture::Find("StageCol_3.png");
+		Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y + 80.0f));
+		Pixel.a = 0;
+		if (Pixel == GameEnginePixelColor::Black)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 		break;
 	case MyMap::Stage1_4:
+		PixelMapResultPos = PixelCalculation(TopPos, { 10320.0f,0.0f,0.0f }, { 960.f,360.0f });
+		Ptr = GameEngineTexture::Find("StageCol_4.png");
+		Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y));
+		Pixel.a = 0;
+		if (Pixel == GameEnginePixelColor::Black)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 		break;
 	case MyMap::Stage1_Boss:
+		PixelMapResultPos = PixelCalculation(TopPos, { 12084.0f,0.0f,0.0f }, { 704.0f,672.0f });
+		Ptr = GameEngineTexture::Find("BossRoomCol_1.png");
+		Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y));
+		Pixel.a = 0;
+		if (Pixel == GameEnginePixelColor::Black)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 		break;
 	case MyMap::Stage2_1:
+		PixelMapResultPos = PixelCalculation(TopPos, { 13528.0f,0.0f,0.0f }, { 640.0f,360.0f });
+		Ptr = GameEngineTexture::Find("TunakReadyCol_1.png");
+		Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y));
+		Pixel.a = 0;
+		if (Pixel == GameEnginePixelColor::Black)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 		break;
 	case MyMap::Stage2_Boss:
+		PixelMapResultPos = PixelCalculation(TopPos, { 15068.0f,0.0f,0.0f }, { 800.f,450.0f });
+		Ptr = GameEngineTexture::Find("TunakFinalCol_1.png");
+		Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y));
+		Pixel.a = 0;
+		if (Pixel == GameEnginePixelColor::Black)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 		break;
 	case MyMap::Stage3_1:
+		PixelMapResultPos = PixelCalculation(TopPos, { 16768.0f,0.0f,0.0f }, { 800.f,360.0f });
+		Ptr = GameEngineTexture::Find("Stage3Col_1.png");
+		Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y));
+		Pixel.a = 0;
+		if (Pixel == GameEnginePixelColor::Black)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 		break;
 	case MyMap::Stage3_Boss:
+		PixelMapResultPos = PixelCalculation(TopPos, { 18948.0f,0.0f,0.0f }, { 1280.0f,360.0f });
+		Ptr = GameEngineTexture::Find("Stage3Col_Boss11.png");
+		Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y));
+		Pixel.a = 0;
+		if (Pixel == GameEnginePixelColor::Black)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 		break;
 	default:
+		return false;
 		break;
 	}
 }
@@ -366,22 +619,119 @@ bool Player::LeftSideCheck()
 		}
 		break;
 	case MyMap::Stage1_2:
+		PixelMapResultPos = PixelCalculation(LeftPos, { 5320.0f,0.0f,0.0f }, { 1280.0f,720.0f });
+		Ptr = GameEngineTexture::Find("StageCol_2.png");
+		Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y));
+		Pixel.a = 0;
+		if (Pixel == GameEnginePixelColor::Black)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 		break;
 	case MyMap::Stage1_3:
+		PixelMapResultPos = PixelCalculation(LeftPos, { 7980.0f,0.0f,0.0f }, { 1280.f,640.0f });
+		Ptr = GameEngineTexture::Find("StageCol_3.png");
+		Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y));
+		Pixel.a = 0;
+		if (Pixel == GameEnginePixelColor::Black)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 		break;
 	case MyMap::Stage1_4:
+		PixelMapResultPos = PixelCalculation(LeftPos, { 10320.0f,0.0f,0.0f }, { 960.f,360.0f });
+		Ptr = GameEngineTexture::Find("StageCol_4.png");
+		Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y));
+		Pixel.a = 0;
+		if (Pixel == GameEnginePixelColor::Black)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 		break;
 	case MyMap::Stage1_Boss:
+		PixelMapResultPos = PixelCalculation(LeftPos, { 12084.0f,0.0f,0.0f }, { 704.0f,672.0f });
+		Ptr = GameEngineTexture::Find("BossRoomCol_1.png");
+		Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y));
+		Pixel.a = 0;
+		if (Pixel == GameEnginePixelColor::Black)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 		break;
 	case MyMap::Stage2_1:
+		PixelMapResultPos = PixelCalculation(LeftPos, { 13528.0f,0.0f,0.0f }, { 640.0f,360.0f });
+		Ptr = GameEngineTexture::Find("TunakReadyCol_1.png");
+		Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y));
+		Pixel.a = 0;
+		if (Pixel == GameEnginePixelColor::Black)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 		break;
 	case MyMap::Stage2_Boss:
+		PixelMapResultPos = PixelCalculation(LeftPos, { 15068.0f,0.0f,0.0f }, { 800.f,450.0f });
+		Ptr = GameEngineTexture::Find("TunakFinalCol_1.png");
+		Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y));
+		Pixel.a = 0;
+		if (Pixel == GameEnginePixelColor::Black)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 		break;
 	case MyMap::Stage3_1:
+		PixelMapResultPos = PixelCalculation(LeftPos, { 16768.0f,0.0f,0.0f }, { 800.f,360.0f });
+		Ptr = GameEngineTexture::Find("Stage3Col_1.png");
+		Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y));
+		Pixel.a = 0;
+		if (Pixel == GameEnginePixelColor::Black)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 		break;
 	case MyMap::Stage3_Boss:
+		PixelMapResultPos = PixelCalculation(LeftPos, { 18948.0f,0.0f,0.0f }, { 1280.0f,360.0f });
+		Ptr = GameEngineTexture::Find("Stage3Col_Boss11.png");
+		Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y));
+		Pixel.a = 0;
+		if (Pixel == GameEnginePixelColor::Black)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 		break;
 	default:
+		return false;
 		break;
 	}
 }
@@ -423,22 +773,119 @@ bool Player::RightSideCheck()
 		}
 		break;
 	case MyMap::Stage1_2:
+		PixelMapResultPos = PixelCalculation(RightPos, { 5320.0f,0.0f,0.0f }, { 1280.0f,720.0f });
+		Ptr = GameEngineTexture::Find("StageCol_2.png");
+		Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y));
+		Pixel.a = 0;
+		if (Pixel == GameEnginePixelColor::Black)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 		break;
 	case MyMap::Stage1_3:
+		PixelMapResultPos = PixelCalculation(RightPos, { 7980.0f,0.0f,0.0f }, { 1280.f,640.0f });
+		Ptr = GameEngineTexture::Find("StageCol_3.png");
+		Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y));
+		Pixel.a = 0;
+		if (Pixel == GameEnginePixelColor::Black)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 		break;
 	case MyMap::Stage1_4:
+		PixelMapResultPos = PixelCalculation(RightPos, { 10320.0f,0.0f,0.0f }, { 960.f,360.0f });
+		Ptr = GameEngineTexture::Find("StageCol_4.png");
+		Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y));
+		Pixel.a = 0;
+		if (Pixel == GameEnginePixelColor::Black)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 		break;
 	case MyMap::Stage1_Boss:
+		PixelMapResultPos = PixelCalculation(RightPos, { 12084.0f,0.0f,0.0f }, { 704.0f,672.0f });
+		Ptr = GameEngineTexture::Find("BossRoomCol_1.png");
+		Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y));
+		Pixel.a = 0;
+		if (Pixel == GameEnginePixelColor::Black)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 		break;
 	case MyMap::Stage2_1:
+		PixelMapResultPos = PixelCalculation(RightPos, { 13528.0f,0.0f,0.0f }, { 640.0f,360.0f });
+		Ptr = GameEngineTexture::Find("TunakReadyCol_1.png");
+		Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y));
+		Pixel.a = 0;
+		if (Pixel == GameEnginePixelColor::Black)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 		break;
 	case MyMap::Stage2_Boss:
+		PixelMapResultPos = PixelCalculation(RightPos, { 15068.0f,0.0f,0.0f }, { 800.f,450.0f });
+		Ptr = GameEngineTexture::Find("TunakFinalCol_1.png");
+		Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y));
+		Pixel.a = 0;
+		if (Pixel == GameEnginePixelColor::Black)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 		break;
 	case MyMap::Stage3_1:
+		PixelMapResultPos = PixelCalculation(RightPos, { 16768.0f,0.0f,0.0f }, { 800.f,360.0f });
+		Ptr = GameEngineTexture::Find("Stage3Col_1.png");
+		Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y));
+		Pixel.a = 0;
+		if (Pixel == GameEnginePixelColor::Black)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 		break;
 	case MyMap::Stage3_Boss:
+		PixelMapResultPos = PixelCalculation(RightPos, { 18948.0f,0.0f,0.0f }, { 1280.0f,360.0f });
+		Ptr = GameEngineTexture::Find("Stage3Col_Boss11.png");
+		Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y));
+		Pixel.a = 0;
+		if (Pixel == GameEnginePixelColor::Black)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 		break;
 	default:
+		return false;
 		break;
 	}
 }

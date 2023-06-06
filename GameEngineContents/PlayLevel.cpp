@@ -160,14 +160,13 @@ void PlayLevel::Start()
 
 
 	}
-	{
-	}
 	
-
 	//	Player
 	static std::shared_ptr<Player> NewPlayer = CreateActor<Player>(1);
 	//NewPlayer->GetTransform()->SetLocalPosition({ 13150.0f,-39.0f,0.0f });
 	NewPlayer->GetTransform()->SetLocalPosition({ -2390.0f,-500.0f,-801.0f });
+	//NewPlayer->GetTransform()->SetLocalPosition({ 18948.0f,0.0f,-801.0f });
+
 }
 
 

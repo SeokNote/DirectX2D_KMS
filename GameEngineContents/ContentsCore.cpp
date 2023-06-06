@@ -26,7 +26,7 @@ void ContentsCore::GameStart()
 	GameEngineCore::CreateLevel<IntroLevel>();
 	GameEngineCore::CreateLevel<TitleLevel>();
 	GameEngineCore::CreateLevel<PlayLevel>();
-	GameEngineCore::ChangeLevel("IntroLevel");
+	GameEngineCore::ChangeLevel("PlayLevel");
 }
 
 void ContentsCore::GameEnd() 

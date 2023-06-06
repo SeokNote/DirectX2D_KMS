@@ -213,7 +213,7 @@ void Player::JumpStart()
 {
 	StartYpos = GetTransform()->GetLocalPosition().y;
 	PlayerRender->ChangeAnimation("Player_Jump");
-	MoveDir.y += 3.1f;
+	MoveDir.y += 3.3f;
 }
 void Player::JumpUpdate(float _Time)
 {
@@ -221,13 +221,13 @@ void Player::JumpUpdate(float _Time)
 	EndYpos = GetTransform()->GetLocalPosition().y;
 	float Pos = EndYpos - StartYpos;
 	float PushTime = GameEngineInput::GetPressTime("UpMove");
-	if (Pos >= 184.0f) 
+	if (Pos >= 218.f) 
 	{
 		Check111 = true;
 	}
 	if (Check111 == true)
 	{
-		if (Pos <= 184.0f)
+		if (Pos <= 218.f)
 		{
 			Falling = true;
 		}
@@ -353,6 +353,7 @@ void Player::FallUpdate(float _Time)
 		if (true == MiddleCheck())
 		{ 
 			MoveDir.y = 0.0f;
+			IsMiddle = true;
 			ChangeState(PlayerState::IDLE);
 			Falling = false;
 		}
@@ -384,7 +385,7 @@ void Player::FallUpdate(float _Time)
 		if (true == MiddleCheck())
 		{
 			CheckTime = 0.0f;
-			ChangeState(PlayerState::IDLE);
+ 			ChangeState(PlayerState::IDLE);
 			Falling = false;
 			MoveDir.y = 0.0f;
 			IsMiddle = true;
