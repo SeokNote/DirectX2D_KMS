@@ -158,9 +158,11 @@
     <ClInclude Include="Intro.h">
       <Filter>Object\UI\IntroStart</Filter>
     </ClInclude>
-    <ClInclude Include="CountCheckMgr.h" />
     <ClInclude Include="MapMoveBase.h">
       <Filter>보류</Filter>
+    </ClInclude>
+    <ClInclude Include="Door.h">
+      <Filter>Object\Door</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -324,9 +326,11 @@
     <ClCompile Include="Intro.cpp">
       <Filter>Object\UI\IntroStart</Filter>
     </ClCompile>
-    <ClCompile Include="CountCheckMgr.cpp" />
     <ClCompile Include="MapMoveBase.cpp">
       <Filter>보류</Filter>
+    </ClCompile>
+    <ClCompile Include="Door.cpp">
+      <Filter>Object\Door</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -422,6 +426,9 @@
     </Filter>
     <Filter Include="Object\UI\PlayerUI">
       <UniqueIdentifier>{f5a55213-92ee-4459-9d18-aea5dfe71012}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Door">
+      <UniqueIdentifier>{0b8cd44d-7f2e-4ab0-93ae-0c8b926264e0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
