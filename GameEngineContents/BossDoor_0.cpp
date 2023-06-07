@@ -55,7 +55,7 @@ void BossDoor_0::Update(float _DeltaTime)
 	if (BossDoorCheck == false && BossDoor1Col->Collision(3333, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		Time += _DeltaTime;
-		if (Time > 0.5)
+		if (Time > 0.3)
 		{
 			BossDoor1Render->ChangeAnimation("BossDoor_0Idle");
 			BossDoorCheck = true;

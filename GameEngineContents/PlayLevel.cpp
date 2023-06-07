@@ -16,6 +16,7 @@
 #include "DungeonIn.h"
 #include "Door.h"
 #include "BossDoor_0.h"
+#include "BossDoor_1.h"
 
 #include "Stage_1.h"
 #include "Stage_2.h"
@@ -191,6 +192,7 @@ void PlayLevel::Start()
 	{
 		//bossDoor
 		std::shared_ptr<BossDoor_0> BossDoor1Ptr = CreateActor<BossDoor_0>(1);
+		std::shared_ptr<BossDoor_1> BossDoor2Ptr = CreateActor<BossDoor_1>(1);
 
 	}
 	//	Player
