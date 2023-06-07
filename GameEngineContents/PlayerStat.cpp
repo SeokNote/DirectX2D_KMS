@@ -22,31 +22,31 @@ void PlayerStat::Start()
 	
 	PlayerStatUI = CreateComponent<GameEngineUIRenderer>();
 	PlayerStatUI->SetTexture("FinalStateUI.png");
-	PlayerStatUI->GetTransform()->SetLocalPosition({ -390.0f, 100.0f });
+	PlayerStatUI->GetTransform()->SetLocalPosition({ -392.0f, 80.0f });
 	PlayerStatUI->GetTransform()->SetLocalScale(StatUIScale);
 	//PlayerStatUI->Off();
 	
 	FoodStatUI = CreateComponent<GameEngineUIRenderer>();
 	FoodStatUI->SetTexture("FoodBase.png");
-	FoodStatUI->GetTransform()->SetLocalPosition({ -390.0f, -200.0f });
+	FoodStatUI->GetTransform()->SetLocalPosition({ -392.0f, -210.0f });
 	FoodStatUI->GetTransform()->SetLocalScale(FoodStatUIScale);
 	//FoodStatUI->Off();
 
 	ExitButton = CreateComponent<GameEngineUIRenderer>();
 	ExitButton->SetTexture("ExitButton.png");
 	ExitButton->GetTransform()->SetLocalScale(ButtonScale);
-	ExitButton->GetTransform()->SetLocalPosition({ -200,305,0 });
+	ExitButton->GetTransform()->SetLocalPosition({ -200,290,0 });
 	//ExitButton->Off();
 
 
 	ExitButtonSelect = CreateComponent<GameEngineUIRenderer>();
 	ExitButtonSelect->SetTexture("ExitButton_Selected.png");
 	ExitButtonSelect->GetTransform()->SetLocalScale(ButtonScale);
-	ExitButtonSelect->GetTransform()->SetLocalPosition({ -200,305,0 });
+	ExitButtonSelect->GetTransform()->SetLocalPosition({ -200,290,0 });
 	//ExitButtonSelect->Off();
 
 	ExitButtonCollsion = CreateComponent<GameEngineCollision>();
-	ExitButtonCollsion->GetTransform()->SetLocalPosition({ -200,305,0 });
+	ExitButtonCollsion->GetTransform()->SetLocalPosition({ -200,290,0 });
 	ExitButtonCollsion->GetTransform()->SetLocalScale(ButtonScale);
 	ExitButtonCollsion->SetOrder(2998);
 	

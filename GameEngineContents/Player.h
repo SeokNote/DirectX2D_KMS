@@ -45,6 +45,11 @@ public:
 		UICount = _Value;
 		return UICount;
 	}
+	int GetDashCount(int _Count)
+	{
+		_Count = DashCount;
+		return _Count;
+	}
 protected:
 	void Start();
 	void Update(float _Delta) override;
@@ -120,4 +125,7 @@ private:
 	int UICount = 0;
 
 	float4 BottomPos_0 = float4::Zero;
+
+
+	int DashCount = 3;
 };

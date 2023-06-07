@@ -173,6 +173,18 @@
     <ClInclude Include="BossDoor_2.h">
       <Filter>Object\Door</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerHPbar.h">
+      <Filter>Object\UI\PlayerUI</Filter>
+    </ClInclude>
+    <ClInclude Include="DashBar.h">
+      <Filter>Object\UI\PlayerUI</Filter>
+    </ClInclude>
+    <ClInclude Include="CoinBar.h">
+      <Filter>Object\UI\PlayerUI</Filter>
+    </ClInclude>
+    <ClInclude Include="FoodBar.h">
+      <Filter>Object\UI\PlayerUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -349,6 +361,18 @@
     </ClCompile>
     <ClCompile Include="BossDoor_2.cpp">
       <Filter>Object\Door</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerHPbar.cpp">
+      <Filter>Object\UI\PlayerUI</Filter>
+    </ClCompile>
+    <ClCompile Include="DashBar.cpp">
+      <Filter>Object\UI\PlayerUI</Filter>
+    </ClCompile>
+    <ClCompile Include="CoinBar.cpp">
+      <Filter>Object\UI\PlayerUI</Filter>
+    </ClCompile>
+    <ClCompile Include="FoodBar.cpp">
+      <Filter>Object\UI\PlayerUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

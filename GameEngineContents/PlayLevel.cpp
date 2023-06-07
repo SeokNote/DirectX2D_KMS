@@ -9,11 +9,15 @@
 #include "Mountain.h"
 #include "Sky.h"
 #include "Town.h"
-
+#include "DashBar.h"
+#include "CoinBar.h"
+#include "FoodBar.h"
+#include "PlayerHPbar.h"
 #include "ShopNpc.h"
 #include "BuilderNpc.h"
 #include "TempleNpc.h"
 #include "DungeonIn.h"
+
 #include "Door.h"
 #include "BossDoor_0.h"
 #include "BossDoor_1.h"
@@ -135,6 +139,11 @@ void PlayLevel::Start()
 	}
 	{
 		//UI
+		std::shared_ptr<PlayerHPbar> PlayerHPbarPtr = CreateActor<PlayerHPbar>(-10);
+		std::shared_ptr<FoodBar> FoodBarPtr = CreateActor<FoodBar>(-10);
+		std::shared_ptr<CoinBar> CoinBarPtr = CreateActor<CoinBar>(-10);
+		std::shared_ptr<DashBar> DashBarPtr = CreateActor<DashBar>(-10);
+
 		Stat = CreateActor<PlayerStat>(-10);
 		Stat->Off();
 		Inventory = CreateActor<InventoryUI>(-10);
