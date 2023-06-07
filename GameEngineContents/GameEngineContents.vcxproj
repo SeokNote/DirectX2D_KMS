@@ -172,6 +172,18 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="BossDoor_0.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="BossDoor_1.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="BossDoor_2.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="BossStage_1.h">
       <SubType>
       </SubType>
@@ -390,6 +402,18 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Bird.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="BossDoor_0.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="BossDoor_1.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="BossDoor_2.cpp">
       <SubType>
       </SubType>
     </ClCompile>

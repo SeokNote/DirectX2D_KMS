@@ -14,6 +14,9 @@
 #include "BuilderNpc.h"
 #include "TempleNpc.h"
 #include "DungeonIn.h"
+#include "Door.h"
+#include "BossDoor_0.h"
+
 #include "Stage_1.h"
 #include "Stage_2.h"
 #include "Stage_3.h"
@@ -150,13 +153,52 @@ void PlayLevel::Start()
 
 
 	}
-	
+	{
+		//Door
+		//Stage1-1
+		std::shared_ptr<Door> DoorPtr = CreateActor<Door>(1);
+		DoorPtr->SetDoorPos({ 3916.0f,-197.0f,0.0f });
+		DoorPtr->SetNextPos({4120.0f, -468.0f, -801.0f });
+		//Stage1-2
+		std::shared_ptr<Door> DoorPtr_0 = CreateActor<Door>(1);
+		DoorPtr_0->SetDoorPos({ 6372.0f,-558.0f,0.0f });
+		DoorPtr_0->SetNextPos({ 8016.0f, 537.0f, -801.0f });
+		//Stage1-3
+		std::shared_ptr<Door> DoorPtr_1 = CreateActor<Door>(1);
+		DoorPtr_1->SetDoorPos({ 6872.0f,-481.0f,0.0f });
+		DoorPtr_1->SetNextPos({ 11225.0f, -254.0f, -801.0f });
+		//Stage1-4
+		std::shared_ptr<Door> DoorPtr_2 = CreateActor<Door>(1);
+		DoorPtr_2->SetDoorPos({ 9383.0f,-252.0f,0.0f });
+		DoorPtr_2->SetNextPos({ 11438.0f, -480.0f, -801.0f });
+		//Stage1 Boss
+		std::shared_ptr<Door> DoorPtr_3 = CreateActor<Door>(1);
+		DoorPtr_3->SetDoorPos({ 12763.0f,-480.0f,0.0f });
+		DoorPtr_3->SetNextPos({ 13267.0f,-132.0f, -801.0f });
+		//Stage2-1
+		std::shared_ptr<Door> DoorPtr_4 = CreateActor<Door>(1);
+		DoorPtr_4->SetDoorPos({ 14143.0f,-132.0f,0.0f });
+		DoorPtr_4->SetNextPos({ 14304.0f,-192.0f, -801.0f });
+		//Stage2 Boss
+		std::shared_ptr<Door> DoorPtr_5 = CreateActor<Door>(1);
+		DoorPtr_5->SetDoorPos({ 15844.0f,-192.0f,0.0f });
+		DoorPtr_5->SetNextPos({ 16314.0f,-178.0f, -801.0f });
+		//Stage3-1
+		std::shared_ptr<Door> DoorPtr_6 = CreateActor<Door>(1);
+		DoorPtr_6->SetDoorPos({ 17544.0f,-178.0f,0.0f });
+		DoorPtr_6->SetNextPos({ 17790.0f,-67.0f, -801.0f });
+	}
+	{
+		//bossDoor
+		std::shared_ptr<BossDoor_0> BossDoor1Ptr = CreateActor<BossDoor_0>(1);
+
+	}
 	//	Player
 	static std::shared_ptr<Player> NewPlayer = CreateActor<Player>(1);
 	//NewPlayer->GetTransform()->SetLocalPosition({ 13150.0f,-39.0f,0.0f });
-	NewPlayer->GetTransform()->SetLocalPosition({ -2390.0f,-500.0f,-801.0f });
-	//NewPlayer->GetTransform()->SetLocalPosition({ 18948.0f,0.0f,-801.0f });
-
+	NewPlayer->GetTransform()->SetLocalPosition({ 11438.0f,-480.0f,-801.0f });
+	//NewPlayer->GetTransform()->SetLocalPosition({ 3716.0f,-197.0f,-801.0f });
+	
 }
 
 

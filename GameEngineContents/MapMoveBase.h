@@ -5,6 +5,7 @@
 class MapMoveBase : public GameEngineActor
 {
 public:
+	static MapMoveBase* MapMoveBasePtr;
 	// constrcuter destructer
 	MapMoveBase();
 	~MapMoveBase();

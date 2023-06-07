@@ -10,6 +10,7 @@
 #include <GameEngineCore/GameEngineRenderer.h>
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore/GameEngineSprite.h>
+MapMoveBase* MapMoveBase::MapMoveBasePtr = nullptr;
 
 MapMoveBase::MapMoveBase() 
 {

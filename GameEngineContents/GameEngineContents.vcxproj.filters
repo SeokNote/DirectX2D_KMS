@@ -164,6 +164,15 @@
     <ClInclude Include="Door.h">
       <Filter>Object\Door</Filter>
     </ClInclude>
+    <ClInclude Include="BossDoor_0.h">
+      <Filter>Object\Door</Filter>
+    </ClInclude>
+    <ClInclude Include="BossDoor_1.h">
+      <Filter>Object\Door</Filter>
+    </ClInclude>
+    <ClInclude Include="BossDoor_2.h">
+      <Filter>Object\Door</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -330,6 +339,15 @@
       <Filter>보류</Filter>
     </ClCompile>
     <ClCompile Include="Door.cpp">
+      <Filter>Object\Door</Filter>
+    </ClCompile>
+    <ClCompile Include="BossDoor_0.cpp">
+      <Filter>Object\Door</Filter>
+    </ClCompile>
+    <ClCompile Include="BossDoor_1.cpp">
+      <Filter>Object\Door</Filter>
+    </ClCompile>
+    <ClCompile Include="BossDoor_2.cpp">
       <Filter>Object\Door</Filter>
     </ClCompile>
   </ItemGroup>
