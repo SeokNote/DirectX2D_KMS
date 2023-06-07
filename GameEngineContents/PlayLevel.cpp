@@ -17,6 +17,7 @@
 #include "Door.h"
 #include "BossDoor_0.h"
 #include "BossDoor_1.h"
+#include "BossDoor_2.h"
 
 #include "Stage_1.h"
 #include "Stage_2.h"
@@ -193,12 +194,13 @@ void PlayLevel::Start()
 		//bossDoor
 		std::shared_ptr<BossDoor_0> BossDoor1Ptr = CreateActor<BossDoor_0>(1);
 		std::shared_ptr<BossDoor_1> BossDoor2Ptr = CreateActor<BossDoor_1>(1);
+		std::shared_ptr<BossDoor_2> BossDoor3Ptr = CreateActor<BossDoor_2>(1);
 
 	}
 	//	Player
 	static std::shared_ptr<Player> NewPlayer = CreateActor<Player>(1);
 	//NewPlayer->GetTransform()->SetLocalPosition({ 13150.0f,-39.0f,0.0f });
-	NewPlayer->GetTransform()->SetLocalPosition({ 11438.0f,-480.0f,-801.0f });
+	NewPlayer->GetTransform()->SetLocalPosition({ -2390.0f,-500.0f,-801.0f });
 	//NewPlayer->GetTransform()->SetLocalPosition({ 3716.0f,-197.0f,-801.0f });
 	
 }
