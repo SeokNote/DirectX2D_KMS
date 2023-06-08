@@ -192,6 +192,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="BuildTextBox.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="CoinBar.h">
       <SubType>
       </SubType>
@@ -226,6 +230,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="FoodTextBox.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="FoodUI.h">
       <SubType>
       </SubType>
@@ -235,6 +243,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="FrontCloud.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="GreatWeapon.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -304,6 +316,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="ShopNpc.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="ShopTextBox.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -411,6 +427,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="TrainTextBox.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BackCloud.cpp">
@@ -438,6 +458,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="BuilderNpc.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="BuildTextBox.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -475,6 +499,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="FoodTextBox.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="FoodUI.cpp">
       <SubType>
       </SubType>
@@ -484,6 +512,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="FrontCloud.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="GreatWeapon.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -554,6 +586,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="ShopNpc.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="ShopTextBox.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -658,6 +694,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Trainning.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="TrainTextBox.cpp">
       <SubType>
       </SubType>
     </ClCompile>

@@ -185,6 +185,21 @@
     <ClInclude Include="FoodBar.h">
       <Filter>Object\UI\PlayerUI</Filter>
     </ClInclude>
+    <ClInclude Include="GreatWeapon.h">
+      <Filter>Object\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="ShopTextBox.h">
+      <Filter>Object\UI\TextBox</Filter>
+    </ClInclude>
+    <ClInclude Include="BuildTextBox.h">
+      <Filter>Object\UI\TextBox</Filter>
+    </ClInclude>
+    <ClInclude Include="FoodTextBox.h">
+      <Filter>Object\UI\TextBox</Filter>
+    </ClInclude>
+    <ClInclude Include="TrainTextBox.h">
+      <Filter>Object\UI\TextBox</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -374,6 +389,21 @@
     <ClCompile Include="FoodBar.cpp">
       <Filter>Object\UI\PlayerUI</Filter>
     </ClCompile>
+    <ClCompile Include="GreatWeapon.cpp">
+      <Filter>Object\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="ShopTextBox.cpp">
+      <Filter>Object\UI\TextBox</Filter>
+    </ClCompile>
+    <ClCompile Include="BuildTextBox.cpp">
+      <Filter>Object\UI\TextBox</Filter>
+    </ClCompile>
+    <ClCompile Include="FoodTextBox.cpp">
+      <Filter>Object\UI\TextBox</Filter>
+    </ClCompile>
+    <ClCompile Include="TrainTextBox.cpp">
+      <Filter>Object\UI\TextBox</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Levels">
@@ -471,6 +501,15 @@
     </Filter>
     <Filter Include="Object\Door">
       <UniqueIdentifier>{0b8cd44d-7f2e-4ab0-93ae-0c8b926264e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Weapon">
+      <UniqueIdentifier>{d597e010-9c10-47ae-9f30-09a5d291e32b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\UI\TextBox">
+      <UniqueIdentifier>{14cdba1f-9a71-406a-b55b-60b768e6e183}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\UI\TextBox\Select">
+      <UniqueIdentifier>{10ea4867-c7f7-4e03-83e1-064cf0f2008b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

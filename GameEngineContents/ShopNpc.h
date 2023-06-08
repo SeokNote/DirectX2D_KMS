@@ -37,6 +37,8 @@ private:
 	std::shared_ptr<class ShopUI> ShopUIPtr;
 	std::shared_ptr<class InventoryUI> InventoryUIPtr;
 
+	std::shared_ptr<class ShopTextBox> ShopTextBoxPtr;
+
 	int IndexCount = 0;
 };
 

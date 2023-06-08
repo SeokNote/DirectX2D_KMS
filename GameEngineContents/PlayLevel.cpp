@@ -18,6 +18,7 @@
 #include "TempleNpc.h"
 #include "DungeonIn.h"
 
+#include "GreatWeapon.h"
 #include "Door.h"
 #include "BossDoor_0.h"
 #include "BossDoor_1.h"
@@ -211,7 +212,11 @@ void PlayLevel::Start()
 	//NewPlayer->GetTransform()->SetLocalPosition({ 13150.0f,-39.0f,0.0f });
 	NewPlayer->GetTransform()->SetLocalPosition({ -2390.0f,-500.0f,-801.0f });
 	//NewPlayer->GetTransform()->SetLocalPosition({ 3716.0f,-197.0f,-801.0f });
-	
+
+	std::shared_ptr<GreatWeapon> GreatWeaponPtr = CreateActor<GreatWeapon>(1);
+	GreatWeaponPtr->GetTransform()->SetWorldPosition(NewPlayer->GetTransform()->GetWorldPosition());
+	GreatWeaponPtr->GetTransform()->SetParent(NewPlayer->GetTransform());
+
 }
 
 

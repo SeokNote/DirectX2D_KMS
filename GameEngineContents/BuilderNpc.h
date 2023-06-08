@@ -32,5 +32,8 @@ private:
 
 	std::shared_ptr<class GameEngineCollision> BuilderNpcCol;
 
+	std::shared_ptr<class BuildTextBox> BuildTextBoxPtr;
+
+	int IndexCount = 0;
 };
 

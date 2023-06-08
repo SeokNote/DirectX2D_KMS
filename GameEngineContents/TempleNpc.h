@@ -31,8 +31,9 @@ private:
 	std::shared_ptr<class GameEngineSpriteRenderer> FRender;
 
 	std::shared_ptr<class FoodUI> FoodUIPtr;
+	std::shared_ptr<class FoodTextBox> FoodTextBoxPtr;
 
-
+	
 
 
 	//Position

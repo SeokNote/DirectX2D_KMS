@@ -33,9 +33,13 @@ private:
 	std::shared_ptr<class GameEngineSpriteRenderer> TrainningNpicRender;
 	std::shared_ptr<class GameEngineSpriteRenderer> TrainningBotRender;
 	std::shared_ptr<class GameEngineSpriteRenderer> TrainningBotRender_1;
+	std::shared_ptr<class GameEngineSpriteRenderer> FRender;
 
 
+	float4 FRenderPos = { -1700.0f,-433.0f,-770.f };
+	float4 FScale = { 52.0f,56.0f,0.0f };
 
+	int IndexCount = 0;
 
 
 	std::shared_ptr<GameEngineCollision> TrainningNpcCol;

@@ -65,14 +65,37 @@ void Trainning::Start()
 					  
 	TrainningBotRender_1->ChangeAnimation("TrainningBotIdle");
 
+	FRender = CreateComponent<GameEngineSpriteRenderer>(1);
+	FRender->SetTexture("Keyboard_F.png");
+	FRender->GetTransform()->SetLocalPosition(FRenderPos);
+	FRender->GetTransform()->SetLocalScale(FScale);
+	FRender->ColorOptionValue.MulColor.a = 0.8f;
+	FRender->Off();
+
 	TrainningNpcCol = CreateComponent<GameEngineCollision>();
-	TrainningNpcCol->GetTransform()->SetLocalScale({ 1.0f,1.0f,1.0f });
-	TrainningNpcCol->GetTransform()->SetLocalPosition({ 0.0f,0.0f,0.f });
+	TrainningNpcCol->GetTransform()->SetLocalScale(TrainNpcScale);
+	TrainningNpcCol->GetTransform()->SetLocalPosition(TrainNpcPos);
 	TrainningNpcCol->SetOrder(3003);
 }
 
 void Trainning::Update(float _DeltaTime)
 {
+	if (TrainningNpcCol->Collision(3333, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	{
+		FRender->On();
+		if (IndexCount == 0 && GameEngineInput::IsDown("NpcInteraction")) {
+			//´É·ÂÄ¡ Âï´Â ¿¢ÅÍ »ý¼º
+		}
+		if (IndexCount == 1 && GameEngineInput::IsDown("ESC"))
+		{
+			
+		}
+
+	}
+	else
+	{
+		FRender->Off();
+	}
 
 
 }

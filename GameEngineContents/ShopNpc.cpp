@@ -3,6 +3,7 @@
 #include "ShopNpc.h"
 #include "ShopUI.h"
 #include "InventoryUI.h"
+#include "ShopTextBox.h"
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 
 #include <GameEnginePlatform/GameEngineWindow.h>
@@ -72,17 +73,19 @@ void ShopNpc::Update(float _DeltaTime)
 		FRender->On();
 		if (IndexCount < 1 && GameEngineInput::IsDown("NpcInteraction")) {
 			IndexCount++;
-			ShopUIPtr = GetLevel()->CreateActor<ShopUI>(1);
-			InventoryUIPtr = GetLevel()->CreateActor<InventoryUI>(1);
+			//ShopUIPtr = GetLevel()->CreateActor<ShopUI>(1);
+			//InventoryUIPtr = GetLevel()->CreateActor<InventoryUI>(1);
+			ShopTextBoxPtr = GetLevel()->CreateActor<ShopTextBox>();
 			Player::MainPlayer->SetUICount(1);
 
 		}
 		if (IndexCount == 1 && GameEngineInput::IsDown("ESC"))
 		{
+			ShopTextBoxPtr->Death();
 			Player::MainPlayer->SetUICount(0);
 			IndexCount--;
-			ShopUIPtr->Death();
-			InventoryUIPtr->Death();
+			//ShopUIPtr->Death();
+			//InventoryUIPtr->Death();
 		}
 
 	

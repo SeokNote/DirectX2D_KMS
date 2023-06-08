@@ -1,6 +1,8 @@
 #include "PrecompileHeader.h"
 #include "TempleNpc.h"
 #include "FoodUI.h"
+#include "FoodTextBox.h"
+
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include "Player.h"
 #include <GameEnginePlatform/GameEngineWindow.h>
@@ -72,14 +74,16 @@ void TempleNpc::Update(float _DeltaTime)
 		{
 			IndexCount++;
 			Player::MainPlayer->SetUICount(1);
-			FoodUIPtr = GetLevel()->CreateActor<FoodUI>();
-			FoodUIPtr->SetNpc(DynamicThis<TempleNpc>());
+			FoodTextBoxPtr = GetLevel()->CreateActor<FoodTextBox>();
+			//FoodUIPtr = GetLevel()->CreateActor<FoodUI>();
+			//FoodUIPtr->SetNpc(DynamicThis<TempleNpc>());
 		}
 		if (IndexCount == 1 && GameEngineInput::IsDown("ESC"))
 		{
+			FoodTextBoxPtr->Death();
 			Player::MainPlayer->SetUICount(0);
 			IndexCount--;
-			FoodUIPtr->Death();
+			//FoodUIPtr->Death();
 		}
 	}
 	else
