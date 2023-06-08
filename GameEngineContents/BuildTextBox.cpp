@@ -31,9 +31,26 @@ void BuildTextBox::Start()
 	BuildTextBoxUI_S->SetTexture("SeletTextBoxBase_1.png");
 	BuildTextBoxUI_S->GetTransform()->SetLocalPosition({ 480.0f, -30.0f , -100.0f });
 	BuildTextBoxUI_S->GetTransform()->SetLocalScale(SelectBoxScale);
+
+	////////////////////// 충돌디버그 뜨면 그때 위치값 셋팅해주기////////////////
+	ButtonCol_0 = CreateComponent<GameEngineCollision>();
+	ButtonCol_0->GetTransform()->SetLocalScale(ButtonColScale);
+	ButtonCol_0->GetTransform()->SetLocalPosition(ButtonPos_0);
+	ButtonCol_0->SetOrder(3011);
+
+	ButtonCol_1 = CreateComponent<GameEngineCollision>();
+	ButtonCol_1->GetTransform()->SetLocalScale(ButtonColScale);
+	ButtonCol_1->GetTransform()->SetLocalPosition(ButtonPos_1);
+	ButtonCol_1->SetOrder(3011);
+
+	ButtonCol_2 = CreateComponent<GameEngineCollision>();
+	ButtonCol_2->GetTransform()->SetLocalScale(ButtonColScale);
+	ButtonCol_2->GetTransform()->SetLocalPosition(ButtonPos_2);
+	ButtonCol_2->SetOrder(3011);
 }
 
 void BuildTextBox::Update(float _Delta)
 {
+
 }
 

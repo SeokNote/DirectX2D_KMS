@@ -1,6 +1,7 @@
 #include "PrecompileHeader.h"
 #include "Trainning.h"
-
+#include "Player.h"
+#include "TrainTextBox.h"
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEngineCore/GameEngineRenderer.h>
 #include <GameEnginePlatform/GameEngineWindow.h>
@@ -84,11 +85,16 @@ void Trainning::Update(float _DeltaTime)
 	{
 		FRender->On();
 		if (IndexCount == 0 && GameEngineInput::IsDown("NpcInteraction")) {
+			IndexCount++;
+			Player::MainPlayer->SetUICount(1);
+			TrainTextBoxPtr = GetLevel()->CreateActor<TrainTextBox>();
 			//´É·ÂÄ¡ Âï´Â ¿¢ÅÍ »ý¼º
 		}
 		if (IndexCount == 1 && GameEngineInput::IsDown("ESC"))
 		{
-			
+			IndexCount--;
+			Player::MainPlayer->SetUICount(0);
+			TrainTextBoxPtr->Death();
 		}
 
 	}
