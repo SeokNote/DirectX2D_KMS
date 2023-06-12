@@ -19,7 +19,6 @@ GameEngineTexture::GameEngineTexture()
 GameEngineTexture::~GameEngineTexture()
 {
 	Release();
-
 }
 
 
@@ -162,6 +161,7 @@ void GameEngineTexture::PSReset(UINT _Slot)
 
 	GameEngineDevice::GetContext()->PSSetShaderResources(_Slot, 1, &Nullptr);
 }
+
 void GameEngineTexture::ResCreate(const D3D11_TEXTURE2D_DESC& _Value)
 {
 	Desc = _Value;
@@ -407,7 +407,7 @@ GameEnginePixelColor GameEngineTexture::GetPixel(int _X, int _Y, GameEnginePixel
 		Return.a = ColorPtr[3];
 		return Return;
 	}
-	break;
+		break;
 	case DXGI_FORMAT_B8G8R8X8_UNORM:
 	{
 		// 컬러1개에 4바이트인 100 * 100
@@ -513,6 +513,7 @@ void GameEngineTexture::PathCheck(const std::string_view& _Path, const std::stri
 	}
 	GameEngineCore::CurLoadLevel->TexturePath[_Name.data()] = _Path.data();
 }
+
 void GameEngineTexture::Release()
 {
 	Image.Release();
@@ -540,4 +541,24 @@ void GameEngineTexture::Release()
 		Texture2D->Release();
 		Texture2D = nullptr;
 	}
+}
+
+void GameEngineTexture::ReLoad()
+{
+	if (nullptr != Texture2D)
+	{
+		return;
+	}
+
+	if (nullptr != SRV)
+	{
+		return;
+	}
+
+	if ("" == GetPath())
+	{
+		return;
+	}
+
+	ResLoad(GetPath());
 }

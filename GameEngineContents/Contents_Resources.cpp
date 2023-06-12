@@ -50,6 +50,15 @@ void ContentsCore::ContentsResourcesCreate()
 		Pipe->SetDepthState("EngineDepth");
 	}
 
-
+	{
+		std::shared_ptr<GameEngineRenderingPipeLine> Pipe = GameEngineRenderingPipeLine::Create("DebugRect");
+		//Pipe->SetVertexBuffer("Rect");
+		//Pipe->SetIndexBuffer("Rect");
+		Pipe->SetVertexShader("DebugMeshRender.hlsl");
+		Pipe->SetRasterizer("Engine2DBase");
+		Pipe->SetPixelShader("DebugMeshRender.hlsl");
+		Pipe->SetBlendState("AlphaBlend");
+		Pipe->SetDepthState("EngineDepth");
+	}
 
 }
