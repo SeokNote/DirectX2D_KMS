@@ -22,7 +22,7 @@ void CoinBar::Start()
 	Camera->GetTransform()->SetLocalPosition({ 0, 0, -1000.0f });
 
 
-	PlayerCoinBarUI = CreateComponent<GameEngineUIRenderer>();
+	PlayerCoinBarUI = CreateComponent<GameEngineUIRenderer>(2);
 	PlayerCoinBarUI->SetTexture("GoldCoin7.png");
 	PlayerCoinBarUI->GetTransform()->SetLocalPosition(PlayerCoinBarUIPos);
 	PlayerCoinBarUI->GetTransform()->SetLocalScale(PlayerCoinBarUIScale);

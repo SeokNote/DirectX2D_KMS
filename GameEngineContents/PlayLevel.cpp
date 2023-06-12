@@ -102,6 +102,7 @@ void PlayLevel::Start()
 	}
 	GetMainCamera()->SetProjectionType(CameraType::Orthogonal);
 	GetMainCamera()->SetSortType(1, SortType::ZSort);
+	GetCamera(100)->SetSortType(2, SortType::ZSort);
 	FEffect = GetLastTarget()->CreateEffect<FadeEffect>();
 
 

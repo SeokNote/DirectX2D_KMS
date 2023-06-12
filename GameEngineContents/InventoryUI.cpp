@@ -19,7 +19,7 @@ void InventoryUI::Start()
 	Camera->GetTransform()->SetLocalPosition({ 0, 0, -1000.0f });
 
 
-	InventoryUIRender = CreateComponent<GameEngineUIRenderer>();
+	InventoryUIRender = CreateComponent<GameEngineUIRenderer>(2);
 	InventoryUIRender->SetTexture("InventoryBase.png");
 	InventoryUIRender->GetTransform()->SetLocalPosition({400.0f,0.0f,0.0f });
 	InventoryUIRender->GetTransform()->SetLocalScale(InventoryUIScale);

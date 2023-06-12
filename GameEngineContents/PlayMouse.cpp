@@ -28,7 +28,7 @@ void PlayMouse::Start()
 	Camera->SetProjectionType(CameraType::Orthogonal);
 	Camera->GetTransform()->SetLocalPosition({ 0, 0, -1000.0f });
 
-	PlayMouseRender = CreateComponent<GameEngineUIRenderer>();
+	PlayMouseRender = CreateComponent<GameEngineUIRenderer>(2);
 	PlayMouseRender->SetTexture("ShootingCursor.png");
 	PlayMouseRender->GetTransform()->SetLocalScale(PlayMouseScale);
 
@@ -43,7 +43,7 @@ void PlayMouse::Update(float _DeltaTime)
 	float4 MousePos = GameEngineWindow::GetMousePosition();
 	MousePos.x -= 640.0f;
 	MousePos.y -= 360.0f;
-	PlayMouseRender->GetTransform()->SetLocalPosition({ MousePos.x, -MousePos.y,0.0f });
+	PlayMouseRender->GetTransform()->SetLocalPosition({ MousePos.x, -MousePos.y,-900.0f });
 	PlayMouseCollsion->GetTransform()->SetLocalPosition({ MousePos.x, -MousePos.y,0.0f });
 }
 

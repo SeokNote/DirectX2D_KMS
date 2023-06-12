@@ -19,7 +19,7 @@ void ShopUI::Start()
 	Camera->GetTransform()->SetLocalPosition({ 0, 0, -1000.0f });
 
 
-	ShopUIRender = CreateComponent<GameEngineUIRenderer>();
+	ShopUIRender = CreateComponent<GameEngineUIRenderer>(2);
 	ShopUIRender->SetTexture("ShopBase.png");
 	ShopUIRender->GetTransform()->SetLocalPosition({ -400.0f,0.0f,0.0f });
 	ShopUIRender->GetTransform()->SetLocalScale(ShopUIScale);

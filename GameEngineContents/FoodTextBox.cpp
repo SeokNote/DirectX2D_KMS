@@ -22,12 +22,12 @@ void FoodTextBox::Start()
 	Camera->GetTransform()->SetLocalPosition({ 0, 0, -1000.0f });
 
 
-	FoodTextBoxUI = CreateComponent<GameEngineUIRenderer>();
+	FoodTextBoxUI = CreateComponent<GameEngineUIRenderer>(2);
 	FoodTextBoxUI->SetTexture("FoodTextBoxBase.png");
 	FoodTextBoxUI->GetTransform()->SetLocalPosition({ 0.0f, -250.0f , -100.0f });
 	FoodTextBoxUI->GetTransform()->SetLocalScale(TextBoxScale);
 
-	FoodTextBoxUI_S = CreateComponent<GameEngineUIRenderer>();
+	FoodTextBoxUI_S = CreateComponent<GameEngineUIRenderer>(2);
 	FoodTextBoxUI_S->SetTexture("SelectTextBoxBase.png");
 	FoodTextBoxUI_S->GetTransform()->SetLocalPosition({ 480.0f, -30.0f , -100.0f });
 	FoodTextBoxUI_S->GetTransform()->SetLocalScale(SelectBoxScale);

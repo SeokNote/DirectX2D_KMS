@@ -22,12 +22,12 @@ void BuildTextBox::Start()
 	Camera->GetTransform()->SetLocalPosition({ 0, 0, -1000.0f });
 
 
-	BuildTextBoxUI = CreateComponent<GameEngineUIRenderer>();
+	BuildTextBoxUI = CreateComponent<GameEngineUIRenderer>(2);
 	BuildTextBoxUI->SetTexture("BuildTextBoxBase.png");
 	BuildTextBoxUI->GetTransform()->SetLocalPosition({ 0.0f, -250.0f , -100.0f });
 	BuildTextBoxUI->GetTransform()->SetLocalScale(TextBoxScale);
 
-	BuildTextBoxUI_S = CreateComponent<GameEngineUIRenderer>();
+	BuildTextBoxUI_S = CreateComponent<GameEngineUIRenderer>(2);
 	BuildTextBoxUI_S->SetTexture("SeletTextBoxBase_1.png");
 	BuildTextBoxUI_S->GetTransform()->SetLocalPosition({ 480.0f, -30.0f , -100.0f });
 	BuildTextBoxUI_S->GetTransform()->SetLocalScale(SelectBoxScale);

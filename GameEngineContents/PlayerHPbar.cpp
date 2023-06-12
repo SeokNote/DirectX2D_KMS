@@ -20,12 +20,12 @@ void PlayerHPbar::Start()
 	Camera->GetTransform()->SetLocalPosition({ 0, 0, -1000.0f });
 
 
-	PlayerHpBarBGUI = CreateComponent<GameEngineUIRenderer>();
+	PlayerHpBarBGUI = CreateComponent<GameEngineUIRenderer>(2);
 	PlayerHpBarBGUI->SetTexture("PlayerLifeBack.png");
 	PlayerHpBarBGUI->GetTransform()->SetLocalPosition(PlayerHpBarPos);
 	PlayerHpBarBGUI->GetTransform()->SetLocalScale(PlayerHpBarUIScale);
 
-	PlayerHpBarUI = CreateComponent<GameEngineUIRenderer>();
+	PlayerHpBarUI = CreateComponent<GameEngineUIRenderer>(2);
 	PlayerHpBarUI->SetTexture("PlayerLifeBase 1.png");
 	PlayerHpBarUI->GetTransform()->SetLocalPosition(PlayerHpBarPos);
 	PlayerHpBarUI->GetTransform()->SetLocalScale(PlayerHpBarUIScale);

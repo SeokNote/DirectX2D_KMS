@@ -20,26 +20,26 @@ void PlayerStat::Start()
 	Camera->GetTransform()->SetLocalPosition({ 0, 0, -1000.0f });
 
 	
-	PlayerStatUI = CreateComponent<GameEngineUIRenderer>();
+	PlayerStatUI = CreateComponent<GameEngineUIRenderer>(2);
 	PlayerStatUI->SetTexture("FinalStateUI.png");
 	PlayerStatUI->GetTransform()->SetLocalPosition({ -392.0f, 80.0f });
 	PlayerStatUI->GetTransform()->SetLocalScale(StatUIScale);
 	//PlayerStatUI->Off();
 	
-	FoodStatUI = CreateComponent<GameEngineUIRenderer>();
+	FoodStatUI = CreateComponent<GameEngineUIRenderer>(2);
 	FoodStatUI->SetTexture("FoodBase.png");
 	FoodStatUI->GetTransform()->SetLocalPosition({ -392.0f, -210.0f });
 	FoodStatUI->GetTransform()->SetLocalScale(FoodStatUIScale);
 	//FoodStatUI->Off();
 
-	ExitButton = CreateComponent<GameEngineUIRenderer>();
+	ExitButton = CreateComponent<GameEngineUIRenderer>(2);
 	ExitButton->SetTexture("ExitButton.png");
 	ExitButton->GetTransform()->SetLocalScale(ButtonScale);
 	ExitButton->GetTransform()->SetLocalPosition({ -200,290,0 });
 	//ExitButton->Off();
 
 
-	ExitButtonSelect = CreateComponent<GameEngineUIRenderer>();
+	ExitButtonSelect = CreateComponent<GameEngineUIRenderer>(2);
 	ExitButtonSelect->SetTexture("ExitButton_Selected.png");
 	ExitButtonSelect->GetTransform()->SetLocalScale(ButtonScale);
 	ExitButtonSelect->GetTransform()->SetLocalPosition({ -200,290,0 });
