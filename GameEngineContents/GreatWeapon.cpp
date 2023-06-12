@@ -25,5 +25,6 @@ void GreatWeapon::Start()
 
 void GreatWeapon::Update(float _Delta)
 {
+
 }
 

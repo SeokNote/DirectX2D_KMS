@@ -203,6 +203,9 @@
     <ClInclude Include="UICountBase.h">
       <Filter>보류</Filter>
     </ClInclude>
+    <ClInclude Include="AbilityUI.h">
+      <Filter>Object\UI\AbilityUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -410,6 +413,9 @@
     <ClCompile Include="UICountBase.cpp">
       <Filter>보류</Filter>
     </ClCompile>
+    <ClCompile Include="AbilityUI.cpp">
+      <Filter>Object\UI\AbilityUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Levels">
@@ -516,6 +522,9 @@
     </Filter>
     <Filter Include="Object\UI\TextBox\Select">
       <UniqueIdentifier>{10ea4867-c7f7-4e03-83e1-064cf0f2008b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\UI\AbilityUI">
+      <UniqueIdentifier>{9edff23f-c8f6-4da9-90ba-6eb1372a0baa}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

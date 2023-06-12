@@ -2,6 +2,7 @@
 #include "TrainTextBox.h"
 #include "Trainning.h"
 #include "Player.h"
+#include "AbilityUI.h"
 #include "UICountBase.h"
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/GameEngineCamera.h>
@@ -44,7 +45,6 @@ void TrainTextBox::Start()
 	TrainSelectUI->GetTransform()->SetLocalScale(SelectTextScale);
 	TrainSelectUI->Off();
 
-	////////////////////// 충돌디버그 뜨면 그때 위치값 셋팅해주기////////////////
 	ButtonCol_0 = CreateComponent<GameEngineCollision>();
 	ButtonCol_0->GetTransform()->SetLocalScale(SelectTextScale);
 	ButtonCol_0->GetTransform()->SetLocalPosition({ 480.0f, -30.0f ,0.0f });
@@ -83,6 +83,7 @@ void TrainTextBox::Update(float _Delta)
 			if (TrainningCheck == false)
 			{
 			  //어빌리티 UI띄우기
+				AbilityUIPtr = GetLevel()->CreateActor<AbilityUI>();
 			}
 			Player::MainPlayer->SetUICount(0);
 			UICountBase::MainUICountBase->SetUICount(0);
