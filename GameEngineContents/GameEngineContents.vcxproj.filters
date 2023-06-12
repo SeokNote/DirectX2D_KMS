@@ -200,6 +200,9 @@
     <ClInclude Include="TrainTextBox.h">
       <Filter>Object\UI\TextBox</Filter>
     </ClInclude>
+    <ClInclude Include="UICountBase.h">
+      <Filter>보류</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -403,6 +406,9 @@
     </ClCompile>
     <ClCompile Include="TrainTextBox.cpp">
       <Filter>Object\UI\TextBox</Filter>
+    </ClCompile>
+    <ClCompile Include="UICountBase.cpp">
+      <Filter>보류</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

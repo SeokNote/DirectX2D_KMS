@@ -17,7 +17,7 @@
 #include "BuilderNpc.h"
 #include "TempleNpc.h"
 #include "DungeonIn.h"
-
+#include "UICountBase.h"
 #include "GreatWeapon.h"
 #include "Door.h"
 #include "BossDoor_0.h"
@@ -105,6 +105,7 @@ void PlayLevel::Start()
 	GetCamera(100)->SetSortType(2, SortType::ZSort);
 	FEffect = GetLastTarget()->CreateEffect<FadeEffect>();
 
+	std::shared_ptr<UICountBase> UICountBasePtr = CreateActor<UICountBase>(1);
 
 
 	{	//Town

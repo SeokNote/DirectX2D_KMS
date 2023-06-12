@@ -3,6 +3,7 @@
 #include "Trainning.h"
 #include "Player.h"
 #include "BuildTextBox.h"
+#include "UICountBase.h"
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEnginePlatform/GameEngineWindow.h>
 #include <GameEngineCore/GameEngineLevel.h>
@@ -61,28 +62,24 @@ void BuilderNpc::Start()
 	BuilderNpcCol->SetOrder(3011);
 }
 
-bool TrainningValue = false;
 void BuilderNpc::Update(float _DeltaTime)
 {
 
 	if (BuilderNpcCol->Collision(3333, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		FRender->On();
-			if (IndexCount==0 && GameEngineInput::IsDown("NpcInteraction")) {
-				if (TrainningValue == false)
-				{
-					GetLevel()->CreateActor<Trainning>();
-					TrainningValue = true;
-				}
+		if (UICountBase::MainUICountBase->GetUICount() == 0 && GameEngineInput::IsDown("NpcInteraction")) {
+				
 				BuildTextBoxPtr = GetLevel()->CreateActor<BuildTextBox>(1);
 				Player::MainPlayer->SetUICount(1);
-				IndexCount++;
+				UICountBase::MainUICountBase->SetUICount(1);
 			}
-			if (IndexCount == 1 && GameEngineInput::IsDown("ESC"))
+			if (UICountBase::MainUICountBase->GetUICount() == 1 && GameEngineInput::IsDown("ESC"))
 			{
 				Player::MainPlayer->SetUICount(0);
 				BuildTextBoxPtr->Death();
-				IndexCount--;
+				UICountBase::MainUICountBase->SetUICount(0);
+
 			}
 		
 	}

@@ -2,7 +2,7 @@
 #include "FoodUI.h"
 #include "TempleNpc.h"
 #include "Player.h"
-
+#include "UICountBase.h"
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/GameEngineCamera.h>
 #include <GameEnginePlatform/GameEngineInput.h>
@@ -54,8 +54,8 @@ void FoodUI::Update(float _Delta)
 		ExitButtonSelectRender->On();
 		if (GameEngineInput::IsDown("ClickMouse"))
 		{
-			TempleNpcPtr->SetIndexCount(0);
 			Player::MainPlayer->SetUICount(0);
+			UICountBase::MainUICountBase->SetUICount(0);
 			Death();
 		}
 	}

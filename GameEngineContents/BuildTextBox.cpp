@@ -1,6 +1,8 @@
 #include "PrecompileHeader.h"
 #include "BuildTextBox.h"
-
+#include "Trainning.h"
+#include "Player.h"
+#include "UICountBase.h"
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/GameEngineCamera.h>
 #include <GameEnginePlatform/GameEngineInput.h>
@@ -28,29 +30,83 @@ void BuildTextBox::Start()
 	BuildTextBoxUI->GetTransform()->SetLocalScale(TextBoxScale);
 
 	BuildTextBoxUI_S = CreateComponent<GameEngineUIRenderer>(2);
-	BuildTextBoxUI_S->SetTexture("SeletTextBoxBase_1.png");
+	BuildTextBoxUI_S->SetTexture("TextBoxBase_1.png");
 	BuildTextBoxUI_S->GetTransform()->SetLocalPosition({ 480.0f, -30.0f , -100.0f });
 	BuildTextBoxUI_S->GetTransform()->SetLocalScale(SelectBoxScale);
 
+	BuildSelectTextUI = CreateComponent<GameEngineUIRenderer>(2);
+	BuildSelectTextUI->SetTexture("SelectText_1.png");
+	BuildSelectTextUI->GetTransform()->SetLocalPosition({ 480.0f, -30.0f , -200.0f });
+	BuildSelectTextUI->GetTransform()->SetLocalScale(SelectTextBoxScale);
+
+	BuildSelectUI = CreateComponent<GameEngineUIRenderer>(2);
+	BuildSelectUI->SetTexture("SelectTextBG_1.png");
+	BuildSelectUI->GetTransform()->SetLocalScale(SelectTextScale);
+	BuildSelectUI->Off();
+
 	////////////////////// 충돌디버그 뜨면 그때 위치값 셋팅해주기////////////////
 	ButtonCol_0 = CreateComponent<GameEngineCollision>();
-	ButtonCol_0->GetTransform()->SetLocalScale(ButtonColScale);
-	ButtonCol_0->GetTransform()->SetLocalPosition(ButtonPos_0);
+	ButtonCol_0->GetTransform()->SetLocalScale(SelectTextScale);
+	ButtonCol_0->GetTransform()->SetLocalPosition({ 480.0f, -30.0f ,0.0f });
 	ButtonCol_0->SetOrder(3011);
 
 	ButtonCol_1 = CreateComponent<GameEngineCollision>();
-	ButtonCol_1->GetTransform()->SetLocalScale(ButtonColScale);
-	ButtonCol_1->GetTransform()->SetLocalPosition(ButtonPos_1);
+	ButtonCol_1->GetTransform()->SetLocalScale(SelectTextScale);
+	ButtonCol_1->GetTransform()->SetLocalPosition({ 480.0f, 30.0f , 0.0f });
 	ButtonCol_1->SetOrder(3011);
 
 	ButtonCol_2 = CreateComponent<GameEngineCollision>();
-	ButtonCol_2->GetTransform()->SetLocalScale(ButtonColScale);
-	ButtonCol_2->GetTransform()->SetLocalPosition(ButtonPos_2);
+	ButtonCol_2->GetTransform()->SetLocalScale(SelectTextScale);
+	ButtonCol_2->GetTransform()->SetLocalPosition({ 480.0f, -93.0f ,0.0f });
 	ButtonCol_2->SetOrder(3011);
 }
-
+bool TrainningCheck = false;
 void BuildTextBox::Update(float _Delta)
 {
+	if (ButtonCol_0->Collision(3001, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	{
+		BuildSelectUI->On();
+		BuildSelectUI->GetTransform()->SetLocalPosition({ 480.0f, -30.0f ,-150.0f });
+		if (GameEngineInput::IsDown("ClickMouse")) {
+		
+			Player::MainPlayer->SetUICount(0);
+			UICountBase::MainUICountBase->SetUICount(0);
+			Death();
+		}
+	}
+	else if (ButtonCol_1->Collision(3001, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	{
+		BuildSelectUI->On();
+		BuildSelectUI->GetTransform()->SetLocalPosition({ 480.0f, 30.0f ,-150.0f });
+		if (GameEngineInput::IsDown("ClickMouse")) {
+			int a = 0;
+			if (TrainningCheck == false)
+			{
+				GetLevel()->CreateActor<Trainning>();
+				TrainningCheck = true;
+			}
+			Player::MainPlayer->SetUICount(0);
+			UICountBase::MainUICountBase->SetUICount(0);
+			Death();
 
+		}
+	}
+
+	else if (ButtonCol_2->Collision(3001, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	{
+		BuildSelectUI->On();
+		BuildSelectUI->GetTransform()->SetLocalPosition({ 480.0f, -93.0f ,-150.0f });
+		if (GameEngineInput::IsDown("ClickMouse")) {
+			int a = 0;
+			Player::MainPlayer->SetUICount(0);
+			UICountBase::MainUICountBase->SetUICount(0);
+			Death();
+
+		}
+	}
+	else {
+		BuildSelectUI->Off();
+	}
+	
 }
 

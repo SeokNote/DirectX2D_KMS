@@ -2,7 +2,7 @@
 #include "TempleNpc.h"
 #include "FoodUI.h"
 #include "FoodTextBox.h"
-
+#include "UICountBase.h"
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include "Player.h"
 #include <GameEnginePlatform/GameEngineWindow.h>
@@ -15,7 +15,6 @@
 
 
 TempleNpc::TempleNpc()
-	:IndexCount(0)
 {
 }
 
@@ -68,22 +67,19 @@ void TempleNpc::Update(float _DeltaTime)
 {
 	if (TempleNpcCol->Collision(3333, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
-		int asd = IndexCount;
 		FRender->On();
-		if (IndexCount < 1 && GameEngineInput::IsDown("NpcInteraction"))
+		if (UICountBase::MainUICountBase->GetUICount() == 0 && GameEngineInput::IsDown("NpcInteraction"))
 		{
-			IndexCount++;
 			Player::MainPlayer->SetUICount(1);
 			FoodTextBoxPtr = GetLevel()->CreateActor<FoodTextBox>();
-			//FoodUIPtr = GetLevel()->CreateActor<FoodUI>();
-			//FoodUIPtr->SetNpc(DynamicThis<TempleNpc>());
+			UICountBase::MainUICountBase->SetUICount(1);
+
 		}
-		if (IndexCount == 1 && GameEngineInput::IsDown("ESC"))
+		if (UICountBase::MainUICountBase->GetUICount() == 1 && GameEngineInput::IsDown("ESC"))
 		{
 			FoodTextBoxPtr->Death();
 			Player::MainPlayer->SetUICount(0);
-			IndexCount--;
-			//FoodUIPtr->Death();
+			UICountBase::MainUICountBase->SetUICount(0);
 		}
 	}
 	else

@@ -15,10 +15,6 @@ public:
 	TempleNpc& operator=(const TempleNpc& _Other) = delete;
 	TempleNpc& operator=(TempleNpc&& _Other) noexcept = delete;
 
-	int SetIndexCount(int _Value) {
-		IndexCount = _Value;
-		return IndexCount;
-	}
 protected:
 
 	void Start() override;
@@ -30,7 +26,6 @@ private:
 	std::shared_ptr<class GameEngineSpriteRenderer> TempleNpcRender;
 	std::shared_ptr<class GameEngineSpriteRenderer> FRender;
 
-	std::shared_ptr<class FoodUI> FoodUIPtr;
 	std::shared_ptr<class FoodTextBox> FoodTextBoxPtr;
 
 	
@@ -42,6 +37,5 @@ private:
 
 	std::shared_ptr<class GameEngineCollision> TempleNpcCol;
 
-	int IndexCount = 0;
 };
 
