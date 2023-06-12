@@ -31,6 +31,8 @@ private:
 	float4 SelectBoxScale = { 320.f, 210.0f,0.0f };
 	float4 SelectTextBoxScale = { 240.f, 186.0f,0.0f };
 	float4 SelectTextScale = { 290.f, 47.0f,0.0f };
+
+
 	//	float4 FoodStatUIScale = { 470.0f,250.0f,0.0f };
 };
 

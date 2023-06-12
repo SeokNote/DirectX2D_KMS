@@ -34,8 +34,6 @@ private:
 	float4 FRenderPos = { 1790.0f,133.0f,-750.f };
 
 
-	std::shared_ptr<class ShopUI> ShopUIPtr;
-	std::shared_ptr<class InventoryUI> InventoryUIPtr;
 
 	std::shared_ptr<class ShopTextBox> ShopTextBoxPtr;
 

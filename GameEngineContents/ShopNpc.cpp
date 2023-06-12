@@ -4,8 +4,9 @@
 #include "ShopUI.h"
 #include "InventoryUI.h"
 #include "ShopTextBox.h"
-#include <GameEngineCore/GameEngineSpriteRenderer.h>
+#include "UICountBase.h"
 
+#include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEnginePlatform/GameEngineWindow.h>
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/GameEngineCamera.h>
@@ -71,24 +72,20 @@ void ShopNpc::Update(float _DeltaTime)
 	if (ShopNpcCol->Collision(3333, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		FRender->On();
-		if (IndexCount < 1 && GameEngineInput::IsDown("NpcInteraction")) {
-			IndexCount++;
-			//ShopUIPtr = GetLevel()->CreateActor<ShopUI>(1);
-			//InventoryUIPtr = GetLevel()->CreateActor<InventoryUI>(1);
+		if (UICountBase::MainUICountBase->GetUICount() == 0 && GameEngineInput::IsDown("NpcInteraction")) {
 			ShopTextBoxPtr = GetLevel()->CreateActor<ShopTextBox>();
 			Player::MainPlayer->SetUICount(1);
+			UICountBase::MainUICountBase->SetUICount(1);
 
 		}
-		if (IndexCount == 1 && GameEngineInput::IsDown("ESC"))
+		if (UICountBase::MainUICountBase->GetUICount() == 1 && GameEngineInput::IsDown("ESC"))
 		{
 			ShopTextBoxPtr->Death();
 			Player::MainPlayer->SetUICount(0);
-			IndexCount--;
-			//ShopUIPtr->Death();
-			//InventoryUIPtr->Death();
+			UICountBase::MainUICountBase->SetUICount(0);
+
 		}
 
-	
 	}
 	else
 	{

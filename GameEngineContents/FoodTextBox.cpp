@@ -84,8 +84,8 @@ void FoodTextBox::Update(float _Delta)
 				GetLevel()->CreateActor<FoodUI>();
 				FoodCheck = true;
 			}
-			Player::MainPlayer->SetUICount(0);
-			UICountBase::MainUICountBase->SetUICount(0);
+			Player::MainPlayer->SetUICount(1);
+			UICountBase::MainUICountBase->SetUICount(1);
 			Death();
 			FoodCheck = false;
 

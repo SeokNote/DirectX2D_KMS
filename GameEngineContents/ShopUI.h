@@ -25,5 +25,7 @@ private:
 
 	std::shared_ptr<class GameEngineUIRenderer> ShopUIRender;
 	std::shared_ptr<class GameEngineUIRenderer> MapTabBaseBG;
+	std::shared_ptr<class InventoryUI> InventoryUIPtr;
+
 };
 

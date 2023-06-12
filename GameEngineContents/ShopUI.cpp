@@ -1,5 +1,6 @@
 #include "PrecompileHeader.h"
 #include "ShopUI.h"
+#include "InventoryUI.h"
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/GameEngineCamera.h>
 #include <GameEnginePlatform/GameEngineInput.h>
@@ -26,9 +27,13 @@ void ShopUI::Start()
 
 
 	//	
-
+	InventoryUIPtr = GetLevel()->CreateActor<InventoryUI>();
 }
 void ShopUI::Update(float _Delta)
 {
-
+	if (GameEngineInput::IsDown("ESC"))
+	{
+		InventoryUIPtr->Death();
+		Death();
+	}
 }

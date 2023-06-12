@@ -60,7 +60,7 @@ void BuildTextBox::Start()
 	ButtonCol_2->GetTransform()->SetLocalPosition({ 480.0f, -93.0f ,0.0f });
 	ButtonCol_2->SetOrder(3011);
 }
-bool TrainningCheck = false;
+bool BuildCheck = false;
 void BuildTextBox::Update(float _Delta)
 {
 	if (ButtonCol_0->Collision(3001, ColType::AABBBOX2D, ColType::AABBBOX2D))
@@ -80,10 +80,10 @@ void BuildTextBox::Update(float _Delta)
 		BuildSelectUI->GetTransform()->SetLocalPosition({ 480.0f, 30.0f ,-150.0f });
 		if (GameEngineInput::IsDown("ClickMouse")) {
 			int a = 0;
-			if (TrainningCheck == false)
+			if (BuildCheck == false)
 			{
 				GetLevel()->CreateActor<Trainning>();
-				TrainningCheck = true;
+				BuildCheck = true;
 			}
 			Player::MainPlayer->SetUICount(0);
 			UICountBase::MainUICountBase->SetUICount(0);
