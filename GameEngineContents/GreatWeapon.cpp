@@ -19,12 +19,29 @@ void GreatWeapon::Start()
 
 	GreatWeaponRender = CreateComponent<GameEngineSpriteRenderer>(1);
 	GreatWeaponRender->SetTexture("GreatSword0.png");
-//	GreatWeaponRender->GetTransform()->SetLocalPosition({50.0f,0.f,0.f});
+//	GreatWeaponRender->GetTransform()->SetLocalNegativeScaleX();
+	GreatWeaponRender->GetTransform()->SetLocalPosition({30.0f,-20.f,0.f});
 	GreatWeaponRender->GetTransform()->SetLocalScale(GreatWeaponScale);
 }
-
+bool awda = false;
 void GreatWeapon::Update(float _Delta)
 {
+	std::shared_ptr<GameEngineCamera> Camera = GetLevel()->GetMainCamera();
+	float4 PlayerPos = Player::MainPlayer->GetTransform()->GetLocalPosition();
+
+	float4x4 ViewPort = Camera->GetViewPort();
+	float4x4 projection = Camera->GetProjection();
+	float4x4 View = Camera->GetView();
+
+	float4 MousePos = GameEngineInput::GetMousePosition();
+	MousePos *= ViewPort.InverseReturn();
+	MousePos *= projection.InverseReturn();
+	MousePos *= View.InverseReturn();
+
+	if (GameEngineInput::IsDown("ESC"))
+	{
+		int a = 0;
+	}
 
 }
 

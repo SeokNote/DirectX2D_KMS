@@ -22,7 +22,7 @@ private:
 	std::shared_ptr<class GameEngineSpriteRenderer> GreatWeaponRender;
 
 
-	float4 GreatWeaponScale = { 256.0f,256.0f,0.0f };
+	float4 GreatWeaponScale = { -256.0f,256.0f,0.0f };
 	float4 GreatWeaponPos = float4::Zero;
 };
 
