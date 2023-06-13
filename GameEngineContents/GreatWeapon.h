@@ -20,6 +20,7 @@ protected:
 	void Update(float _Delta) override;
 private:
 	std::shared_ptr<class GameEngineSpriteRenderer> GreatWeaponRender;
+	std::shared_ptr<class GameEngineSpriteRenderer> GreatWeaponEffectRender;
 
 
 	float4 GreatWeaponScale = { -256.0f,256.0f,0.0f };
