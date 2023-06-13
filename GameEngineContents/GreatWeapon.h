@@ -24,5 +24,6 @@ private:
 
 	float4 GreatWeaponScale = { -256.0f,256.0f,0.0f };
 	float4 GreatWeaponPos = float4::Zero;
+	int index = 0;
 };
 

@@ -89,6 +89,8 @@ void PlayLevel::Start()
 		GameEngineInput::CreateKey("UpMove_1", VK_SPACE);
 		GameEngineInput::CreateKey("NpcInteraction", 'F');
 		GameEngineInput::CreateKey("ESC", VK_ESCAPE);
+		GameEngineInput::CreateKey("ATTACK", VK_LBUTTON);
+
 
 	}
 	
@@ -218,7 +220,6 @@ void PlayLevel::Start()
 	std::shared_ptr<GreatWeapon> GreatWeaponPtr = CreateActor<GreatWeapon>(1);
 	GreatWeaponPtr->GetTransform()->SetWorldPosition(NewPlayer->GetTransform()->GetWorldPosition());
 	GreatWeaponPtr->GetTransform()->SetParent(NewPlayer->GetTransform());
-
 }
 
 

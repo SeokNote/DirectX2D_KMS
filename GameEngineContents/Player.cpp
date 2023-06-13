@@ -892,9 +892,19 @@ float4 Player::PixelCalculation(float4 _TargetPos, float4 _MapCenterPos, float4 
 }
 void Player::Filp()
 {
-	float4 MousePos = GameEngineWindow::GetMousePosition();
-	MousePos.x -= 640.0f;
-	if (0 > MousePos.x) {
+	std::shared_ptr<GameEngineCamera> Camera = GetLevel()->GetMainCamera();
+	float4 PlayerPos = Player::MainPlayer->GetTransform()->GetLocalPosition();
+
+	float4x4 ViewPort = Camera->GetViewPort();
+	float4x4 projection = Camera->GetProjection();
+	float4x4 View = Camera->GetView();
+
+	float4 MousePos = GameEngineInput::GetMousePosition();
+	MousePos *= ViewPort.InverseReturn();
+	MousePos *= projection.InverseReturn();
+	MousePos *= View.InverseReturn();
+	float FilpX = MousePos.x - PlayerPos.x;
+	if (0 > FilpX) {
 		PlayerRender->GetTransform()->SetLocalNegativeScaleX();
 	}
 	else {
