@@ -26,5 +26,13 @@ private:
 	float4 GreatWeaponScale = { -256.0f,256.0f,0.0f };
 	float4 GreatWeaponPos = float4::Zero;
 	int index = 0;
+	float y = 0.0f;
+	float x = 0.0f;
+
+	void CameraShake(float _Delta);
+	float ShakeTime = 0.0f;
+	float ShakeTime_0 = 0.0f;
+
+	bool ShakeValue = false;
 };
 

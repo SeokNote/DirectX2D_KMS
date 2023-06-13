@@ -43,6 +43,7 @@ void GreatWeapon::Start()
 bool awda = false;
 void GreatWeapon::Update(float _Delta)
 {
+	float4 CameraPos = GetLevel()->GetMainCamera()->GetTransform()->GetWorldPosition();
 
 	std::shared_ptr<GameEngineCamera> Camera = GetLevel()->GetMainCamera();
 	float4 PlayerPos = Player::MainPlayer->GetTransform()->GetLocalPosition();
@@ -103,19 +104,53 @@ void GreatWeapon::Update(float _Delta)
 
 	if (index==0&&GameEngineInput::IsDown("ATTACK"))
 	{
-	//	GreatWeaponRender->GetTransform()->SetLocalPosition({ -20.0f,-50.f,-750.f });
-		//GreatWeaponRender->GetTransform()->AddWorldRotation({ 0.0f,0.0f,160.0f });
+		ShakeValue = true;
 		awda = true;
 		index = 1;
 		GreatWeaponEffectRender->ChangeAnimation("GreatSwordAniIdle");
 	}
 	else if (index==1 && GameEngineInput::IsDown("ATTACK"))
 	{
-		//	GreatWeaponRender->GetTransform()->SetLocalPosition({ -20.0f,-50.f,-750.f });
-			//GreatWeaponRender->GetTransform()->AddWorldRotation({ 0.0f,0.0f,160.0f });
+		ShakeValue = true;
 		awda = false;
 		index = 0;
 		GreatWeaponEffectRender->ChangeAnimation("GreatSwordAniIdle");
 	}
+	if (ShakeValue == true)
+	{
+		ShakeTime_0 += _Delta;
+		CameraShake(_Delta);
+
+		if (ShakeTime_0 > 0.4f)
+		{
+			GetLevel()->GetMainCamera()->GetTransform()->SetWorldPosition(CameraPos);
+			ShakeValue = false;
+			ShakeTime_0 = 0.0f;
+		}
+
+	}
+
+
+}
+bool CameraCheck = false;
+void GreatWeapon::CameraShake(float _Delta)
+{
+	float4 PlayerPos = Player::MainPlayer->GetTransform()->GetLocalPosition();
+	float4 CameraPos = GetLevel()->GetMainCamera()->GetTransform()->GetWorldPosition();
+	
+		ShakeTime += _Delta;
+		x+=0.5;
+		y = sin(x * 10.0f) * powf(0.5f, x);
+		
+		GetLevel()->GetMainCamera()->GetTransform()->SetWorldPosition({ CameraPos.x,CameraPos.y + abs(y * 30),CameraPos.z });
+	
+		if (ShakeTime > 0.4f)
+		{
+			x = 0.f;
+			ShakeTime = 0.0f;
+		}
+	
+
+	
 }
 
