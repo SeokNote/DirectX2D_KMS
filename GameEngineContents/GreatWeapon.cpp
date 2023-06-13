@@ -37,7 +37,6 @@ void GreatWeapon::Update(float _Delta)
 	MousePos *= ViewPort.InverseReturn();
 	MousePos *= projection.InverseReturn();
 	MousePos *= View.InverseReturn();
-
 	if (GameEngineInput::IsDown("ESC"))
 	{
 		int a = 0;

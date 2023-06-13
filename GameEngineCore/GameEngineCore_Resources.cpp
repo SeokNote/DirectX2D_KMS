@@ -36,7 +36,6 @@ void GameEngineCore::CoreResourcesInit()
 		for (size_t i = 0; i < File.size(); i++)
 		{
 			GameEngineTexture::Load(File[i].GetFullPath());
-
 		}
 	}
 
@@ -68,7 +67,7 @@ void GameEngineCore::CoreResourcesInit()
 		D3D11_SAMPLER_DESC SamperData = {};
 
 		// 
-
+		SamperData.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
 		SamperData.AddressU = D3D11_TEXTURE_ADDRESS_CLAMP;
 		SamperData.AddressV = D3D11_TEXTURE_ADDRESS_CLAMP;
 		SamperData.AddressW = D3D11_TEXTURE_ADDRESS_CLAMP;
@@ -116,7 +115,7 @@ void GameEngineCore::CoreResourcesInit()
 
 		GameEngineVertexBuffer::Create("Rect", ArrVertex);
 		GameEngineIndexBuffer::Create("Rect", ArrIndex);
-
+		GameEngineMesh::Create("Rect");
 	}
 
 	{
@@ -135,7 +134,7 @@ void GameEngineCore::CoreResourcesInit()
 
 		GameEngineVertexBuffer::Create("FullRect", ArrVertex);
 		GameEngineIndexBuffer::Create("FullRect", ArrIndex);
-
+		GameEngineMesh::Create("FullRect");
 	}
 
 
@@ -240,13 +239,15 @@ void GameEngineCore::CoreResourcesInit()
 
 	}
 
-	// 버텍스 쉐이더 컴파일
+	// 쉐이더 컴파일
 	{
 		GameEngineDirectory NewDir;
 		NewDir.MoveParentToDirectory("Shader");
 		NewDir.Move("Shader");
 
 		std::vector<GameEngineFile> Files = NewDir.GetAllFile({ ".hlsl", ".fx" });
+
+		// std::string FileString = Files[0].GetString();
 
 		for (size_t i = 0; i < Files.size(); i++)
 		{
@@ -257,8 +258,7 @@ void GameEngineCore::CoreResourcesInit()
 		//GameEnginePixelShader::Load(Files[0].GetFullPath(), "Merge_PS");
 
 		//GameEngineVertexShader::Load(Files[1].GetFullPath(), "Texture_VS");
-		//G
-
+		//GameEnginePixelShader::Load(Files[1].GetFullPath(), "Texture_PS");
 	}
 
 
@@ -307,11 +307,12 @@ void GameEngineCore::CoreResourcesInit()
 
 
 	{
+		// 2D가 워낙 매쉬가 중요하지가 않아요 Rect 안써.
 		{
 			std::shared_ptr<GameEngineRenderingPipeLine> Pipe = GameEngineRenderingPipeLine::Create("2DTexture");
 
-			Pipe->SetVertexBuffer("Rect");
-			Pipe->SetIndexBuffer("Rect");
+			//Pipe->SetVertexBuffer("Rect");
+			//Pipe->SetIndexBuffer("Rect");
 			Pipe->SetVertexShader("TextureShader.hlsl");
 			Pipe->SetRasterizer("Engine2DBase");
 			Pipe->SetPixelShader("TextureShader.hlsl");
@@ -321,8 +322,8 @@ void GameEngineCore::CoreResourcesInit()
 
 		{
 			std::shared_ptr<GameEngineRenderingPipeLine> Pipe = GameEngineRenderingPipeLine::Create("Merge");
-			Pipe->SetVertexBuffer("FullRect");
-			Pipe->SetIndexBuffer("FullRect");
+			//Pipe->SetVertexBuffer("FullRect");
+			//Pipe->SetIndexBuffer("FullRect");
 			Pipe->SetVertexShader("MergeShader.hlsl");
 			Pipe->SetRasterizer("Engine2DBase");
 			Pipe->SetPixelShader("MergeShader.hlsl");
@@ -331,7 +332,6 @@ void GameEngineCore::CoreResourcesInit()
 
 			GameEngineRenderTarget::RenderTargetUnitInit();
 		}
-
 	}
 }
 

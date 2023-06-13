@@ -24,12 +24,11 @@ void ContentsCore::ContentsResourcesCreate()
 		//GameEngineVertexShader::Load(Files[0].GetFullPath(), "MyShader_VS");
 		//GameEnginePixelShader::Load(Files[0].GetFullPath(), "MyShader_PS");
 	}
-
 	{
 		std::shared_ptr<GameEngineRenderingPipeLine> Pipe = GameEngineRenderingPipeLine::Create("My2DTexture");
 
-		Pipe->SetVertexBuffer("Rect");
-		Pipe->SetIndexBuffer("Rect");
+		//Pipe->SetVertexBuffer("Rect");
+		//Pipe->SetIndexBuffer("Rect");
 		Pipe->SetVertexShader("MyShader.fx");
 		Pipe->SetRasterizer("Engine2DBase");
 		Pipe->SetPixelShader("MyShader.fx");
@@ -41,8 +40,8 @@ void ContentsCore::ContentsResourcesCreate()
 	{
 		std::shared_ptr<GameEngineRenderingPipeLine> Pipe = GameEngineRenderingPipeLine::Create("Fade");
 
-		Pipe->SetVertexBuffer("FullRect");
-		Pipe->SetIndexBuffer("FullRect");
+		//Pipe->SetVertexBuffer("FullRect");
+		//Pipe->SetIndexBuffer("FullRect");
 		Pipe->SetVertexShader("FadeShader.hlsl");
 		Pipe->SetRasterizer("Engine2DBase");
 		Pipe->SetPixelShader("FadeShader.hlsl");
@@ -60,5 +59,18 @@ void ContentsCore::ContentsResourcesCreate()
 		Pipe->SetBlendState("AlphaBlend");
 		Pipe->SetDepthState("EngineDepth");
 	}
+
+	//{
+	//	std::shared_ptr<GameEngineRenderingPipeLine> Pipe = GameEngineRenderingPipeLine::Create("DebugSphere");
+	//	Pipe->SetVertexBuffer("Sphere");
+	//	Pipe->SetIndexBuffer("Sphere");
+	//	Pipe->SetVertexShader("CollisionDebugShader.hlsl");
+	//	Pipe->SetRasterizer("Engine2DBase");
+	//	Pipe->SetPixelShader("CollisionDebugShader.hlsl");
+	//	Pipe->SetBlendState("AlphaBlend");
+	//	Pipe->SetDepthState("EngineDepth");
+	//}
+
+
 
 }
