@@ -45,6 +45,8 @@ void Player::Start()
 		GameEngineSprite::LoadFolder(NewDir.GetPlusFileName("PlayerIdle").GetFullPath());
 		GameEngineSprite::LoadFolder(NewDir.GetPlusFileName("PlayerJump").GetFullPath());
 		GameEngineSprite::LoadFolder(NewDir.GetPlusFileName("PlayerRun").GetFullPath());
+		GameEngineSprite::LoadFolder(NewDir.GetPlusFileName("PlayerJumpAni").GetFullPath());
+		GameEngineSprite::LoadFolder(NewDir.GetPlusFileName("PlayerWalkAni").GetFullPath());
 
 	}
 
@@ -60,6 +62,17 @@ void Player::Start()
 
 	PlayerRender->ChangeAnimation("Player_Idle");
 
+	PlayerJumpEffectRender = CreateComponent<GameEngineSpriteRenderer>(1);
+	PlayerJumpEffectRender->SetTexture("JumpFX5.png");
+	PlayerJumpEffectRender->GetTransform()->SetLocalScale({ 45.0f, 50.0f });
+	PlayerJumpEffectRender->CreateAnimation({ .AnimationName = "Player_JumpEffect", .SpriteName = "PlayerJumpAni",.FrameInter = 0.05f,.Loop=false, .ScaleToTexture = false });
+	
+	PlayerWalkEffectRender = CreateComponent<GameEngineSpriteRenderer>(1);
+	PlayerWalkEffectRender->SetTexture("Dust6.png");
+	PlayerWalkEffectRender->GetTransform()->SetLocalScale({64.0f, 64.0f });
+	PlayerWalkEffectRender->CreateAnimation({ .AnimationName = "Player_WalkEffect", .SpriteName = "PlayerWalkAni",.FrameInter = 0.05f,.Loop = false, .ScaleToTexture = false });
+
+	PlayerRender->ChangeAnimation("Player_Idle");
 	PlayerTopRender = CreateComponent<GameEngineSpriteRenderer>(1);
 	PlayerTopRender->SetTexture("TopBottom.png");
 	PlayerTopRender->GetTransform()->SetLocalScale({ 58.0f, 4.0f });
@@ -906,11 +919,16 @@ void Player::Filp()
 	float FilpX = MousePos.x - PlayerPos.x;
 	if (0 > FilpX) {
 		PlayerRender->GetTransform()->SetLocalNegativeScaleX();
+		PlayerWalkEffectRender->GetTransform()->SetLocalNegativeScaleX();
+		PlayerWalkEffectRender->GetTransform()->SetWorldPosition({ MoveStartPoS.x + 40.0f,MoveStartPoS.y - 30.0f,-801.0f });
 	}
 	else {
 		PlayerRender->GetTransform()->SetLocalPositiveScaleX();
+		PlayerWalkEffectRender->GetTransform()->SetLocalPositiveScaleX();
+		PlayerWalkEffectRender->GetTransform()->SetWorldPosition({ MoveStartPoS.x - 40.0f,MoveStartPoS.y - 30.0f,-801.0f });
 
 	}
+	PlayerJumpEffectRender->GetTransform()->SetWorldPosition({ StartXpos,StartYpos - 30.0f,-801.0f });
 
 };
 

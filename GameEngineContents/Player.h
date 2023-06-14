@@ -63,7 +63,8 @@ private:
 
 	float Angle = 0.0f;
 	std::shared_ptr<class GameEngineSpriteRenderer> PlayerRender;
-
+	std::shared_ptr<class GameEngineSpriteRenderer> PlayerJumpEffectRender;
+	std::shared_ptr<class GameEngineSpriteRenderer> PlayerWalkEffectRender;
 	std::shared_ptr<class GameEngineSpriteRenderer> PlayerTopRender;
 	std::shared_ptr<class GameEngineSpriteRenderer> PlayerBottoomRender;
 
@@ -110,11 +111,12 @@ private:
 	float4 MoveRange = float4::Zero;
 	float MoveSpeed = 300.f;
 
-
+	float EffectTime = 0.0f;
 	float JumpTime = 0.0f;
 	int JumpCount = 0;
-
+	float StartXpos = 0.0f;
 	float StartYpos = 0.0f;
+	float4 MoveStartPoS = float4::Zero;
 	float EndYpos = 0.0f;
 	GameEnginePixelColor MiddleGround = { 255, 0, 255, 255 };
 	bool Falling = false;

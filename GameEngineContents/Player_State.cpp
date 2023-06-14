@@ -133,10 +133,19 @@ void Player::IdleEnd() {
 
 void Player::MoveStart()
 {
+	MoveStartPoS = GetTransform()->GetLocalPosition();
 	PlayerRender->ChangeAnimation("Player_Move");
+	PlayerWalkEffectRender->ChangeAnimation("Player_WalkEffect");
 }
 void Player::MoveUpdate(float _Time)
 {
+	EffectTime += _Time;
+	if (EffectTime > 0.3f)
+	{
+		MoveStartPoS = GetTransform()->GetLocalPosition();
+		PlayerWalkEffectRender->ChangeAnimation("Player_WalkEffect");
+		EffectTime = 0.0f;
+	}
 	if (UICount != 0)
 	{
 		MoveDir.x = 0.0f;
@@ -211,13 +220,14 @@ bool JumpCheck = false;
 bool Check111 = false;
 void Player::JumpStart()
 {
+	StartXpos = GetTransform()->GetLocalPosition().x;
 	StartYpos = GetTransform()->GetLocalPosition().y;
 	PlayerRender->ChangeAnimation("Player_Jump");
 	MoveDir.y += 3.3f;
+	PlayerJumpEffectRender->ChangeAnimation("Player_JumpEffect");
 }
 void Player::JumpUpdate(float _Time)
 {
-
 	EndYpos = GetTransform()->GetLocalPosition().y;
 	float Pos = EndYpos - StartYpos;
 	float PushTime = GameEngineInput::GetPressTime("UpMove");
