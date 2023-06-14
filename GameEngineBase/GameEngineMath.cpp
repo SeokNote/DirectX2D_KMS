@@ -9,18 +9,18 @@ const float GameEngineMath::PIE2 = PIE * 2.0f;
 const float GameEngineMath::DegToRad = GameEngineMath::PIE / 180;
 const float GameEngineMath::RadToDeg = 180 / GameEngineMath::PIE;
 
-const float4 float4::Left	   = {-1.0f, 0.0f, 0.0f, 1.0f};
-const float4 float4::Right	   = {1.0f, 0.0f, 0.0f, 1.0f };
-const float4 float4::Up		   = { 0.0f, 1.0f, 0.0f, 1.0f };
-const float4 float4::Down	   = { 0.0f, -1.0f, 0.0f, 1.0f };
-const float4 float4::Forward   = { 0.0f, 0.0f, 1.0f, 1.0f };
-const float4 float4::Back	   = { 0.0f, 0.0f, -1.0f, 1.0f };
+const float4 float4::Left = { -1.0f, 0.0f, 0.0f, 1.0f };
+const float4 float4::Right = { 1.0f, 0.0f, 0.0f, 1.0f };
+const float4 float4::Up = { 0.0f, 1.0f, 0.0f, 1.0f };
+const float4 float4::Down = { 0.0f, -1.0f, 0.0f, 1.0f };
+const float4 float4::Forward = { 0.0f, 0.0f, 1.0f, 1.0f };
+const float4 float4::Back = { 0.0f, 0.0f, -1.0f, 1.0f };
 
 const float4 float4::One = { 1.0f, 1.0f, 1.0f, 1.0f };
 const float4 float4::Zero = { 0.0f, 0.0f, 0.0f, 1.0f };
 const float4 float4::Null = { 0.0f, 0.0f, 0.0f, 0.0f };
 
-const float4 float4::Red = {1.0f, 0.0f, 0.0f, 1.0f};
+const float4 float4::Red = { 1.0f, 0.0f, 0.0f, 1.0f };
 const float4 float4::Blue = { 0.0f, 0.0f, 1.0f, 1.0f };
 const float4 float4::Green = { 0.0f, 1.0f, 0.0f, 1.0f };
 const float4 float4::White = { 1.0f, 1.0f, 1.0f, 1.0f };
@@ -55,7 +55,7 @@ float4 float4::EulerDegToQuaternion()
 	return Return;
 }
 
-float4 float4::QuaternionToEulerDeg() 
+float4 float4::QuaternionToEulerDeg()
 {
 	return QuaternionToEulerRad() * GameEngineMath::RadToDeg;
 }
@@ -95,6 +95,22 @@ float4 float4::QuaternionToEulerRad()
 float4x4 float4::QuaternionToRotationMatrix()
 {
 	return DirectX::XMMatrixRotationQuaternion(DirectVector);
+}
+
+float float4::XYDistance(float4 _Value)
+{
+	float4 Len = DirectX::XMVector2Length(*this - _Value);
+	return Len.x;
+
+	// return sqrtf((x - _Value.x) * (x - _Value.x) + (y - _Value.y) * (y - _Value.y));
+}
+
+float float4::XYZDistance(float4 _Value)
+{
+	float4 Len = DirectX::XMVector3Length(*this - _Value);
+	return Len.x;
+
+	// return sqrtf((x - _Value.x) * (x - _Value.x) + (y - _Value.y) * (y - _Value.y) + (z - _Value.z) * (z - _Value.z));
 }
 
 // 뭘하는 함수냐?
@@ -178,7 +194,7 @@ float4 float4::operator*(const class float4x4& _Other)
 	// 					               0   1   0   0
 	// 					               0   0   1   0
 	// 					             100  80  50   1
-	
+
 	// 100 + 100, 100 + 80, 100 + 50
 
 	//(100 * 1) + (0 * 0) + (0 * 0) + (100 * 1);

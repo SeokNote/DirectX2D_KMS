@@ -73,11 +73,37 @@ namespace GameEngineDebug
 				break;
 			}
 
-			CurData.Trans->SetCameraMatrix(_Camera->GetView(), _Camera->GetProjection());
+			static TransformData DrawData;
+			DrawData = CurData.Trans->GetTransDataRef();
 
-			const TransformData& TransData = CurData.Trans->GetTransDataRef();
+			switch (Type)
+			{
+			case GameEngineDebug::DebugDrawType::Box:
+				DebugRenderUnit.SetMesh("DebugBox");
+				break;
+			case GameEngineDebug::DebugDrawType::Sphere:
+				DebugRenderUnit.SetMesh("DebugSphere");
+				{
+					float4 TempScale, TempRotation, TempPosition;
+					DrawData.WorldMatrix.Decompose(TempScale, TempRotation, TempPosition);
+					TempScale.y = TempScale.z = TempScale.x;
 
-			DebugRenderUnit.ShaderResHelper.SetConstantBufferLink("TransformData", TransData);
+					float4x4 MatScale, MatRot, MatPos;
+					MatScale.Scale(TempScale);
+					MatRot = TempRotation.QuaternionToRotationMatrix();
+					MatPos.Pos(TempPosition);
+					DrawData.WorldMatrix = MatScale * MatRot * MatPos;
+				}
+				break;
+			case GameEngineDebug::DebugDrawType::Point:
+				break;
+			default:
+				break;
+			}
+			DrawData.SetViewAndProjection(_Camera->GetView(), _Camera->GetProjection());
+
+
+			DebugRenderUnit.ShaderResHelper.SetConstantBufferLink("TransformData", DrawData);
 			DebugRenderUnit.ShaderResHelper.SetConstantBufferLink("DebugColor", CurData.Color);
 
 			DebugRenderUnit.Render(_Delta);

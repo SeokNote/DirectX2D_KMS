@@ -5,15 +5,17 @@
 #include "GameEngineLevel.h"
 #include "GameEngineCamera.h"
 
-GameEngineButton::GameEngineButton() 
+GameEngineButton* GameEngineButton::SelectButton = nullptr;
+
+GameEngineButton::GameEngineButton()
 {
 }
 
-GameEngineButton::~GameEngineButton() 
+GameEngineButton::~GameEngineButton()
 {
 }
 
-void GameEngineButton::Start() 
+void GameEngineButton::Start()
 {
 	Render = CreateComponent<GameEngineUIRenderer>();
 	// Collision = CreateComponent<GameEngineCollision>();

@@ -91,6 +91,7 @@ void PlayLevel::Start()
 		GameEngineInput::CreateKey("ESC", VK_ESCAPE);
 		GameEngineInput::CreateKey("ATTACK", VK_LBUTTON);
 
+		GameEngineInput::CreateKey("DEBUGMODE", 'U');
 
 	}
 	
@@ -227,9 +228,9 @@ void PlayLevel::Update(float _DeltaTime)
 {
 	CameraMoveSet();	
 	UICtr();
-	if (GameEngineInput::IsDown("LevelChange"))
+	if (GameEngineInput::IsDown("DEBUGMODE"))
 	{
-		GameEngineCore::ChangeLevel("TitleLevel");
+		IsDebugSwitch();
 	}
 
 
