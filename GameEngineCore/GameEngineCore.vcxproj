@@ -171,6 +171,7 @@
     </ClInclude>
     <ClInclude Include="GameEngineButton.h" />
     <ClInclude Include="GameEngineCoreWindow.h" />
+    <ClInclude Include="GameEngineDebug3D.h" />
     <ClInclude Include="GameEngineDepthState.h">
       <SubType>
       </SubType>
@@ -351,6 +352,7 @@
     </ClCompile>
     <ClCompile Include="GameEngineCoreWindow.cpp" />
     <ClCompile Include="GameEngineCore_Resources.cpp" />
+    <ClCompile Include="GameEngineDebug3D.cpp" />
     <ClCompile Include="GameEngineDepthState.cpp">
       <SubType>
       </SubType>
