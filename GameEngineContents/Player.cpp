@@ -916,6 +916,9 @@ void Player::Filp()
 	MousePos *= ViewPort.InverseReturn();
 	MousePos *= projection.InverseReturn();
 	MousePos *= View.InverseReturn();
+	ZDeg = atan2(MousePos.y - PlayerPos.y, MousePos.x - PlayerPos.x) * GameEngineMath::RadToDeg;
+	DashVector = (MousePos - PlayerPos).NormalizeReturn();
+
 	float FilpX = MousePos.x - PlayerPos.x;
 	if (0 > FilpX) {
 		PlayerRender->GetTransform()->SetLocalNegativeScaleX();

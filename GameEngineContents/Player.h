@@ -9,6 +9,7 @@ enum class PlayerState
 	MOVE,
 	JUMP,
 	FALL,
+	DASH,
 };
 class Player : public GameEngineActor
 {
@@ -105,6 +106,10 @@ private:
 	void FallUpdate(float _Time);
 	void FallEnd();
 
+	void DashStart();
+	void DashUpdate(float _Time);
+	void DashEnd();
+
 	void ColRenderSet();
 	PlayerState StateValue = PlayerState::IDLE;
 	float4 MoveDir = float4::Zero;
@@ -127,7 +132,9 @@ private:
 	int UICount = 0;
 
 	float4 BottomPos_0 = float4::Zero;
-
-
+	float4 DashVector = float4::Zero;
+	float ZDeg = 0.0f;
 	int DashCount = 3;
+	float DashTime = 0.0f;
+
 };

@@ -91,6 +91,7 @@ void PlayLevel::Start()
 		GameEngineInput::CreateKey("ESC", VK_ESCAPE);
 		GameEngineInput::CreateKey("ATTACK", VK_LBUTTON);
 		GameEngineInput::CreateKey("DEBUGMODE", 'U');
+		GameEngineInput::CreateKey("DASH", VK_RBUTTON);
 
 	}
 	

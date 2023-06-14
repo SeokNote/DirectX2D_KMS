@@ -32,6 +32,9 @@ void Player::ChangeState(PlayerState _State)
 	case PlayerState::FALL:
 		FallStart();
 		break;
+	case PlayerState::DASH:
+		DashStart();
+		break;
 	default:
 		break;
 	}
@@ -49,6 +52,9 @@ void Player::ChangeState(PlayerState _State)
 		break;
 	case PlayerState::FALL:
 		FallEnd();
+		break;
+	case PlayerState::DASH:
+		DashEnd();
 		break;
 	default:
 		break;
@@ -71,6 +77,9 @@ void Player::UpdateState(float _Time)
 		break;
 	case PlayerState::FALL:
 		FallUpdate(_Time);
+		break;
+	case PlayerState::DASH:
+		DashUpdate(_Time);
 		break;
 	default:
 		break;
@@ -124,7 +133,11 @@ void Player::IdleUpdate(float _Time)
 	if (true == GroundCheck() || IsMiddle == true) {
 		Falling = false;
 	}
-	
+	if (GameEngineInput::IsDown("DASH")) {
+		ChangeState(PlayerState::DASH);
+	}
+
+
 	
 }
 void Player::IdleEnd() {
@@ -406,4 +419,34 @@ void Player::FallUpdate(float _Time)
 }
 void Player::FallEnd()
 {
+
+}
+
+void Player::DashStart()
+{
+	//대쉬키가 눌렸을때 그 때의 위치 값을 받는다,
+	float4 CurPos = GetTransform()->GetLocalPosition();
+	PlayerRender->ChangeAnimation("Player_Jump");
+}
+
+void Player::DashUpdate(float _Time)
+{
+	DashTime += _Time;
+	GetTransform()->AddLocalPosition({ DashVector.x*60,DashVector.y*60,-801});
+	if(DashTime>0.2)
+	{
+		ChangeState(PlayerState::FALL);
+		DashTime = 0.0f;
+	}
+	if (GroundCheck() == true)
+	{
+
+	}
+}
+
+
+
+void Player::DashEnd()
+{
+
 }
