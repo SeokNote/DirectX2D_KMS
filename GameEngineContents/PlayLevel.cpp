@@ -90,7 +90,6 @@ void PlayLevel::Start()
 		GameEngineInput::CreateKey("NpcInteraction", 'F');
 		GameEngineInput::CreateKey("ESC", VK_ESCAPE);
 		GameEngineInput::CreateKey("ATTACK", VK_LBUTTON);
-
 		GameEngineInput::CreateKey("DEBUGMODE", 'U');
 
 	}

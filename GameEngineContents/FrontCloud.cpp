@@ -35,11 +35,11 @@ void FrontCloud::Start()
 void FrontCloud::Update(float _DeltaTime)
 {
 
-	FrontCloudRender->GetTransform()->AddLocalPosition({ -0.07f,0.f,0.f });
+	FrontCloudRender->GetTransform()->AddLocalPosition({ -0.12f,0.f,0.f });
 	if (-2560.0f >= FrontCloudRender->GetTransform()->GetLocalPosition().x) {
 		FrontCloudRender->GetTransform()->SetLocalPosition({2560.0f, 0.0f, 0.0f});
 	}
-	FrontCloudRender_1->GetTransform()->AddLocalPosition({ -0.07f,0.f,0.f });
+	FrontCloudRender_1->GetTransform()->AddLocalPosition({ -0.12f,0.f,0.f });
 	if (-2560.0f >= FrontCloudRender_1->GetTransform()->GetLocalPosition().x) {
 		FrontCloudRender_1->GetTransform()->SetLocalPosition({ 2560.0f, 0.0f, 0.0f });
 	}
