@@ -77,32 +77,32 @@ void Bird::Start()
 
 void Bird::Update(float _DeltaTime)
 {
-	BirdRender_1->GetTransform()->AddLocalPosition({ 0.1f,0.f,0.f });
+	BirdRender_1->GetTransform()->AddLocalPosition({ 0.2f,0.f,0.f });
 	if (OverWindow < BirdRender_1->GetTransform()->GetLocalPosition().x) 
 	{
 		BirdRender_1->GetTransform()->SetLocalPosition(BirdPos1);
 	}
-	BirdRender_2->GetTransform()->AddLocalPosition({ 0.1f,0.f,0.f });
+	BirdRender_2->GetTransform()->AddLocalPosition({ 0.2f,0.f,0.f });
 	if (OverWindow < BirdRender_2->GetTransform()->GetLocalPosition().x)
 	{
 		BirdRender_2->GetTransform()->SetLocalPosition(BirdPos2);
 	}
-	BirdRender_3->GetTransform()->AddLocalPosition({ 0.1f,0.f,0.f });
+	BirdRender_3->GetTransform()->AddLocalPosition({ 0.2f,0.f,0.f });
 	if (OverWindow < BirdRender_3->GetTransform()->GetLocalPosition().x)
 	{
 		BirdRender_3->GetTransform()->SetLocalPosition(BirdPos3);
 	}
-	BirdRender_4->GetTransform()->AddLocalPosition({ 0.1f,0.f,0.f });
+	BirdRender_4->GetTransform()->AddLocalPosition({ 0.2f,0.f,0.f });
 	if (OverWindow < BirdRender_4->GetTransform()->GetLocalPosition().x)
 	{
 		BirdRender_4->GetTransform()->SetLocalPosition(BirdPos4);
 	}
-	BirdRender_5->GetTransform()->AddLocalPosition({ 0.1f,0.f,0.f });
+	BirdRender_5->GetTransform()->AddLocalPosition({ 0.2f,0.f,0.f });
 	if (OverWindow < BirdRender_5->GetTransform()->GetLocalPosition().x)
 	{
 		BirdRender_5->GetTransform()->SetLocalPosition(BirdPos5);
 	}
-	BirdRender_6->GetTransform()->AddLocalPosition({ 0.1f,0.f,0.f });
+	BirdRender_6->GetTransform()->AddLocalPosition({ 0.2f,0.f,0.f });
 	if (OverWindow < BirdRender_6->GetTransform()->GetLocalPosition().x)
 	{
 		BirdRender_6->GetTransform()->SetLocalPosition(BirdPos6);
