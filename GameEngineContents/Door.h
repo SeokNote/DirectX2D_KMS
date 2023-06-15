@@ -25,6 +25,10 @@ public:
 	{
 		DoorPos = _Pos;
 	}
+	void SetDoorScale(float4 _Scale)
+	{
+		DoorColScale = _Scale;
+	}
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
@@ -35,6 +39,8 @@ private:
 	float4 PrevPos = float4::Zero;
 
 	float4 DoorScale = { 50.0f,50.0f,0.0f };
+	float4 DoorColScale = { 50.0f,230.0f,0.0f };
+
 	float CheckTime_0 = 0.0f;
 	float CheckTime_1 = 0.0f;
 	bool Value_0 = false;

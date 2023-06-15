@@ -50,7 +50,7 @@ void DungeonIn::Start()
 
 	DungeonInCol = CreateComponent<GameEngineCollision>();
 	DungeonInCol->GetTransform()->SetLocalScale(DungeonInColScale);
-	DungeonInCol->GetTransform()->SetLocalPosition(DungeonInPos1);
+	DungeonInCol->GetTransform()->SetLocalPosition(DungeonInColPos);
 	DungeonInCol->SetColType(ColType::AABBBOX2D);
 	DungeonInCol->SetOrder(3011);
 }

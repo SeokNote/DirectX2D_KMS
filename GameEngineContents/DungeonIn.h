@@ -23,7 +23,8 @@ protected:
 	void Update(float _DeltaTime) override;
 private:
 	float4 DungeonInScale = { 468.0f,340.0f,0.0f };
-	float4 DungeonInColScale = { 30.0f,300.0f,0.0f };
+	float4 DungeonInColScale = { 50.0f,50.0f,0.0f };
+	float4 DungeonInColPos = { 1235.0f,-555.0f,0.0f };
 	std::shared_ptr<class GameEngineSpriteRenderer> DungeonInRender;
 
 

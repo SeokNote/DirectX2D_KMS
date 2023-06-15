@@ -175,12 +175,13 @@ void PlayLevel::Start()
 		//Door
 		//Stage1-1
 		std::shared_ptr<Door> DoorPtr = CreateActor<Door>(1);
-		DoorPtr->SetDoorPos({ 3916.0f,-197.0f,0.0f });
+		DoorPtr->SetDoorPos({ 3916.0f,-167.0f,0.0f });
 		DoorPtr->SetNextPos({4120.0f, -468.0f, -801.0f });
 		//Stage1-2
 		std::shared_ptr<Door> DoorPtr_0 = CreateActor<Door>(1);
 		DoorPtr_0->SetDoorPos({ 6372.0f,-558.0f,0.0f });
 		DoorPtr_0->SetNextPos({ 8016.0f, 537.0f, -801.0f });
+		DoorPtr_0->SetDoorScale({ 230.0f,50.0f,0.0f });
 		//Stage1-3
 		std::shared_ptr<Door> DoorPtr_1 = CreateActor<Door>(1);
 		DoorPtr_1->SetDoorPos({ 6872.0f,-481.0f,0.0f });

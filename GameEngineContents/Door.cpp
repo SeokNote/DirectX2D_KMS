@@ -31,7 +31,7 @@ void Door::Start()
 
 void Door::Update(float _DeltaTime)
 {
-	DoorCol->GetTransform()->SetLocalScale(DoorScale);
+	DoorCol->GetTransform()->SetLocalScale(DoorColScale);
 	DoorCol->GetTransform()->SetLocalPosition(DoorPos);
 	DoorCol->SetColType(ColType::AABBBOX2D);
 	float4 Pos = DoorCol->GetTransform()->GetLocalPosition();
