@@ -47,6 +47,7 @@ void BossDoor_1::Start()
 	BossDoor2Col = CreateComponent<GameEngineCollision>();
 	BossDoor2Col->GetTransform()->SetLocalScale(Door2Scale);
 	BossDoor2Col->GetTransform()->SetLocalPosition(Door2Pos);
+	BossDoor2Col->SetColType(ColType::AABBBOX2D);
 	BossDoor2Col->SetOrder(3012);
 }
 bool BossDoorCheck_1 = false;

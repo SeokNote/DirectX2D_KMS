@@ -84,6 +84,7 @@ void Player::Start()
 
 	PlayerCol = CreateComponent<GameEngineCollision>();
 	PlayerCol->GetTransform()->SetLocalScale({ 64.0f, 64.0f });
+	PlayerCol->SetColType(ColType::AABBBOX2D);
 	PlayerCol->SetOrder(3333);
 
 }

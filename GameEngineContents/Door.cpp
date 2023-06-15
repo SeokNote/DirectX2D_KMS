@@ -33,6 +33,7 @@ void Door::Update(float _DeltaTime)
 {
 	DoorCol->GetTransform()->SetLocalScale(DoorScale);
 	DoorCol->GetTransform()->SetLocalPosition(DoorPos);
+	DoorCol->SetColType(ColType::AABBBOX2D);
 	float4 Pos = DoorCol->GetTransform()->GetLocalPosition();
 
 	if (DoorCol->Collision(3333, ColType::AABBBOX2D, ColType::AABBBOX2D))
@@ -46,24 +47,7 @@ void Door::Update(float _DeltaTime)
 
 void Door::MapMove(float _DeltaTime, float4 _Pos)
 {
-	//if (Value_1 == false)
-	//{
-	//	CheckTime_0 += _DeltaTime;
-	//	FEffect->FadeIn();
 
-	//	if (CheckTime_0 > 1.5f)
-	//	{
-	//	
-	//		Value_0 = true;
-	//	}
-	//	if (Value_0 == true)
-	//	{
-	//		Player::MainPlayer->On();
-	//		FEffect->FadeOut();
-	//		Value_0 = false;
-	//		Value_1 = true;
-	//	}
-	//}
 	CheckTime_0 += _DeltaTime;
 
 	if (Value_1 == false)

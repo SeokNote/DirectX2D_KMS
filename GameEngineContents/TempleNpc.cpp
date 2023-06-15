@@ -59,6 +59,7 @@ void TempleNpc::Start()
 	TempleNpcCol = CreateComponent<GameEngineCollision>();
 	TempleNpcCol->GetTransform()->SetLocalScale(TempleNpcScale);
 	TempleNpcCol->GetTransform()->SetLocalPosition(TempleNpcPos1);
+	TempleNpcCol->SetColType(ColType::AABBBOX2D);
 	TempleNpcCol->SetOrder(3011);
 }
 

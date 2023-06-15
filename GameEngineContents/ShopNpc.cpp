@@ -63,6 +63,7 @@ void ShopNpc::Start()
 	ShopNpcCol = CreateComponent<GameEngineCollision>();
 	ShopNpcCol->GetTransform()->SetLocalScale(ShopNpcScale);
 	ShopNpcCol->GetTransform()->SetLocalPosition(ShopNpcPos1);
+	ShopNpcCol->SetColType(ColType::AABBBOX2D);
 	ShopNpcCol->SetOrder(3011);
 }
 
