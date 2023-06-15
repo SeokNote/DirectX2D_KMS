@@ -245,7 +245,7 @@ void Player::JumpStart()
 	StartXpos = GetTransform()->GetLocalPosition().x;
 	StartYpos = GetTransform()->GetLocalPosition().y;
 	PlayerRender->ChangeAnimation("Player_Jump");
-	MoveDir.y += 3.3f;
+	MoveDir.y += 2.8f;
 	PlayerJumpEffectRender->ChangeAnimation("Player_JumpEffect");
 }
 void Player::JumpUpdate(float _Time)
@@ -254,13 +254,13 @@ void Player::JumpUpdate(float _Time)
 	EndYpos = GetTransform()->GetLocalPosition().y;
 	float Pos = EndYpos - StartYpos;
 	float PushTime = GameEngineInput::GetPressTime("UpMove");
-	if (Pos >= 218.f) 
+	if (Pos >= 183.0f) 
 	{
 		Check111 = true;
 	}
 	if (Check111 == true)
 	{
-		if (Pos <= 218.f)
+		if (Pos <= 183.0f)
 		{
 			Falling = true;
 		}
@@ -272,6 +272,7 @@ void Player::JumpUpdate(float _Time)
 	}
 	if (true == GameEngineInput::IsPress("LeftMove"))
 	{
+		//ChangeState(PlayerState::MOVE);
 		if (true == LeftSideCheck())
 		{
 			MoveDir.x = 0.0f;
@@ -285,6 +286,8 @@ void Player::JumpUpdate(float _Time)
 	
 	else if (true == GameEngineInput::IsPress("RightMove"))
 	{
+		//ChangeState(PlayerState::MOVE);
+
 		if (true == RightSideCheck())
 		{
 			MoveDir.x = 0.0f;
@@ -322,10 +325,11 @@ void Player::JumpUpdate(float _Time)
 			}
 		}
 	}
-	if (UpDashTime > 0.5)
+	if (UpDashTime > 0.2)
 	{
 		if (UICount == 0 && GameEngineInput::IsDown("DASH")) {
 			ChangeState(PlayerState::DASH);
+			UpDashTime = 0.0f;
 		}
 	}
 	
@@ -488,7 +492,7 @@ void Player::DashUpdate(float _Time)
 	}
 	if (TopCheck() == true)
 	{
-		ChangeState(PlayerState::FALL);
+		GetTransform()->AddLocalPosition({ 0.0f,-PrevDashPos.y * 6,0.0f });
 
 	}
 

@@ -630,6 +630,7 @@ bool Player::LeftSideCheck()
 		PixelMapResultPos = PixelCalculation(LeftPos, { 5320.0f,0.0f,0.0f }, { 1280.0f,720.0f });
 		Ptr = GameEngineTexture::Find("StageCol_2.png");
 		Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y));
+		Pixel.a = 0;
 		if (Pixel == GameEnginePixelColor::Black)
 		{
 			return true;

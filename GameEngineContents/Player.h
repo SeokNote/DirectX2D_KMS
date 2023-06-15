@@ -121,7 +121,7 @@ private:
 	PlayerState StateValue = PlayerState::IDLE;
 	float4 MoveDir = float4::Zero;
 	float4 MoveRange = float4::Zero;
-	float MoveSpeed = 300.f;
+	float MoveSpeed = 350.f;
 
 	float EffectTime = 0.0f;
 	float JumpTime = 0.0f;
