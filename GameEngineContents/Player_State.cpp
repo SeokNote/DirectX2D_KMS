@@ -225,6 +225,10 @@ void Player::MoveUpdate(float _Time)
 		}
 
 	}
+	if (GameEngineInput::IsDown("DASH")) {
+		ChangeState(PlayerState::DASH);
+	}
+
 }
 void Player::MoveEnd()
 {
@@ -427,20 +431,18 @@ void Player::DashStart()
 	//대쉬키가 눌렸을때 그 때의 위치 값을 받는다,
 	float4 CurPos = GetTransform()->GetLocalPosition();
 	PlayerRender->ChangeAnimation("Player_Jump");
+	PrevDashPos = DashVector;
 }
 
 void Player::DashUpdate(float _Time)
 {
+	bool awds = Falling;
 	DashTime += _Time;
-	GetTransform()->AddLocalPosition({ DashVector.x*60,DashVector.y*60,-801});
+	GetTransform()->AddLocalPosition({ PrevDashPos.x*6,PrevDashPos.y*6});
 	if(DashTime>0.2)
 	{
 		ChangeState(PlayerState::FALL);
 		DashTime = 0.0f;
-	}
-	if (GroundCheck() == true)
-	{
-
 	}
 }
 

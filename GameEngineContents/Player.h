@@ -136,5 +136,5 @@ private:
 	float ZDeg = 0.0f;
 	int DashCount = 3;
 	float DashTime = 0.0f;
-
+	float4 PrevDashPos = float4::Zero;
 };
