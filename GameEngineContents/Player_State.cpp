@@ -8,6 +8,7 @@
 #include <GameEngineCore/GameEngineRenderer.h>
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore/GameEngineCollision.h>
+#include "DashEffect.h"
 #include "PixelCollision.h"
 #include <GameEngineCore/GameEngineSprite.h>
 // State
@@ -133,10 +134,14 @@ void Player::IdleUpdate(float _Time)
 	if (true == GroundCheck() || IsMiddle == true) {
 		Falling = false;
 	}
-	if (GameEngineInput::IsDown("DASH")) {
+	if (UICount == 0 && GameEngineInput::IsDown("DASH")) {
 		ChangeState(PlayerState::DASH);
 	}
+	if (LeftSideCheck() == true)
+	{
+		MoveDir = float4::Zero;
 
+	}
 
 	
 }
@@ -225,7 +230,7 @@ void Player::MoveUpdate(float _Time)
 		}
 
 	}
-	if (GameEngineInput::IsDown("DASH")) {
+	if (UICount == 0 && GameEngineInput::IsDown("DASH")) {
 		ChangeState(PlayerState::DASH);
 	}
 
@@ -245,6 +250,7 @@ void Player::JumpStart()
 }
 void Player::JumpUpdate(float _Time)
 {
+	UpDashTime += _Time;
 	EndYpos = GetTransform()->GetLocalPosition().y;
 	float Pos = EndYpos - StartYpos;
 	float PushTime = GameEngineInput::GetPressTime("UpMove");
@@ -316,6 +322,13 @@ void Player::JumpUpdate(float _Time)
 			}
 		}
 	}
+	if (UpDashTime > 0.5)
+	{
+		if (UICount == 0 && GameEngineInput::IsDown("DASH")) {
+			ChangeState(PlayerState::DASH);
+		}
+	}
+	
 	
 }
 void Player::JumpEnd() 
@@ -429,21 +442,56 @@ void Player::FallEnd()
 void Player::DashStart()
 {
 	//대쉬키가 눌렸을때 그 때의 위치 값을 받는다,
-	float4 CurPos = GetTransform()->GetLocalPosition();
+	DashCurPos = GetTransform()->GetLocalPosition();
 	PlayerRender->ChangeAnimation("Player_Jump");
 	PrevDashPos = DashVector;
 }
 
 void Player::DashUpdate(float _Time)
 {
-	bool awds = Falling;
+	float4 PlayerPos = GetTransform()->GetLocalPosition();
 	DashTime += _Time;
+	DashEffectTime += _Time;
 	GetTransform()->AddLocalPosition({ PrevDashPos.x*6,PrevDashPos.y*6});
+	float YValue = (DashCurPos.y - PlayerPos.y);
+	if (DashEffectTime > 0.05f)
+	{
+		Effect_Check = true;
+		DashEffectTime = 0.0f;
+	}
+	if (Effect_Check == true)
+	{
+		DashEffectPtr = GetLevel()->CreateActor<DashEffect>();
+		DashEffectPtr->GetTransform()->SetWorldPosition(PlayerPos);
+		Effect_Check = false;
+	}
+	if (YValue > 0.0f)
+	{
+		GetTransform()->AddLocalPosition({ 0.0f,-PrevDashPos.y * 6,0.0f});
+
+	}
 	if(DashTime>0.2)
 	{
+
 		ChangeState(PlayerState::FALL);
 		DashTime = 0.0f;
 	}
+	if (LeftSideCheck() == true)
+	{
+		ChangeState(PlayerState::FALL);
+
+	}
+	if (RightSideCheck() == true)
+	{
+		ChangeState(PlayerState::FALL);
+
+	}
+	if (TopCheck() == true)
+	{
+		ChangeState(PlayerState::FALL);
+
+	}
+
 }
 
 

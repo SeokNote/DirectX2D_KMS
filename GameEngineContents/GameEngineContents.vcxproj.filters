@@ -206,6 +206,9 @@
     <ClInclude Include="AbilityUI.h">
       <Filter>Object\UI\AbilityUI</Filter>
     </ClInclude>
+    <ClInclude Include="DashEffect.h">
+      <Filter>Object\MainPlayer\Dash</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -416,6 +419,9 @@
     <ClCompile Include="AbilityUI.cpp">
       <Filter>Object\UI\AbilityUI</Filter>
     </ClCompile>
+    <ClCompile Include="DashEffect.cpp">
+      <Filter>Object\MainPlayer\Dash</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Levels">
@@ -525,6 +531,9 @@
     </Filter>
     <Filter Include="Object\UI\AbilityUI">
       <UniqueIdentifier>{9edff23f-c8f6-4da9-90ba-6eb1372a0baa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\MainPlayer\Dash">
+      <UniqueIdentifier>{c4ae3f4a-74f6-4581-ba58-11a3ff2b6dc4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

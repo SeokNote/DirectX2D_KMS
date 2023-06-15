@@ -51,6 +51,10 @@ public:
 		_Count = DashCount;
 		return _Count;
 	}
+	bool GetFilpCheck()
+	{
+		return FilpCheck;
+	}
 protected:
 	void Start();
 	void Update(float _Delta) override;
@@ -66,6 +70,9 @@ private:
 	std::shared_ptr<class GameEngineSpriteRenderer> PlayerRender;
 	std::shared_ptr<class GameEngineSpriteRenderer> PlayerJumpEffectRender;
 	std::shared_ptr<class GameEngineSpriteRenderer> PlayerWalkEffectRender;
+	std::shared_ptr<class DashEffect> DashEffectPtr;
+
+	
 	std::shared_ptr<class GameEngineSpriteRenderer> PlayerTopRender;
 	std::shared_ptr<class GameEngineSpriteRenderer> PlayerBottoomRender;
 
@@ -123,7 +130,7 @@ private:
 	float StartYpos = 0.0f;
 	float4 MoveStartPoS = float4::Zero;
 	float EndYpos = 0.0f;
-	GameEnginePixelColor MiddleGround = { 255, 0, 255, 255 };
+	GameEnginePixelColor MiddleGround = { static_cast<unsigned char>(255),  static_cast<unsigned char>(0),  static_cast<unsigned char>(255),  static_cast<unsigned char>(255)};
 	bool Falling = false;
 	bool IsMiddle = false;
 	float CheckTime = 0.0f;
@@ -134,7 +141,16 @@ private:
 	float4 BottomPos_0 = float4::Zero;
 	float4 DashVector = float4::Zero;
 	float ZDeg = 0.0f;
+	//대쉬관련
 	int DashCount = 3;
 	float DashTime = 0.0f;
+	float4 DashCurPos = float4::Zero;
 	float4 PrevDashPos = float4::Zero;
+	float UpDashTime = 0.0f;
+	//대쉬 이펙트 관련
+	bool Effect_Check = false;
+	float DashEffectTime = 0.0f;
+
+	//플립 예아니오
+	bool FilpCheck = false;
 };

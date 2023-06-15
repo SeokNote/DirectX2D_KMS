@@ -920,11 +920,13 @@ void Player::Filp()
 
 	float FilpX = MousePos.x - PlayerPos.x;
 	if (0 > FilpX) {
+		FilpCheck = true;
 		PlayerRender->GetTransform()->SetLocalNegativeScaleX();
 		PlayerWalkEffectRender->GetTransform()->SetLocalNegativeScaleX();
 		PlayerWalkEffectRender->GetTransform()->SetWorldPosition({ MoveStartPoS.x + 40.0f,MoveStartPoS.y - 30.0f,-801.0f });
 	}
 	else {
+		FilpCheck = false;
 		PlayerRender->GetTransform()->SetLocalPositiveScaleX();
 		PlayerWalkEffectRender->GetTransform()->SetLocalPositiveScaleX();
 		PlayerWalkEffectRender->GetTransform()->SetWorldPosition({ MoveStartPoS.x - 40.0f,MoveStartPoS.y - 30.0f,-801.0f });
