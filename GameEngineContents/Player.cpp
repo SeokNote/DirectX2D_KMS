@@ -54,11 +54,11 @@ void Player::Start()
 
 	GameEngineFont::Load("휴먼둥근헤드라인");
 	//////////폰트 사용법/////////
-	/*std::shared_ptr<GameEngineFontRenderer> FontRender = CreateComponent<GameEngineFontRenderer>(300);
+	//std::shared_ptr<GameEngineFontRenderer> FontRender = CreateComponent<GameEngineFontRenderer>(300);
 
-	FontRender->SetFont("휴먼둥근헤드라인");
-	FontRender->SetText("죄송합니다~~~~~");
-	FontRender->GetTransform()->SetLocalPosition({ -2300.0f,-500.0f,-801.0f });*/
+	//FontRender->SetFont("휴먼둥근헤드라인");
+	//FontRender->SetText("집갈?");
+	//FontRender->GetTransform()->SetLocalPosition({ -2300.0f,-500.0f,-801.0f });
 
 	PlayerRender = CreateComponent<GameEngineSpriteRenderer>(1);
 	PlayerRender->SetTexture("CharIdle0.png");
