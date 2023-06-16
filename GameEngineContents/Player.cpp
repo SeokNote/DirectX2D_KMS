@@ -103,7 +103,18 @@ void Player::Update(float _DeltaTime)
 	UpdateState(_DeltaTime);
 	GetTransform()->AddLocalPosition(MoveDir * MoveSpeed * _DeltaTime);
 	Filp();
+	static float Test = 1.0f;
+	
+	Test -= _DeltaTime * 0.1f;
+	if (Test == 0.7) 
+	{
+		PlayerRender->ImageClippingY(0.7f, ClipYDir::Top);
 
+	}
+	/*else
+	{
+		PlayerRender->ImageClippingY(Test, ClipYDir::Top);
+	}*/
 }
 
 
