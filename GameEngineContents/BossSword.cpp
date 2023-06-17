@@ -61,8 +61,8 @@ void BossSword::Update(float _DeltaTime)
 bool BossSword::PixelCheck()
 {
 	float4 Pos = SwordRender->GetTransform()->GetWorldPosition();
-	PixelMapResultPos = Player::MainPlayer->PixelCalculation(Pos, { 0.0f,0.0f,0.0f }, { 2560.f,720.0f });
-	Ptr = GameEngineTexture::Find("TownCol_3.png");
+	PixelMapResultPos = Player::MainPlayer->PixelCalculation(Pos, { 12084.0f,0.0f,0.0f }, { 704.0f,672.0f });
+	Ptr = GameEngineTexture::Find("BossRoomCol_1.png");
 	Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y));
 	Pixel.a = 0;
 	if (Pixel == GameEnginePixelColor::Black)

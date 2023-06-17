@@ -212,6 +212,12 @@
     <ClInclude Include="BossSword.h">
       <Filter>Object\Boss\Belial\BossSword</Filter>
     </ClInclude>
+    <ClInclude Include="BelialHead.h">
+      <Filter>Object\Boss\Belial\Head</Filter>
+    </ClInclude>
+    <ClInclude Include="BelialHeadSubBG.h">
+      <Filter>Object\Boss\Belial\Head</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -430,6 +436,15 @@
     </ClCompile>
     <ClCompile Include="BossSword_State.cpp">
       <Filter>Object\Boss\Belial\BossSword</Filter>
+    </ClCompile>
+    <ClCompile Include="BelialHead.cpp">
+      <Filter>Object\Boss\Belial\Head</Filter>
+    </ClCompile>
+    <ClCompile Include="BelialHead_State.cpp">
+      <Filter>Object\Boss\Belial\Head</Filter>
+    </ClCompile>
+    <ClCompile Include="BelialHeadSubBG.cpp">
+      <Filter>Object\Boss\Belial\Head</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
