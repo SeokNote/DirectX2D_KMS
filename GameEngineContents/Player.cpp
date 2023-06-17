@@ -103,18 +103,19 @@ void Player::Update(float _DeltaTime)
 	UpdateState(_DeltaTime);
 	GetTransform()->AddLocalPosition(MoveDir * MoveSpeed * _DeltaTime);
 	Filp();
-	static float Test = 1.0f;
-	
-	Test -= _DeltaTime * 0.1f;
-	if (Test == 0.7) 
-	{
-		PlayerRender->ImageClippingY(0.7f, ClipYDir::Top);
+	//이미지 클립 해보기
+	//static float Test = 1.0f;
+	//
+	//Test -= _DeltaTime * 0.1f;
+	//if (Test < 0.0f) 
+	//{
+	//	PlayerRender->ImageClippingY(1.0f, ClipYDir::Top);
 
-	}
-	/*else
-	{
-		PlayerRender->ImageClippingY(Test, ClipYDir::Top);
-	}*/
+	//}
+	///*else
+	//{
+	//	PlayerRender->ImageClippingY(Test, ClipYDir::Top);
+	//}*/
 }
 
 

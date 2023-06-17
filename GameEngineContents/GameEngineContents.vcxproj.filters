@@ -209,6 +209,9 @@
     <ClInclude Include="DashEffect.h">
       <Filter>Object\MainPlayer\Dash</Filter>
     </ClInclude>
+    <ClInclude Include="BossSword.h">
+      <Filter>Object\Boss\Belial\BossSword</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -422,6 +425,12 @@
     <ClCompile Include="DashEffect.cpp">
       <Filter>Object\MainPlayer\Dash</Filter>
     </ClCompile>
+    <ClCompile Include="BossSword.cpp">
+      <Filter>Object\Boss\Belial\BossSword</Filter>
+    </ClCompile>
+    <ClCompile Include="BossSword_State.cpp">
+      <Filter>Object\Boss\Belial\BossSword</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Levels">
@@ -534,6 +543,24 @@
     </Filter>
     <Filter Include="Object\MainPlayer\Dash">
       <UniqueIdentifier>{c4ae3f4a-74f6-4581-ba58-11a3ff2b6dc4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Boss\Belial">
+      <UniqueIdentifier>{3e91dcbf-1ab5-4811-b0a1-24339db372ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Boss\Belial\Head">
+      <UniqueIdentifier>{1ed8c774-b398-4841-8da9-6ddebd6baf4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Boss\Belial\RightHand">
+      <UniqueIdentifier>{60e65e8a-5a95-4a90-93f4-6d0bfe1e6d95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Boss\Belial\LeftHand">
+      <UniqueIdentifier>{0b08d2e9-062d-4476-915a-46de66f6bf37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Boss\Belial\Lasor">
+      <UniqueIdentifier>{3c32541e-eb93-4f7c-9b5e-003a5245704e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Boss\Belial\BossSword">
+      <UniqueIdentifier>{cc67f630-d1c7-4ecb-b6e6-fe9ecbbc526e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

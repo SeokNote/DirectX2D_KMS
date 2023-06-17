@@ -56,6 +56,7 @@
 
 
 //테스트
+#include "BossSword.h"
 PlayLevel* PlayLevel::MainPlayLevel = nullptr;
 
 PlayLevel::PlayLevel()
@@ -75,6 +76,22 @@ void PlayLevel::Start()
 	NewDir.Move("Play");
 
 	std::vector<GameEngineFile> File = NewDir.GetAllFile({ ".Png", });
+
+	//벨리알 무기 애니메이션
+	GameEngineDirectory BelialSwordDir;
+	BelialSwordDir.MoveParentToDirectory("ContentResources");
+	BelialSwordDir.Move("ContentResources");
+	BelialSwordDir.Move("Animation");
+	BelialSwordDir.Move("MainLevelAnimation");
+	BelialSwordDir.Move("Boss");
+	BelialSwordDir.Move("Belial");
+	BelialSwordDir.Move("BossSword");
+
+	GameEngineSprite::LoadFolder(BelialSwordDir.GetPlusFileName("BossSwordAtteck").GetFullPath());
+	GameEngineSprite::LoadFolder(BelialSwordDir.GetPlusFileName("BossSwordCharge").GetFullPath());
+	GameEngineSprite::LoadFolder(BelialSwordDir.GetPlusFileName("BossSwordDead").GetFullPath());
+	GameEngineSprite::LoadFolder(BelialSwordDir.GetPlusFileName("BossSwordFx").GetFullPath());
+	GameEngineSprite::LoadFolder(BelialSwordDir.GetPlusFileName("BossSwordIdle").GetFullPath());
 
 
 	for (size_t i = 0; i < File.size(); i++)
@@ -219,8 +236,9 @@ void PlayLevel::Start()
 	//NewPlayer->GetTransform()->SetLocalPosition({ 13150.0f,-39.0f,0.0f });
 	NewPlayer->GetTransform()->SetLocalPosition({ -2390.0f,-500.0f,-801.0f });
 	//NewPlayer->GetTransform()->SetLocalPosition({ 3716.0f,-197.0f,-801.0f });
-
-
+	/*std::shared_ptr<BossSword> BossSwordPtr = CreateActor<BossSword>(1);
+	BossSwordPtr->GetTransform()->SetWorldPosition({ -2090.0f,-100.0f,-801.0f });*/
+	
 	std::shared_ptr<GreatWeapon> GreatWeaponPtr = CreateActor<GreatWeapon>(1);
 	GreatWeaponPtr->GetTransform()->SetWorldPosition(NewPlayer->GetTransform()->GetWorldPosition());
 	GreatWeaponPtr->GetTransform()->SetParent(NewPlayer->GetTransform());
@@ -229,6 +247,8 @@ void PlayLevel::Start()
 
 void PlayLevel::Update(float _DeltaTime)
 {
+
+	BelialSwordPlay(_DeltaTime);
 	CameraMoveSet();	
 	UICtr();
 	if (GameEngineInput::IsDown("DEBUGMODE"))
@@ -240,6 +260,52 @@ void PlayLevel::Update(float _DeltaTime)
 }
 
 
+
+void PlayLevel::BelialSwordPlay(float _Time)
+{
+	awdasd += _Time;
+
+	if (awdasd > 0.2f)
+	{
+		swordx++;
+		if (swordx == 1)
+		{
+			BossSwordPtr_0 = CreateActor<BossSword>();
+			BossSwordPtr_0->GetTransform()->SetWorldPosition({ -2090.0f,-100.0f,-801.0f }); 
+	
+
+		}
+		if (swordx == 2)
+		{
+			BossSwordPtr_1 = CreateActor<BossSword>();
+			BossSwordPtr_1->GetTransform()->SetWorldPosition({ -1990.0f,-100.0f,-801.0f });
+
+
+		}
+		if (swordx == 3)
+		{
+			BossSwordPtr_2 = CreateActor<BossSword>();
+			BossSwordPtr_2->GetTransform()->SetWorldPosition({ -1890.0f,-100.0f,-801.0f });
+
+
+		}
+		if (swordx == 4)
+		{
+			BossSwordPtr_3 = CreateActor<BossSword>();
+			BossSwordPtr_3->GetTransform()->SetWorldPosition({ -1790.0f,-100.0f,-801.0f });
+
+
+		}
+		if (swordx == 5)
+		{
+			BossSwordPtr_4 = CreateActor<BossSword>();
+			BossSwordPtr_4->GetTransform()->SetWorldPosition({ -1690.0f,-100.0f,-801.0f });
+
+
+		}
+		awdasd = 0.0f;
+	}
+}
 
 void PlayLevel::CameraColMove(float _X,float _X1, float _Y,float _Y1)
 {

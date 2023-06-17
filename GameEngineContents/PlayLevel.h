@@ -31,7 +31,7 @@ protected:
 
 
 private:
-	
+	void BelialSwordPlay(float _Time);
 	void CameraColMove(float _X, float _X1, float _Y, float _Y1);
 	void CameraMoveSet();
 	
@@ -45,4 +45,15 @@ private:
 	std::shared_ptr<MapTabUI> MapTab;
 	std::shared_ptr<InventoryUI> Inventory;
 
+	//Å×½ºÆ®
+	float awdasd = 0.0f;
+	int swordx = 0;
+	std::shared_ptr<class BossSword> BossSwordPtr_0 = nullptr;
+	std::shared_ptr<class BossSword> BossSwordPtr_1 = nullptr;
+	std::shared_ptr<class BossSword> BossSwordPtr_2 = nullptr;
+	std::shared_ptr<class BossSword> BossSwordPtr_3 = nullptr;
+	std::shared_ptr<class BossSword> BossSwordPtr_4 = nullptr;
+	std::shared_ptr<class BossSword> BossSwordPtr_5 = nullptr;
+
+	float indexawd = -100.f;
 };
