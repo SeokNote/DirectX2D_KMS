@@ -20,15 +20,23 @@ public:
 	BelialHead(BelialHead&& _Other) noexcept = delete;
 	BelialHead& operator=(const BelialHead& _Other) = delete;
 	BelialHead& operator=(BelialHead&& _Other) noexcept = delete;
-
+	std::shared_ptr<class GameEngineSpriteRenderer> GetBGPtr()
+	{
+		return BelialBGRender;
+	}
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
 private:
 	void BelialSwordPlay(float _Time);
-	float4 MainBGPos =  { 12080.0f,-220.0f,-740.0f };
+	float4 MainBGPos =  { 12080.0f,-250.0f,-740.0f };
 	std::shared_ptr<class GameEngineSpriteRenderer> BelialHeadRender;
 	std::shared_ptr<class GameEngineSpriteRenderer> BelialBGRender;
+
+	std::shared_ptr<class GameEngineSpriteRenderer> BelialBulletComponet;
+
+	std::shared_ptr<class BelialBullet> BelialBulletPtr;
+
 	std::shared_ptr<class BossSword> BossSwordPtr_0 = nullptr;
 	BossHeadState StateValue = BossHeadState::IDLE;
 

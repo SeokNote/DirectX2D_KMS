@@ -216,7 +216,16 @@
       <Filter>Object\Boss\Belial\Head</Filter>
     </ClInclude>
     <ClInclude Include="BelialHeadSubBG.h">
-      <Filter>Object\Boss\Belial\Head</Filter>
+      <Filter>Object\Boss\Belial\Head\BelialSubBG</Filter>
+    </ClInclude>
+    <ClInclude Include="BelialBullet.h">
+      <Filter>Object\Boss\Belial\BelialBullet\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="BelialBulletBase.h">
+      <Filter>Object\Boss\Belial\BelialBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="BelialBulletBase_1.h">
+      <Filter>Object\Boss\Belial\BelialBullet</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -444,7 +453,16 @@
       <Filter>Object\Boss\Belial\Head</Filter>
     </ClCompile>
     <ClCompile Include="BelialHeadSubBG.cpp">
-      <Filter>Object\Boss\Belial\Head</Filter>
+      <Filter>Object\Boss\Belial\Head\BelialSubBG</Filter>
+    </ClCompile>
+    <ClCompile Include="BelialBullet.cpp">
+      <Filter>Object\Boss\Belial\BelialBullet\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="BelialBulletBase.cpp">
+      <Filter>Object\Boss\Belial\BelialBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="BelialBulletBase_1.cpp">
+      <Filter>Object\Boss\Belial\BelialBullet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -576,6 +594,15 @@
     </Filter>
     <Filter Include="Object\Boss\Belial\BossSword">
       <UniqueIdentifier>{cc67f630-d1c7-4ecb-b6e6-fe9ecbbc526e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Boss\Belial\BelialBullet">
+      <UniqueIdentifier>{5062f9ec-5210-4f54-9112-2187738b5398}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Boss\Belial\Head\BelialSubBG">
+      <UniqueIdentifier>{b793653b-e455-4f67-8282-922d15512a0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Boss\Belial\BelialBullet\Bullet">
+      <UniqueIdentifier>{375287bd-f16e-4929-8339-a5310446c4c8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

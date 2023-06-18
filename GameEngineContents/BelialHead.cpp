@@ -3,6 +3,10 @@
 #include "BelialHeadSubBG.h"
 #include "BossSword.h"
 #include "Player.h"
+#include "BelialBullet.h"
+#include "BelialBulletBase.h"
+#include "BelialBulletBase_1.h"
+
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEnginePlatform/GameEngineWindow.h>
 #include <GameEngineCore/GameEngineLevel.h>
@@ -14,6 +18,7 @@ BelialHead* BelialHead::MainBelialHead = nullptr;
 
 BelialHead::BelialHead()
 {
+	MainBelialHead = this;
 }
 
 BelialHead::~BelialHead()
@@ -31,9 +36,12 @@ void BelialHead::Start()
 	BelialBGRender = CreateComponent<GameEngineSpriteRenderer>(1);
 	BelialBGRender->SetTexture("BossSword.png");
 	BelialBGRender->GetTransform()->SetWorldPosition(MainBGPos);
+	BelialBGRender->GetTransform()->SetLocalScale({ 150.0f,150.0f,0.0f });
 	BelialBGRender->CreateAnimation({ .AnimationName = "BelialMainBG", .SpriteName = "MainBG", .Loop = true , .ScaleToTexture = true });
 	BelialBGRender->ChangeAnimation("BelialMainBG");
 	ChangeState(BossHeadState::IDLE);
+	//GetLevel()->CreateActor<BelialBulletBase_1>();
+	GetLevel()->CreateActor<BelialBulletBase>();
 
 }
 
@@ -50,6 +58,7 @@ void BelialHead::Update(float _DeltaTime)
 	BelialSwordPlay(_DeltaTime);
 	if (GameEngineInput::IsDown("DeBugKey"))
 	{
+		//BelialBulletPtr =GetLevel()->CreateActor<BelialBullet>();
 		SwordIndex = 0;
 		StartX = 11800.0f;
 		YInvers = -100.0f;

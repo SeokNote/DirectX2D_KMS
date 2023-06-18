@@ -111,6 +111,7 @@ void PlayLevel::Start()
 	GameEngineSprite::LoadFolder(BelialDir.GetPlusFileName("HandLasor").GetFullPath());
 	GameEngineSprite::LoadFolder(BelialDir.GetPlusFileName("LasorPattern").GetFullPath());
 	GameEngineSprite::LoadFolder(BelialDir.GetPlusFileName("HeadIdle").GetFullPath());
+	GameEngineSprite::LoadFolder(BelialDir.GetPlusFileName("BelialBullet").GetFullPath());
 	BelialDir.Move("BelialBG");
 	GameEngineSprite::LoadFolder(BelialDir.GetPlusFileName("MainBG").GetFullPath());
 	GameEngineSprite::LoadFolder(BelialDir.GetPlusFileName("SubBG").GetFullPath());
