@@ -35,10 +35,13 @@ private:
 
 	std::shared_ptr<class GameEngineSpriteRenderer> BelialBulletComponet;
 
-	std::shared_ptr<class BelialBullet> BelialBulletPtr;
+	std::shared_ptr<class BelialBullet> BelialBulletRender;
+
+
+	std::shared_ptr<class BelialBulletBase> BelialBulletBasePtr = nullptr;
+	BossHeadState StateValue = BossHeadState::IDLE;
 
 	std::shared_ptr<class BossSword> BossSwordPtr_0 = nullptr;
-	BossHeadState StateValue = BossHeadState::IDLE;
 
 	void ChangeState(BossHeadState _State);
 	void UpdateState(float _Time);
@@ -73,5 +76,9 @@ private:
 
 	//Ä® ²ÈÈ÷´Â ¹üÀ§
 	float StartX = 11800.0f;
+
+	//Å×½ºÆ®¿ë
+	float TestTime = 0.0f;
+
 };
 

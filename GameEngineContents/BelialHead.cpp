@@ -5,7 +5,6 @@
 #include "Player.h"
 #include "BelialBullet.h"
 #include "BelialBulletBase.h"
-#include "BelialBulletBase_1.h"
 
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEnginePlatform/GameEngineWindow.h>
@@ -40,29 +39,38 @@ void BelialHead::Start()
 	BelialBGRender->CreateAnimation({ .AnimationName = "BelialMainBG", .SpriteName = "MainBG", .Loop = true , .ScaleToTexture = true });
 	BelialBGRender->ChangeAnimation("BelialMainBG");
 	ChangeState(BossHeadState::IDLE);
-	//GetLevel()->CreateActor<BelialBulletBase_1>();
-	GetLevel()->CreateActor<BelialBulletBase>();
+
+	BelialBulletBasePtr = GetLevel()->CreateActor<BelialBulletBase>();
+	BelialBulletBasePtr->GetTransform()->SetWorldPosition({ 12080.0f,-250.0f,-800.0f });
 
 }
 
 void BelialHead::Update(float _DeltaTime)
 {
 	SubBGTime += _DeltaTime;
-	if (SubBGTime > 0.1f)
+	if (SubBGTime > 0.2f)
 	{
 		BelialHeadSubBG::CreateSubBG(GetLevel(), MainBGPos);
-
 		SubBGTime = 0.0f;
 	}
 	UpdateState(_DeltaTime);
 	BelialSwordPlay(_DeltaTime);
+	//소드 재생성
 	if (GameEngineInput::IsDown("DeBugKey"))
 	{
-		//BelialBulletPtr =GetLevel()->CreateActor<BelialBullet>();
 		SwordIndex = 0;
 		StartX = 11800.0f;
 		YInvers = -100.0f;
+
 	}
+
+	TestTime += _DeltaTime;
+	if (TestTime > 0.1)
+	{
+		BelialBulletRender = GetLevel()->CreateActor<BelialBullet>();
+		TestTime = 0.0f;
+	}
+
 }
 
 void BelialHead::BelialSwordPlay(float _Time)

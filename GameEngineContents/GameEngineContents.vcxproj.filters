@@ -224,9 +224,6 @@
     <ClInclude Include="BelialBulletBase.h">
       <Filter>Object\Boss\Belial\BelialBullet</Filter>
     </ClInclude>
-    <ClInclude Include="BelialBulletBase_1.h">
-      <Filter>Object\Boss\Belial\BelialBullet</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -459,9 +456,6 @@
       <Filter>Object\Boss\Belial\BelialBullet\Bullet</Filter>
     </ClCompile>
     <ClCompile Include="BelialBulletBase.cpp">
-      <Filter>Object\Boss\Belial\BelialBullet</Filter>
-    </ClCompile>
-    <ClCompile Include="BelialBulletBase_1.cpp">
       <Filter>Object\Boss\Belial\BelialBullet</Filter>
     </ClCompile>
   </ItemGroup>
