@@ -35,7 +35,7 @@ private:
 
 	std::shared_ptr<class GameEngineSpriteRenderer> BelialBulletComponet;
 
-	std::shared_ptr<class BelialBullet> BelialBulletRender;
+	std::shared_ptr<class BelialBullet> BelialBulletRender = nullptr;
 
 
 	std::shared_ptr<class BelialBulletBase> BelialBulletBasePtr = nullptr;
@@ -57,12 +57,13 @@ private:
 	void DeadStart();
 	void DeadUpdate(float _Time);
 	void DeadEnd();
-
+	//패턴 불값
+	bool IsBullet = true;
 	//패턴 시간체크
 	float TimeCheck_0 = 0.0f;
 	float TimeCheck_1 = 0.0f;
 	float SubBGTime = 0.0f;
-
+	float BulletTime = 0.0f;
 	float SwordTime = 0.0f;
 	int SwordIndex = 0;
 	std::shared_ptr<class BossSword> BossSwordPtr_1 = nullptr;

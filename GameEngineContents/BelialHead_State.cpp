@@ -1,5 +1,6 @@
 #include "PrecompileHeader.h"
 #include "BelialHead.h"
+#include "BelialBullet.h"
 #include "Player.h"
 #include <GameEngineCore/GameEngineTexture.h>
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
@@ -93,14 +94,22 @@ void BelialHead::MoveStart()
 {
 
 	BelialHeadRender->ChangeAnimation("HeadMove");
+	IsBullet = true;
 }
 void BelialHead::MoveUpdate(float _Time)
 {
+	BulletTime += _Time;
 	TimeCheck_1 += _Time;
 	if (TimeCheck_1 > 5.0f)
 	{
 		ChangeState(BossHeadState::IDLE);
 		TimeCheck_1 = 0.0f;
+		IsBullet = false;
+	}
+	if (IsBullet == true && BulletTime > 0.1f)
+	{
+		BulletTime = 0.0f;
+		BelialBulletRender = GetLevel()->CreateActor<BelialBullet>();
 	}
 }
 void BelialHead::MoveEnd()

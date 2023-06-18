@@ -224,6 +224,12 @@
     <ClInclude Include="BelialBulletBase.h">
       <Filter>Object\Boss\Belial\BelialBullet</Filter>
     </ClInclude>
+    <ClInclude Include="BelialHand_L.h">
+      <Filter>Object\Boss\Belial\LeftHand</Filter>
+    </ClInclude>
+    <ClInclude Include="BelialHand_R.h">
+      <Filter>Object\Boss\Belial\RightHand</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -457,6 +463,12 @@
     </ClCompile>
     <ClCompile Include="BelialBulletBase.cpp">
       <Filter>Object\Boss\Belial\BelialBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="BelialHand_L.cpp">
+      <Filter>Object\Boss\Belial\LeftHand</Filter>
+    </ClCompile>
+    <ClCompile Include="BelialHand_R.cpp">
+      <Filter>Object\Boss\Belial\RightHand</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

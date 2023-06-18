@@ -17,15 +17,6 @@ BelialBullet::~BelialBullet()
 
 }
 
-//std::shared_ptr<BelialBullet> BelialBullet::CreateBelialBullet(GameEngineLevel* _Level, const float4& _Pos)
-//{
-//	//std::shared_ptr<BelialBullet> ResultSubBG = _Level->CreateActor<BelialBullet>();
-//	//float X = GameEngineRandom::MainRandom.RandomFloat(_Pos.x - ResultSubBG->XValue, _Pos.x + ResultSubBG->XValue);
-//	//float Y = GameEngineRandom::MainRandom.RandomFloat(_Pos.y - ResultSubBG->YValue, _Pos.y + ResultSubBG->YValue);
-//	//float4 Pos = { X,Y,-730.0f };
-//	//ResultSubBG->GetTransform()->SetWorldPosition(Pos);
-//	//return ResultSubBG;
-//}
 
 void BelialBullet::Start()
 {

@@ -183,6 +183,14 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="BelialHand_L.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="BelialHand_R.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="BelialHead.h">
       <SubType>
       </SubType>
@@ -478,6 +486,14 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="BelialBulletBase.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="BelialHand_L.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="BelialHand_R.cpp">
       <SubType>
       </SubType>
     </ClCompile>

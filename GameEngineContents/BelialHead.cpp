@@ -64,12 +64,6 @@ void BelialHead::Update(float _DeltaTime)
 
 	}
 
-	TestTime += _DeltaTime;
-	if (TestTime > 0.1)
-	{
-		BelialBulletRender = GetLevel()->CreateActor<BelialBullet>();
-		TestTime = 0.0f;
-	}
 
 }
 
