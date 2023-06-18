@@ -470,6 +470,9 @@
     <ClCompile Include="BelialHand_R.cpp">
       <Filter>Object\Boss\Belial\RightHand</Filter>
     </ClCompile>
+    <ClCompile Include="BelialHand_L_State.cpp">
+      <Filter>Object\Boss\Belial\LeftHand</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Levels">

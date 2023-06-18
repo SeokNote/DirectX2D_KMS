@@ -15,6 +15,8 @@
 #include <GameEngineCore/GameEngineSprite.h>
 BelialHead* BelialHead::MainBelialHead = nullptr;
 
+//Å×½ºÆ®
+#include "BelialHand_L.h"
 BelialHead::BelialHead()
 {
 	MainBelialHead = this;
@@ -42,7 +44,7 @@ void BelialHead::Start()
 
 	BelialBulletBasePtr = GetLevel()->CreateActor<BelialBulletBase>();
 	BelialBulletBasePtr->GetTransform()->SetWorldPosition({ 12080.0f,-250.0f,-800.0f });
-
+	GetLevel()->CreateActor<BelialHand_L>();
 }
 
 void BelialHead::Update(float _DeltaTime)

@@ -493,6 +493,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="BelialHand_L_State.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="BelialHand_R.cpp">
       <SubType>
       </SubType>
