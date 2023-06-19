@@ -303,6 +303,12 @@ void Player::JumpUpdate(float _Time)
 	{
 		if (true == GroundCheck() || true == MiddleCheck())
 		{
+			if (CurMap == MyMap::Stage2_Boss)
+			{
+				float4 MyPos = GetTransform()->GetLocalPosition();
+
+				GetTransform()->SetLocalPosition({ MyPos.x,-194.0f,MyPos.z });
+			}
 			JumpCheck = false;
 			MoveDir.y = 0.0f;
 			Check111 = false;
@@ -391,6 +397,7 @@ void Player::FallUpdate(float _Time)
 		}
 		if (true == GroundCheck())
 		{
+			
 			MoveDir.y = 0.0f;
 			ChangeState(PlayerState::IDLE);
 		}
@@ -418,6 +425,7 @@ void Player::FallUpdate(float _Time)
 		MoveDir.y -= 7.5f * _Time;;
 		if (true == GroundCheck())
 		{
+		
 			MoveDir.y = 0.0f;
 			ChangeState(PlayerState::IDLE);
 			IsMiddle = false;
@@ -492,7 +500,7 @@ void Player::DashUpdate(float _Time)
 	}
 	if (TopCheck() == true)
 	{
-		GetTransform()->AddLocalPosition({ 0.0f,-PrevDashPos.y * 6,0.0f });
+		GetTransform()->AddLocalPosition({ 0.0f,-PrevDashPos.y * DashSpeed * _Time,0.0f });
 
 	}
 

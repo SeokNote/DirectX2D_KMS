@@ -20,7 +20,8 @@ void Tunak::Start()
 {
 	TunakRender = CreateComponent<GameEngineSpriteRenderer>(1);
 	TunakRender->SetTexture("SkellBossLeftHandIdle0.png");
-	TunakRender->CreateAnimation({ .AnimationName = "TunakIdle", .SpriteName = "TunakIdle", .Loop = true , .ScaleToTexture = true });
+	TunakRender->GetTransform()->SetLocalScale({ 456.0f,468.0f,0.0f });
+	TunakRender->CreateAnimation({ .AnimationName = "TunakIdle", .SpriteName = "TunakIdle", .Loop = true , .ScaleToTexture = false });
 //	TunakRender->CreateAnimation({ .AnimationName = "TunakJumpAttack", .SpriteName = "TunakJumpAttack", .Loop = false , .ScaleToTexture = true });
 	TunakRender->ChangeAnimation("TunakIdle");
 

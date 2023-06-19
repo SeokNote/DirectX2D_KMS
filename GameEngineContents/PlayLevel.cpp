@@ -247,7 +247,7 @@ void PlayLevel::Start()
 		//Stage2-1
 		std::shared_ptr<Door> DoorPtr_4 = CreateActor<Door>(1);
 		DoorPtr_4->SetDoorPos({ 14143.0f,-132.0f,0.0f });
-		DoorPtr_4->SetNextPos({ 14304.0f,-192.0f, -801.0f });
+		DoorPtr_4->SetNextPos({ 14304.0f,-194.0f, -801.0f });
 		//Stage2 Boss
 		std::shared_ptr<Door> DoorPtr_5 = CreateActor<Door>(1);
 		DoorPtr_5->SetDoorPos({ 15844.0f,-192.0f,0.0f });
@@ -266,14 +266,15 @@ void PlayLevel::Start()
 	}
 	//	Player
 	static std::shared_ptr<Player> NewPlayer = CreateActor<Player>(1);
-	//NewPlayer->GetTransform()->SetLocalPosition({ 11438.0f,-480.0f,-801.0f });
-	NewPlayer->GetTransform()->SetLocalPosition({ -2390.0f,-500.0f,-801.0f });
+	NewPlayer->GetTransform()->SetLocalPosition({ 14304.0f,-194.0f,-801.0f });
+	//NewPlayer->GetTransform()->SetLocalPosition({ -2390.0f,-500.0f,-801.0f });
 	//NewPlayer->GetTransform()->SetLocalPosition({ 3716.0f,-197.0f,-801.0f });
+	// 
 	//static std::shared_ptr<BelialHead> BelialHeadPtr = CreateActor<BelialHead>(1);
 	//BelialHeadPtr->GetTransform()->SetLocalPosition({ 12050.0f,-150.0f,-760.0f });
    
 	std::shared_ptr<Tunak> TunakPtr = CreateActor<Tunak>(1);
-	TunakPtr->GetTransform()->SetLocalPosition({ -2390.0f,-500.0f,-801.0f });
+	TunakPtr->GetTransform()->SetLocalPosition({ 15074.0f,-25.0f,-800.0f });
 	
 	
 	std::shared_ptr<GreatWeapon> GreatWeaponPtr = CreateActor<GreatWeapon>(1);
