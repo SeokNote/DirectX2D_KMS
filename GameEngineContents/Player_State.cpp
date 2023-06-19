@@ -325,7 +325,7 @@ void Player::JumpUpdate(float _Time)
 			}
 		}
 	}
-	if (UpDashTime > 0.25f)
+	if (UpDashTime > 0.2f)
 	{
 		if (UICount == 0 && GameEngineInput::IsDown("DASH")) {
 			ChangeState(PlayerState::DASH);
@@ -456,7 +456,7 @@ void Player::DashUpdate(float _Time)
 	float4 PlayerPos = GetTransform()->GetLocalPosition();
 	DashTime += _Time;
 	DashEffectTime += _Time;
-	GetTransform()->AddLocalPosition({ PrevDashPos.x*6,PrevDashPos.y*6});
+	GetTransform()->AddLocalPosition({ PrevDashPos.x* DashSpeed* _Time,PrevDashPos.y* DashSpeed * _Time ,0.0f});
 	float YValue = (DashCurPos.y - PlayerPos.y);
 	if (DashEffectTime > 0.05f)
 	{
@@ -471,7 +471,7 @@ void Player::DashUpdate(float _Time)
 	}
 	if (YValue > 0.0f)
 	{
-		GetTransform()->AddLocalPosition({ 0.0f,-PrevDashPos.y * 6,0.0f});
+		GetTransform()->AddLocalPosition({ 0.0f,-PrevDashPos.y * DashSpeed * _Time ,0.0f});
 
 	}
 	if(DashTime>0.2)

@@ -139,7 +139,7 @@ void BelialHand_L::LasorUpdate(float _Time)
 	if (Frame == 8)
 	{
 		LasorPtr = GetLevel()->CreateActor<BelialLasor>();
-		LasorPtr->GetTransform()->SetLocalPosition({ CurPos.x + 650.0f,CurPos.y-20.0f,-802 });
+		LasorPtr->GetTransform()->SetLocalPosition({ CurPos.x + 650.0f,CurPos.y-20.0f,-850 });
 	}
 	if (true == LeftHandRender->IsAnimationEnd())
 	{

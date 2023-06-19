@@ -53,7 +53,7 @@ void BelialHead::Start()
 void BelialHead::Update(float _DeltaTime)
 {
 	SubBGTime += _DeltaTime;
-	if (SubBGTime > 0.5f)
+	if (SubBGTime > 0.4f)
 	{
 		BelialHeadSubBG::CreateSubBG(GetLevel(), MainBGPos);
 		SubBGTime = 0.0f;

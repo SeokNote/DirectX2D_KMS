@@ -147,6 +147,7 @@ private:
 	float4 DashCurPos = float4::Zero;
 	float4 PrevDashPos = float4::Zero;
 	float UpDashTime = 0.0f;
+	float DashSpeed = 1000.0f;
 	//대쉬 이펙트 관련
 	bool Effect_Check = false;
 	float DashEffectTime = 0.0f;

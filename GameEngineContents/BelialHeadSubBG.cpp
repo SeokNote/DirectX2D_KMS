@@ -31,7 +31,7 @@ void BelialHeadSubBG::Start()
 {
 	BelialSubBGRender = CreateComponent<GameEngineSpriteRenderer>(1);
 	BelialSubBGRender->SetTexture("SkellBossParticle0.png");
-	BelialSubBGRender->CreateAnimation({ .AnimationName = "BelialSubBG", .SpriteName = "SubBG",.FrameInter = 0.07f,.Loop = false , .ScaleToTexture = true });
+	BelialSubBGRender->CreateAnimation({ .AnimationName = "BelialSubBG", .SpriteName = "SubBG",.FrameInter = 0.04f,.Loop = false , .ScaleToTexture = true });
 	BelialSubBGRender->SetAnimationStartEvent("BelialSubBG", 8, [this]()
 		{
 			Death();

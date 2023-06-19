@@ -59,6 +59,7 @@ private:
 	float TimeCheck_1 = 0.0f;
 	float TimeCheck_2 = 0.0f;
 	float TimeCheck_3 = 0.0f;
+	float SwordSpeed = 1500.0f;
 	//현재 각도값
 	float4 CurDir = float4::Zero;
 	float4 SwordPos = float4::Zero;

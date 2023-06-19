@@ -124,8 +124,8 @@ void BossSword::MoveStart()
 void BossSword::MoveUpdate(float _Time)
 {
 	SwordFxRender->GetTransform()->SetLocalRotation({0.0f,0.0f, ZDeg - 90 });
-	SwordRender->GetTransform()->AddLocalPosition({CurDir.x * 20.0f, CurDir.y * 20.0f,0.0f });
-	SwordFxRender->GetTransform()->AddLocalPosition({ CurDir.x * 20.0f, CurDir.y * 20.0f,0.0f });
+	SwordRender->GetTransform()->AddLocalPosition({CurDir.x * SwordSpeed* _Time, CurDir.y * SwordSpeed*_Time,0.0f });
+	SwordFxRender->GetTransform()->AddLocalPosition({ CurDir.x * SwordSpeed* _Time, CurDir.y * SwordSpeed* _Time,0.0f });
 	if (PixelCheck() == true)
 	{
 		ColCurPos = SwordRender->GetTransform()->GetWorldPosition();

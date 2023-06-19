@@ -258,7 +258,7 @@ void PlayLevel::Start()
 	//NewPlayer->GetTransform()->SetLocalPosition({ 3716.0f,-197.0f,-801.0f });
 	static std::shared_ptr<BelialHead> BelialHeadPtr = CreateActor<BelialHead>(1);
 	BelialHeadPtr->GetTransform()->SetLocalPosition({ 12050.0f,-150.0f,-760.0f });
-
+   
 
 	
 	
