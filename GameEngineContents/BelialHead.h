@@ -24,6 +24,10 @@ public:
 	{
 		return BelialBGRender;
 	}
+	bool IsBulletPatton()
+	{
+		return BulletPatton;
+	}
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
@@ -59,6 +63,7 @@ private:
 	void DeadEnd();
 	//패턴 불값
 	bool IsBullet = true;
+	bool BulletPatton = false;
 	//패턴 시간체크
 	float TimeCheck_0 = 0.0f;
 	float TimeCheck_1 = 0.0f;

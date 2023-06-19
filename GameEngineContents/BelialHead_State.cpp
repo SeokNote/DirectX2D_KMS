@@ -78,6 +78,7 @@ void BelialHead::IdleStart()
 }
 void BelialHead::IdleUpdate(float _Time)
 {
+	BulletPatton = false;
 	TimeCheck_0 += _Time;
 	if (TimeCheck_0 > 10.0f)
 	{
@@ -98,6 +99,7 @@ void BelialHead::MoveStart()
 }
 void BelialHead::MoveUpdate(float _Time)
 {
+	BulletPatton = true;
 	BulletTime += _Time;
 	TimeCheck_1 += _Time;
 	if (TimeCheck_1 > 5.0f)

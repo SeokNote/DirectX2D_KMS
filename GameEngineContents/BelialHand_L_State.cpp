@@ -3,6 +3,7 @@
 #include "BelialBullet.h"
 #include "Player.h"
 #include "BelialLasor.h"
+#include "BelialHead.h"
 #include <GameEngineCore/GameEngineTexture.h>
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEnginePlatform/GameEngineWindow.h>
@@ -78,14 +79,19 @@ void BelialHand_L::IdleStart()
 }
 void BelialHand_L::IdleUpdate(float _Time)
 {
-	NextPatton = false;
-	//일단 확인용으로 조건은 5초로 해놓는다.
-	M_StartTime += _Time;
-	if (M_StartTime > 5.0f)
+	if (false == BelialHead::MainBelialHead->IsBulletPatton())
 	{
-		ChangeState(LeftHandState::MOVE);
-		M_StartTime = 0.0f;
+		//일단 확인용으로 조건은 5초로 해놓는다.
+		M_StartTime += _Time;
+		if (M_StartTime > 4.0f)
+		{
+			ChangeState(LeftHandState::MOVE);
+			M_StartTime = 0.0f;
+		}
+
 	}
+	NextPatton = false;
+	
 }
 void BelialHand_L::IdleEnd()
 {
@@ -133,7 +139,7 @@ void BelialHand_L::LasorUpdate(float _Time)
 	if (Frame == 8)
 	{
 		LasorPtr = GetLevel()->CreateActor<BelialLasor>();
-		LasorPtr->GetTransform()->SetLocalPosition({ CurPos.x + 650.0f,CurPos.y-20.0f,CurPos.z });
+		LasorPtr->GetTransform()->SetLocalPosition({ CurPos.x + 650.0f,CurPos.y-20.0f,-802 });
 	}
 	if (true == LeftHandRender->IsAnimationEnd())
 	{
