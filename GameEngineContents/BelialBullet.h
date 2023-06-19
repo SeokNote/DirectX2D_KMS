@@ -25,14 +25,14 @@ protected:
 	void Update(float _DeltaTime) override;
 
 private:
-	void SetBullet();
+	void SetBullet(float _DeltaTime);
 	std::shared_ptr<class GameEngineSpriteRenderer> BelialBulletRender_L;
 	std::shared_ptr<class GameEngineSpriteRenderer> BelialBulletRender_R;
 	std::shared_ptr<class GameEngineSpriteRenderer> BelialBulletRender_U;
 	std::shared_ptr<class GameEngineSpriteRenderer> BelialBulletRender_D;
 
 	float4 Dir = float4::Zero;
-	float4 PivotPos = { 12080.0f,-250.0f,-740.0f };
+	float4 PivotPos = { 12080.0f,-250.0f,-770.0f };
 	float4 LDir = float4::Zero;
 	float4 RDir = float4::Zero;
 	float4 UDir = float4::Zero;
@@ -44,5 +44,6 @@ private:
 	float4 UDir_t = float4::Zero;
 	float4 DDir_t = float4::Zero;
 	float DeathTime = 0.0f;
+	float BulletSpeed = 500.0f;
 };
 

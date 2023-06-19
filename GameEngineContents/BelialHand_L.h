@@ -22,6 +22,10 @@ public:
 	BelialHand_L& operator=(const BelialHand_L& _Other) = delete;
 	BelialHand_L& operator=(BelialHand_L&& _Other) noexcept = delete;
 
+	bool GetPattonCheck()
+	{
+		return NextPatton;
+	}
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
@@ -29,6 +33,7 @@ private:
 	float4 LeftHandPos = { 11650.0f,-300.0f,-750.0f };
 	std::shared_ptr<class GameEngineSpriteRenderer> LeftHandRender;
 	std::shared_ptr<class GameEngineSpriteRenderer> LeftLasorRender;
+	std::shared_ptr<class BelialLasor> LasorPtr;
 	//FSM
 	LeftHandState StateValue = LeftHandState::IDLE;
 	void ChangeState(LeftHandState _State);
@@ -48,11 +53,14 @@ private:
 
 	//패턴시간체크
 	float M_StartTime = 0.0f;
-
+	
 	//변수
+	float HandSpeed = 600.0f;
 	float4 HandPos = float4::Zero;
 	float4 CurPos = float4::Zero;
 	float4 PlayerPos = float4::Zero;
 	float YPos = 0.0f;
+	bool NextPatton = false;
+	
 };
 

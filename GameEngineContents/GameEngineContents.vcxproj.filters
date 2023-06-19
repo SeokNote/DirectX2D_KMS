@@ -230,6 +230,12 @@
     <ClInclude Include="BelialHand_R.h">
       <Filter>Object\Boss\Belial\RightHand</Filter>
     </ClInclude>
+    <ClInclude Include="BelialLasor.h">
+      <Filter>Object\Boss\Belial\Lasor</Filter>
+    </ClInclude>
+    <ClInclude Include="BelialLasor_R.h">
+      <Filter>Object\Boss\Belial\Lasor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -472,6 +478,15 @@
     </ClCompile>
     <ClCompile Include="BelialHand_L_State.cpp">
       <Filter>Object\Boss\Belial\LeftHand</Filter>
+    </ClCompile>
+    <ClCompile Include="BelialLasor.cpp">
+      <Filter>Object\Boss\Belial\Lasor</Filter>
+    </ClCompile>
+    <ClCompile Include="BelialHand_R_State.cpp">
+      <Filter>Object\Boss\Belial\RightHand</Filter>
+    </ClCompile>
+    <ClCompile Include="BelialLasor_R.cpp">
+      <Filter>Object\Boss\Belial\Lasor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

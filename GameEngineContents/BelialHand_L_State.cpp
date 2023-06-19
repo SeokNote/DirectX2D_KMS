@@ -2,6 +2,7 @@
 #include "BelialHand_L.h"
 #include "BelialBullet.h"
 #include "Player.h"
+#include "BelialLasor.h"
 #include <GameEngineCore/GameEngineTexture.h>
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEnginePlatform/GameEngineWindow.h>
@@ -77,7 +78,7 @@ void BelialHand_L::IdleStart()
 }
 void BelialHand_L::IdleUpdate(float _Time)
 {
-	
+	NextPatton = false;
 	//일단 확인용으로 조건은 5초로 해놓는다.
 	M_StartTime += _Time;
 	if (M_StartTime > 5.0f)
@@ -102,7 +103,7 @@ void BelialHand_L::MoveUpdate(float _Time)
 	CurPos = LeftHandRender->GetTransform()->GetLocalPosition();
 	if (PlayerPos.y - HandPos.y > 0.0f)
 	{
-		LeftHandRender->GetTransform()->AddLocalPosition({0.0f,2.0f,0.0f});
+		LeftHandRender->GetTransform()->AddLocalPosition({0.0f,HandSpeed* _Time,0.0f});
 		if (CurPos.y > YPos)
 		{
 			ChangeState(LeftHandState::LASOR);
@@ -110,7 +111,7 @@ void BelialHand_L::MoveUpdate(float _Time)
 	}
 	else
 	{
-		LeftHandRender->GetTransform()->AddLocalPosition({ 0.0f,-2.0f,0.0f });
+		LeftHandRender->GetTransform()->AddLocalPosition({ 0.0f,-HandSpeed * _Time,0.0f });
 		if (CurPos.y < YPos)
 		{
 			ChangeState(LeftHandState::LASOR);
@@ -123,12 +124,22 @@ void BelialHand_L::MoveEnd()
 void BelialHand_L::LasorStart()
 {
 	LeftHandRender->ChangeAnimation("LeftHandLasor");
+
+
 }
 void BelialHand_L::LasorUpdate(float _Time)
 {
+	size_t Frame = LeftHandRender->GetCurrentFrame();
+	if (Frame == 8)
+	{
+		LasorPtr = GetLevel()->CreateActor<BelialLasor>();
+		LasorPtr->GetTransform()->SetLocalPosition({ CurPos.x + 650.0f,CurPos.y-20.0f,CurPos.z });
+	}
 	if (true == LeftHandRender->IsAnimationEnd())
 	{
 		ChangeState(LeftHandState::IDLE);
+		NextPatton = true;
+		LasorPtr->Death();
 	}
 }
 void BelialHand_L::LasorEnd()

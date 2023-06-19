@@ -55,20 +55,21 @@ void BelialBullet::Start()
 }
 void BelialBullet::Update(float _DeltaTime)
 {
-	SetBullet();
+	SetBullet(_DeltaTime);
 	DeathTime += _DeltaTime;
-	if (DeathTime >2.0f)
+	if (DeathTime >3.0f)
 	{
 		Death();
+		DeathTime = 0.0f;
 	}
 }
 
-void BelialBullet::SetBullet()
+void BelialBullet::SetBullet(float _DeltaTime)
 {
-	BelialBulletRender_L->GetTransform()->AddWorldPosition({ LDir.x * 3,LDir.y * 3.0f,0.0f });
-	BelialBulletRender_R->GetTransform()->AddWorldPosition({ RDir.x * 3,RDir.y * 3.0f,0.0f });
-	BelialBulletRender_U->GetTransform()->AddWorldPosition({ UDir.x * 3,UDir.y * 3.0f,0.0f });
-	BelialBulletRender_D->GetTransform()->AddWorldPosition({ DDir.x * 3,DDir.y * 3.0f,0.0f });
+	BelialBulletRender_L->GetTransform()->AddWorldPosition({ LDir.x *BulletSpeed* _DeltaTime,LDir.y * BulletSpeed * _DeltaTime,0.0f });
+	BelialBulletRender_R->GetTransform()->AddWorldPosition({ RDir.x *BulletSpeed * _DeltaTime,RDir.y *  BulletSpeed * _DeltaTime,0.0f });
+	BelialBulletRender_U->GetTransform()->AddWorldPosition({ UDir.x *BulletSpeed * _DeltaTime,UDir.y * BulletSpeed * _DeltaTime,0.0f });
+	BelialBulletRender_D->GetTransform()->AddWorldPosition({ DDir.x *BulletSpeed * _DeltaTime,DDir.y * BulletSpeed * _DeltaTime,0.0f });
 }
 
 

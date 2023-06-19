@@ -79,7 +79,7 @@ void BelialHead::IdleStart()
 void BelialHead::IdleUpdate(float _Time)
 {
 	TimeCheck_0 += _Time;
-	if (TimeCheck_0 > 5.0f)
+	if (TimeCheck_0 > 10.0f)
 	{
 		TimeCheck_0 = 0.0f;
 		ChangeState(BossHeadState::MOVE);
@@ -106,10 +106,10 @@ void BelialHead::MoveUpdate(float _Time)
 		TimeCheck_1 = 0.0f;
 		IsBullet = false;
 	}
-	if (IsBullet == true && BulletTime > 0.1f)
+	if (IsBullet == true && BulletTime > 0.15f)
 	{
-		BulletTime = 0.0f;
 		BelialBulletRender = GetLevel()->CreateActor<BelialBullet>();
+		BulletTime = 0.0f;
 	}
 }
 void BelialHead::MoveEnd()
