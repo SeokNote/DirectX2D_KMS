@@ -46,6 +46,7 @@
 #include "Stage3_1.h"
 #include "Stage3_Boss.h"
 #include "BelialHead.h"
+#include "Tunak.h"
 
 #include <GameEngineCore/GameEngineCamera.h>
 #include <GameEngineCore/GameEngineTexture.h>
@@ -115,6 +116,18 @@ void PlayLevel::Start()
 	BelialDir.Move("BelialBG");
 	GameEngineSprite::LoadFolder(BelialDir.GetPlusFileName("MainBG").GetFullPath());
 	GameEngineSprite::LoadFolder(BelialDir.GetPlusFileName("SubBG").GetFullPath());
+
+	//투낙 애니메이션
+	GameEngineDirectory TunakDir;
+	TunakDir.MoveParentToDirectory("ContentResources");
+	TunakDir.Move("ContentResources");
+	TunakDir.Move("Animation");
+	TunakDir.Move("MainLevelAnimation");
+	TunakDir.Move("Boss");
+	TunakDir.Move("Tunak");
+
+	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("TunakIdle").GetFullPath());
+	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("TunakJumpAttack").GetFullPath());
 
 
 	if (false == GameEngineInput::IsKey("LeftMove"))
@@ -253,13 +266,14 @@ void PlayLevel::Start()
 	}
 	//	Player
 	static std::shared_ptr<Player> NewPlayer = CreateActor<Player>(1);
-	NewPlayer->GetTransform()->SetLocalPosition({ 11438.0f,-480.0f,-801.0f });
-	//NewPlayer->GetTransform()->SetLocalPosition({ -2390.0f,-500.0f,-801.0f });
+	//NewPlayer->GetTransform()->SetLocalPosition({ 11438.0f,-480.0f,-801.0f });
+	NewPlayer->GetTransform()->SetLocalPosition({ -2390.0f,-500.0f,-801.0f });
 	//NewPlayer->GetTransform()->SetLocalPosition({ 3716.0f,-197.0f,-801.0f });
-	static std::shared_ptr<BelialHead> BelialHeadPtr = CreateActor<BelialHead>(1);
-	BelialHeadPtr->GetTransform()->SetLocalPosition({ 12050.0f,-150.0f,-760.0f });
+	//static std::shared_ptr<BelialHead> BelialHeadPtr = CreateActor<BelialHead>(1);
+	//BelialHeadPtr->GetTransform()->SetLocalPosition({ 12050.0f,-150.0f,-760.0f });
    
-
+	std::shared_ptr<Tunak> TunakPtr = CreateActor<Tunak>(1);
+	TunakPtr->GetTransform()->SetLocalPosition({ -2390.0f,-500.0f,-801.0f });
 	
 	
 	std::shared_ptr<GreatWeapon> GreatWeaponPtr = CreateActor<GreatWeapon>(1);
