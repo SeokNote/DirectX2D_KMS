@@ -245,7 +245,7 @@
     <ClInclude Include="GroundBomb.h">
       <Filter>Object\Boss\Tunak\GroundBomb</Filter>
     </ClInclude>
-    <ClInclude Include="TunakBulletBase.h">
+    <ClInclude Include="TunakBullet.h">
       <Filter>Object\Boss\Tunak\TunakBullet</Filter>
     </ClInclude>
   </ItemGroup>
@@ -512,7 +512,7 @@
     <ClCompile Include="GroundBomb.cpp">
       <Filter>Object\Boss\Tunak\GroundBomb</Filter>
     </ClCompile>
-    <ClCompile Include="TunakBulletBase.cpp">
+    <ClCompile Include="TunakBullet.cpp">
       <Filter>Object\Boss\Tunak\TunakBullet</Filter>
     </ClCompile>
   </ItemGroup>

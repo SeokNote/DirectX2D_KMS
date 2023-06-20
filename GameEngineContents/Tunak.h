@@ -90,6 +90,6 @@ private:
 	bool IsFilp = false;
 	float4 TunakPos = float4::Zero;
 	float FlipTime = 0.0f;
-	int RandomIndex = 0.0f;
+	int RandomIndex = 0;
 };
 

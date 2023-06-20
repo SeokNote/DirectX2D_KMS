@@ -268,17 +268,6 @@ void Tunak::SPIKE_EEnd()
 void Tunak::OverPowerStart()
 {
 	float4 PlayerPos = Player::MainPlayer->GetTransform()->GetLocalPosition();
-	//float4 TunakPos = GetTransform()->GetLocalPosition();
-
-	//if (TunakPos.x - PlayerPos.x < 0)
-	//{
-	//	TunakRender->GetTransform()->SetLocalNegativeScaleX();
-	//}
-	//else
-	//{
-	//	TunakRender->GetTransform()->SetLocalPositiveScaleX();
-
-	//}
 	TunakRender->ChangeAnimation("TunakOverPower");
 	GroundBombPtr_0 = GetLevel()->CreateActor<GroundBomb>();
 	GroundBombPtr_0->GetTransform()->SetLocalPosition({ PlayerPos.x,-100.0f,-802.f });
@@ -311,7 +300,6 @@ void Tunak::DoubleAttackUpdate(float _Time)
 
 		if (IsFilp == false)
 		{
-			//float4 M0 = float4::LerpClamp(_Start, _Height, _Ratio);
 			if (TunakRender->GetCurrentFrame() < 7)
 			{
 				GetTransform()->AddLocalPosition({ -_Time * DoubleAttackSpeed*0.75f ,0.0f,0.0f });

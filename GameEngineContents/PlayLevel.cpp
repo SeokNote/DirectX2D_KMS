@@ -59,6 +59,7 @@
 //Å×½ºÆ®
 #include "BossSword.h"
 #include "BelialHeadSubBG.h"
+#include "TunakBullet.h"
 PlayLevel* PlayLevel::MainPlayLevel = nullptr;
 
 PlayLevel::PlayLevel()
@@ -139,7 +140,21 @@ void PlayLevel::Start()
 	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("TunakSpike").GetFullPath());
 	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("TunakSpikeReady").GetFullPath());
 	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("TunakSpikeIdle").GetFullPath());
-	
+
+	//Åõ³« ÃÑ¾Ë
+	GameEngineDirectory TunakBulletDir;
+	TunakBulletDir.MoveParentToDirectory("ContentResources");
+	TunakBulletDir.Move("ContentResources");
+	TunakBulletDir.Move("Animation");
+	TunakBulletDir.Move("MainLevelAnimation");
+	TunakBulletDir.Move("Boss");
+	TunakBulletDir.Move("Tunak");
+	TunakBulletDir.Move("TunakBullet");
+
+	GameEngineSprite::LoadFolder(TunakBulletDir.GetPlusFileName("TunakBulletIIldle").GetFullPath());
+	GameEngineSprite::LoadFolder(TunakBulletDir.GetPlusFileName("TunakBulletBG").GetFullPath());
+	GameEngineSprite::LoadFolder(TunakBulletDir.GetPlusFileName("TunakBulletEffect").GetFullPath());
+
 
 	if (false == GameEngineInput::IsKey("LeftMove"))
 	{
@@ -282,11 +297,12 @@ void PlayLevel::Start()
 	//NewPlayer->GetTransform()->SetLocalPosition({ -2390.0f,-500.0f,-801.0f });
 	//NewPlayer->GetTransform()->SetLocalPosition({ 3716.0f,-197.0f,-801.0f });
 	// 
-	//static std::shared_ptr<BelialHead> BelialHeadPtr = CreateActor<BelialHead>(1);
-	//BelialHeadPtr->GetTransform()->SetLocalPosition({ 12050.0f,-150.0f,-760.0f });
+	static std::shared_ptr<BelialHead> BelialHeadPtr = CreateActor<BelialHead>(1);
+	BelialHeadPtr->GetTransform()->SetLocalPosition({ 12050.0f,-150.0f,-760.0f });
    
-	std::shared_ptr<Tunak> TunakPtr = CreateActor<Tunak>(1);
-	TunakPtr->GetTransform()->SetLocalPosition({ 15074.0f,-25.0f,-800.0f });
+	//std::shared_ptr<Tunak> TunakPtr = CreateActor<Tunak>(1);
+	//TunakPtr->GetTransform()->SetLocalPosition({ 15074.0f,-25.0f,-800.0f });
+
 	
 	
 	std::shared_ptr<GreatWeapon> GreatWeaponPtr = CreateActor<GreatWeapon>(1);
@@ -302,7 +318,10 @@ void PlayLevel::Update(float _DeltaTime)
 	UICtr();
 	if (GameEngineInput::IsDown("DEBUGMODE"))
 	{
-		IsDebugSwitch();
+		std::shared_ptr<TunakBullet> TunakBulletPtr = CreateActor<TunakBullet>(1);
+		TunakBulletPtr->GetTransform()->SetLocalPosition({ 15074.0f,-100.0f,-800.0f });
+		TunakBulletPtr->GetTransform()->SetLocalRotation({ 0.0f,0.0f,15.0f });
+		//IsDebugSwitch();
 	}
 
 

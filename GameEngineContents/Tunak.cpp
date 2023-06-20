@@ -21,7 +21,9 @@ Tunak::~Tunak()
 점프 후 내려찍기
 샤우팅하면서 구체 2번 날리기
 더블어택 (기본적으로 플레이어의 위치를 체크해 스케일을 바꿔주자
-멀면 플레이어 위치로 가서 더블어택하고 플레이어 방향으로 바꿔서 더블어택
+멀면 플레이어 위치로 가서 더블어택하고 플레이어 방향으로 바꿔서 더블어택 만약 위치차이가 500이상이라면 바로 점프후 더블어택하자.
+고블린 폭탄 떨구기
+숄더태클...
 
 */
 void Tunak::Start()
@@ -60,7 +62,9 @@ void Tunak::CalBezierBulletTransform(const float4& _Start, const float4& _Height
 
 
 	GetTransform()->SetWorldPosition(Pos);
-
+	//std::shared_ptr<TunakBullet> TunakBulletPtr = CreateActor<TunakBullet>(1);
+	//TunakBulletPtr->GetTransform()->SetLocalPosition({ 15074.0f,-100.0f,-800.0f });
+	//TunakBulletPtr->GetTransform()->SetLocalRotation({ 0.0f,0.0f,15.0f });
 }
 void Tunak::TunakFlip()
 {

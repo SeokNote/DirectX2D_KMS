@@ -487,7 +487,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="TunakBulletBase.h">
+    <ClInclude Include="TunakBullet.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -822,7 +822,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="TunakBulletBase.cpp">
+    <ClCompile Include="TunakBullet.cpp">
       <SubType>
       </SubType>
     </ClCompile>
