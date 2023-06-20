@@ -13,6 +13,7 @@
 #include <GameEngineCore/GameEngineCollision.h>
 #include "PixelCollision.h"
 #include <GameEngineCore/GameEngineSprite.h>
+#include <GameEngineBase/GameEngineRandom.h>
 
 // State
 void Tunak::ChangeState(TunakState _State)
@@ -39,6 +40,9 @@ void Tunak::ChangeState(TunakState _State)
 	case TunakState::SPIKE_E:
 		SPIKE_EStart();
 		break;
+	case TunakState::OVERPOWER:
+		OverPowerStart();
+		break;
 	default:
 		break;
 	}
@@ -59,6 +63,9 @@ void Tunak::ChangeState(TunakState _State)
 		break;
 	case TunakState::SPIKE_E:
 		SPIKE_EEnd();
+		break;
+	case TunakState::OVERPOWER:
+		OverPowerEnd();
 		break;
 	default:
 		break;
@@ -84,6 +91,9 @@ void Tunak::UpdateState(float _Time)
 	case TunakState::SPIKE_E:
 		SPIKE_EUpdate(_Time);
 		break;
+	case TunakState::OVERPOWER:
+		OverPowerUpdate(_Time);
+		break;
 	default:
 		break;
 	}
@@ -100,7 +110,9 @@ void Tunak::IdleUpdate(float _Time)
 	TestTime += _Time;
 	if (TestTime > 5.0f)
 	{
-		ChangeState(TunakState::SPIKE_R);
+		//ChangeState(TunakState::SPIKE_R);
+		ChangeState(TunakState::OVERPOWER);
+
 		TestTime = 0.0f;
 	}
 
@@ -114,6 +126,8 @@ void Tunak::SPIKE_RStart()
 	TunakRender->ChangeAnimation("TunakSpikeReady");
 	CurPos = GetTransform()->GetLocalPosition();
 	SpikeHeight = { CurPos.x + 100.0f,CurPos.y + 100.0f,-800.0f };
+	BombX = GameEngineRandom::MainRandom.RandomFloat(14700.0f, 14840.0f);
+
 }
 void Tunak::SPIKE_RUpdate(float _Time)
 {
@@ -136,12 +150,19 @@ void Tunak::SPIKE_RUpdate(float _Time)
 		float4 AfterimagePos = TunakPos;
 		CalBezierBulletTransform(CurPos, SpikeHeight, SpikeEndPos, InterRatio * 5.0f);
 
-	}
+	}	
 	if (TunakPos == SpikeEndPos)
 	{
 		GetTransform()->SetLocalRotation({ 0.0f,0.0f,90.0f });
 		InterRatio = 0.0f;
-		GetLevel()->CreateActor<GroundBomb>();
+		GroundBombPtr_0 = GetLevel()->CreateActor<GroundBomb>();
+		GroundBombPtr_0->GetTransform()->SetWorldPosition({ BombX,-100.0f,-802.0f });
+		GroundBombPtr_1 = GetLevel()->CreateActor<GroundBomb>();
+		GroundBombPtr_1->GetTransform()->SetWorldPosition({ BombX-400.0f,-100.0f,-802.0f });
+		GroundBombPtr_2 = GetLevel()->CreateActor<GroundBomb>();
+		GroundBombPtr_2->GetTransform()->SetWorldPosition({ BombX+400.0f,-100.0f,-802.0f });
+		float4 asdaw = GroundBombPtr_2->GetTransform()->GetLocalPosition();
+		
 		ChangeState(TunakState::SPIKE_S);
 	}
 }
@@ -192,9 +213,14 @@ void Tunak::SPIKE_UEnd()
 
 void Tunak::SPIKE_EStart()
 {
+	BombX = GameEngineRandom::MainRandom.RandomFloat(14700.0f, 14840.0f);
 	TunakRender->ChangeAnimation("TunakOverPower");
-	GetLevel()->CreateActor<GroundBomb>();
-
+	GroundBombPtr_0 = GetLevel()->CreateActor<GroundBomb>();
+	GroundBombPtr_0->GetTransform()->SetWorldPosition({ BombX,-100.0f,-802.0f });
+	GroundBombPtr_1 = GetLevel()->CreateActor<GroundBomb>();
+	GroundBombPtr_1->GetTransform()->SetWorldPosition({ BombX - 400.0f,-100.0f,-802.0f });
+	GroundBombPtr_2 = GetLevel()->CreateActor<GroundBomb>();
+	GroundBombPtr_2->GetTransform()->SetWorldPosition({ BombX + 400.0f,-100.0f,-802.0f });
 }
 
 void Tunak::SPIKE_EUpdate(float _Time)
@@ -207,5 +233,38 @@ void Tunak::SPIKE_EUpdate(float _Time)
 }
 
 void Tunak::SPIKE_EEnd()
+{
+}
+
+void Tunak::OverPowerStart()
+{
+	float4 PlayerPos = Player::MainPlayer->GetTransform()->GetLocalPosition();
+	float4 TunakPos = GetTransform()->GetLocalPosition();
+
+	if (TunakPos.x - PlayerPos.x < 0)
+	{
+		TunakRender->GetTransform()->SetLocalNegativeScaleX();
+	}
+	else
+	{
+		TunakRender->GetTransform()->SetLocalPositiveScaleX();
+
+	}
+	TunakRender->ChangeAnimation("TunakOverPower");
+	GroundBombPtr_0 = GetLevel()->CreateActor<GroundBomb>();
+	GroundBombPtr_0->GetTransform()->SetLocalPosition({ PlayerPos.x,-100.0f,-802.f });
+}
+
+void Tunak::OverPowerUpdate(float _Time)
+{
+	if (true == TunakRender->IsAnimationEnd())
+	{
+		ChangeState(TunakState::IDLE);
+
+	}
+}
+
+
+void Tunak::OverPowerEnd()
 {
 }

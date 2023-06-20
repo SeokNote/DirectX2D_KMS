@@ -16,7 +16,14 @@ Tunak::Tunak()
 Tunak::~Tunak()
 {
 }
+/*
+스파이크(0)
+점프 후 내려찍기
+샤우팅하면서 구체 2번 날리기
+더블어택 (기본적으로 플레이어의 위치를 체크해 스케일을 바꿔주자
+멀면 플레이어 위치로 가서 더블어택하고 플레이어 방향으로 바꿔서 더블어택
 
+*/
 void Tunak::Start()
 {
 	TunakRender = CreateComponent<GameEngineSpriteRenderer>(1);

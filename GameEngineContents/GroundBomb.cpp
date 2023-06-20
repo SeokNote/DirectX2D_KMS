@@ -24,12 +24,11 @@ void GroundBomb::Start()
 	GroundBombBGRender = CreateComponent<GameEngineSpriteRenderer>(1);
 	GroundBombBGRender->SetTexture("TunakGroundBG.png");
 	GroundBombBGRender->GetTransform()->SetLocalScale(BGScale); 
-	GroundBombBGRender->GetTransform()->SetLocalPosition({ X,-100.f,-900.0f });
 
 	GroundBombRender = CreateComponent<GameEngineSpriteRenderer>(1);
 	GroundBombRender->SetTexture("GeyserFx06.png");
 	GroundBombRender->GetTransform()->SetLocalScale(BombScale);
-	GroundBombRender->GetTransform()->SetLocalPosition({ X,140.f,-900.0f });
+	GroundBombRender->GetTransform()->SetLocalPosition({ 0.0f,240.f,0.0f});
 	GroundBombRender->CreateAnimation({ .AnimationName = "GroundBomb", .SpriteName = "GroundBomb", .Loop = false , .ScaleToTexture = false });
 
 	GroundBombBGRender->ColorOptionValue.MulColor.x = 1.0f;
@@ -37,52 +36,11 @@ void GroundBomb::Start()
 	GroundBombBGRender->ColorOptionValue.MulColor.z = 1.0f;
 	GroundBombBGRender->ColorOptionValue.MulColor.a = StartAlpha;
 
-	GroundBombBGRender_1 = CreateComponent<GameEngineSpriteRenderer>(1);
-	GroundBombBGRender_1->SetTexture("TunakGroundBG.png");
-	GroundBombBGRender_1->GetTransform()->SetLocalScale(BGScale);
-	GroundBombBGRender_1->GetTransform()->SetLocalPosition({ X-400.0f,-100.f,-900.0f });
-
-	GroundBombRender_1 = CreateComponent<GameEngineSpriteRenderer>(1);
-	GroundBombRender_1->SetTexture("GeyserFx06.png");
-	GroundBombRender_1->GetTransform()->SetLocalScale(BombScale);
-	GroundBombRender_1->GetTransform()->SetLocalPosition({ X - 400.0f,140.f,-900.0f });
-	GroundBombRender_1->CreateAnimation({ .AnimationName = "GroundBomb", .SpriteName = "GroundBomb", .Loop = false , .ScaleToTexture = false });
-
-	GroundBombBGRender_1->ColorOptionValue.MulColor.x = 1.0f;
-	GroundBombBGRender_1->ColorOptionValue.MulColor.y = 1.0f;
-	GroundBombBGRender_1->ColorOptionValue.MulColor.z = 1.0f;
-	GroundBombBGRender_1->ColorOptionValue.MulColor.a = StartAlpha;
-
-	GroundBombBGRender_2 = CreateComponent<GameEngineSpriteRenderer>(1);
-	GroundBombBGRender_2->SetTexture("TunakGroundBG.png");
-	GroundBombBGRender_2->GetTransform()->SetLocalScale(BGScale);
-	GroundBombBGRender_2->GetTransform()->SetLocalPosition({ X+400.0f,-100.f,-900.0f });
-
-	GroundBombRender_2 = CreateComponent<GameEngineSpriteRenderer>(1);
-	GroundBombRender_2->SetTexture("GeyserFx06.png");
-	GroundBombRender_2->GetTransform()->SetLocalScale(BombScale);
-	GroundBombRender_2->GetTransform()->SetLocalPosition({ X + 400.0f,140.f,-900.0f });
-	GroundBombRender_2->CreateAnimation({ .AnimationName = "GroundBomb", .SpriteName = "GroundBomb", .Loop = false , .ScaleToTexture = false });
-
-	GroundBombBGRender_2->ColorOptionValue.MulColor.x = 1.0f;
-	GroundBombBGRender_2->ColorOptionValue.MulColor.y = 1.0f;
-	GroundBombBGRender_2->ColorOptionValue.MulColor.z = 1.0f;
-	GroundBombBGRender_2->ColorOptionValue.MulColor.a = StartAlpha;
-
 	BombBGRender_0 = CreateComponent<GameEngineSpriteRenderer>(1);
 	BombBGRender_0->SetTexture("SpikeStoneFront13.png");
-	BombBGRender_0->GetTransform()->SetLocalPosition({ X ,-220.f,-901.0f });
-	BombBGRender_0->CreateAnimation({ .AnimationName = "BombBG_0", .SpriteName = "BombBG", .FrameInter=0.03f,.Loop = false , .ScaleToTexture = true });
+	BombBGRender_0->GetTransform()->SetLocalPosition({ 0.0f ,-125.f,0.0f });
+	BombBGRender_0->CreateAnimation({ .AnimationName = "BombBG_0", .SpriteName = "BombBG", .FrameInter=0.04f,.Loop = false , .ScaleToTexture = true });
 
-	BombBGRender_1 = CreateComponent<GameEngineSpriteRenderer>(1);
-	BombBGRender_1->SetTexture("SpikeStoneFront13.png");
-	BombBGRender_1->GetTransform()->SetLocalPosition({ X + 400.0f,-220.f,-901.0f });
-	BombBGRender_1->CreateAnimation({ .AnimationName = "BombBG_1", .SpriteName = "BombBG",.FrameInter = 0.03f, .Loop = false , .ScaleToTexture = true });
-
-	BombBGRender_2 = CreateComponent<GameEngineSpriteRenderer>(1);
-	BombBGRender_2->SetTexture("SpikeStoneFront13.png");
-	BombBGRender_2->GetTransform()->SetLocalPosition({ X - 400.0f,-220.f,-901.0f });
-	BombBGRender_2->CreateAnimation({ .AnimationName = "BombBG_2", .SpriteName = "BombBG", .FrameInter = 0.03f,.Loop = false , .ScaleToTexture = true });
 
 
 }
@@ -136,79 +94,7 @@ void GroundBomb::SetGroundBG(float _DeltaTime)
 		GroundBombBGRender->GetTransform()->AddLocalScale({ _DeltaTime * 100,0.0f,0.0f });
 	}
 
-	if (GroundBombBGRender_1->ColorOptionValue.MulColor.g > 0)
-	{
-		GroundBombBGRender_1->ColorOptionValue.MulColor.g -= (_DeltaTime) * 1.0f;
-	}
-	else
-	{
-		GroundBombBGRender_1->ColorOptionValue.MulColor.g = 0.0f;
-	}
-	if (GroundBombBGRender_1->ColorOptionValue.MulColor.b > 0)
-	{
-		GroundBombBGRender_1->ColorOptionValue.MulColor.b -= (_DeltaTime) * 1.0f;
-	}
-	else
-	{
-		GroundBombBGRender_1->ColorOptionValue.MulColor.b = 0.0f;
-	}
-	if (GroundBombBGRender_1->ColorOptionValue.MulColor.r > 0)
-	{
-		GroundBombBGRender_1->ColorOptionValue.MulColor.r += (_DeltaTime) * 1.0f;
-	}
-	else
-	{
-		GroundBombBGRender_1->ColorOptionValue.MulColor.r = 1.0f;
-	}
-	if (GroundBombBGRender_1->ColorOptionValue.MulColor.a > 0)
-	{
-		GroundBombBGRender_1->ColorOptionValue.MulColor.a -= (_DeltaTime) * 1.0f;
-	}
-	else
-	{
-		GroundBombBGRender_1->ColorOptionValue.MulColor.a = 0.0f;
-	}
-	if (BGScale.x < 250.0f)
-	{
-		GroundBombBGRender_1->GetTransform()->AddLocalScale({ _DeltaTime * 100,0.0f,0.0f });
-	}
-
-	if (GroundBombBGRender_2->ColorOptionValue.MulColor.g > 0)
-	{
-		GroundBombBGRender_2->ColorOptionValue.MulColor.g -= (_DeltaTime) * 1.0f;
-	}
-	else
-	{
-		GroundBombBGRender_2->ColorOptionValue.MulColor.g = 0.0f;
-	}
-	if (GroundBombBGRender_2->ColorOptionValue.MulColor.b > 0)
-	{
-		GroundBombBGRender_2->ColorOptionValue.MulColor.b -= (_DeltaTime) * 1.0f;
-	}
-	else
-	{
-		GroundBombBGRender_2->ColorOptionValue.MulColor.b = 0.0f;
-	}
-	if (GroundBombBGRender_2->ColorOptionValue.MulColor.r > 0)
-	{
-		GroundBombBGRender_2->ColorOptionValue.MulColor.r += (_DeltaTime) * 1.0f;
-	}
-	else
-	{
-		GroundBombBGRender_2->ColorOptionValue.MulColor.r = 1.0f;
-	}
-	if (GroundBombBGRender_2->ColorOptionValue.MulColor.a > 0)
-	{
-		GroundBombBGRender_2->ColorOptionValue.MulColor.a -= (_DeltaTime) * 1.0f;
-	}
-	else
-	{
-		GroundBombBGRender_2->ColorOptionValue.MulColor.a = 0.0f;
-	}
-	if (BGScale.x < 250.0f)
-	{
-		GroundBombBGRender_2->GetTransform()->AddLocalScale({ _DeltaTime * 100,0.0f,0.0f });
-	}
+	
 }
 
 void GroundBomb::CreatBomb(float _DeltaTime)
@@ -219,11 +105,7 @@ void GroundBomb::CreatBomb(float _DeltaTime)
 		if (StartBomb > 0.4f)
 		{
 			GroundBombRender->ChangeAnimation("GroundBomb");
-			GroundBombRender_1->ChangeAnimation("GroundBomb");
-			GroundBombRender_2->ChangeAnimation("GroundBomb");
 			BombBGRender_0->ChangeAnimation("BombBG_0");
-			BombBGRender_1->ChangeAnimation("BombBG_1");
-			BombBGRender_2->ChangeAnimation("BombBG_2");
 			BombCheck = true;
 			StartBomb = 0.0f;
 		}

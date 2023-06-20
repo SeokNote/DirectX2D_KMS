@@ -7,7 +7,7 @@ enum class TunakState
 	SPIKE_S,
 	SPIKE_U,
 	SPIKE_E,
-
+	OVERPOWER,
 };
 // 설명 :
 class Tunak : public GameEngineActor
@@ -31,6 +31,10 @@ private:
 	void CalBezierBulletTransform(const float4& _Start, const float4& _Height, const float4& _End, float _Ratio);
 	std::shared_ptr<class GameEngineSpriteRenderer> TunakRender;
 	std::shared_ptr<class GameEngineCollision> TunakCol;
+	std::shared_ptr<class GroundBomb> GroundBombPtr_0;
+	std::shared_ptr<class GroundBomb> GroundBombPtr_1;
+	std::shared_ptr<class GroundBomb> GroundBombPtr_2;
+
 	//FSM
 	TunakState StateValue = TunakState::IDLE;
 	void ChangeState(TunakState _State);
@@ -55,6 +59,10 @@ private:
 	void SPIKE_EStart();
 	void SPIKE_EUpdate(float _Time);
 	void SPIKE_EEnd();
+
+	void OverPowerStart();
+	void OverPowerUpdate(float _Time);
+	void OverPowerEnd();
 	//테스트
 	float TestTime = 0.0f;
 	float TestTime_0 = 0.0f;
@@ -68,7 +76,8 @@ private:
 	float InterRatio = 0.0f;
 	float AfterImageTime = 0.0f;
 	std::shared_ptr<class TunakAfterEffect> TunakAfter_E;
-
+	//투낙 폭발 위치
+	float BombX = 0.0f;
 	
 };
 
