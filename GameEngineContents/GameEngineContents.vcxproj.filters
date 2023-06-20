@@ -239,6 +239,9 @@
     <ClInclude Include="Tunak.h">
       <Filter>Object\Boss\Tunak</Filter>
     </ClInclude>
+    <ClInclude Include="TunakAfterEffect.h">
+      <Filter>Object\Boss\Tunak\AfterEffect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -494,6 +497,12 @@
     <ClCompile Include="Tunak.cpp">
       <Filter>Object\Boss\Tunak</Filter>
     </ClCompile>
+    <ClCompile Include="Tunak_State.cpp">
+      <Filter>Object\Boss\Tunak</Filter>
+    </ClCompile>
+    <ClCompile Include="TunakAfterEffect.cpp">
+      <Filter>Object\Boss\Tunak\AfterEffect</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Levels">
@@ -636,6 +645,9 @@
     </Filter>
     <Filter Include="Object\Boss\Tunak">
       <UniqueIdentifier>{496be09e-e918-44b2-9583-1185d2b3c29d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Boss\Tunak\AfterEffect">
+      <UniqueIdentifier>{dfee8960-6c50-4cc2-a98e-f4d375e9fe09}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

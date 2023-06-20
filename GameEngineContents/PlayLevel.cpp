@@ -125,10 +125,17 @@ void PlayLevel::Start()
 	TunakDir.Move("MainLevelAnimation");
 	TunakDir.Move("Boss");
 	TunakDir.Move("Tunak");
-
+	
 	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("TunakIdle").GetFullPath());
 	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("TunakJumpAttack").GetFullPath());
-
+	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("TunakOverPower").GetFullPath());
+	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("ShoulderTackle").GetFullPath());
+	
+	TunakDir.Move("Spike");
+	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("TunakSpike").GetFullPath());
+	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("TunakSpikeReady").GetFullPath());
+	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("TunakSpikeIdle").GetFullPath());
+	
 
 	if (false == GameEngineInput::IsKey("LeftMove"))
 	{

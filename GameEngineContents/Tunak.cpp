@@ -20,10 +20,16 @@ void Tunak::Start()
 {
 	TunakRender = CreateComponent<GameEngineSpriteRenderer>(1);
 	TunakRender->SetTexture("SkellBossLeftHandIdle0.png");
-	TunakRender->GetTransform()->SetLocalScale({ 456.0f,468.0f,0.0f });
+	TunakRender->GetTransform()->SetLocalScale(TunakScale);
 	TunakRender->CreateAnimation({ .AnimationName = "TunakIdle", .SpriteName = "TunakIdle", .Loop = true , .ScaleToTexture = false });
-//	TunakRender->CreateAnimation({ .AnimationName = "TunakJumpAttack", .SpriteName = "TunakJumpAttack", .Loop = false , .ScaleToTexture = true });
+	TunakRender->CreateAnimation({ .AnimationName = "TunakSpike", .SpriteName = "TunakSpike", .Loop = false , .ScaleToTexture = false });
+	TunakRender->CreateAnimation({ .AnimationName = "TunakSpikeReady", .SpriteName = "TunakSpikeReady", .Loop = false , .ScaleToTexture = false });
+	TunakRender->CreateAnimation({ .AnimationName = "TunakSpikeIdle", .SpriteName = "TunakSpikeIdle",.FrameInter=0.2f, .Loop = true , .ScaleToTexture = false });
+	TunakRender->CreateAnimation({ .AnimationName = "TunakOverPower", .SpriteName = "TunakOverPower",.FrameInter = 0.2f, .Loop = false , .ScaleToTexture = false });
+
+	
 	TunakRender->ChangeAnimation("TunakIdle");
+	ChangeState(TunakState::IDLE);
 
 
 
@@ -33,7 +39,18 @@ void Tunak::Start()
 
 void Tunak::Update(float _DeltaTime)
 {
-	TestTime += _DeltaTime;
+	UpdateState(_DeltaTime);
+
 
 }
 
+void Tunak::CalBezierBulletTransform(const float4& _Start, const float4& _Height, const float4& _End, float _Ratio)
+{
+	float4 M0 = float4::LerpClamp(_Start, _Height, _Ratio);
+	float4 M1 = float4::LerpClamp(_Height, _End, _Ratio);
+	float4 Pos = float4::LerpClamp(M0, M1, _Ratio);
+
+
+	GetTransform()->SetWorldPosition(Pos);
+
+}
