@@ -131,6 +131,7 @@ void PlayLevel::Start()
 	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("TunakOverPower").GetFullPath());
 	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("ShoulderTackle").GetFullPath());
 	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("GroundBomb").GetFullPath());
+	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("BombBG").GetFullPath());
 
 	
 	TunakDir.Move("Spike");

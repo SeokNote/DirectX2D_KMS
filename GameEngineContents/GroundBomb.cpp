@@ -68,6 +68,23 @@ void GroundBomb::Start()
 	GroundBombBGRender_2->ColorOptionValue.MulColor.y = 1.0f;
 	GroundBombBGRender_2->ColorOptionValue.MulColor.z = 1.0f;
 	GroundBombBGRender_2->ColorOptionValue.MulColor.a = StartAlpha;
+
+	BombBGRender_0 = CreateComponent<GameEngineSpriteRenderer>(1);
+	BombBGRender_0->SetTexture("SpikeStoneFront13.png");
+	BombBGRender_0->GetTransform()->SetLocalPosition({ X ,-220.f,-901.0f });
+	BombBGRender_0->CreateAnimation({ .AnimationName = "BombBG_0", .SpriteName = "BombBG", .FrameInter=0.03f,.Loop = false , .ScaleToTexture = true });
+
+	BombBGRender_1 = CreateComponent<GameEngineSpriteRenderer>(1);
+	BombBGRender_1->SetTexture("SpikeStoneFront13.png");
+	BombBGRender_1->GetTransform()->SetLocalPosition({ X + 400.0f,-220.f,-901.0f });
+	BombBGRender_1->CreateAnimation({ .AnimationName = "BombBG_1", .SpriteName = "BombBG",.FrameInter = 0.03f, .Loop = false , .ScaleToTexture = true });
+
+	BombBGRender_2 = CreateComponent<GameEngineSpriteRenderer>(1);
+	BombBGRender_2->SetTexture("SpikeStoneFront13.png");
+	BombBGRender_2->GetTransform()->SetLocalPosition({ X - 400.0f,-220.f,-901.0f });
+	BombBGRender_2->CreateAnimation({ .AnimationName = "BombBG_2", .SpriteName = "BombBG", .FrameInter = 0.03f,.Loop = false , .ScaleToTexture = true });
+
+
 }
 
 void GroundBomb::Update(float _DeltaTime)
@@ -199,12 +216,14 @@ void GroundBomb::CreatBomb(float _DeltaTime)
 	if (BombCheck==false && GroundBombBGRender->ColorOptionValue.MulColor.a == 0.0f)
 	{
 		StartBomb += _DeltaTime;
-		if (StartBomb > 0.3f)
+		if (StartBomb > 0.4f)
 		{
 			GroundBombRender->ChangeAnimation("GroundBomb");
 			GroundBombRender_1->ChangeAnimation("GroundBomb");
 			GroundBombRender_2->ChangeAnimation("GroundBomb");
-
+			BombBGRender_0->ChangeAnimation("BombBG_0");
+			BombBGRender_1->ChangeAnimation("BombBG_1");
+			BombBGRender_2->ChangeAnimation("BombBG_2");
 			BombCheck = true;
 			StartBomb = 0.0f;
 		}
