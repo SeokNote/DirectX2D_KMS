@@ -245,6 +245,9 @@
     <ClInclude Include="GroundBomb.h">
       <Filter>Object\Boss\Tunak\GroundBomb</Filter>
     </ClInclude>
+    <ClInclude Include="TunakBulletBase.h">
+      <Filter>Object\Boss\Tunak\TunakBullet</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -509,6 +512,9 @@
     <ClCompile Include="GroundBomb.cpp">
       <Filter>Object\Boss\Tunak\GroundBomb</Filter>
     </ClCompile>
+    <ClCompile Include="TunakBulletBase.cpp">
+      <Filter>Object\Boss\Tunak\TunakBullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Levels">
@@ -660,6 +666,9 @@
     </Filter>
     <Filter Include="Object\Boss\Tunak\GroundBomb">
       <UniqueIdentifier>{5fd20474-4ffb-42fa-bb0a-767f9b80d38b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Boss\Tunak\TunakBullet">
+      <UniqueIdentifier>{4fd96881-1f89-4b90-ab51-dfed87d3c4cb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

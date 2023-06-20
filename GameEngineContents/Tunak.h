@@ -8,6 +8,7 @@ enum class TunakState
 	SPIKE_U,
 	SPIKE_E,
 	OVERPOWER,
+	DOUBLEATTACK,
 };
 // 설명 :
 class Tunak : public GameEngineActor
@@ -34,7 +35,7 @@ private:
 	std::shared_ptr<class GroundBomb> GroundBombPtr_0;
 	std::shared_ptr<class GroundBomb> GroundBombPtr_1;
 	std::shared_ptr<class GroundBomb> GroundBombPtr_2;
-
+	void TunakFlip();
 	//FSM
 	TunakState StateValue = TunakState::IDLE;
 	void ChangeState(TunakState _State);
@@ -63,6 +64,10 @@ private:
 	void OverPowerStart();
 	void OverPowerUpdate(float _Time);
 	void OverPowerEnd();
+
+	void DoubleAttackStart();
+	void DoubleAttackUpdate(float _Time);
+	void DoubleAttackEnd();
 	//테스트
 	float TestTime = 0.0f;
 	float TestTime_0 = 0.0f;
@@ -78,6 +83,13 @@ private:
 	std::shared_ptr<class TunakAfterEffect> TunakAfter_E;
 	//투낙 폭발 위치
 	float BombX = 0.0f;
-	
+	//투낙 더블어택
+	float DoubleAttackSpeed = 150.0f;
+	float DoubleAttactTime = 0.0f;
+	//변수 
+	bool IsFilp = false;
+	float4 TunakPos = float4::Zero;
+	float FlipTime = 0.0f;
+	int RandomIndex = 0.0f;
 };
 

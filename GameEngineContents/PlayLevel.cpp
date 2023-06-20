@@ -132,6 +132,7 @@ void PlayLevel::Start()
 	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("ShoulderTackle").GetFullPath());
 	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("GroundBomb").GetFullPath());
 	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("BombBG").GetFullPath());
+	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("TunakDoubleAttack").GetFullPath());
 
 	
 	TunakDir.Move("Spike");
@@ -277,6 +278,7 @@ void PlayLevel::Start()
 	//	Player
 	static std::shared_ptr<Player> NewPlayer = CreateActor<Player>(1);
 	NewPlayer->GetTransform()->SetLocalPosition({ 14304.0f,-194.0f,-801.0f });
+	//NewPlayer->GetTransform()->SetLocalPosition({ 11438.0f,-480.0f,-801.0f });
 	//NewPlayer->GetTransform()->SetLocalPosition({ -2390.0f,-500.0f,-801.0f });
 	//NewPlayer->GetTransform()->SetLocalPosition({ 3716.0f,-197.0f,-801.0f });
 	// 

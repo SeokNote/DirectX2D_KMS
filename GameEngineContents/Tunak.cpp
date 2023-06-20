@@ -1,6 +1,6 @@
 #include "PrecompileHeader.h"
 #include "Tunak.h"
-
+#include "Player.h"
 #include "GroundBomb.h"
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEngineCore/GameEngineLevel.h>
@@ -34,6 +34,7 @@ void Tunak::Start()
 	TunakRender->CreateAnimation({ .AnimationName = "TunakSpikeReady", .SpriteName = "TunakSpikeReady", .Loop = false , .ScaleToTexture = false });
 	TunakRender->CreateAnimation({ .AnimationName = "TunakSpikeIdle", .SpriteName = "TunakSpikeIdle",.FrameInter=0.2f, .Loop = true , .ScaleToTexture = false });
 	TunakRender->CreateAnimation({ .AnimationName = "TunakOverPower", .SpriteName = "TunakOverPower",.FrameInter = 0.1f, .Loop = false , .ScaleToTexture = false });
+	TunakRender->CreateAnimation({ .AnimationName = "TunakDoubleAttack", .SpriteName = "TunakDoubleAttack",.FrameInter = 0.08f, .Loop = false , .ScaleToTexture = false });
 
 	
 	TunakRender->ChangeAnimation("TunakIdle");
@@ -61,3 +62,20 @@ void Tunak::CalBezierBulletTransform(const float4& _Start, const float4& _Height
 	GetTransform()->SetWorldPosition(Pos);
 
 }
+void Tunak::TunakFlip()
+{
+	float4 PlayerPos = Player::MainPlayer->GetTransform()->GetLocalPosition();
+	float4 TunakPos = GetTransform()->GetLocalPosition();
+
+	if (TunakPos.x - PlayerPos.x < 0)
+	{
+		TunakRender->GetTransform()->SetLocalNegativeScaleX();
+		IsFilp = true;
+	}
+	else
+	{
+		TunakRender->GetTransform()->SetLocalPositiveScaleX();
+		IsFilp = false;
+	}
+}
+

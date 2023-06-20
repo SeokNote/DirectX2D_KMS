@@ -15,6 +15,7 @@
 #include <GameEngineCore/GameEngineSprite.h>
 #include <GameEngineBase/GameEngineRandom.h>
 
+
 // State
 void Tunak::ChangeState(TunakState _State)
 {
@@ -43,6 +44,9 @@ void Tunak::ChangeState(TunakState _State)
 	case TunakState::OVERPOWER:
 		OverPowerStart();
 		break;
+	case TunakState::DOUBLEATTACK:
+		DoubleAttackStart();
+		break;
 	default:
 		break;
 	}
@@ -66,6 +70,9 @@ void Tunak::ChangeState(TunakState _State)
 		break;
 	case TunakState::OVERPOWER:
 		OverPowerEnd();
+		break;
+	case TunakState::DOUBLEATTACK:
+		DoubleAttackEnd();
 		break;
 	default:
 		break;
@@ -94,6 +101,9 @@ void Tunak::UpdateState(float _Time)
 	case TunakState::OVERPOWER:
 		OverPowerUpdate(_Time);
 		break;
+	case TunakState::DOUBLEATTACK:
+		DoubleAttackUpdate(_Time);
+		break;
 	default:
 		break;
 	}
@@ -103,15 +113,34 @@ void Tunak::UpdateState(float _Time)
 void Tunak::IdleStart()
 {
 	TunakRender->ChangeAnimation("TunakIdle");
+	RandomIndex = GameEngineRandom::MainRandom.RandomInt(0,2);
 
 }
 void Tunak::IdleUpdate(float _Time)
 {
+	FlipTime += _Time;
 	TestTime += _Time;
-	if (TestTime > 5.0f)
+	if (FlipTime >1.0f)
 	{
-		//ChangeState(TunakState::SPIKE_R);
-		ChangeState(TunakState::OVERPOWER);
+		TunakFlip();
+		FlipTime = 0.0f;
+	}
+	if (TestTime > 2.0f)
+	{
+		if (RandomIndex == 0)
+		{
+			ChangeState(TunakState::SPIKE_R);
+
+		}
+		if (RandomIndex == 1)
+		{
+			ChangeState(TunakState::OVERPOWER);
+
+		}
+		if (RandomIndex == 2)
+		{
+			ChangeState(TunakState::DOUBLEATTACK);
+		}
 
 		TestTime = 0.0f;
 	}
@@ -239,17 +268,17 @@ void Tunak::SPIKE_EEnd()
 void Tunak::OverPowerStart()
 {
 	float4 PlayerPos = Player::MainPlayer->GetTransform()->GetLocalPosition();
-	float4 TunakPos = GetTransform()->GetLocalPosition();
+	//float4 TunakPos = GetTransform()->GetLocalPosition();
 
-	if (TunakPos.x - PlayerPos.x < 0)
-	{
-		TunakRender->GetTransform()->SetLocalNegativeScaleX();
-	}
-	else
-	{
-		TunakRender->GetTransform()->SetLocalPositiveScaleX();
+	//if (TunakPos.x - PlayerPos.x < 0)
+	//{
+	//	TunakRender->GetTransform()->SetLocalNegativeScaleX();
+	//}
+	//else
+	//{
+	//	TunakRender->GetTransform()->SetLocalPositiveScaleX();
 
-	}
+	//}
 	TunakRender->ChangeAnimation("TunakOverPower");
 	GroundBombPtr_0 = GetLevel()->CreateActor<GroundBomb>();
 	GroundBombPtr_0->GetTransform()->SetLocalPosition({ PlayerPos.x,-100.0f,-802.f });
@@ -266,5 +295,58 @@ void Tunak::OverPowerUpdate(float _Time)
 
 
 void Tunak::OverPowerEnd()
+{
+}
+
+void Tunak::DoubleAttackStart()
+{
+	float4 PlayerPos = Player::MainPlayer->GetTransform()->GetLocalPosition();
+	TunakPos = GetTransform()->GetLocalPosition();
+	TunakRender->ChangeAnimation("TunakDoubleAttack");
+}
+
+void Tunak::DoubleAttackUpdate(float _Time)
+{
+	float4 TunakCurPos = GetTransform()->GetLocalPosition();
+
+		if (IsFilp == false)
+		{
+			//float4 M0 = float4::LerpClamp(_Start, _Height, _Ratio);
+			if (TunakRender->GetCurrentFrame() < 7)
+			{
+				GetTransform()->AddLocalPosition({ -_Time * DoubleAttackSpeed*0.75f ,0.0f,0.0f });
+
+			}
+			if (TunakRender->GetCurrentFrame() > 8)
+			{
+				GetTransform()->AddLocalPosition({ -_Time * DoubleAttackSpeed * 1.25f ,0.0f,0.0f });
+
+			}
+			if (TunakCurPos.x - TunakPos.x < -120)
+			{
+				ChangeState(TunakState::IDLE);
+			}
+		}
+		else
+		{
+			if (TunakRender->GetCurrentFrame() < 7)
+			{
+				GetTransform()->AddLocalPosition({ _Time * DoubleAttackSpeed * 0.75f ,0.0f,0.0f });
+
+			}
+			if (TunakRender->GetCurrentFrame() > 8)
+			{
+				GetTransform()->AddLocalPosition({ _Time * DoubleAttackSpeed*1.25f ,0.0f,0.0f });
+
+			}
+			if (TunakCurPos.x - TunakPos.x > 120)
+			{
+				ChangeState(TunakState::IDLE);
+			}
+		}
+
+}
+
+void Tunak::DoubleAttackEnd()
 {
 }
