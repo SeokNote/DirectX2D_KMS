@@ -236,11 +236,14 @@
     <ClInclude Include="BelialLasor_R.h">
       <Filter>Object\Boss\Belial\Lasor</Filter>
     </ClInclude>
-    <ClInclude Include="Tunak.h">
-      <Filter>Object\Boss\Tunak</Filter>
-    </ClInclude>
     <ClInclude Include="TunakAfterEffect.h">
       <Filter>Object\Boss\Tunak\AfterEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="Tunak.h">
+      <Filter>Object\Boss\Tunak\Tunak</Filter>
+    </ClInclude>
+    <ClInclude Include="GroundBomb.h">
+      <Filter>Object\Boss\Tunak\GroundBomb</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -494,14 +497,17 @@
     <ClCompile Include="BelialLasor_R.cpp">
       <Filter>Object\Boss\Belial\Lasor</Filter>
     </ClCompile>
-    <ClCompile Include="Tunak.cpp">
-      <Filter>Object\Boss\Tunak</Filter>
-    </ClCompile>
-    <ClCompile Include="Tunak_State.cpp">
-      <Filter>Object\Boss\Tunak</Filter>
-    </ClCompile>
     <ClCompile Include="TunakAfterEffect.cpp">
       <Filter>Object\Boss\Tunak\AfterEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="Tunak.cpp">
+      <Filter>Object\Boss\Tunak\Tunak</Filter>
+    </ClCompile>
+    <ClCompile Include="Tunak_State.cpp">
+      <Filter>Object\Boss\Tunak\Tunak</Filter>
+    </ClCompile>
+    <ClCompile Include="GroundBomb.cpp">
+      <Filter>Object\Boss\Tunak\GroundBomb</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -648,6 +654,12 @@
     </Filter>
     <Filter Include="Object\Boss\Tunak\AfterEffect">
       <UniqueIdentifier>{dfee8960-6c50-4cc2-a98e-f4d375e9fe09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Boss\Tunak\Tunak">
+      <UniqueIdentifier>{1f2ab131-70a2-4979-86e3-a45587f5279b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Boss\Tunak\GroundBomb">
+      <UniqueIdentifier>{5fd20474-4ffb-42fa-bb0a-767f9b80d38b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

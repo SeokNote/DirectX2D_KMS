@@ -1,6 +1,7 @@
 #include "PrecompileHeader.h"
 #include "Player.h"
 #include "Tunak.h"
+#include "GroundBomb.h"
 #include "TunakAfterEffect.h"
 #include <GameEngineCore/GameEngineTexture.h>
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
@@ -139,6 +140,8 @@ void Tunak::SPIKE_RUpdate(float _Time)
 	if (TunakPos == SpikeEndPos)
 	{
 		GetTransform()->SetLocalRotation({ 0.0f,0.0f,90.0f });
+		InterRatio = 0.0f;
+		GetLevel()->CreateActor<GroundBomb>();
 		ChangeState(TunakState::SPIKE_S);
 	}
 }
@@ -155,9 +158,12 @@ void Tunak::SPIKE_SUpdate(float _Time)
 {
 	TestTime_1 += _Time;
 	//2초동안 메달린후에 찍어버리는 스테이트로 이동
-	if (TestTime_1 > 2.0f)
+	if (TestTime_1 > 1.0f)
 	{
-	//	ChangeState(TunakState::SPIKE_U);
+		GetTransform()->SetLocalRotation({ 0.0f,0.0f,0.0f });
+		GetTransform()->SetLocalPosition({ 15520.0f,-25.0f,-800.0f });
+		ChangeState(TunakState::SPIKE_U);
+		TestTime_1 = 0.0f;
 	}
 }
 void Tunak::SPIKE_SEnd()
@@ -187,6 +193,7 @@ void Tunak::SPIKE_UEnd()
 void Tunak::SPIKE_EStart()
 {
 	TunakRender->ChangeAnimation("TunakOverPower");
+	GetLevel()->CreateActor<GroundBomb>();
 
 }
 
