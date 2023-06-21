@@ -134,6 +134,7 @@ void PlayLevel::Start()
 	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("GroundBomb").GetFullPath());
 	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("BombBG").GetFullPath());
 	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("TunakDoubleAttack").GetFullPath());
+	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("TunakShout").GetFullPath());
 
 	
 	TunakDir.Move("Spike");
@@ -297,11 +298,11 @@ void PlayLevel::Start()
 	//NewPlayer->GetTransform()->SetLocalPosition({ -2390.0f,-500.0f,-801.0f });
 	//NewPlayer->GetTransform()->SetLocalPosition({ 3716.0f,-197.0f,-801.0f });
 	// 
-	static std::shared_ptr<BelialHead> BelialHeadPtr = CreateActor<BelialHead>(1);
-	BelialHeadPtr->GetTransform()->SetLocalPosition({ 12050.0f,-150.0f,-760.0f });
+	//static std::shared_ptr<BelialHead> BelialHeadPtr = CreateActor<BelialHead>(1);
+	//BelialHeadPtr->GetTransform()->SetLocalPosition({ 12050.0f,-150.0f,-760.0f });
    
-	//std::shared_ptr<Tunak> TunakPtr = CreateActor<Tunak>(1);
-	//TunakPtr->GetTransform()->SetLocalPosition({ 15074.0f,-25.0f,-800.0f });
+	std::shared_ptr<Tunak> TunakPtr = CreateActor<Tunak>(1);
+	TunakPtr->GetTransform()->SetLocalPosition({ 15074.0f,-25.0f,-800.0f });
 
 	
 	
@@ -318,10 +319,8 @@ void PlayLevel::Update(float _DeltaTime)
 	UICtr();
 	if (GameEngineInput::IsDown("DEBUGMODE"))
 	{
-		std::shared_ptr<TunakBullet> TunakBulletPtr = CreateActor<TunakBullet>(1);
-		TunakBulletPtr->GetTransform()->SetLocalPosition({ 15074.0f,-100.0f,-800.0f });
-		TunakBulletPtr->GetTransform()->SetLocalRotation({ 0.0f,0.0f,15.0f });
-		//IsDebugSwitch();
+		
+		IsDebugSwitch();
 	}
 
 

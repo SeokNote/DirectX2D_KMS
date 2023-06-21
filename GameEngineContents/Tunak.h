@@ -9,6 +9,7 @@ enum class TunakState
 	SPIKE_E,
 	OVERPOWER,
 	DOUBLEATTACK,
+	SHOUT,
 };
 // ¼³¸í :
 class Tunak : public GameEngineActor
@@ -35,6 +36,7 @@ private:
 	std::shared_ptr<class GroundBomb> GroundBombPtr_0;
 	std::shared_ptr<class GroundBomb> GroundBombPtr_1;
 	std::shared_ptr<class GroundBomb> GroundBombPtr_2;
+	std::shared_ptr<class GameEngineSpriteRenderer> TunakBulletBG;
 	void TunakFlip();
 	//FSM
 	TunakState StateValue = TunakState::IDLE;
@@ -68,6 +70,10 @@ private:
 	void DoubleAttackStart();
 	void DoubleAttackUpdate(float _Time);
 	void DoubleAttackEnd();
+
+	void ShoutStart();
+	void ShoutUpdate(float _Time);
+	void ShoutEnd();
 	//Å×½ºÆ®
 	float TestTime = 0.0f;
 	float TestTime_0 = 0.0f;
@@ -86,6 +92,12 @@ private:
 	//Åõ³« ´õºí¾îÅÃ
 	float DoubleAttackSpeed = 150.0f;
 	float DoubleAttactTime = 0.0f;
+	//Åõ³« ÃÑ¾Ë¹ß½ÎÀÕ
+	float BulletTime = 0.0f;
+	float StartTime = 0.0f;
+	std::shared_ptr<class TunakBullet> TunakBulletPtr;
+	bool BulletCheck = false;
+	float4 BulletPos = { -100.0f,-100.0f,0.0f };
 	//º¯¼ö 
 	bool IsFilp = false;
 	float4 TunakPos = float4::Zero;

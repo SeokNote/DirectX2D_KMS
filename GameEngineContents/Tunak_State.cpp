@@ -3,6 +3,8 @@
 #include "Tunak.h"
 #include "GroundBomb.h"
 #include "TunakAfterEffect.h"
+#include "TunakBullet.h"
+
 #include <GameEngineCore/GameEngineTexture.h>
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEnginePlatform/GameEngineWindow.h>
@@ -47,6 +49,9 @@ void Tunak::ChangeState(TunakState _State)
 	case TunakState::DOUBLEATTACK:
 		DoubleAttackStart();
 		break;
+	case TunakState::SHOUT:
+		ShoutStart();
+		break;
 	default:
 		break;
 	}
@@ -73,6 +78,9 @@ void Tunak::ChangeState(TunakState _State)
 		break;
 	case TunakState::DOUBLEATTACK:
 		DoubleAttackEnd();
+		break;
+	case TunakState::SHOUT:
+		ShoutEnd();
 		break;
 	default:
 		break;
@@ -104,6 +112,9 @@ void Tunak::UpdateState(float _Time)
 	case TunakState::DOUBLEATTACK:
 		DoubleAttackUpdate(_Time);
 		break;
+	case TunakState::SHOUT:
+		ShoutUpdate(_Time);
+		break;
 	default:
 		break;
 	}
@@ -113,7 +124,7 @@ void Tunak::UpdateState(float _Time)
 void Tunak::IdleStart()
 {
 	TunakRender->ChangeAnimation("TunakIdle");
-	RandomIndex = GameEngineRandom::MainRandom.RandomInt(0,2);
+	RandomIndex = GameEngineRandom::MainRandom.RandomInt(0,3);
 
 }
 void Tunak::IdleUpdate(float _Time)
@@ -140,6 +151,10 @@ void Tunak::IdleUpdate(float _Time)
 		if (RandomIndex == 2)
 		{
 			ChangeState(TunakState::DOUBLEATTACK);
+		}
+		if (RandomIndex == 3)
+		{
+			ChangeState(TunakState::SHOUT);
 		}
 
 		TestTime = 0.0f;
@@ -336,5 +351,59 @@ void Tunak::DoubleAttackUpdate(float _Time)
 }
 
 void Tunak::DoubleAttackEnd()
+{
+}
+
+void Tunak::ShoutStart()
+{
+	TunakRender->ChangeAnimation("TunakShout");
+
+	if (IsFilp == false)
+	{
+		TunakBulletBG->GetTransform()->SetLocalPosition({-110.0f,-100.0f,0.0f});
+	}
+	else
+	{
+		TunakBulletBG->GetTransform()->SetLocalPosition({ 110.0f,-100.0f,0.0f });
+
+	}
+}
+
+void Tunak::ShoutUpdate(float _Time)
+{
+	size_t TunakFrame = TunakRender->GetCurrentFrame();
+	StartTime += _Time;
+	if (TunakFrame == 3)
+	{
+		TunakBulletBG->ChangeAnimation("TunakBulletEffect");
+	}
+	float4 TunakPos = GetTransform()->GetLocalPosition();
+	if (StartTime>1.0f && BulletCheck==false)
+	{
+		TunakBulletPtr = GetLevel()->CreateActor<TunakBullet>();
+		TunakBulletPtr->GetTransform()->SetLocalPosition(TunakPos+BulletPos);
+		TunakBulletPtr->GetTransform()->SetLocalRotation({ 0.0f,0.0f,30.0f });
+		BulletCheck = true;
+	}
+	if (BulletCheck == true && TunakFrame < 18)
+	{
+		BulletTime += _Time;
+		if (BulletTime > 1.0f)
+		{
+			TunakBulletPtr = GetLevel()->CreateActor<TunakBullet>();
+			TunakBulletPtr->GetTransform()->SetLocalPosition(TunakPos + BulletPos);
+			TunakBulletPtr->GetTransform()->SetLocalRotation({ 0.0f,0.0f,30.0f });
+			BulletTime = 0.0f;
+
+		}
+	}
+
+	if (TunakRender->IsAnimationEnd())
+	{
+		ChangeState(TunakState::IDLE);
+	}
+}
+
+void Tunak::ShoutEnd()
 {
 }

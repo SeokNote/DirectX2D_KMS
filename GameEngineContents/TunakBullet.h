@@ -32,7 +32,7 @@ private:
 	std::shared_ptr<class GameEngineSpriteRenderer> TunakBulletBGRender;
 
 	//ºÒ¸´º¯¼ö
-	float BulletSpeed = 300.0f;
+	float BulletSpeed = 500.0f;
 	float DeadTime = 0.0f;
 };
 
