@@ -75,7 +75,7 @@ void GroundBomb::SetGroundBG(float _DeltaTime)
 	}
 	if (GroundBombBGRender->ColorOptionValue.MulColor.r > 0)
 	{
-		GroundBombBGRender->ColorOptionValue.MulColor.r += (_DeltaTime) * 1.0f;
+		GroundBombBGRender->ColorOptionValue.MulColor.r += (_DeltaTime) * 2.0f;
 	}
 	else
 	{

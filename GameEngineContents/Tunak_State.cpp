@@ -4,6 +4,7 @@
 #include "GroundBomb.h"
 #include "TunakAfterEffect.h"
 #include "TunakBullet.h"
+#include "GoblinBomb.h"
 
 #include <GameEngineCore/GameEngineTexture.h>
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
@@ -52,6 +53,12 @@ void Tunak::ChangeState(TunakState _State)
 	case TunakState::SHOUT:
 		ShoutStart();
 		break;
+	case TunakState::JUMPATTACK:
+		JumpAttackStart();
+		break;
+	case TunakState::GoblimBomb:
+		GoblinBombStart();
+		break;
 	default:
 		break;
 	}
@@ -81,6 +88,12 @@ void Tunak::ChangeState(TunakState _State)
 		break;
 	case TunakState::SHOUT:
 		ShoutEnd();
+		break;
+	case TunakState::JUMPATTACK:
+		JumpAttackEnd();
+		break;
+	case TunakState::GoblimBomb:
+		GoblinBombEnd();
 		break;
 	default:
 		break;
@@ -115,6 +128,12 @@ void Tunak::UpdateState(float _Time)
 	case TunakState::SHOUT:
 		ShoutUpdate(_Time);
 		break;
+	case TunakState::JUMPATTACK:
+		JumpAttackUpdate(_Time);
+		break;
+	case TunakState::GoblimBomb:
+		GoblinBombUpdate(_Time);
+		break;
 	default:
 		break;
 	}
@@ -129,6 +148,17 @@ void Tunak::IdleStart()
 }
 void Tunak::IdleUpdate(float _Time)
 {
+	float4 TunakPos = GetTransform()->GetLocalPosition();
+	float4 PlayerPos = Player::MainPlayer->GetTransform()->GetLocalPosition();
+	if (abs(PlayerPos.x - TunakPos.x) > 500)
+	{
+		TimeCheck += _Time;
+		if (TimeCheck > 0.5)
+		{
+			//ChangeState(TunakState::JUMPATTACK);
+			TimeCheck = 0.0f;
+		}
+	}
 	FlipTime += _Time;
 	TestTime += _Time;
 	if (FlipTime >1.0f)
@@ -138,7 +168,7 @@ void Tunak::IdleUpdate(float _Time)
 	}
 	if (TestTime > 2.0f)
 	{
-		if (RandomIndex == 0)
+		/*if (RandomIndex == 0)
 		{
 			ChangeState(TunakState::SPIKE_R);
 
@@ -155,7 +185,8 @@ void Tunak::IdleUpdate(float _Time)
 		if (RandomIndex == 3)
 		{
 			ChangeState(TunakState::SHOUT);
-		}
+		}*/
+		ChangeState(TunakState::GoblimBomb);
 
 		TestTime = 0.0f;
 	}
@@ -380,20 +411,44 @@ void Tunak::ShoutUpdate(float _Time)
 	float4 TunakPos = GetTransform()->GetLocalPosition();
 	if (StartTime>1.0f && BulletCheck==false)
 	{
-		TunakBulletPtr = GetLevel()->CreateActor<TunakBullet>();
-		TunakBulletPtr->GetTransform()->SetLocalPosition(TunakPos+BulletPos);
-		TunakBulletPtr->GetTransform()->SetLocalRotation({ 0.0f,0.0f,30.0f });
-		BulletCheck = true;
+		if (IsFilp == false)
+		{
+			TunakBulletPtr = GetLevel()->CreateActor<TunakBullet>();
+			TunakBulletPtr->GetTransform()->SetLocalPosition(TunakPos + BulletPos);
+			TunakBulletPtr->GetTransform()->SetLocalRotation({ 0.0f,0.0f,30.0f });
+			BulletCheck = true;
+			StartTime = 0.0f;
+		}
+		else
+		{
+			TunakBulletPtr = GetLevel()->CreateActor<TunakBullet>();
+			TunakBulletPtr->GetTransform()->SetLocalPosition(TunakPos + FlipBulletPos);
+			TunakBulletPtr->GetTransform()->SetLocalRotation({ 0.0f,0.0f,30.0f });
+			BulletCheck = true;
+			StartTime = 0.0f;
+
+		}
+	
 	}
 	if (BulletCheck == true && TunakFrame < 18)
 	{
 		BulletTime += _Time;
 		if (BulletTime > 1.0f)
 		{
-			TunakBulletPtr = GetLevel()->CreateActor<TunakBullet>();
-			TunakBulletPtr->GetTransform()->SetLocalPosition(TunakPos + BulletPos);
-			TunakBulletPtr->GetTransform()->SetLocalRotation({ 0.0f,0.0f,30.0f });
-			BulletTime = 0.0f;
+			if (IsFilp == false)
+			{
+				TunakBulletPtr = GetLevel()->CreateActor<TunakBullet>();
+				TunakBulletPtr->GetTransform()->SetLocalPosition(TunakPos + BulletPos);
+				TunakBulletPtr->GetTransform()->SetLocalRotation({ 0.0f,0.0f,30.0f });
+				BulletTime = 0.0f;
+			}
+			else
+			{
+				TunakBulletPtr = GetLevel()->CreateActor<TunakBullet>();
+				TunakBulletPtr->GetTransform()->SetLocalPosition(TunakPos + FlipBulletPos);
+				TunakBulletPtr->GetTransform()->SetLocalRotation({ 0.0f,0.0f,30.0f });
+				BulletTime = 0.0f;
+			}
 
 		}
 	}
@@ -405,5 +460,72 @@ void Tunak::ShoutUpdate(float _Time)
 }
 
 void Tunak::ShoutEnd()
+{
+}
+
+void Tunak::JumpAttackStart()
+{
+	TunakRender->ChangeAnimation("TunakJumpAttack");
+	TunakPos = GetTransform()->GetLocalPosition();
+	EndPos = Player::MainPlayer->GetTransform()->GetLocalPosition();
+	EndPos.y = TunakPos.y;
+	if (IsFilp == false)
+	{
+		Height = { (TunakPos.x + EndPos.x)/2, 400.0f, -800.0f};
+		EndPos.x += 150.0f;
+	}
+	else
+	{
+		Height = { (EndPos.x + TunakPos.x)/2, 400.0f, -800.0f };
+		EndPos.x -= 150.0f;
+
+	}
+}
+
+void Tunak::JumpAttackUpdate(float _Time)
+{
+	JumpTime += _Time;
+	CalBezierBulletTransform(TunakPos, Height, EndPos, JumpTime*0.8f);
+	if (true == TunakRender->IsAnimationEnd())
+	{
+		JumpTime=0.0f;
+		ChangeState(TunakState::DOUBLEATTACK);
+	}
+}
+
+void Tunak::JumpAttackEnd()
+{
+
+}
+
+void Tunak::GoblinBombStart()
+{
+	TunakRender->ChangeAnimation("TunakBombCall");
+	IsGoblin = false;
+	GoblinPosX = GameEngineRandom::MainRandom.RandomFloat(14700.0f, 15340.0f);
+}	 
+
+
+void Tunak::GoblinBombUpdate(float _Time)
+{
+	if (TunakRender->GetCurrentFrame() == 4 && IsGoblin ==false)
+	{
+		GoblinBomb_0 = GetLevel()->CreateActor<GoblinBomb>();
+		GoblinBomb_0->GetTransform()->SetLocalPosition({ GoblinPosX ,-75.0f,-800.0f });
+		GoblinBomb_1 = GetLevel()->CreateActor<GoblinBomb>();
+		GoblinBomb_1->GetTransform()->SetLocalPosition({ GoblinPosX+ Tuom ,-75.0f,-800.0f });
+		GoblinBomb_2 = GetLevel()->CreateActor<GoblinBomb>();
+		GoblinBomb_2->GetTransform()->SetLocalPosition({ GoblinPosX- Tuom ,-75.0f,-800.0f });
+		GoblinBomb_3 = GetLevel()->CreateActor<GoblinBomb>();
+		GoblinBomb_3->GetTransform()->SetLocalPosition({ GoblinPosX+ Tuom+150.0f ,-75.0f,-800.0f });
+		IsGoblin = true;
+	}
+	if (true == TunakRender->IsAnimationEnd())
+	{
+		ChangeState(TunakState::IDLE);
+	}
+}
+
+void Tunak::GoblinBombEnd()
 {
 }

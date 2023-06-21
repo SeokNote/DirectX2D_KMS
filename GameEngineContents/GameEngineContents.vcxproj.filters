@@ -243,10 +243,13 @@
       <Filter>Object\Boss\Tunak\Tunak</Filter>
     </ClInclude>
     <ClInclude Include="GroundBomb.h">
-      <Filter>Object\Boss\Tunak\GroundBomb</Filter>
+      <Filter>Object\Boss\Tunak\TunakBullet\GroundBomb</Filter>
     </ClInclude>
     <ClInclude Include="TunakBullet.h">
-      <Filter>Object\Boss\Tunak\TunakBullet</Filter>
+      <Filter>Object\Boss\Tunak\TunakBullet\TunakBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="GoblinBomb.h">
+      <Filter>Object\Boss\Tunak\TunakBullet\GoblinBomb</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -510,10 +513,13 @@
       <Filter>Object\Boss\Tunak\Tunak</Filter>
     </ClCompile>
     <ClCompile Include="GroundBomb.cpp">
-      <Filter>Object\Boss\Tunak\GroundBomb</Filter>
+      <Filter>Object\Boss\Tunak\TunakBullet\GroundBomb</Filter>
     </ClCompile>
     <ClCompile Include="TunakBullet.cpp">
-      <Filter>Object\Boss\Tunak\TunakBullet</Filter>
+      <Filter>Object\Boss\Tunak\TunakBullet\TunakBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="GoblinBomb.cpp">
+      <Filter>Object\Boss\Tunak\TunakBullet\GoblinBomb</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -664,11 +670,17 @@
     <Filter Include="Object\Boss\Tunak\Tunak">
       <UniqueIdentifier>{1f2ab131-70a2-4979-86e3-a45587f5279b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Object\Boss\Tunak\GroundBomb">
-      <UniqueIdentifier>{5fd20474-4ffb-42fa-bb0a-767f9b80d38b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Object\Boss\Tunak\TunakBullet">
       <UniqueIdentifier>{4fd96881-1f89-4b90-ab51-dfed87d3c4cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Boss\Tunak\TunakBullet\GroundBomb">
+      <UniqueIdentifier>{5fd20474-4ffb-42fa-bb0a-767f9b80d38b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Boss\Tunak\TunakBullet\TunakBullet">
+      <UniqueIdentifier>{1be53176-277d-46e8-baa0-38f22dab52b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Boss\Tunak\TunakBullet\GoblinBomb">
+      <UniqueIdentifier>{9dd37a43-8ded-419d-8e62-6d023474af75}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

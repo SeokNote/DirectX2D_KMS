@@ -45,8 +45,7 @@
 #include "Stage3_BG_4.h"
 #include "Stage3_1.h"
 #include "Stage3_Boss.h"
-#include "BelialHead.h"
-#include "Tunak.h"
+
 
 #include <GameEngineCore/GameEngineCamera.h>
 #include <GameEngineCore/GameEngineTexture.h>
@@ -60,6 +59,9 @@
 #include "BossSword.h"
 #include "BelialHeadSubBG.h"
 #include "TunakBullet.h"
+#include "BelialHead.h"
+#include "Tunak.h"
+#include "GoblinBomb.h"
 PlayLevel* PlayLevel::MainPlayLevel = nullptr;
 
 PlayLevel::PlayLevel()
@@ -135,7 +137,8 @@ void PlayLevel::Start()
 	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("BombBG").GetFullPath());
 	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("TunakDoubleAttack").GetFullPath());
 	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("TunakShout").GetFullPath());
-
+	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("TunakBombCall").GetFullPath());
+	
 	
 	TunakDir.Move("Spike");
 	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("TunakSpike").GetFullPath());
@@ -151,10 +154,12 @@ void PlayLevel::Start()
 	TunakBulletDir.Move("Boss");
 	TunakBulletDir.Move("Tunak");
 	TunakBulletDir.Move("TunakBullet");
-
+	 
 	GameEngineSprite::LoadFolder(TunakBulletDir.GetPlusFileName("TunakBulletIIldle").GetFullPath());
 	GameEngineSprite::LoadFolder(TunakBulletDir.GetPlusFileName("TunakBulletBG").GetFullPath());
 	GameEngineSprite::LoadFolder(TunakBulletDir.GetPlusFileName("TunakBulletEffect").GetFullPath());
+	GameEngineSprite::LoadFolder(TunakBulletDir.GetPlusFileName("GoblinBombIdle").GetFullPath());
+	GameEngineSprite::LoadFolder(TunakBulletDir.GetPlusFileName("GoblinBombEffect").GetFullPath());
 
 
 	if (false == GameEngineInput::IsKey("LeftMove"))
@@ -314,13 +319,13 @@ void PlayLevel::Start()
 
 void PlayLevel::Update(float _DeltaTime)
 {
-	//임의로 만들어본 벨리알소드
 	CameraMoveSet();	
 	UICtr();
 	if (GameEngineInput::IsDown("DEBUGMODE"))
 	{
-		
-		IsDebugSwitch();
+		std::shared_ptr<GoblinBomb> GoblinBombPtr = CreateActor<GoblinBomb>(1);
+		GoblinBombPtr->GetTransform()->SetLocalPosition({ 15074.0f,-75.0f,-800.0f });
+		//IsDebugSwitch();
 	}
 
 

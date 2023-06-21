@@ -10,6 +10,8 @@ enum class TunakState
 	OVERPOWER,
 	DOUBLEATTACK,
 	SHOUT,
+	JUMPATTACK,
+	GoblimBomb,
 };
 // 설명 :
 class Tunak : public GameEngineActor
@@ -74,6 +76,16 @@ private:
 	void ShoutStart();
 	void ShoutUpdate(float _Time);
 	void ShoutEnd();
+
+	void JumpAttackStart();
+	void JumpAttackUpdate(float _Time);
+	void JumpAttackEnd();
+
+	void GoblinBombStart();
+	void GoblinBombUpdate(float _Time);
+	void GoblinBombEnd();
+
+
 	//테스트
 	float TestTime = 0.0f;
 	float TestTime_0 = 0.0f;
@@ -98,6 +110,22 @@ private:
 	std::shared_ptr<class TunakBullet> TunakBulletPtr;
 	bool BulletCheck = false;
 	float4 BulletPos = { -100.0f,-100.0f,0.0f };
+	float4 FlipBulletPos = { 100.0f,-100.0f,0.0f };
+
+	//투낙 점프어택
+	float4 EndPos = float4::Zero;
+	float4 Height = float4::Zero;
+	float JumpTime = 0.0f;
+	float JumpSpeed = 0.0;
+	float TimeCheck = 0.0f;//뛰기까지의 시간
+	//투낙 고블린패턴
+	std::shared_ptr<class GoblinBomb> GoblinBomb_0;
+	std::shared_ptr<class GoblinBomb> GoblinBomb_1;
+	std::shared_ptr<class GoblinBomb> GoblinBomb_2;
+	std::shared_ptr<class GoblinBomb> GoblinBomb_3;
+	float GoblinPosX = 0.0f;
+	float Tuom = 300.0f;
+	bool IsGoblin = false;
 	//변수 
 	bool IsFilp = false;
 	float4 TunakPos = float4::Zero;
