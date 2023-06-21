@@ -1,5 +1,6 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
+#include "Player.h"
 enum class TunakState
 {
 	IDLE,
@@ -44,7 +45,7 @@ private:
 	TunakState StateValue = TunakState::IDLE;
 	void ChangeState(TunakState _State);
 	void UpdateState(float _Time);
-
+	MyMap CurMap = MyMap::None;
 	void IdleStart();
 	void IdleUpdate(float _Time);
 	void IdleEnd();
