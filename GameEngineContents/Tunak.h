@@ -14,6 +14,8 @@ enum class TunakState
 	JUMPATTACK,
 	GoblimBomb,
 	TACKLE,
+	HALFPATTON_S,
+	HALFPATTON_E,
 };
 // 설명 :
 class Tunak : public GameEngineActor
@@ -91,7 +93,13 @@ private:
 	void TackleUpdate(float _Time);
 	void TackleEnd();
 
+	void HalfHp_SStart();
+	void HalfHp_SUpdate(float _Time);
+	void HalfHp_SEnd();
 
+	void HalfHp_EStart();
+	void HalfHp_EUpdate(float _Time);
+	void HalfHp_EEnd();
 	//테스트
 	float TestTime = 0.0f;
 	float TestTime_0 = 0.0f;
@@ -142,7 +150,12 @@ private:
 	float DustTime = 0.0f;
 	float4 LeftDustPos = { 50.0f,-180.0f,0.0f };
 	float4 RightDustPos = { -50.0f,-180.0f,0.0f };
-
+	//투낙 하프패턴
+	float HalfSpeed = 1500.0f;
+	float HalfAfterImage_T = 0.0f;
+	std::shared_ptr<class TunakJumpEffect> TunakJumpEffectPtr;
+	float GoblinTime = 0.0f;
+	int GoblinCount = 0;
 	//변수 
 	bool IsFilp = false;
 	float4 TunakPos = float4::Zero;

@@ -257,6 +257,9 @@
     <ClInclude Include="TunakDust_D.h">
       <Filter>Object\Boss\Tunak\AfterEffect\TunakDust</Filter>
     </ClInclude>
+    <ClInclude Include="TunakJumpEffect.h">
+      <Filter>Object\Boss\Tunak\AfterEffect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -532,6 +535,9 @@
     </ClCompile>
     <ClCompile Include="TunakDust_D.cpp">
       <Filter>Object\Boss\Tunak\AfterEffect\TunakDust</Filter>
+    </ClCompile>
+    <ClCompile Include="TunakJumpEffect.cpp">
+      <Filter>Object\Boss\Tunak\AfterEffect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

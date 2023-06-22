@@ -7,6 +7,7 @@
 #include "GoblinBomb.h"
 #include "TunakDust.h"
 #include "TunakDust_D.h"
+#include "TunakJumpEffect.h"
 
 #include <GameEngineCore/GameEngineTexture.h>
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
@@ -64,6 +65,12 @@ void Tunak::ChangeState(TunakState _State)
 	case TunakState::TACKLE:
 		TackleStart();
 		break;
+	case TunakState::HALFPATTON_S:
+		HalfHp_SStart();
+		break;
+	case TunakState::HALFPATTON_E:
+		HalfHp_EStart();
+		break;
 	default:
 		break;
 	}
@@ -102,6 +109,12 @@ void Tunak::ChangeState(TunakState _State)
 		break;
 	case TunakState::TACKLE:
 		TackleEnd();
+		break;
+	case TunakState::HALFPATTON_S:
+		HalfHp_SEnd();
+		break;
+	case TunakState::HALFPATTON_E:
+		HalfHp_EEnd();
 		break;
 	default:
 		break;
@@ -144,6 +157,12 @@ void Tunak::UpdateState(float _Time)
 		break;
 	case TunakState::TACKLE:
 		TackleUpdate(_Time);
+		break;
+	case TunakState::HALFPATTON_S:
+		HalfHp_SUpdate(_Time);
+		break;
+	case TunakState::HALFPATTON_E:
+		HalfHp_EUpdate(_Time);
 		break;
 	default:
 		break;
@@ -205,7 +224,7 @@ void Tunak::IdleUpdate(float _Time)
 			//	ChangeState(TunakState::GoblimBomb);
 			//}
 			//ChangeState(TunakState::SPIKE_R);
-			ChangeState(TunakState::TACKLE);
+			ChangeState(TunakState::HALFPATTON_S);
 
 			TestTime = 0.0f;
 		}
@@ -611,5 +630,62 @@ void Tunak::TackleUpdate(float _Time)
 }
 
 void Tunak::TackleEnd()
+{
+}
+
+void Tunak::HalfHp_SStart()
+{
+	TunakRender->ChangeAnimation("TunakJumpAttack");
+}
+
+void Tunak::HalfHp_SUpdate(float _Time)
+{
+	float GoblinPosX = GameEngineRandom::MainRandom.RandomFloat(14300.0f, 15740.0f);
+
+	float4 TunakPos = GetTransform()->GetLocalPosition();
+	if (TunakRender->GetCurrentFrame() > 4)
+	{
+		HalfAfterImage_T += _Time;
+		if (HalfAfterImage_T > 0.05f)
+		{
+			TunakJumpEffectPtr = GetLevel()->CreateActor<TunakJumpEffect>();
+			TunakJumpEffectPtr->GetTransform()->SetLocalPosition(TunakPos);
+			HalfAfterImage_T = 0.0f;
+		}
+		if (TunakPos.y < 725.0f)
+		{
+			GetTransform()->AddLocalPosition({ 0.0f, HalfSpeed * _Time,0.0f });
+		}
+		else
+		{
+			GoblinTime += _Time;
+			if (GoblinTime > 0.4f)
+			{
+				GoblinCount++;
+				GoblinBomb_0 = GetLevel()->CreateActor<GoblinBomb>();
+				GoblinBomb_0->GetTransform()->SetLocalPosition({ GoblinPosX ,-75.0f,-800.0f });
+				GoblinTime = 0.0f;
+			}
+			if (GoblinCount > 15)
+			{
+				ChangeState(TunakState::HALFPATTON_E);
+			}
+		}
+	}
+}
+
+void Tunak::HalfHp_SEnd()
+{
+}
+
+void Tunak::HalfHp_EStart()
+{
+}
+
+void Tunak::HalfHp_EUpdate(float _Time)
+{
+}
+
+void Tunak::HalfHp_EEnd()
 {
 }
