@@ -49,6 +49,7 @@ void DashEffect::Update(float _Delta)
 	if (Time > 0.3)
 	{
 		Death();
+		Time = 0.0f;
 	}
 }
 

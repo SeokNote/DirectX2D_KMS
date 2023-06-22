@@ -8,6 +8,7 @@
 #include "TunakDust.h"
 #include "TunakDust_D.h"
 #include "TunakJumpEffect.h"
+#include "TunakWave.h"
 
 #include <GameEngineCore/GameEngineTexture.h>
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
@@ -173,19 +174,24 @@ void Tunak::UpdateState(float _Time)
 void Tunak::IdleStart()
 {
 	TunakRender->ChangeAnimation("TunakIdle");
-	RandomIndex = GameEngineRandom::MainRandom.RandomInt(0,4);
+	RandomIndex = GameEngineRandom::MainRandom.RandomInt(0,5);
 
 }
 void Tunak::IdleUpdate(float _Time)
 {
 	float4 TunakPos = GetTransform()->GetLocalPosition();
 	float4 PlayerPos = Player::MainPlayer->GetTransform()->GetLocalPosition();
+	if (GameEngineInput::IsDown("DeBugKey"))
+	{
+		ChangeState(TunakState::HALFPATTON_S);
+
+	}
 	if (abs(PlayerPos.x - TunakPos.x) > 500 && PlayerPos.x>14300.0f)
 	{
 		TimeCheck += _Time;
 		if (TimeCheck > 0.5)
 		{
-			//ChangeState(TunakState::JUMPATTACK);
+			ChangeState(TunakState::JUMPATTACK);
 			TimeCheck = 0.0f;
 		}
 	}
@@ -199,32 +205,34 @@ void Tunak::IdleUpdate(float _Time)
 	//임시로 막아놓기
 	if (Player::MainPlayer->SetMyMap(CurMap) == MyMap::Stage2_Boss)
 	{
-		if (TestTime > 3.0f)
+		if (TestTime > 2.0f)
 		{
-			//if (RandomIndex == 0)
-			//{
-			//	ChangeState(TunakState::SPIKE_R);
-			//
-			//}
-			//if (RandomIndex == 1)
-			//{
-			//	ChangeState(TunakState::OVERPOWER);
-			//
-			//}
-			//if (RandomIndex == 2)
-			//{
-			//	ChangeState(TunakState::DOUBLEATTACK);
-			//}
-			//if (RandomIndex == 3)
-			//{
-			//	ChangeState(TunakState::SHOUT);
-			//}
-			//if (RandomIndex == 4)
-			//{
-			//	ChangeState(TunakState::GoblimBomb);
-			//}
-			//ChangeState(TunakState::SPIKE_R);
-			ChangeState(TunakState::HALFPATTON_S);
+			if (RandomIndex == 0)
+			{
+				ChangeState(TunakState::SPIKE_R);
+			
+			}
+			if (RandomIndex == 1)
+			{
+				ChangeState(TunakState::OVERPOWER);
+			
+			}
+			if (RandomIndex == 2)
+			{
+				ChangeState(TunakState::DOUBLEATTACK);
+			}
+			if (RandomIndex == 3)
+			{
+				ChangeState(TunakState::SHOUT);
+			}
+			if (RandomIndex == 4)
+			{
+				ChangeState(TunakState::GoblimBomb);
+			}
+			if (RandomIndex == 5)
+			{
+				ChangeState(TunakState::TACKLE);
+			}
 
 			TestTime = 0.0f;
 		}
@@ -635,7 +643,9 @@ void Tunak::TackleEnd()
 
 void Tunak::HalfHp_SStart()
 {
+	DownTime = 0.0f;
 	TunakRender->ChangeAnimation("TunakJumpAttack");
+	GoblinCount = 0;
 }
 
 void Tunak::HalfHp_SUpdate(float _Time)
@@ -648,9 +658,20 @@ void Tunak::HalfHp_SUpdate(float _Time)
 		HalfAfterImage_T += _Time;
 		if (HalfAfterImage_T > 0.05f)
 		{
-			TunakJumpEffectPtr = GetLevel()->CreateActor<TunakJumpEffect>();
-			TunakJumpEffectPtr->GetTransform()->SetLocalPosition(TunakPos);
-			HalfAfterImage_T = 0.0f;
+			if (IsFilp == false)
+			{
+				TunakJumpEffectPtr = GetLevel()->CreateActor<TunakJumpEffect>();
+				TunakJumpEffectPtr->GetTransform()->SetLocalPosition(TunakPos);
+				HalfAfterImage_T = 0.0f;
+			}
+			else
+			{
+				TunakJumpEffectPtr = GetLevel()->CreateActor<TunakJumpEffect>();
+				TunakJumpEffectPtr->GetTransform()->SetLocalNegativeScaleX();
+				TunakJumpEffectPtr->GetTransform()->SetLocalPosition(TunakPos);
+				HalfAfterImage_T = 0.0f;
+			}
+		
 		}
 		if (TunakPos.y < 725.0f)
 		{
@@ -659,16 +680,20 @@ void Tunak::HalfHp_SUpdate(float _Time)
 		else
 		{
 			GoblinTime += _Time;
-			if (GoblinTime > 0.4f)
+			if (GoblinTime > 0.4f && GoblinCount < 15)
 			{
 				GoblinCount++;
 				GoblinBomb_0 = GetLevel()->CreateActor<GoblinBomb>();
 				GoblinBomb_0->GetTransform()->SetLocalPosition({ GoblinPosX ,-75.0f,-800.0f });
 				GoblinTime = 0.0f;
 			}
-			if (GoblinCount > 15)
+			if (GoblinCount > 13)
 			{
-				ChangeState(TunakState::HALFPATTON_E);
+				DownTime += _Time;
+				if (DownTime > 3.0f)
+				{
+					ChangeState(TunakState::HALFPATTON_E);
+				}
 			}
 		}
 	}
@@ -680,10 +705,34 @@ void Tunak::HalfHp_SEnd()
 
 void Tunak::HalfHp_EStart()
 {
+	DownTime = 0.0f;
+	float4 TunakCurPos = GetTransform()->GetLocalPosition();
+	TunakRender->ChangeAnimation("TunakJumpAttack");
+	TunakWavePtr = GetLevel()->CreateActor<TunakWave>();
+	TunakWavePtr->GetTransform()->SetLocalPosition({ TunakCurPos.x+10.f,-170.0f,-850.0f });
+	//범위 뜨고 
+	//애니메이션 바꾸고  
 }
 
 void Tunak::HalfHp_EUpdate(float _Time)
 {
+	DownTime += _Time;
+	float4 TunakPos = GetTransform()->GetLocalPosition();
+	if (DownTime > 1.0f)
+	{
+		if (TunakPos.y > -25.0f)
+		{
+			GetTransform()->AddLocalPosition({ 0.0f, -HalfSpeed * _Time,0.0f });
+
+		}
+		else
+		{
+			ChangeState(TunakState::IDLE);
+		}
+	}
+	
+
+	//프레임이 4일때 밑으로 쭈우욱 떨어지고 땅에 닿으면 충격파 생성 후 카메라 쉐이크후 1초뒤 idle
 }
 
 void Tunak::HalfHp_EEnd()

@@ -75,9 +75,10 @@ void TunakBullet::Update(float _DeltaTime)
 {
 	MoveBullet(_DeltaTime);
 	DeadTime += _DeltaTime;
-	if (DeadTime > 4.0f)
+	if (DeadTime > 3.0f)
 	{
 		Death();
+		DeadTime = 0.0f;
 	}
 }
 

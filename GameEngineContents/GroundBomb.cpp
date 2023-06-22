@@ -118,6 +118,7 @@ void GroundBomb::BombDeath(float _DeltaTime)
 	if (DeadTime > 4.0f)
 	{
 		Death();
+		DeadTime = 0.0f;
 	}
 }
 

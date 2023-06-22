@@ -260,6 +260,9 @@
     <ClInclude Include="TunakJumpEffect.h">
       <Filter>Object\Boss\Tunak\AfterEffect</Filter>
     </ClInclude>
+    <ClInclude Include="TunakWave.h">
+      <Filter>Object\Boss\Tunak\TunakBullet\TunakWave</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -539,6 +542,9 @@
     <ClCompile Include="TunakJumpEffect.cpp">
       <Filter>Object\Boss\Tunak\AfterEffect</Filter>
     </ClCompile>
+    <ClCompile Include="TunakWave.cpp">
+      <Filter>Object\Boss\Tunak\TunakBullet\TunakWave</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Levels">
@@ -702,6 +708,9 @@
     </Filter>
     <Filter Include="Object\Boss\Tunak\AfterEffect\TunakDust">
       <UniqueIdentifier>{965955a7-3d1b-4bc3-a3ee-53d2ea0fcc80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Boss\Tunak\TunakBullet\TunakWave">
+      <UniqueIdentifier>{3404c59c-3d9c-4554-8982-134a9a7df68d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

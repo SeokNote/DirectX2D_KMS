@@ -139,8 +139,8 @@ void PlayLevel::Start()
 	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("TunakBombCall").GetFullPath());
 	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("TunakDust").GetFullPath());
 	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("TunakDust_1").GetFullPath());
+	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("WaveEffect").GetFullPath());
 
-	
 	TunakDir.Move("Spike");
 	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("TunakSpike").GetFullPath());
 	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("TunakSpikeReady").GetFullPath());
@@ -309,8 +309,8 @@ void PlayLevel::Start()
 	//NewPlayer->GetTransform()->SetLocalPosition({ -2390.0f,-500.0f,-801.0f });
 	//NewPlayer->GetTransform()->SetLocalPosition({ 3716.0f,-197.0f,-801.0f });
 	// 
-	static std::shared_ptr<BelialHead> BelialHeadPtr = CreateActor<BelialHead>(1);
-	BelialHeadPtr->GetTransform()->SetLocalPosition({ 12050.0f,-150.0f,-760.0f });
+	//static std::shared_ptr<BelialHead> BelialHeadPtr = CreateActor<BelialHead>(1);
+	//BelialHeadPtr->GetTransform()->SetLocalPosition({ 12050.0f,-150.0f,-760.0f });
    
 	std::shared_ptr<Tunak> TunakPtr = CreateActor<Tunak>(1);
 	TunakPtr->GetTransform()->SetLocalPosition({ 15074.0f,-25.0f,-800.0f });

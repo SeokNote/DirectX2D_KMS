@@ -153,9 +153,12 @@ private:
 	//투낙 하프패턴
 	float HalfSpeed = 1500.0f;
 	float HalfAfterImage_T = 0.0f;
-	std::shared_ptr<class TunakJumpEffect> TunakJumpEffectPtr;
 	float GoblinTime = 0.0f;
+	float DownTime = 0.0f;
+	std::shared_ptr<class TunakJumpEffect> TunakJumpEffectPtr;
 	int GoblinCount = 0;
+	std::shared_ptr<class TunakWave> TunakWavePtr;
+	
 	//변수 
 	bool IsFilp = false;
 	float4 TunakPos = float4::Zero;

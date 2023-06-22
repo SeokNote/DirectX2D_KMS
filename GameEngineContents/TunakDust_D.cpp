@@ -26,8 +26,10 @@ void TunakDust_D::Start()
 
 void TunakDust_D::Update(float _DeltaTime)
 {
-	if (true == TunakDustRender->IsAnimationEnd())
+	DeadTime += _DeltaTime;
+	if (DeadTime>1.0f)
 	{
+		DeadTime = 0.0f;
 		Death();
 	}
 }

@@ -35,6 +35,7 @@ private:
 	bool StartPatton = false;
 	bool IsCheck = false;
 	bool IsCheck_1 = false;
+	bool DeadTime = false;
 	//ÆøÅº »ý¼º½Ã°£
 	float StartBomb = 0.0f;
 };

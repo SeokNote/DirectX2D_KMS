@@ -43,6 +43,7 @@ void GoblinBomb::Update(float _DeltaTime)
 {
 	SetGroundBG(_DeltaTime);
 	CreatBomb(_DeltaTime);
+	BombDeath(_DeltaTime);
 }
 
 void GoblinBomb::SetGroundBG(float _DeltaTime)
@@ -96,7 +97,7 @@ void GoblinBomb::SetGroundBG(float _DeltaTime)
 void GoblinBomb::CreatBomb(float _DeltaTime)
 {
 	float4 BombPos = GoblinBombRender->GetTransform()->GetLocalPosition();
-	if (IsCheck== IsCheck && StartPatton == true)
+	if (IsCheck== false && StartPatton == true)
 	{
 		GoblinBombRender->ChangeAnimation("GoblinBombIdle");
 		IsCheck = true;
@@ -120,4 +121,10 @@ void GoblinBomb::CreatBomb(float _DeltaTime)
 
 void GoblinBomb::BombDeath(float _DeltaTime)
 {
+	DeadTime += _DeltaTime;
+	if (DeadTime > 3.0f)
+	{
+		Death();
+		DeadTime = 0.0f;
+	}
 }

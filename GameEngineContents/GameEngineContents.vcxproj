@@ -507,6 +507,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="TunakWave.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="UICountBase.h" />
   </ItemGroup>
   <ItemGroup>
@@ -855,6 +859,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="TunakJumpEffect.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="TunakWave.cpp">
       <SubType>
       </SubType>
     </ClCompile>
