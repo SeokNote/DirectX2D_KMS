@@ -132,19 +132,25 @@ void PlayLevel::Start()
 	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("TunakIdle").GetFullPath());
 	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("TunakJumpAttack").GetFullPath());
 	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("TunakOverPower").GetFullPath());
-	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("ShoulderTackle").GetFullPath());
 	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("GroundBomb").GetFullPath());
 	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("BombBG").GetFullPath());
 	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("TunakDoubleAttack").GetFullPath());
 	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("TunakShout").GetFullPath());
 	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("TunakBombCall").GetFullPath());
-	
+	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("TunakDust").GetFullPath());
+	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("TunakDust_1").GetFullPath());
+
 	
 	TunakDir.Move("Spike");
 	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("TunakSpike").GetFullPath());
 	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("TunakSpikeReady").GetFullPath());
 	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("TunakSpikeIdle").GetFullPath());
-
+	TunakDir.MoveParentToDirectory("Tunak");
+	TunakDir.Move("Tunak");
+	TunakDir.Move("TunakShoulderTackle");
+	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("TunakShoulderTakleReady").GetFullPath());
+	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("TunakShoulderTakleStart").GetFullPath());
+	
 	//Åõ³« ÃÑ¾Ë
 	GameEngineDirectory TunakBulletDir;
 	TunakBulletDir.MoveParentToDirectory("ContentResources");
@@ -298,8 +304,8 @@ void PlayLevel::Start()
 	}
 	//	Player
 	static std::shared_ptr<Player> NewPlayer = CreateActor<Player>(1);
-//	NewPlayer->GetTransform()->SetLocalPosition({ 14304.0f,-194.0f,-801.0f });
-	NewPlayer->GetTransform()->SetLocalPosition({ 11438.0f,-480.0f,-801.0f });
+	NewPlayer->GetTransform()->SetLocalPosition({ 14304.0f,-194.0f,-801.0f });
+	//NewPlayer->GetTransform()->SetLocalPosition({ 11438.0f,-480.0f,-801.0f });
 	//NewPlayer->GetTransform()->SetLocalPosition({ -2390.0f,-500.0f,-801.0f });
 	//NewPlayer->GetTransform()->SetLocalPosition({ 3716.0f,-197.0f,-801.0f });
 	// 

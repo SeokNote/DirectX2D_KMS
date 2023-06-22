@@ -21,7 +21,7 @@ TunakAfterEffect::~TunakAfterEffect()
 void TunakAfterEffect::Start()
 {
 	TunakAfterEffectRender = CreateComponent<GameEngineSpriteRenderer>(1);
-	TunakAfterEffectRender->SetTexture("TunakShoulderTackle07.png");
+	TunakAfterEffectRender->SetTexture("TunakShoulderTackle15.png");
 	TunakAfterEffectRender->GetTransform()->SetLocalScale({ 456.0f, 468.0f });
 
 	TunakAfterEffectRender->ColorOptionValue.MulColor.x = 1.0f;

@@ -41,7 +41,10 @@ void Tunak::Start()
 	TunakRender->CreateAnimation({ .AnimationName = "TunakShout", .SpriteName = "TunakShout",.FrameInter = 0.2f, .Loop = true , .ScaleToTexture = false });
 	TunakRender->CreateAnimation({ .AnimationName = "TunakJumpAttack", .SpriteName = "TunakJumpAttack", .Loop = false , .ScaleToTexture = false });
 	TunakRender->CreateAnimation({ .AnimationName = "TunakBombCall", .SpriteName = "TunakBombCall", .Loop = false , .ScaleToTexture = false });
+	TunakRender->CreateAnimation({ .AnimationName = "TunakShoulderTakleReady", .SpriteName = "TunakShoulderTakleReady", .Loop = false , .ScaleToTexture = false });
+	TunakRender->CreateAnimation({ .AnimationName = "TunakShoulderTakleStart", .SpriteName = "TunakShoulderTakleStart", .Loop = true , .ScaleToTexture = false });
 
+	
 	TunakBulletBG = CreateComponent<GameEngineSpriteRenderer>(1);
 	TunakBulletBG->CreateAnimation({ .AnimationName = "TunakBulletEffect", .SpriteName = "TunakBulletEffect", .Loop = false , .ScaleToTexture = true });
 	

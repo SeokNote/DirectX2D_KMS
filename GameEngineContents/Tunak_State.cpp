@@ -5,6 +5,8 @@
 #include "TunakAfterEffect.h"
 #include "TunakBullet.h"
 #include "GoblinBomb.h"
+#include "TunakDust.h"
+#include "TunakDust_D.h"
 
 #include <GameEngineCore/GameEngineTexture.h>
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
@@ -59,6 +61,9 @@ void Tunak::ChangeState(TunakState _State)
 	case TunakState::GoblimBomb:
 		GoblinBombStart();
 		break;
+	case TunakState::TACKLE:
+		TackleStart();
+		break;
 	default:
 		break;
 	}
@@ -94,6 +99,9 @@ void Tunak::ChangeState(TunakState _State)
 		break;
 	case TunakState::GoblimBomb:
 		GoblinBombEnd();
+		break;
+	case TunakState::TACKLE:
+		TackleEnd();
 		break;
 	default:
 		break;
@@ -134,6 +142,9 @@ void Tunak::UpdateState(float _Time)
 	case TunakState::GoblimBomb:
 		GoblinBombUpdate(_Time);
 		break;
+	case TunakState::TACKLE:
+		TackleUpdate(_Time);
+		break;
 	default:
 		break;
 	}
@@ -155,7 +166,7 @@ void Tunak::IdleUpdate(float _Time)
 		TimeCheck += _Time;
 		if (TimeCheck > 0.5)
 		{
-			ChangeState(TunakState::JUMPATTACK);
+			//ChangeState(TunakState::JUMPATTACK);
 			TimeCheck = 0.0f;
 		}
 	}
@@ -169,31 +180,32 @@ void Tunak::IdleUpdate(float _Time)
 	//임시로 막아놓기
 	if (Player::MainPlayer->SetMyMap(CurMap) == MyMap::Stage2_Boss)
 	{
-		if (TestTime > 1.0f)
+		if (TestTime > 3.0f)
 		{
-			if (RandomIndex == 0)
-			{
-				ChangeState(TunakState::SPIKE_R);
-
-			}
-			if (RandomIndex == 1)
-			{
-				ChangeState(TunakState::OVERPOWER);
-
-			}
-			if (RandomIndex == 2)
-			{
-				ChangeState(TunakState::DOUBLEATTACK);
-			}
-			if (RandomIndex == 3)
-			{
-				ChangeState(TunakState::SHOUT);
-			}
-			if (RandomIndex == 4)
-			{
-				ChangeState(TunakState::GoblimBomb);
-
-			}
+			//if (RandomIndex == 0)
+			//{
+			//	ChangeState(TunakState::SPIKE_R);
+			//
+			//}
+			//if (RandomIndex == 1)
+			//{
+			//	ChangeState(TunakState::OVERPOWER);
+			//
+			//}
+			//if (RandomIndex == 2)
+			//{
+			//	ChangeState(TunakState::DOUBLEATTACK);
+			//}
+			//if (RandomIndex == 3)
+			//{
+			//	ChangeState(TunakState::SHOUT);
+			//}
+			//if (RandomIndex == 4)
+			//{
+			//	ChangeState(TunakState::GoblimBomb);
+			//}
+			//ChangeState(TunakState::SPIKE_R);
+			ChangeState(TunakState::TACKLE);
 
 			TestTime = 0.0f;
 		}
@@ -237,6 +249,9 @@ void Tunak::SPIKE_RUpdate(float _Time)
 	}	
 	if (TunakPos == SpikeEndPos)
 	{
+		TunakDustSPtr = GetLevel()->CreateActor<TunakDust>();
+		TunakDustSPtr->GetTransform()->SetLocalPosition(TunakPos);
+		//TunakDustRender
 		GetTransform()->SetLocalRotation({ 0.0f,0.0f,90.0f });
 		InterRatio = 0.0f;
 		GroundBombPtr_0 = GetLevel()->CreateActor<GroundBomb>();
@@ -244,9 +259,7 @@ void Tunak::SPIKE_RUpdate(float _Time)
 		GroundBombPtr_1 = GetLevel()->CreateActor<GroundBomb>();
 		GroundBombPtr_1->GetTransform()->SetWorldPosition({ BombX-400.0f,-100.0f,-802.0f });
 		GroundBombPtr_2 = GetLevel()->CreateActor<GroundBomb>();
-		GroundBombPtr_2->GetTransform()->SetWorldPosition({ BombX+400.0f,-100.0f,-802.0f });
-		float4 asdaw = GroundBombPtr_2->GetTransform()->GetLocalPosition();
-		
+		GroundBombPtr_2->GetTransform()->SetWorldPosition({ BombX+400.0f,-100.0f,-802.0f });		
 		ChangeState(TunakState::SPIKE_S);
 	}
 }
@@ -536,5 +549,67 @@ void Tunak::GoblinBombUpdate(float _Time)
 }
 
 void Tunak::GoblinBombEnd()
+{
+}
+
+void Tunak::TackleStart()
+{
+	TunakRender->ChangeAnimation("TunakShoulderTakleReady");
+	TackleCheck = false;
+}
+
+void Tunak::TackleUpdate(float _Time)
+{
+	float4 TunakPos = GetTransform()->GetLocalPosition();
+	if (true == TunakRender->IsAnimationEnd())
+	{
+		PattonTime_S += _Time;
+		if (PattonTime_S > 0.5f)
+		{
+			TunakRender->ChangeAnimation("TunakShoulderTakleStart");
+			TackleCheck = true;
+			PattonTime_S = 0.0f;
+		}
+
+	}
+	if (TackleCheck == true)
+	{
+	
+		if (IsFilp == false)
+		{
+			DustTime += _Time;
+			if (DustTime > 0.2)
+			{
+				TunakDustDPtr = GetLevel()->CreateActor<TunakDust_D>();
+				TunakDustDPtr->GetTransform()->SetLocalPosition(TunakPos+ LeftDustPos);
+				DustTime = 0.0f;
+			}
+			GetTransform()->AddLocalPosition({ -_Time * TackleSpeed,0.0f,0.0f });
+			if (TunakPos.x < 14450)
+			{
+				ChangeState(TunakState::IDLE);
+			}
+		}
+		else
+		{
+			DustTime += _Time;
+			if (DustTime > 0.2)
+			{
+				TunakDustDPtr = GetLevel()->CreateActor<TunakDust_D>();
+				TunakDustDPtr->GetTransform()->SetLocalNegativeScaleX();
+				TunakDustDPtr->GetTransform()->SetLocalPosition(TunakPos+ RightDustPos);
+				DustTime = 0.0f;
+			}
+			GetTransform()->AddLocalPosition({ _Time * TackleSpeed,0.0f,0.0f });
+			if (TunakPos.x > 15700)
+			{
+				ChangeState(TunakState::IDLE);
+			}
+		}
+	}
+	bool awdas = IsFilp;
+}
+
+void Tunak::TackleEnd()
 {
 }

@@ -13,6 +13,7 @@ enum class TunakState
 	SHOUT,
 	JUMPATTACK,
 	GoblimBomb,
+	TACKLE,
 };
 // 설명 :
 class Tunak : public GameEngineActor
@@ -86,6 +87,10 @@ private:
 	void GoblinBombUpdate(float _Time);
 	void GoblinBombEnd();
 
+	void TackleStart();
+	void TackleUpdate(float _Time);
+	void TackleEnd();
+
 
 	//테스트
 	float TestTime = 0.0f;
@@ -127,6 +132,17 @@ private:
 	float GoblinPosX = 0.0f;
 	float Tuom = 300.0f;
 	bool IsGoblin = false;
+	//투낙 숄더태클
+	bool TackleCheck = false;
+	float PattonTime_S = 0.0f;
+	float TackleSpeed = 800.0f;
+	//투낙 더스트
+	std::shared_ptr<class TunakDust> TunakDustSPtr;
+	std::shared_ptr<class TunakDust_D> TunakDustDPtr;
+	float DustTime = 0.0f;
+	float4 LeftDustPos = { 50.0f,-180.0f,0.0f };
+	float4 RightDustPos = { -50.0f,-180.0f,0.0f };
+
 	//변수 
 	bool IsFilp = false;
 	float4 TunakPos = float4::Zero;

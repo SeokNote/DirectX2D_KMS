@@ -251,6 +251,12 @@
     <ClInclude Include="GoblinBomb.h">
       <Filter>Object\Boss\Tunak\TunakBullet\GoblinBomb</Filter>
     </ClInclude>
+    <ClInclude Include="TunakDust.h">
+      <Filter>Object\Boss\Tunak\AfterEffect\TunakDust</Filter>
+    </ClInclude>
+    <ClInclude Include="TunakDust_D.h">
+      <Filter>Object\Boss\Tunak\AfterEffect\TunakDust</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -521,6 +527,12 @@
     <ClCompile Include="GoblinBomb.cpp">
       <Filter>Object\Boss\Tunak\TunakBullet\GoblinBomb</Filter>
     </ClCompile>
+    <ClCompile Include="TunakDust.cpp">
+      <Filter>Object\Boss\Tunak\AfterEffect\TunakDust</Filter>
+    </ClCompile>
+    <ClCompile Include="TunakDust_D.cpp">
+      <Filter>Object\Boss\Tunak\AfterEffect\TunakDust</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Levels">
@@ -681,6 +693,9 @@
     </Filter>
     <Filter Include="Object\Boss\Tunak\TunakBullet\GoblinBomb">
       <UniqueIdentifier>{9dd37a43-8ded-419d-8e62-6d023474af75}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Boss\Tunak\AfterEffect\TunakDust">
+      <UniqueIdentifier>{965955a7-3d1b-4bc3-a3ee-53d2ea0fcc80}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
