@@ -10,12 +10,16 @@
 #include <GameEngineCore/GameEngineCollision.h>
 #include <GameEngineBase/GameEngineRandom.h>
 
+static int LiveCount = 0;
+
 GroundBomb::GroundBomb() 
 {
+	++LiveCount;
 }
 
 GroundBomb::~GroundBomb() 
 {
+	--LiveCount;
 }
 
 void GroundBomb::Start()
@@ -50,7 +54,14 @@ void GroundBomb::Update(float _DeltaTime)
 	DeadTime += _DeltaTime;
 	SetGroundBG(_DeltaTime);
 	CreatBomb(_DeltaTime);
-	BombDeath(_DeltaTime);
+	if (BombCheck == true) 
+	{
+		if (true == BombBGRender_0->IsAnimationEnd())
+		{
+			Death();
+		}
+	}
+
 }
 
 void GroundBomb::SetGroundBG(float _DeltaTime)

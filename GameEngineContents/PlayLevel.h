@@ -45,5 +45,6 @@ private:
 	std::shared_ptr<InventoryUI> Inventory;
 
 	//Å×½ºÆ®
-
+	float FPS = 0.0f;
+	int Frame = 0;
 };

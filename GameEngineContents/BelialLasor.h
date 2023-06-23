@@ -24,5 +24,6 @@ private:
 	std::shared_ptr<class GameEngineSpriteRenderer> BelialLasorRender;
 	std::shared_ptr<class GameEngineCollision> BelialLasorCol;
 
+	float DeathTime = 0.0f;
 };
 

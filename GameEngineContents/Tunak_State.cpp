@@ -233,6 +233,7 @@ void Tunak::IdleUpdate(float _Time)
 			{
 				ChangeState(TunakState::TACKLE);
 			}
+			//ChangeState(TunakState::SPIKE_R);
 
 			TestTime = 0.0f;
 		}
@@ -692,6 +693,7 @@ void Tunak::HalfHp_SUpdate(float _Time)
 				DownTime += _Time;
 				if (DownTime > 3.0f)
 				{
+					GetTransform()->SetLocalPosition({ 15074.0f,TunakPos.y,TunakPos.z });
 					ChangeState(TunakState::HALFPATTON_E);
 				}
 			}

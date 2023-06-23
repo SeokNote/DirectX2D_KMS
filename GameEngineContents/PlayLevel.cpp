@@ -325,14 +325,48 @@ void PlayLevel::Start()
 
 void PlayLevel::Update(float _DeltaTime)
 {
-	CameraMoveSet();	
+	static float Time = 0.0f;
+
+	Time += _DeltaTime;
+
+	Frame++;
+	CameraMoveSet();
 	UICtr();
-	if (GameEngineInput::IsDown("DEBUGMODE"))
+
+	if (1.0f <= Time)
 	{
-	
-		IsDebugSwitch();
+		UINT FRAME = static_cast<UINT>(Frame / Time);
+
+
+		if (80 >= FRAME)
+		{
+			int a = 0;
+		}
+
+		if (70 >= FRAME)
+		{
+			int a = 0;
+		}
+
+
+		if (60 >= FRAME)
+		{
+			int a = 0;
+		}
+
+
+		Frame = 0;
+		Time = 0.0f;
+
 	}
 
+
+	if (GameEngineInput::IsDown("DEBUGMODE"))
+	{
+
+
+	}
+	
 
 }
 

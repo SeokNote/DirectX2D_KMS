@@ -121,10 +121,12 @@ void GoblinBomb::CreatBomb(float _DeltaTime)
 
 void GoblinBomb::BombDeath(float _DeltaTime)
 {
-	DeadTime += _DeltaTime;
-	if (DeadTime > 3.0f)
+	if (IsCheck_1 == true)
 	{
-		Death();
-		DeadTime = 0.0f;
+		if (true == GoblinBombEffectRender->IsAnimationEnd())
+		{
+			Death();
+			IsCheck_1 = false;
+		}
 	}
 }

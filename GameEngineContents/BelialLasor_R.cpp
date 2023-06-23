@@ -32,6 +32,10 @@ void BelialLasor_R::Start()
 
 void BelialLasor_R::Update(float _DeltaTime)
 {
+	if (BelialLasorRender->IsAnimationEnd())
 
+	{
+		Death();
+	}
 }
 
