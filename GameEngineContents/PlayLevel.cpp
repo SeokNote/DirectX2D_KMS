@@ -45,7 +45,8 @@
 #include "Stage3_BG_4.h"
 #include "Stage3_1.h"
 #include "Stage3_Boss.h"
-
+#include "GroundBelt.h"
+#include "PlatBelt.h"
 
 #include <GameEngineCore/GameEngineCamera.h>
 #include <GameEngineCore/GameEngineTexture.h>
@@ -167,7 +168,17 @@ void PlayLevel::Start()
 	GameEngineSprite::LoadFolder(TunakBulletDir.GetPlusFileName("GoblinBombIdle").GetFullPath());
 	GameEngineSprite::LoadFolder(TunakBulletDir.GetPlusFileName("GoblinBombEffect").GetFullPath());
 
+	GameEngineDirectory SlimeMakeDir;
+	SlimeMakeDir.MoveParentToDirectory("ContentResources");
+	SlimeMakeDir.Move("ContentResources");
+	SlimeMakeDir.Move("Animation");
+	SlimeMakeDir.Move("MainLevelAnimation");
+	SlimeMakeDir.Move("Boss");
+	SlimeMakeDir.Move("SlimeMaker");
+	SlimeMakeDir.Move("Belt");
 
+	GameEngineSprite::LoadFolder(SlimeMakeDir.GetPlusFileName("PlatBelt").GetFullPath());
+	GameEngineSprite::LoadFolder(SlimeMakeDir.GetPlusFileName("GroundBelt").GetFullPath());
 	if (false == GameEngineInput::IsKey("LeftMove"))
 	{
 		GameEngineInput::CreateKey("LeftMove", 'A');
@@ -231,6 +242,11 @@ void PlayLevel::Start()
 
 		std::shared_ptr<Stage3_1> Stage1= CreateActor<Stage3_1>(-16);
 		std::shared_ptr<Stage3_Boss> BossStage_3 = CreateActor<Stage3_Boss>(-16);
+		std::shared_ptr<GroundBelt> GroundBeltPtr = CreateActor<GroundBelt>();
+		GroundBeltPtr->GetTransform()->SetLocalPosition({ 19395.0f,-245.0f,-800.0f });
+		std::shared_ptr<PlatBelt> PlatBeltPtr = CreateActor<PlatBelt>();
+		PlatBeltPtr->GetTransform()->SetLocalPosition({ 19395.0f,-125.0f,-800.0f });
+		
 	}
 	{
 		//UI
@@ -304,16 +320,17 @@ void PlayLevel::Start()
 	}
 	//	Player
 	static std::shared_ptr<Player> NewPlayer = CreateActor<Player>(1);
-	NewPlayer->GetTransform()->SetLocalPosition({ 14304.0f,-194.0f,-801.0f });
+	//NewPlayer->GetTransform()->SetLocalPosition({ 17790.0f,-67.0f,-801.0f });
+
 	//NewPlayer->GetTransform()->SetLocalPosition({ 11438.0f,-480.0f,-801.0f });
-	//NewPlayer->GetTransform()->SetLocalPosition({ -2390.0f,-500.0f,-801.0f });
+	NewPlayer->GetTransform()->SetLocalPosition({ -2390.0f,-500.0f,-801.0f });
 	//NewPlayer->GetTransform()->SetLocalPosition({ 3716.0f,-197.0f,-801.0f });
 	// 
 	//static std::shared_ptr<BelialHead> BelialHeadPtr = CreateActor<BelialHead>(1);
 	//BelialHeadPtr->GetTransform()->SetLocalPosition({ 12050.0f,-150.0f,-760.0f });
-   
-	std::shared_ptr<Tunak> TunakPtr = CreateActor<Tunak>(1);
-	TunakPtr->GetTransform()->SetLocalPosition({ 15074.0f,-25.0f,-800.0f });
+   	//
+	//std::shared_ptr<Tunak> TunakPtr = CreateActor<Tunak>(1);
+	//TunakPtr->GetTransform()->SetLocalPosition({ 15074.0f,-25.0f,-800.0f });
 
 	
 	
@@ -363,8 +380,7 @@ void PlayLevel::Update(float _DeltaTime)
 
 	if (GameEngineInput::IsDown("DEBUGMODE"))
 	{
-
-
+		IsDebugSwitch();
 	}
 	
 

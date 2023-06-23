@@ -55,6 +55,10 @@ public:
 	{
 		return FilpCheck;
 	}
+	bool IsBeltCheck()
+	{
+		return BeltCheck;
+	}
 protected:
 	void Start();
 	void Update(float _Delta) override;
@@ -154,4 +158,5 @@ private:
 
 	//플립 예아니오
 	bool FilpCheck = false;
+	bool BeltCheck = false;
 };

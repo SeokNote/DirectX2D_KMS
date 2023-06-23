@@ -316,6 +316,10 @@ void Player::JumpUpdate(float _Time)
 			ChangeState(PlayerState::IDLE);
 			Falling = false;
 		}
+		if (true == MiddleCheck())
+		{
+			BeltCheck = true;
+		}
 	}
 	if (false == MiddleCheck() && false == GroundCheck())
 	{
@@ -330,6 +334,7 @@ void Player::JumpUpdate(float _Time)
 				MoveDir.y -= 7.5f * _Time;
 			}
 		}
+		BeltCheck = false;
 	}
 	if (UpDashTime > 0.2f)
 	{
@@ -397,12 +402,13 @@ void Player::FallUpdate(float _Time)
 		}
 		if (true == GroundCheck())
 		{
-			
+			BeltCheck = false;
 			MoveDir.y = 0.0f;
 			ChangeState(PlayerState::IDLE);
 		}
 		if (true == MiddleCheck())
 		{ 
+			BeltCheck = true;
 			MoveDir.y = 0.0f;
 			IsMiddle = true;
 			ChangeState(PlayerState::IDLE);
@@ -436,6 +442,7 @@ void Player::FallUpdate(float _Time)
 		// 이때는 미들체크를 하면 안됐다.
 		if (true == MiddleCheck())
 		{
+			BeltCheck = true;
 			CheckTime = 0.0f;
  			ChangeState(PlayerState::IDLE);
 			Falling = false;

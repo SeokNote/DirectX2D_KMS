@@ -16,3 +16,10 @@ enum class MyMap
 	Stage3_Boss,
 
 };
+
+enum class CollisionType 
+{
+	Stage3_Blet,
+	Player=1,
+};
+

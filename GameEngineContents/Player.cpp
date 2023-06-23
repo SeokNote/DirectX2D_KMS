@@ -91,7 +91,7 @@ void Player::Start()
 
 
 	PlayerCol = CreateComponent<GameEngineCollision>();
-	PlayerCol->GetTransform()->SetLocalScale({ 64.0f, 64.0f });
+	PlayerCol->GetTransform()->SetLocalScale({ 64.0f, 76.0f });
 	PlayerCol->SetColType(ColType::AABBBOX2D);
 	PlayerCol->SetOrder(3333);
 
@@ -962,7 +962,7 @@ void Player::ColRenderSet()
 {
 	float4 PlayerPos = GetTransform()->GetLocalPosition();
 
-	PlayerCol->GetTransform()->SetWorldPosition({ PlayerPos.x,PlayerPos.y,0.0f });
+	PlayerCol->GetTransform()->SetWorldPosition({ PlayerPos.x,PlayerPos.y-30.0f,0.0f });
 	PlayerTopRender->GetTransform()->SetWorldPosition({ PlayerPos.x,PlayerPos.y + 15.0f,PlayerPos.z });
 	PlayerTopRender->Off();
 	PlayerBottoomRender->GetTransform()->SetWorldPosition({ PlayerPos.x,PlayerPos.y - 65.0f,PlayerPos.z });

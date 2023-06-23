@@ -298,6 +298,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="GroundBelt.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="GroundBomb.h">
       <SubType>
       </SubType>
@@ -336,6 +340,10 @@
     </ClInclude>
     <ClInclude Include="MyContentSpriteRenderer.h" />
     <ClInclude Include="PixelCollision.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="PlatBelt.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -652,6 +660,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="GroundBelt.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="GroundBomb.cpp">
       <SubType>
       </SubType>
@@ -690,6 +702,10 @@
     </ClCompile>
     <ClCompile Include="MyContentSpriteRenderer.cpp" />
     <ClCompile Include="PixelCollision.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="PlatBelt.cpp">
       <SubType>
       </SubType>
     </ClCompile>

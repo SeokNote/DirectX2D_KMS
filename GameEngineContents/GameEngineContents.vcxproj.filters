@@ -263,6 +263,12 @@
     <ClInclude Include="TunakWave.h">
       <Filter>Object\Boss\Tunak\TunakBullet\TunakWave</Filter>
     </ClInclude>
+    <ClInclude Include="GroundBelt.h">
+      <Filter>Object\Boss\SlimeMaker\Belt\GroundBelt</Filter>
+    </ClInclude>
+    <ClInclude Include="PlatBelt.h">
+      <Filter>Object\Boss\SlimeMaker\Belt\PlatBelt</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -545,6 +551,12 @@
     <ClCompile Include="TunakWave.cpp">
       <Filter>Object\Boss\Tunak\TunakBullet\TunakWave</Filter>
     </ClCompile>
+    <ClCompile Include="GroundBelt.cpp">
+      <Filter>Object\Boss\SlimeMaker\Belt\GroundBelt</Filter>
+    </ClCompile>
+    <ClCompile Include="PlatBelt.cpp">
+      <Filter>Object\Boss\SlimeMaker\Belt\PlatBelt</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Levels">
@@ -711,6 +723,21 @@
     </Filter>
     <Filter Include="Object\Boss\Tunak\TunakBullet\TunakWave">
       <UniqueIdentifier>{3404c59c-3d9c-4554-8982-134a9a7df68d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Boss\SlimeMaker">
+      <UniqueIdentifier>{eae584ce-a368-44db-a9ba-2b42bcc832e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Boss\SlimeMaker\Belt">
+      <UniqueIdentifier>{1e7c05bc-ea71-40b8-bd14-427a058e9c70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Boss\SlimeMaker\Slime">
+      <UniqueIdentifier>{33bb09ac-de7b-42a7-ae31-243c96242c9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Boss\SlimeMaker\Belt\PlatBelt">
+      <UniqueIdentifier>{876b50f4-9ae0-46fd-ae3c-dac078ed44c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Boss\SlimeMaker\Belt\GroundBelt">
+      <UniqueIdentifier>{9d446436-17be-4052-a38d-24c9fc312ec4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

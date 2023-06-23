@@ -181,6 +181,7 @@ void Tunak::IdleUpdate(float _Time)
 {
 	float4 TunakPos = GetTransform()->GetLocalPosition();
 	float4 PlayerPos = Player::MainPlayer->GetTransform()->GetLocalPosition();
+	//체력이 반이 되면 실행하는 패턴
 	if (GameEngineInput::IsDown("DeBugKey"))
 	{
 		ChangeState(TunakState::HALFPATTON_S);
@@ -202,7 +203,6 @@ void Tunak::IdleUpdate(float _Time)
 		TunakFlip();
 		FlipTime = 0.0f;
 	}
-	//임시로 막아놓기
 	if (Player::MainPlayer->SetMyMap(CurMap) == MyMap::Stage2_Boss)
 	{
 		if (TestTime > 2.0f)
@@ -233,7 +233,6 @@ void Tunak::IdleUpdate(float _Time)
 			{
 				ChangeState(TunakState::TACKLE);
 			}
-			//ChangeState(TunakState::SPIKE_R);
 
 			TestTime = 0.0f;
 		}
