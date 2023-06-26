@@ -1,4 +1,5 @@
 #include "PrecompileHeader.h"
+#include "ContentsEnums.h"
 #include "TunakWave.h"
 
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
@@ -40,6 +41,16 @@ void TunakWave::Start()
 	TunakWaveRender_1->GetTransform()->SetLocalNegativeScaleX();
 	TunakWaveRender_1->GetTransform()->SetLocalPosition({ 40.0f,10.0f,0.0f });
 	TunakWaveRender_1->CreateAnimation({ .AnimationName = "WaveEffect_1", .SpriteName = "WaveEffect", .Loop = true , .ScaleToTexture = false });
+
+	TunakWaveCol = CreateComponent<GameEngineCollision>(ColOrder::TunakWave);
+	TunakWaveCol->GetTransform()->SetLocalScale(WaveScale);
+	TunakWaveCol->SetColType(ColType::AABBBOX2D);
+	TunakWaveCol->Off();
+
+	TunakWaveCol_1 = CreateComponent<GameEngineCollision>(ColOrder::TunakWave);
+	TunakWaveCol_1->GetTransform()->SetLocalScale(WaveScale);
+	TunakWaveCol_1->SetColType(ColType::AABBBOX2D);
+	TunakWaveCol_1->Off();
 }
 
 void TunakWave::Update(float _DeltaTime)
@@ -103,6 +114,9 @@ void TunakWave::CreatWave(float _DeltaTime)
 	StartWave += _DeltaTime;
 	if (StartWave > 1.5f)
 	{
+		TunakWaveCol_1->On();
+		TunakWaveCol->On();
+
 		TunakWaveRender->ChangeAnimation("WaveEffect");
 		TunakWaveRender_1->ChangeAnimation("WaveEffect_1");
 		StartWave = 0.0f;
@@ -110,6 +124,10 @@ void TunakWave::CreatWave(float _DeltaTime)
 	}
 	if (WaveStart==true)
 	{
+		float4 Pos = TunakWaveRender->GetTransform()->GetLocalPosition();
+		float4 Pos1 = TunakWaveRender_1->GetTransform()->GetLocalPosition();
+		TunakWaveCol->GetTransform()->SetLocalPosition({ Pos.x,Pos.y,0.0f});
+		TunakWaveCol_1->GetTransform()->SetLocalPosition({ Pos1.x,Pos1.y,0.0f});
 		TunakWaveRender->GetTransform()->AddLocalPosition({ _DeltaTime*WaveSpeed,0.0f,0.0f});
 		TunakWaveRender_1-> GetTransform()->AddLocalPosition({ -_DeltaTime * WaveSpeed,0.0f,0.0f });
 	}

@@ -78,6 +78,7 @@ void BelialHead::IdleStart()
 }
 void BelialHead::IdleUpdate(float _Time)
 {
+	BelialCol->GetTransform()->SetLocalScale(BelialColScale);
 	BulletPatton = false;
 	TimeCheck_0 += _Time;
 	if (TimeCheck_0 > 10.0f)
@@ -93,7 +94,7 @@ void BelialHead::IdleEnd()
 
 void BelialHead::MoveStart()
 {
-
+	BelialCol->GetTransform()->SetLocalScale({ 200.0f,400.0f,0.0f });
 	BelialHeadRender->ChangeAnimation("HeadMove");
 	IsBullet = true;
 }

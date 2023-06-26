@@ -31,6 +31,11 @@ private:
 	std::shared_ptr<class GameEngineSpriteRenderer> BelialBulletRender_U;
 	std::shared_ptr<class GameEngineSpriteRenderer> BelialBulletRender_D;
 
+	std::shared_ptr<class GameEngineCollision> BelialBulletCol_0;
+	std::shared_ptr<class GameEngineCollision> BelialBulletCol_1;
+	std::shared_ptr<class GameEngineCollision> BelialBulletCol_2;
+	std::shared_ptr<class GameEngineCollision> BelialBulletCol_3;
+	float4 BulletColScale = { 50.0f,50.f,0.0f };
 	float4 Dir = float4::Zero;
 	float4 PivotPos = { 12080.0f,-250.0f,-770.0f };
 	float4 LDir = float4::Zero;

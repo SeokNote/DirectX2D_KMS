@@ -25,7 +25,8 @@ private:
 	std::shared_ptr<class GameEngineSpriteRenderer> GoblinBombRender;
 	std::shared_ptr<class GameEngineSpriteRenderer> GoblinBombEffectRender;
 	std::shared_ptr<class GameEngineSpriteRenderer> BGRender;
-
+	std::shared_ptr<class GameEngineCollision> GoblinBombCol;
+	float4 ColScale = { 146.0f,200.0f,0.0f };
 	float4 BGScale = { 10.0f,800.0f,0.0f };
 	float StartAlpha = 0.6f;
 	float AlphaTime = 0.0f;

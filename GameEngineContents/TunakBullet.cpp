@@ -1,4 +1,5 @@
 #include "PrecompileHeader.h"
+#include "ContentsEnums.h"
 #include "TunakBullet.h"
 
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
@@ -6,6 +7,8 @@
 #include <GameEngineCore/GameEngineRenderer.h>
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore/GameEngineSprite.h>
+#include <GameEngineCore/GameEngineCollision.h>
+
 TunakBullet::TunakBullet() 
 {
 }
@@ -69,6 +72,44 @@ void TunakBullet::Start()
 	TunakBulletBGRender->CreateAnimation({ .AnimationName = "TunakBulletBG", .SpriteName = "TunakBulletBG",.Loop = false , .ScaleToTexture = true });
 	TunakBulletBGRender->ChangeAnimation("TunakBulletBG");
 	
+
+	TunakBulletCol_0 = CreateComponent<GameEngineCollision>(ColOrder::TunakBullet);
+	TunakBulletCol_0->GetTransform()->SetLocalScale(BulletScale);
+	TunakBulletCol_0->SetColType(ColType::AABBBOX2D);
+
+
+	TunakBulletCol_1 = CreateComponent<GameEngineCollision>(ColOrder::TunakBullet);
+	TunakBulletCol_1->GetTransform()->SetLocalScale(BulletScale);
+	TunakBulletCol_1->SetColType(ColType::AABBBOX2D);
+
+
+	TunakBulletCol_2 = CreateComponent<GameEngineCollision>(ColOrder::TunakBullet);
+	TunakBulletCol_2->GetTransform()->SetLocalScale(BulletScale);
+	TunakBulletCol_2->SetColType(ColType::AABBBOX2D);
+
+
+	TunakBulletCol_3 = CreateComponent<GameEngineCollision>(ColOrder::TunakBullet);
+	TunakBulletCol_3->GetTransform()->SetLocalScale(BulletScale);
+	TunakBulletCol_3->SetColType(ColType::AABBBOX2D);
+
+
+	TunakBulletCol_4 = CreateComponent<GameEngineCollision>(ColOrder::TunakBullet);
+	TunakBulletCol_4->GetTransform()->SetLocalScale(BulletScale);
+	TunakBulletCol_4->SetColType(ColType::AABBBOX2D);
+
+
+	TunakBulletCol_5 = CreateComponent<GameEngineCollision>(ColOrder::TunakBullet);
+	TunakBulletCol_5->GetTransform()->SetLocalScale(BulletScale);
+	TunakBulletCol_5->SetColType(ColType::AABBBOX2D);
+
+
+	TunakBulletCol_6 = CreateComponent<GameEngineCollision>(ColOrder::TunakBullet);
+	TunakBulletCol_6->GetTransform()->SetLocalScale(BulletScale);
+	TunakBulletCol_6->SetColType(ColType::AABBBOX2D);
+
+	TunakBulletCol_7 = CreateComponent<GameEngineCollision>(ColOrder::TunakBullet);
+	TunakBulletCol_7->GetTransform()->SetLocalScale(BulletScale);
+	TunakBulletCol_7->SetColType(ColType::AABBBOX2D);
 }					  
 
 void TunakBullet::Update(float _DeltaTime)
@@ -84,6 +125,15 @@ void TunakBullet::Update(float _DeltaTime)
 
 void TunakBullet::MoveBullet(float _DeltaTime)
 {
+	float4 Pos0 = TunakBulletRender_0->GetTransform()->GetLocalPosition();
+	float4 Pos1 = TunakBulletRender_1->GetTransform()->GetLocalPosition();
+	float4 Pos2 = TunakBulletRender_2->GetTransform()->GetLocalPosition();
+	float4 Pos3 = TunakBulletRender_3->GetTransform()->GetLocalPosition();
+	float4 Pos4 = TunakBulletRender_4->GetTransform()->GetLocalPosition();
+	float4 Pos5 = TunakBulletRender_5->GetTransform()->GetLocalPosition();
+	float4 Pos6 = TunakBulletRender_6->GetTransform()->GetLocalPosition();
+	float4 Pos7 = TunakBulletRender_7->GetTransform()->GetLocalPosition();
+
 	TunakBulletRender_0->GetTransform()->AddLocalPosition({ 1.0f * _DeltaTime * BulletSpeed,0.0f,0.0f });
 	TunakBulletRender_1->GetTransform()->AddLocalPosition({ -1.0f * _DeltaTime * BulletSpeed,0.0f,0.0f });
 	TunakBulletRender_2->GetTransform()->AddLocalPosition({ 0.0f,1.0f * _DeltaTime * BulletSpeed,0.0f });
@@ -92,6 +142,15 @@ void TunakBullet::MoveBullet(float _DeltaTime)
 	TunakBulletRender_5->GetTransform()->AddLocalPosition({ -0.75f * _DeltaTime * BulletSpeed,-0.75f * _DeltaTime * BulletSpeed,0.0f });
 	TunakBulletRender_6->GetTransform()->AddLocalPosition({ -0.75f * _DeltaTime * BulletSpeed,0.75f * _DeltaTime * BulletSpeed,0.0f });
 	TunakBulletRender_7->GetTransform()->AddLocalPosition({ 0.75f * _DeltaTime * BulletSpeed,-0.75f * _DeltaTime * BulletSpeed,0.0f });
+
+	TunakBulletCol_0->GetTransform()->SetLocalPosition({ Pos0.x,Pos0.y,0.0f });
+	TunakBulletCol_1->GetTransform()->SetLocalPosition({ Pos1.x,Pos1.y,0.0f });
+	TunakBulletCol_2->GetTransform()->SetLocalPosition({ Pos2.x,Pos2.y,0.0f });
+	TunakBulletCol_3->GetTransform()->SetLocalPosition({ Pos3.x,Pos3.y,0.0f });
+	TunakBulletCol_4->GetTransform()->SetLocalPosition({ Pos4.x,Pos4.y,0.0f });
+	TunakBulletCol_5->GetTransform()->SetLocalPosition({ Pos5.x,Pos5.y,0.0f });
+	TunakBulletCol_6->GetTransform()->SetLocalPosition({ Pos6.x,Pos6.y,0.0f });
+	TunakBulletCol_7->GetTransform()->SetLocalPosition({ Pos7.x,Pos7.y,0.0f });
 
 }
 

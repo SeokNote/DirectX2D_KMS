@@ -30,6 +30,7 @@ private:
 	std::shared_ptr<class GameEngineSpriteRenderer> SwordEffectRender;
 	std::shared_ptr<class GameEngineSpriteRenderer> SwordFxRender;
 	std::shared_ptr<class GameEngineSpriteRenderer> SwordColRender;
+	std::shared_ptr<class GameEngineCollision> SwordCol;
 
 	bool PixelCheck();
 	void ChangeState(BossSwordState _State);

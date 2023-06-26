@@ -1,4 +1,5 @@
 #include "PrecompileHeader.h"
+#include "ContentsEnums.h"
 #include "GoblinBomb.h"
 
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
@@ -37,6 +38,11 @@ void GoblinBomb::Start()
 	GoblinBombEffectRender->SetTexture("HeavyExplosion12.png");
 	GoblinBombEffectRender->GetTransform()->SetLocalPosition({ 0.0f,-40.f,0.0f });
 	GoblinBombEffectRender->CreateAnimation({ .AnimationName = "GoblinBombEffect", .SpriteName = "GoblinBombEffect", .Loop = false , .ScaleToTexture = true });
+	
+	GoblinBombCol = CreateComponent<GameEngineCollision>(ColOrder::TunakGoblinBomb);
+	GoblinBombCol->GetTransform()->SetLocalScale(ColScale);
+	GoblinBombCol->SetColType(ColType::AABBBOX2D);
+	GoblinBombCol->Off();
 }
 
 void GoblinBomb::Update(float _DeltaTime)
@@ -113,7 +119,9 @@ void GoblinBomb::CreatBomb(float _DeltaTime)
 	}
 	if (BombPos.y <= -153 && IsCheck_1 ==false)
 	{
+		GoblinBombCol->On();
 		GoblinBombRender->Off();
+		GoblinBombCol->GetTransform()->SetLocalPosition({ BombPos.x,BombPos.y+60.0f,0.0f});
 		GoblinBombEffectRender->ChangeAnimation("GoblinBombEffect");
 		IsCheck_1 = true;
 	}

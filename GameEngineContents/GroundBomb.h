@@ -25,11 +25,13 @@ private:
 	std::shared_ptr<class GameEngineSpriteRenderer> GroundBombBGRender;
 	std::shared_ptr<class GameEngineSpriteRenderer> GroundBombRender;
 	std::shared_ptr<class GameEngineSpriteRenderer> BombBGRender_0;
+	std::shared_ptr<class GameEngineCollision> GroundBombCol;
 
 
 	//º¯¼ö
 	float4 BGScale = { 150.0f,800.0f,0.0f };
 	float4 BombScale = { 300.0f,800.0f,0.0f };
+	float4 BombColScale = { 200.0f,800.0f,0.0f };
 
 	float Time = 0.0f;
 	float StartAlpha = 0.6f;

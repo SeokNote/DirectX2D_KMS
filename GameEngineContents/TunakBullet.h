@@ -20,6 +20,7 @@ protected:
 	void Update(float _DeltaTime) override;
 private:
 	void MoveBullet(float _DeltaTime);
+	float4 BulletScale = { 70.0f,70.0f,0.0f };
 	std::shared_ptr<class GameEngineSpriteRenderer> TunakBulletRender_0;
 	std::shared_ptr<class GameEngineSpriteRenderer> TunakBulletRender_1;
 	std::shared_ptr<class GameEngineSpriteRenderer> TunakBulletRender_2;
@@ -28,6 +29,15 @@ private:
 	std::shared_ptr<class GameEngineSpriteRenderer> TunakBulletRender_5;
 	std::shared_ptr<class GameEngineSpriteRenderer> TunakBulletRender_6;
 	std::shared_ptr<class GameEngineSpriteRenderer> TunakBulletRender_7;
+
+	std::shared_ptr<class GameEngineCollision> TunakBulletCol_0;
+	std::shared_ptr<class GameEngineCollision> TunakBulletCol_1;
+	std::shared_ptr<class GameEngineCollision> TunakBulletCol_2;
+	std::shared_ptr<class GameEngineCollision> TunakBulletCol_3;
+	std::shared_ptr<class GameEngineCollision> TunakBulletCol_4;
+	std::shared_ptr<class GameEngineCollision> TunakBulletCol_5;
+	std::shared_ptr<class GameEngineCollision> TunakBulletCol_6;
+	std::shared_ptr<class GameEngineCollision> TunakBulletCol_7;
 
 	std::shared_ptr<class GameEngineSpriteRenderer> TunakBulletBGRender;
 

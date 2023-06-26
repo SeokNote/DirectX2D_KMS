@@ -1,4 +1,5 @@
 #include "PrecompileHeader.h"
+#include "ContentsEnums.h"
 #include "BelialBullet.h"
 #include "BelialBulletBase.h"
 #include "BelialHead.h"
@@ -7,6 +8,7 @@
 #include <GameEngineCore/GameEngineRenderer.h>
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore/GameEngineSprite.h>
+#include <GameEngineCore/GameEngineCollision.h>
 
 BelialBullet::BelialBullet()
 {
@@ -44,6 +46,22 @@ void BelialBullet::Start()
 	BelialBulletRender_D->ChangeAnimation("BelialBullet");
 	BelialBulletRender_D->GetTransform()->SetLocalPosition(PivotPos);
 
+	BelialBulletCol_0 = CreateComponent<GameEngineCollision>(ColOrder::BelialBullet);
+	BelialBulletCol_0->GetTransform()->SetLocalScale(BulletColScale);
+	BelialBulletCol_0->SetColType(ColType::AABBBOX2D);
+
+	BelialBulletCol_1 = CreateComponent<GameEngineCollision>(ColOrder::BelialBullet);
+	BelialBulletCol_1->GetTransform()->SetLocalScale(BulletColScale);
+	BelialBulletCol_1->SetColType(ColType::AABBBOX2D);
+
+	BelialBulletCol_2 = CreateComponent<GameEngineCollision>(ColOrder::BelialBullet);
+	BelialBulletCol_2->GetTransform()->SetLocalScale(BulletColScale);
+	BelialBulletCol_2->SetColType(ColType::AABBBOX2D);
+
+	BelialBulletCol_3 = CreateComponent<GameEngineCollision>(ColOrder::BelialBullet);
+	BelialBulletCol_3->GetTransform()->SetLocalScale(BulletColScale);
+	BelialBulletCol_3->SetColType(ColType::AABBBOX2D);
+
 	LDir_t = BelialBulletBase::MainBelialBulletBase->getLDir();
 	RDir_t = BelialBulletBase::MainBelialBulletBase->getRDir();
 	UDir_t = BelialBulletBase::MainBelialBulletBase->getUDir();
@@ -70,6 +88,12 @@ void BelialBullet::SetBullet(float _DeltaTime)
 	BelialBulletRender_R->GetTransform()->AddWorldPosition({ RDir.x *BulletSpeed * _DeltaTime,RDir.y *  BulletSpeed * _DeltaTime,0.0f });
 	BelialBulletRender_U->GetTransform()->AddWorldPosition({ UDir.x *BulletSpeed * _DeltaTime,UDir.y * BulletSpeed * _DeltaTime,0.0f });
 	BelialBulletRender_D->GetTransform()->AddWorldPosition({ DDir.x *BulletSpeed * _DeltaTime,DDir.y * BulletSpeed * _DeltaTime,0.0f });
+
+	BelialBulletCol_0->GetTransform()->SetLocalPosition(BelialBulletRender_L->GetTransform()->GetLocalPosition());
+	BelialBulletCol_1->GetTransform()->SetLocalPosition(BelialBulletRender_R->GetTransform()->GetLocalPosition());
+	BelialBulletCol_2->GetTransform()->SetLocalPosition(BelialBulletRender_U->GetTransform()->GetLocalPosition());
+	BelialBulletCol_3->GetTransform()->SetLocalPosition(BelialBulletRender_D->GetTransform()->GetLocalPosition());
+
 }
 
 

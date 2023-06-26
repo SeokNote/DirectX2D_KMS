@@ -1,4 +1,5 @@
 #include "PrecompileHeader.h"
+#include "ContentsEnums.h"
 #include "BelialLasor_R.h"
 #include "BelialHand_L.h"
 
@@ -26,8 +27,9 @@ void BelialLasor_R::Start()
 	BelialLasorRender->ChangeAnimation("LasorPattern");
 
 
-	//BelialLasor_RCol = CreateComponent<GameEngineCollision>();
-
+	BelialLasorCol = CreateComponent<GameEngineCollision>(ColOrder::BelialLasor_L);
+	BelialLasorCol->GetTransform()->SetLocalScale(LasorColScale);
+	BelialLasorCol->SetColType(ColType::AABBBOX2D);
 }
 
 void BelialLasor_R::Update(float _DeltaTime)

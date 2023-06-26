@@ -134,6 +134,7 @@ void BossSword::MoveUpdate(float _Time)
 }
 void BossSword::MoveEnd()
 {
+	SwordCol->Off();
 }
 void BossSword::DeadStart()
 {

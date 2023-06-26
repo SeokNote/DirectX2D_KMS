@@ -36,12 +36,9 @@ private:
 	float4 MainBGPos =  { 12080.0f,-250.0f,-740.0f };
 	std::shared_ptr<class GameEngineSpriteRenderer> BelialHeadRender;
 	std::shared_ptr<class GameEngineSpriteRenderer> BelialBGRender;
-
 	std::shared_ptr<class GameEngineSpriteRenderer> BelialBulletComponet;
-
+	std::shared_ptr<class GameEngineCollision> BelialCol;
 	std::shared_ptr<class BelialBullet> BelialBulletRender = nullptr;
-
-
 	std::shared_ptr<class BelialBulletBase> BelialBulletBasePtr = nullptr;
 	BossHeadState StateValue = BossHeadState::IDLE;
 
@@ -61,6 +58,8 @@ private:
 	void DeadStart();
 	void DeadUpdate(float _Time);
 	void DeadEnd();
+	//벨리알 
+	float4 BelialColScale = { 200.0f,320.f,0.0f };
 	//패턴 불값
 	bool IsBullet = true;
 	bool BulletPatton = false;

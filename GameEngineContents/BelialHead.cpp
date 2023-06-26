@@ -1,4 +1,5 @@
 #include "PrecompileHeader.h"
+#include "ContentsEnums.h"
 #include "BelialHead.h"
 #include "BelialHeadSubBG.h"
 #include "BossSword.h"
@@ -42,6 +43,12 @@ void BelialHead::Start()
 	BelialBGRender->CreateAnimation({ .AnimationName = "BelialMainBG", .SpriteName = "MainBG", .Loop = true , .ScaleToTexture = true });
 	BelialBGRender->ChangeAnimation("BelialMainBG");
 	ChangeState(BossHeadState::IDLE);
+
+
+	BelialCol = CreateComponent<GameEngineCollision>(ColOrder::BelialHead);
+	BelialCol->GetTransform()->SetLocalPosition({ 30.0f,-20.0f,0.f });
+	BelialCol->GetTransform()->SetLocalScale(BelialColScale);
+	BelialCol->SetColType(ColType::AABBBOX2D);
 
 	BelialBulletBasePtr = GetLevel()->CreateActor<BelialBulletBase>();
 	BelialBulletBasePtr->GetTransform()->SetWorldPosition({ 12080.0f,-250.0f,-800.0f });

@@ -1,4 +1,5 @@
 #include "PrecompileHeader.h"
+#include "ContentsEnums.h"
 #include "GroundBomb.h"
 
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
@@ -45,8 +46,10 @@ void GroundBomb::Start()
 	BombBGRender_0->GetTransform()->SetLocalPosition({ 0.0f ,-125.f,0.0f });
 	BombBGRender_0->CreateAnimation({ .AnimationName = "BombBG_0", .SpriteName = "BombBG", .FrameInter=0.04f,.Loop = false , .ScaleToTexture = true });
 
-
-
+	GroundBombCol = CreateComponent<GameEngineCollision>(ColOrder::TunakGroundBomb);
+	GroundBombCol->GetTransform()->SetLocalScale(BombColScale);
+	GroundBombCol->SetColType(ColType::AABBBOX2D);
+	GroundBombCol->Off();
 }
 
 void GroundBomb::Update(float _DeltaTime)
@@ -110,12 +113,15 @@ void GroundBomb::SetGroundBG(float _DeltaTime)
 
 void GroundBomb::CreatBomb(float _DeltaTime)
 {
+	float4 Pos = GroundBombRender->GetTransform()->GetLocalPosition();
 	if (BombCheck==false && GroundBombBGRender->ColorOptionValue.MulColor.a == 0.0f)
 	{
 		StartBomb += _DeltaTime;
 		if (StartBomb > 0.4f)
 		{
 			GroundBombRender->ChangeAnimation("GroundBomb");
+			GroundBombCol->On();
+			GroundBombCol->GetTransform()->SetLocalPosition(Pos);
 			BombBGRender_0->ChangeAnimation("BombBG_0");
 			BombCheck = true;
 			StartBomb = 0.0f;

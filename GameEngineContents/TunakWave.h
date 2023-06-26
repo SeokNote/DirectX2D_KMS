@@ -24,6 +24,10 @@ private:
 	void WaveDeath(float _DeltaTime);
 	std::shared_ptr<class GameEngineSpriteRenderer> TunakWaveRender;
 	std::shared_ptr<class GameEngineSpriteRenderer> TunakWaveRender_1;
+
+	std::shared_ptr<class GameEngineCollision> TunakWaveCol;
+	std::shared_ptr<class GameEngineCollision> TunakWaveCol_1;
+
 	std::shared_ptr<class GameEngineSpriteRenderer> BGRender;
 
 	float4 BGScale = { 200.0f,1500.0f,0.0f };

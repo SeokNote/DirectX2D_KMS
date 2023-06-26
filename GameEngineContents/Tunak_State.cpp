@@ -207,32 +207,33 @@ void Tunak::IdleUpdate(float _Time)
 	{
 		if (TestTime > 2.0f)
 		{
-			if (RandomIndex == 0)
-			{
-				ChangeState(TunakState::SPIKE_R);
-			
-			}
-			if (RandomIndex == 1)
-			{
-				ChangeState(TunakState::OVERPOWER);
-			
-			}
-			if (RandomIndex == 2)
-			{
-				ChangeState(TunakState::DOUBLEATTACK);
-			}
-			if (RandomIndex == 3)
-			{
-				ChangeState(TunakState::SHOUT);
-			}
-			if (RandomIndex == 4)
-			{
-				ChangeState(TunakState::GoblimBomb);
-			}
-			if (RandomIndex == 5)
-			{
-				ChangeState(TunakState::TACKLE);
-			}
+			//if (RandomIndex == 0)
+			//{
+			//	ChangeState(TunakState::SPIKE_R);
+			//
+			//}
+			//if (RandomIndex == 1)
+			//{
+			//	ChangeState(TunakState::OVERPOWER);
+			//
+			//}
+			//if (RandomIndex == 2)
+			//{
+			//	ChangeState(TunakState::DOUBLEATTACK);
+			//}
+			//if (RandomIndex == 3)
+			//{
+			//	ChangeState(TunakState::SHOUT);
+			//}
+			//if (RandomIndex == 4)
+			//{
+			//	ChangeState(TunakState::GoblimBomb);
+			//}
+			//if (RandomIndex == 5)
+			//{
+			//	ChangeState(TunakState::TACKLE);
+			//}
+			ChangeState(TunakState::TACKLE);
 
 			TestTime = 0.0f;
 		}
@@ -387,14 +388,16 @@ void Tunak::DoubleAttackStart()
 	float4 PlayerPos = Player::MainPlayer->GetTransform()->GetLocalPosition();
 	TunakPos = GetTransform()->GetLocalPosition();
 	TunakRender->ChangeAnimation("TunakDoubleAttack");
+	TunakDoubleAttackCol->On();
 }
 
 void Tunak::DoubleAttackUpdate(float _Time)
 {
 	float4 TunakCurPos = GetTransform()->GetLocalPosition();
-
+	float4 Pos = TunakRender->GetTransform()->GetLocalPosition();
 		if (IsFilp == false)
 		{
+			TunakDoubleAttackCol->GetTransform()->SetLocalPosition({ Pos.x-100.0f,Pos.y-120.0f,0.0f});
 			if (TunakRender->GetCurrentFrame() < 7)
 			{
 				GetTransform()->AddLocalPosition({ -_Time * DoubleAttackSpeed*0.75f ,0.0f,0.0f });
@@ -407,11 +410,13 @@ void Tunak::DoubleAttackUpdate(float _Time)
 			}
 			if (TunakCurPos.x - TunakPos.x < -120)
 			{
+				TunakDoubleAttackCol->Off();
 				ChangeState(TunakState::IDLE);
 			}
 		}
 		else
 		{
+			TunakDoubleAttackCol->GetTransform()->SetLocalPosition({ Pos.x+100.0f,Pos.y-120.0f,0.0f });
 			if (TunakRender->GetCurrentFrame() < 7)
 			{
 				GetTransform()->AddLocalPosition({ _Time * DoubleAttackSpeed * 0.75f ,0.0f,0.0f });
@@ -424,6 +429,7 @@ void Tunak::DoubleAttackUpdate(float _Time)
 			}
 			if (TunakCurPos.x - TunakPos.x > 120)
 			{
+				TunakDoubleAttackCol->Off();
 				ChangeState(TunakState::IDLE);
 			}
 		}
@@ -583,6 +589,7 @@ void Tunak::TackleStart()
 {
 	TunakRender->ChangeAnimation("TunakShoulderTakleReady");
 	TackleCheck = false;
+	TunakTackleCol->On();
 }
 
 void Tunak::TackleUpdate(float _Time)
@@ -614,6 +621,7 @@ void Tunak::TackleUpdate(float _Time)
 			GetTransform()->AddLocalPosition({ -_Time * TackleSpeed,0.0f,0.0f });
 			if (TunakPos.x < 14450)
 			{
+				TunakTackleCol->Off();
 				ChangeState(TunakState::IDLE);
 			}
 		}
@@ -630,6 +638,7 @@ void Tunak::TackleUpdate(float _Time)
 			GetTransform()->AddLocalPosition({ _Time * TackleSpeed,0.0f,0.0f });
 			if (TunakPos.x > 15700)
 			{
+				TunakTackleCol->Off();
 				ChangeState(TunakState::IDLE);
 			}
 		}

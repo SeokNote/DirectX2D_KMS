@@ -21,6 +21,7 @@ protected:
 private:
 
 	float4 LasorScale = { -1280.0f,220.0f,0.0f };
+	float4 LasorColScale = { -1280.0f,180.0f,0.0f };
 	std::shared_ptr<class GameEngineSpriteRenderer> BelialLasorRender;
 	std::shared_ptr<class GameEngineCollision> BelialLasorCol;
 

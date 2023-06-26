@@ -17,8 +17,19 @@ enum class MyMap
 
 };
 
-enum class CollisionType 
+enum class ColOrder
 {
+	BelialHead,
+	BelialLasor_L,
+	BelialSword,
+	BelialBullet,
+	TunakBody,
+	TunakGoblinBomb,
+	TunakGroundBomb,
+	TunakBullet,
+	TunakWave,
+	TunakDoubleAttack,
+	TunakTakcle,
 	Stage3_Blet,
 	Player=1,
 };

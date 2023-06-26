@@ -36,9 +36,17 @@ protected:
 	void Update(float _DeltaTime) override;
 private:
 	float4 TunakScale = { 456.0f,468.0f,0.0f };
+	float4 TunakColScale = { 230.0f,238.0f,0.0f };
+	float4 DoubleAttackScale = { 150.0f,238.0f,0.0f };
+	float4 TakcleScale = { 100.0f,188.0f,0.0f };
+
 	void CalBezierBulletTransform(const float4& _Start, const float4& _Height, const float4& _End, float _Ratio);
+	void TunakColision();
 	std::shared_ptr<class GameEngineSpriteRenderer> TunakRender;
 	std::shared_ptr<class GameEngineCollision> TunakCol;
+	std::shared_ptr<class GameEngineCollision> TunakDoubleAttackCol;
+	std::shared_ptr<class GameEngineCollision> TunakTackleCol;
+
 	std::shared_ptr<class GroundBomb> GroundBombPtr_0;
 	std::shared_ptr<class GroundBomb> GroundBombPtr_1;
 	std::shared_ptr<class GroundBomb> GroundBombPtr_2;
