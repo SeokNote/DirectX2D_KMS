@@ -34,5 +34,9 @@ enum class ColOrder
 	
 	////무기
 	GreatWeapon,
+	//플레이어
+	PlayerBody,
+	//마우스
+	PlayMouse,
 };
 

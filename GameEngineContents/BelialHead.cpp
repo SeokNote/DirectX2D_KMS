@@ -1,5 +1,6 @@
 #include "PrecompileHeader.h"
 #include "ContentsEnums.h"
+#include "WeaponBase.h"
 #include "BelialHead.h"
 #include "BelialHeadSubBG.h"
 #include "BossSword.h"
@@ -84,6 +85,7 @@ void BelialHead::BelialCollision(float _DeltaTime)
 	{
 		if (HitCheck == false)
 		{
+			BelialHp -= WeaponBase::WeaponBasePtr->GetWeaponStrength(Weapon::GreatWeapon_E);
 			BelialHeadRender->ColorOptionValue.MulColor.r = 1.0f;
 			BelialHeadRender->ColorOptionValue.MulColor.g = 0.1f;
 			BelialHeadRender->ColorOptionValue.MulColor.b = 0.1f;
@@ -96,17 +98,13 @@ void BelialHead::BelialCollision(float _DeltaTime)
 		{
 
 			Invincibilitytime += _DeltaTime;
-			if (Invincibilitytime > 0.3f)
+			if (Invincibilitytime > 0.1f)
 			{
 				BelialHeadRender->ColorOptionValue.MulColor.r = 1.0f;
 				BelialHeadRender->ColorOptionValue.MulColor.g = 1.0f;
 				BelialHeadRender->ColorOptionValue.MulColor.b = 1.0f;
-			}
-			if (Invincibilitytime > 0.3f)
-			{
 				HitCheck = false;
 				Invincibilitytime = 0.0f;
-
 			}
 		}
 	

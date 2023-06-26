@@ -272,6 +272,9 @@
     <ClInclude Include="GreatWeapon.h">
       <Filter>Object\Weapon\GreatWeapon</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerDataBase.h">
+      <Filter>Object\MainPlayer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -562,6 +565,9 @@
     </ClCompile>
     <ClCompile Include="GreatWeapon.cpp">
       <Filter>Object\Weapon\GreatWeapon</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerDataBase.cpp">
+      <Filter>Object\MainPlayer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

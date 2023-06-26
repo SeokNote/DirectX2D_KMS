@@ -24,14 +24,11 @@ private:
 	std::shared_ptr<class GameEngineSpriteRenderer> GreatWeaponRender;
 	std::shared_ptr<class GameEngineSpriteRenderer> GreatWeaponEffectRender;
 	std::shared_ptr<class GameEngineCollision> GreatWeaponCol;
-
 	float4 GreatWeaponScale = { -256.0f,256.0f,0.0f };
 	float4 GreatWeaponColScale = { 244.0f,188.0f,0.0f };
-
+	int index = 0;
 	float4 GreatWeaponPos = float4::Zero;
 	float4 MousePos = float4::Zero;
-
-	int index = 0;
 	float ShakeTime = 0.0f;
 	float ShakeTime_0 = 0.0f;
 	bool ShakeValue = false;

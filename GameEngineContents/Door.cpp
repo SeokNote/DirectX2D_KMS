@@ -1,4 +1,5 @@
 #include "PrecompileHeader.h"
+#include "ContentsEnums.h"
 #include "Door.h"
 #include "Player.h"
 #include "FadeEffect.h"
@@ -36,7 +37,7 @@ void Door::Update(float _DeltaTime)
 	DoorCol->SetColType(ColType::AABBBOX2D);
 	float4 Pos = DoorCol->GetTransform()->GetLocalPosition();
 
-	if (DoorCol->Collision(3333, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	if (DoorCol->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		Player::MainPlayer->SetUICount(1);
 		MapMove(_DeltaTime, NextPos);

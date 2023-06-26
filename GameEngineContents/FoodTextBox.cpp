@@ -62,7 +62,7 @@ void FoodTextBox::Start()
 bool FoodCheck = false;
 void FoodTextBox::Update(float _Delta)
 {
-	if (ButtonCol_0->Collision(3001, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	if (ButtonCol_0->Collision(ColOrder::PlayMouse, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		FoodSelectUI->On();
 		FoodSelectUI->GetTransform()->SetLocalPosition({ 480.0f, -30.0f ,-150.0f });
@@ -73,7 +73,7 @@ void FoodTextBox::Update(float _Delta)
 			Death();
 		}
 	}
-	else if (ButtonCol_1->Collision(3001, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	else if (ButtonCol_1->Collision(ColOrder::PlayMouse, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		FoodSelectUI->On();
 		FoodSelectUI->GetTransform()->SetLocalPosition({ 480.0f, 30.0f ,-150.0f });
@@ -92,7 +92,7 @@ void FoodTextBox::Update(float _Delta)
 		}
 	}
 
-	else if (ButtonCol_2->Collision(3001, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	else if (ButtonCol_2->Collision(ColOrder::PlayMouse, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		FoodSelectUI->On();
 		FoodSelectUI->GetTransform()->SetLocalPosition({ 480.0f, -93.0f ,-150.0f });

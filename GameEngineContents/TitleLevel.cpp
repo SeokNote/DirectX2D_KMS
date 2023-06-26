@@ -12,6 +12,7 @@
 #include "Bird.h"
 #include "TitleMouse.h"
 #include "PlayStartWindow.h"
+#include "ContentsEnums.h"
 
 
 #include <GameEngineBase\GameEngineDebug.h>
@@ -89,7 +90,7 @@ void TitleLevel::Start()
 
 	}
 	
-		std::shared_ptr<TitleMouse> TitleMousePtr = CreateActor<TitleMouse>(3001);
+		std::shared_ptr<TitleMouse> TitleMousePtr = CreateActor<TitleMouse>(ColOrder::PlayMouse);
 
 
 }

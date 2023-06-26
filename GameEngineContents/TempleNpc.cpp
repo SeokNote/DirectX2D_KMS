@@ -1,10 +1,11 @@
 #include "PrecompileHeader.h"
+#include "ContentsEnums.h"
 #include "TempleNpc.h"
 #include "FoodUI.h"
 #include "FoodTextBox.h"
 #include "UICountBase.h"
-#include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include "Player.h"
+#include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEnginePlatform/GameEngineWindow.h>
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/GameEngineCamera.h>
@@ -66,7 +67,7 @@ void TempleNpc::Start()
 
 void TempleNpc::Update(float _DeltaTime)
 {
-	if (TempleNpcCol->Collision(3333, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	if (TempleNpcCol->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		FRender->On();
 		if (UICountBase::MainUICountBase->GetUICount() == 0 && GameEngineInput::IsDown("NpcInteraction"))

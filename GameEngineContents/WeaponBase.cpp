@@ -6,8 +6,12 @@
 #include <GameEngineCore/GameEngineCamera.h>
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
+#include <GameEngineBase/GameEngineRandom.h>
+WeaponBase* WeaponBase::WeaponBasePtr = nullptr;
+
 WeaponBase::WeaponBase() 
 {
+	WeaponBasePtr = this;
 }
 
 WeaponBase::~WeaponBase() 
@@ -79,4 +83,22 @@ float WeaponBase::GetDeg()
 	float ZDeg = atan2(MousePos.y - PlayerPos.y, MousePos.x - PlayerPos.x) * GameEngineMath::RadToDeg;
 	return ZDeg;
 
+}
+
+int WeaponBase::GetWeaponStrength(Weapon _MyWeapon)
+{
+	switch (_MyWeapon)
+	{
+	case None:
+		return 0;
+		break;
+	case GreatWeapon_E:
+		WeaponStrength = GameEngineRandom::MainRandom.RandomInt(20, 27);
+		return WeaponStrength;
+		break;
+	default:
+		return 0;
+		break;
+	}
+	return 0;
 }

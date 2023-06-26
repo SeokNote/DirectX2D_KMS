@@ -90,10 +90,9 @@ void Player::Start()
 	PlayerBottoomRender->GetTransform()->SetLocalScale({ 58.0f, 4.0f });
 
 
-	PlayerCol = CreateComponent<GameEngineCollision>();
+	PlayerCol = CreateComponent<GameEngineCollision>(ColOrder::PlayerBody);
 	PlayerCol->GetTransform()->SetLocalScale({ 64.0f, 76.0f });
 	PlayerCol->SetColType(ColType::AABBBOX2D);
-	PlayerCol->SetOrder(3333);
 
 }
 void Player::Update(float _DeltaTime)
@@ -101,7 +100,7 @@ void Player::Update(float _DeltaTime)
 	CurMap = SetMyMap(CurMap);
 	ColRenderSet();
 	UpdateState(_DeltaTime);
-	GetTransform()->AddLocalPosition(MoveDir * MoveSpeed * _DeltaTime);
+	GetTransform()->AddLocalPosition(MoveDir * PlayerDataBase::GetMoveSpeed() * _DeltaTime);
 	Filp();
 	//이미지 클립 해보기
 	//static float Test = 1.0f;

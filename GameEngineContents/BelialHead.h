@@ -28,6 +28,14 @@ public:
 	{
 		return BulletPatton;
 	}
+	int GetBelialHP()
+	{
+		return BelialHp;
+	}
+	void SubBelialHP(float _Damage)
+	{
+		BelialHp -= _Damage;
+	}
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
@@ -62,6 +70,7 @@ private:
 	//벨리알 
 	float4 BelialColScale = { 200.0f,320.f,0.0f };
 	float Invincibilitytime = 0.0f;
+	int BelialHp = 1000;
 	//패턴 불값
 	bool IsBullet = true;
 	bool BulletPatton = false;

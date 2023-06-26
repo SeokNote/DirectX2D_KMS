@@ -1,4 +1,5 @@
 #include "PrecompileHeader.h"
+#include "ContentsEnums.h"
 #include "Player.h"
 #include "ShopNpc.h"
 #include "ShopUI.h"
@@ -70,7 +71,7 @@ void ShopNpc::Start()
 
 void ShopNpc::Update(float _DeltaTime)
 {
-	if (ShopNpcCol->Collision(3333, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	if (ShopNpcCol->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		FRender->On();
 		if (UICountBase::MainUICountBase->GetUICount() == 0 && GameEngineInput::IsDown("NpcInteraction")) {

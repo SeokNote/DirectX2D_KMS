@@ -92,7 +92,7 @@ void AbilityUI::Start()
 
 void AbilityUI::Update(float _Delta)
 {
-	if (Button_RedCol->Collision(3001, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	if (Button_RedCol->Collision(ColOrder::PlayMouse, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		Button_RedRender->On();
 		if (GameEngineInput::IsDown("ClickMouse")) 
@@ -104,7 +104,7 @@ void AbilityUI::Update(float _Delta)
 	{
 		Button_RedRender->Off();
 	}
-	if (Button_GreenCol->Collision(3001, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	if (Button_GreenCol->Collision(ColOrder::PlayMouse, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		Button_GreenRender->On();
 		if (GameEngineInput::IsDown("ClickMouse")) {
@@ -117,7 +117,7 @@ void AbilityUI::Update(float _Delta)
 	{
 		Button_GreenRender->Off();
 	}
-	if (Button_WhiteCol->Collision(3001, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	if (Button_WhiteCol->Collision(ColOrder::PlayMouse, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		Button_WhiteRender->On();
 		if (GameEngineInput::IsDown("ClickMouse")) {
@@ -130,7 +130,7 @@ void AbilityUI::Update(float _Delta)
 	{
 		Button_WhiteRender->Off();
 	}
-	if (Button_BlueCol->Collision(3001, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	if (Button_BlueCol->Collision(ColOrder::PlayMouse, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		Button_BlueRender->On();
 		if (GameEngineInput::IsDown("ClickMouse")) {
@@ -143,7 +143,7 @@ void AbilityUI::Update(float _Delta)
 	{
 		Button_BlueRender->Off();
 	}
-	if (Button_YellowCol->Collision(3001, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	if (Button_YellowCol->Collision(ColOrder::PlayMouse, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		Button_YellowRender->On();
 		if (GameEngineInput::IsDown("ClickMouse")) {

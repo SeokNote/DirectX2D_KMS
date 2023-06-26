@@ -1,5 +1,6 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
+#include "PlayerDataBase.h"
 #include "PlayLevel.h"
 #include "PixelCollision.h"
 // Ό³Έν :
@@ -11,7 +12,7 @@ enum class PlayerState
 	FALL,
 	DASH,
 };
-class Player : public GameEngineActor
+class Player : public PlayerDataBase
 {
 public:
 	static Player* MainPlayer;

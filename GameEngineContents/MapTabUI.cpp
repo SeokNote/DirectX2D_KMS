@@ -1,4 +1,5 @@
 #include "PrecompileHeader.h"
+#include "ContentsEnums.h"
 #include "MapTabUI.h"
 #include "Player.h"
 #include <GameEngineCore/GameEngineLevel.h>
@@ -124,7 +125,7 @@ void MapTabUI::Start()
 }
 void MapTabUI::Update(float _Delta)
 {
-	if (Menu_BuilderCol->Collision(3001, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	if (Menu_BuilderCol->Collision(ColOrder::PlayMouse, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		Menu_Builder->Off();
 		Menu_BuilderSelect->On();
@@ -139,7 +140,7 @@ void MapTabUI::Update(float _Delta)
 		Menu_Builder->On();
 	}
 
-	if (Menu_CommanderCol->Collision(3001, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	if (Menu_CommanderCol->Collision(ColOrder::PlayMouse, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		Menu_Commander->Off();
 		Menu_CommanderSelect->On();
@@ -154,7 +155,7 @@ void MapTabUI::Update(float _Delta)
 		Menu_Commander->On();
 	}
 
-	if (Menu_DungeonCol->Collision(3001, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	if (Menu_DungeonCol->Collision(ColOrder::PlayMouse, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		Menu_Dungeon->Off();
 		Menu_DungeonSelect->On();
@@ -170,7 +171,7 @@ void MapTabUI::Update(float _Delta)
 		Menu_Dungeon->On();
 	}
 
-	if (Menu_ShopCol->Collision(3001, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	if (Menu_ShopCol->Collision(ColOrder::PlayMouse, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		Menu_Shop->Off();
 		Menu_ShopSelect->On();
@@ -185,7 +186,7 @@ void MapTabUI::Update(float _Delta)
 		Menu_Shop->On();
 	}
 
-	if (Menu_TemPleCol->Collision(3001, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	if (Menu_TemPleCol->Collision(ColOrder::PlayMouse, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		Menu_TemPle->Off();
 		Menu_TemPleSelect->On();

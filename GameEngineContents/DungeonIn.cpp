@@ -1,4 +1,5 @@
 #include "PrecompileHeader.h"
+#include "ContentsEnums.h"
 #include "DungeonIn.h"
 #include "Trainning.h"
 #include "Player.h"
@@ -57,7 +58,7 @@ void DungeonIn::Start()
 
 void DungeonIn::Update(float _DeltaTime)
 {
-	if (DungeonInCol->Collision(3333, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	if (DungeonInCol->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		Player::MainPlayer->SetUICount(1);
 		if (IndexCount == 0) 

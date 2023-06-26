@@ -1,4 +1,5 @@
 #include "PrecompileHeader.h"
+#include "ContentsEnums.h"
 #include "BuilderNpc.h"
 #include "Trainning.h"
 #include "Player.h"
@@ -66,7 +67,7 @@ void BuilderNpc::Start()
 void BuilderNpc::Update(float _DeltaTime)
 {
 
-	if (BuilderNpcCol->Collision(3333, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	if (BuilderNpcCol->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		FRender->On();
 		if (UICountBase::MainUICountBase->GetUICount() == 0 && GameEngineInput::IsDown("NpcInteraction")) {

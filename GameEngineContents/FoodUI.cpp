@@ -1,4 +1,5 @@
 #include "PrecompileHeader.h"
+#include "ContentsEnums.h"
 #include "FoodUI.h"
 #include "TempleNpc.h"
 #include "Player.h"
@@ -48,7 +49,7 @@ void FoodUI::Start()
 }
 void FoodUI::Update(float _Delta)
 {
-	if (FoodUIExitCol->Collision(3001, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	if (FoodUIExitCol->Collision(ColOrder::PlayMouse, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		ExitButtonRender->Off();
 		ExitButtonSelectRender->On();

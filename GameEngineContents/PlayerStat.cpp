@@ -1,4 +1,5 @@
 #include "PrecompileHeader.h"
+#include "ContentsEnums.h"
 #include "PlayerStat.h"
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/GameEngineCamera.h>
@@ -56,7 +57,7 @@ bool OnOff = false;
 void PlayerStat::Update(float _Delta)
 {
 
-	if (ExitButtonCollsion->Collision(3001, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	if (ExitButtonCollsion->Collision(ColOrder::PlayMouse, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		ExitButton->Off();
 		ExitButtonSelect->On();

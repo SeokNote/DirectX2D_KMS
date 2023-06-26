@@ -1,4 +1,5 @@
 #include "PrecompileHeader.h"
+#include "ContentsEnums.h"
 #include "PlayMouse.h"
 
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
@@ -32,9 +33,8 @@ void PlayMouse::Start()
 	PlayMouseRender->SetTexture("ShootingCursor.png");
 	PlayMouseRender->GetTransform()->SetLocalScale(PlayMouseScale);
 
-	PlayMouseCollsion = CreateComponent<GameEngineCollision>();
+	PlayMouseCollsion = CreateComponent<GameEngineCollision>(ColOrder::PlayMouse);
 	PlayMouseCollsion->GetTransform()->SetLocalScale({ 1.0f,1.0f,1.0f });
-	PlayMouseCollsion->SetOrder(3001);
 }
 
 

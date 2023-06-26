@@ -1,4 +1,5 @@
 #include "PrecompileHeader.h"
+#include "ContentsEnums.h"
 #include "BossDoor_2.h"
 #include "Player.h"
 
@@ -51,7 +52,7 @@ void BossDoor_2::Start()
 bool BossDoorCheck_2 = false;
 void BossDoor_2::Update(float _DeltaTime)
 {
-	if (BossDoorCheck_2 == false && BossDoor3Col->Collision(3333, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	if (BossDoorCheck_2 == false && BossDoor3Col->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		Time += _DeltaTime;
 		if (Time > 0.4)

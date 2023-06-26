@@ -44,7 +44,6 @@ void GreatWeapon::Start()
 bool DirCheck = false;
 void GreatWeapon::Update(float _Delta)
 {
-	
 	SetGreatWeapon(_Delta);
 	SetCollision();
 }
@@ -119,9 +118,12 @@ void GreatWeapon::SetGreatWeapon(float _Delta)
 		GreatWeaponCol->On();
 		ShakeTime_0 += _Delta;
 		WeaponBase::CameraShake(_Delta);
-		if (ShakeTime_0 > 0.4f)
+		if (ShakeTime_0 > 0.2f)
 		{
 			GreatWeaponCol->Off();
+		}
+		if (ShakeTime_0 > 0.4f)
+		{
 			GetLevel()->GetMainCamera()->GetTransform()->SetWorldPosition(CameraPos);
 			ShakeValue = false;
 			ShakeTime_0 = 0.0f;

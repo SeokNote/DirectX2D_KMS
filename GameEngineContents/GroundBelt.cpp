@@ -1,4 +1,5 @@
 #include "PrecompileHeader.h"
+#include "ContentsEnums.h"
 #include "GroundBelt.h"
 #include "BelialHand_L.h"
 #include "Player.h"
@@ -33,7 +34,7 @@ void GroundBelt::Start()
 
 void GroundBelt::Update(float _DeltaTime)
 {
-	if (GroundBeltCol->Collision(3333, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	if (GroundBeltCol->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		float4 PlayerPos = Player::MainPlayer->GetTransform()->GetLocalPosition();
 		if (PlayerPos.x > 19030)
