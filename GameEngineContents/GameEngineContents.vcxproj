@@ -520,6 +520,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="UICountBase.h" />
+    <ClInclude Include="WeaponBase.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AbilityUI.cpp">
@@ -884,6 +888,10 @@
     </ClCompile>
     <ClCompile Include="Tunak_State.cpp" />
     <ClCompile Include="UICountBase.cpp" />
+    <ClCompile Include="WeaponBase.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

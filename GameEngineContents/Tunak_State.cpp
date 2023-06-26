@@ -207,33 +207,32 @@ void Tunak::IdleUpdate(float _Time)
 	{
 		if (TestTime > 2.0f)
 		{
-			//if (RandomIndex == 0)
-			//{
-			//	ChangeState(TunakState::SPIKE_R);
-			//
-			//}
-			//if (RandomIndex == 1)
-			//{
-			//	ChangeState(TunakState::OVERPOWER);
-			//
-			//}
-			//if (RandomIndex == 2)
-			//{
-			//	ChangeState(TunakState::DOUBLEATTACK);
-			//}
-			//if (RandomIndex == 3)
-			//{
-			//	ChangeState(TunakState::SHOUT);
-			//}
-			//if (RandomIndex == 4)
-			//{
-			//	ChangeState(TunakState::GoblimBomb);
-			//}
-			//if (RandomIndex == 5)
-			//{
-			//	ChangeState(TunakState::TACKLE);
-			//}
-			ChangeState(TunakState::TACKLE);
+			if (RandomIndex == 0)
+			{
+				ChangeState(TunakState::SPIKE_R);
+			
+			}
+			if (RandomIndex == 1)
+			{
+				ChangeState(TunakState::OVERPOWER);
+			
+			}
+			if (RandomIndex == 2)
+			{
+				ChangeState(TunakState::DOUBLEATTACK);
+			}
+			if (RandomIndex == 3)
+			{
+				ChangeState(TunakState::SHOUT);
+			}
+			if (RandomIndex == 4)
+			{
+				ChangeState(TunakState::GoblimBomb);
+			}
+			if (RandomIndex == 5)
+			{
+				ChangeState(TunakState::TACKLE);
+			}
 
 			TestTime = 0.0f;
 		}

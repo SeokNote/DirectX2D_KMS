@@ -29,45 +29,43 @@ void GreatWeapon::Start()
 
 	GreatWeaponRender = CreateComponent<GameEngineSpriteRenderer>(1);
 	GreatWeaponRender->SetTexture("GreatSword0.png");
-//	GreatWeaponRender->GetTransform()->SetLocalNegativeScaleX();
 	GreatWeaponRender->GetTransform()->SetLocalPosition({30.0f,-20.f,-750.f});
 	GreatWeaponRender->GetTransform()->SetLocalScale(GreatWeaponScale);
 
 	GreatWeaponEffectRender = CreateComponent<GameEngineSpriteRenderer>(1);
 	GreatWeaponEffectRender->SetTexture("GreatSwingFX00.png");
 	GreatWeaponEffectRender->CreateAnimation({ .AnimationName = "GreatSwordAniIdle", .SpriteName = "GreatSwordAni",.FrameInter=0.05f, .Loop=false, .ScaleToTexture = true });
-	//GreatWeaponEffectRender->GetTransform()->SetLocalPosition({ 30.0f,-20.f,-750.f });
-//	GreatWeaponEffectRender->GetTransform()->SetLocalScale(GreatWeaponScale);
 
+	GreatWeaponCol = CreateComponent<GameEngineCollision>(ColOrder::GreatWeapon);
+	GreatWeaponCol->GetTransform()->SetLocalScale(GreatWeaponColScale);
+	GreatWeaponCol->SetColType(ColType::AABBBOX2D);
+	GreatWeaponCol->Off();
 }
-bool awda = false;
+bool DirCheck = false;
 void GreatWeapon::Update(float _Delta)
 {
-	float4 CameraPos = GetLevel()->GetMainCamera()->GetTransform()->GetWorldPosition();
+	
+	SetGreatWeapon(_Delta);
+	SetCollision();
+}
 
-	std::shared_ptr<GameEngineCamera> Camera = GetLevel()->GetMainCamera();
+
+void GreatWeapon::SetGreatWeapon(float _Delta)
+{
+	float4 CameraPos = GetLevel()->GetMainCamera()->GetTransform()->GetWorldPosition();
 	float4 PlayerPos = Player::MainPlayer->GetTransform()->GetLocalPosition();
 
-	float4x4 ViewPort = Camera->GetViewPort();
-	float4x4 projection = Camera->GetProjection();
-	float4x4 View = Camera->GetView();
-
-	float4 MousePos = GameEngineInput::GetMousePosition();
-	MousePos *= ViewPort.InverseReturn();
-	MousePos *= projection.InverseReturn();
-	MousePos *= View.InverseReturn();
-	float ZDeg = atan2(MousePos.y - PlayerPos.y, MousePos.x - PlayerPos.x) * GameEngineMath::RadToDeg;
-	float FilpX = MousePos.x - PlayerPos.x;
+	MousePos = WeaponBase::GetMousePos();
 	float4 EffectPos = (MousePos - PlayerPos).NormalizeReturn();
 	float4 GreatSwordPos = GreatWeaponRender->GetTransform()->GetWorldPosition();
-	GreatWeaponEffectRender->GetTransform()->SetLocalRotation({ 0.0f,0.0f,ZDeg-90.0f });
-	
-	if (awda == false)
+	GreatWeaponEffectRender->GetTransform()->SetLocalRotation({ 0.0f,0.0f,WeaponBase::GetDeg() - 90.0f });
+
+	if (DirCheck == false)
 	{
-		if (FilpX > 0)
+		if (WeaponBase::IsFlip()==false)
 		{
-			GreatWeaponEffectRender->GetTransform()->SetWorldPosition({ PlayerPos.x + EffectPos.x * 100.0f ,PlayerPos.y+EffectPos.y * 100.0f,-802.0f });
-			GreatWeaponRender->GetTransform()->SetLocalRotation({ 0.0f,0.0f,ZDeg + 20.0f });
+			GreatWeaponEffectRender->GetTransform()->SetWorldPosition({ PlayerPos.x + EffectPos.x * 100.0f ,PlayerPos.y + EffectPos.y * 100.0f,-802.0f });
+			GreatWeaponRender->GetTransform()->SetLocalRotation({ 0.0f,0.0f,WeaponBase::GetDeg() + 20.0f });
 			GreatWeaponRender->GetTransform()->SetLocalScale(GreatWeaponScale);
 			GreatWeaponRender->GetTransform()->SetLocalPosition({ 10.0f,-25.f,-750.f });
 
@@ -75,7 +73,7 @@ void GreatWeapon::Update(float _Delta)
 		else
 		{
 			GreatWeaponEffectRender->GetTransform()->SetWorldPosition({ PlayerPos.x + EffectPos.x * 100.0f ,PlayerPos.y + EffectPos.y * 100.0f,-802.0f });
-			GreatWeaponRender->GetTransform()->SetLocalRotation({ 0.0f,0.0f,ZDeg - 20.0f });
+			GreatWeaponRender->GetTransform()->SetLocalRotation({ 0.0f,0.0f,WeaponBase::GetDeg() - 20.0f });
 			GreatWeaponRender->GetTransform()->SetLocalScale({ -256.0f,-256.0f,0.0f });
 			GreatWeaponRender->GetTransform()->SetLocalPosition({ -10.0f,-25.f,-750.f });
 
@@ -84,10 +82,10 @@ void GreatWeapon::Update(float _Delta)
 	else
 	{
 
-		if (FilpX > 0)
+		if (false == WeaponBase::IsFlip())
 		{
 			GreatWeaponEffectRender->GetTransform()->SetWorldPosition({ PlayerPos.x + EffectPos.x * 100.0f ,PlayerPos.y + EffectPos.y * 100.0f,-802.0f });
-			GreatWeaponRender->GetTransform()->SetLocalRotation({ 0.0f,0.0f,ZDeg + 180.0f });
+			GreatWeaponRender->GetTransform()->SetLocalRotation({ 0.0f,0.0f,WeaponBase::GetDeg() + 180.0f });
 			GreatWeaponRender->GetTransform()->SetLocalScale({ -256.0f,256.0f,0.0f });
 			GreatWeaponRender->GetTransform()->SetLocalPosition({ 20.0f,-50.f,-750.f });
 
@@ -95,34 +93,35 @@ void GreatWeapon::Update(float _Delta)
 		else
 		{
 			GreatWeaponEffectRender->GetTransform()->SetWorldPosition({ PlayerPos.x + EffectPos.x * 100.0f ,PlayerPos.y + EffectPos.y * 100.0f,-802.0f });
-			GreatWeaponRender->GetTransform()->SetLocalRotation({ 0.0f,0.0f,ZDeg - 180.0f });
+			GreatWeaponRender->GetTransform()->SetLocalRotation({ 0.0f,0.0f,WeaponBase::GetDeg() - 180.0f });
 			GreatWeaponRender->GetTransform()->SetLocalScale({ -256.0f,-256.0f,0.0f });
 			GreatWeaponRender->GetTransform()->SetLocalPosition({ -20.0f,-50.f,-750.f });
 
 		}
 	}
 
-	if (index==0&&GameEngineInput::IsDown("ATTACK"))
+	if (index == 0 && GameEngineInput::IsDown("ATTACK"))
 	{
 		ShakeValue = true;
-		awda = true;
+		DirCheck = true;
 		index = 1;
 		GreatWeaponEffectRender->ChangeAnimation("GreatSwordAniIdle");
 	}
-	else if (index==1 && GameEngineInput::IsDown("ATTACK"))
+	else if (index == 1 && GameEngineInput::IsDown("ATTACK"))
 	{
 		ShakeValue = true;
-		awda = false;
+		DirCheck = false;
 		index = 0;
 		GreatWeaponEffectRender->ChangeAnimation("GreatSwordAniIdle");
 	}
 	if (ShakeValue == true)
 	{
+		GreatWeaponCol->On();
 		ShakeTime_0 += _Delta;
-		CameraShake(_Delta);
-
+		WeaponBase::CameraShake(_Delta);
 		if (ShakeTime_0 > 0.4f)
 		{
+			GreatWeaponCol->Off();
 			GetLevel()->GetMainCamera()->GetTransform()->SetWorldPosition(CameraPos);
 			ShakeValue = false;
 			ShakeTime_0 = 0.0f;
@@ -130,27 +129,13 @@ void GreatWeapon::Update(float _Delta)
 
 	}
 
-
 }
-bool CameraCheck = false;
-void GreatWeapon::CameraShake(float _Delta)
+
+
+void GreatWeapon::SetCollision()
 {
-	float4 PlayerPos = Player::MainPlayer->GetTransform()->GetLocalPosition();
-	float4 CameraPos = GetLevel()->GetMainCamera()->GetTransform()->GetWorldPosition();
-	
-		ShakeTime += _Delta;
-		x+=0.5;
-		y = sin(x * 10.0f) * powf(0.5f, x);
-		
-		GetLevel()->GetMainCamera()->GetTransform()->SetWorldPosition({ CameraPos.x,CameraPos.y + abs(y * 30),CameraPos.z });
-	
-		if (ShakeTime > 0.4f)
-		{
-			x = 0.f;
-			ShakeTime = 0.0f;
-		}
-	
-
-	
+	float4 Pos = GreatWeaponEffectRender->GetTransform()->GetWorldPosition();
+	float4 Deg = GreatWeaponEffectRender->GetTransform()->GetLocalRotation();
+	GreatWeaponCol->GetTransform()->SetLocalRotation(Deg);
+	GreatWeaponCol->GetTransform()->SetWorldPosition({ Pos.x,Pos.y,0.0f });
 }
-

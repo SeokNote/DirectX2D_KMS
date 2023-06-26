@@ -32,6 +32,7 @@ protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
 private:
+	void BelialCollision(float _DeltaTime);
 	void BelialSwordPlay(float _Time);
 	float4 MainBGPos =  { 12080.0f,-250.0f,-740.0f };
 	std::shared_ptr<class GameEngineSpriteRenderer> BelialHeadRender;
@@ -60,6 +61,7 @@ private:
 	void DeadEnd();
 	//벨리알 
 	float4 BelialColScale = { 200.0f,320.f,0.0f };
+	float Invincibilitytime = 0.0f;
 	//패턴 불값
 	bool IsBullet = true;
 	bool BulletPatton = false;

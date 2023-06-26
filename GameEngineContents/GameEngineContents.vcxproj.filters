@@ -185,9 +185,6 @@
     <ClInclude Include="FoodBar.h">
       <Filter>Object\UI\PlayerUI</Filter>
     </ClInclude>
-    <ClInclude Include="GreatWeapon.h">
-      <Filter>Object\Weapon</Filter>
-    </ClInclude>
     <ClInclude Include="ShopTextBox.h">
       <Filter>Object\UI\TextBox</Filter>
     </ClInclude>
@@ -268,6 +265,12 @@
     </ClInclude>
     <ClInclude Include="PlatBelt.h">
       <Filter>Object\Boss\SlimeMaker\Belt\PlatBelt</Filter>
+    </ClInclude>
+    <ClInclude Include="WeaponBase.h">
+      <Filter>Object\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="GreatWeapon.h">
+      <Filter>Object\Weapon\GreatWeapon</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -458,9 +461,6 @@
     <ClCompile Include="FoodBar.cpp">
       <Filter>Object\UI\PlayerUI</Filter>
     </ClCompile>
-    <ClCompile Include="GreatWeapon.cpp">
-      <Filter>Object\Weapon</Filter>
-    </ClCompile>
     <ClCompile Include="ShopTextBox.cpp">
       <Filter>Object\UI\TextBox</Filter>
     </ClCompile>
@@ -556,6 +556,12 @@
     </ClCompile>
     <ClCompile Include="PlatBelt.cpp">
       <Filter>Object\Boss\SlimeMaker\Belt\PlatBelt</Filter>
+    </ClCompile>
+    <ClCompile Include="WeaponBase.cpp">
+      <Filter>Object\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="GreatWeapon.cpp">
+      <Filter>Object\Weapon\GreatWeapon</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -738,6 +744,9 @@
     </Filter>
     <Filter Include="Object\Boss\SlimeMaker\Belt\GroundBelt">
       <UniqueIdentifier>{9d446436-17be-4052-a38d-24c9fc312ec4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Weapon\GreatWeapon">
+      <UniqueIdentifier>{761fe4de-4d55-40bb-b16d-35f70e5d35ec}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

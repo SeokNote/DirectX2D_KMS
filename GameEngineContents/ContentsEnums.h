@@ -19,6 +19,7 @@ enum class MyMap
 
 enum class ColOrder
 {
+	//보스패턴
 	BelialHead,
 	BelialLasor_L,
 	BelialSword,
@@ -30,7 +31,8 @@ enum class ColOrder
 	TunakWave,
 	TunakDoubleAttack,
 	TunakTakcle,
-	Stage3_Blet,
-	Player=1,
+	
+	////무기
+	GreatWeapon,
 };
 

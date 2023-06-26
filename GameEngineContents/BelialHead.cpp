@@ -49,7 +49,6 @@ void BelialHead::Start()
 	BelialCol->GetTransform()->SetLocalPosition({ 30.0f,-20.0f,0.f });
 	BelialCol->GetTransform()->SetLocalScale(BelialColScale);
 	BelialCol->SetColType(ColType::AABBBOX2D);
-
 	BelialBulletBasePtr = GetLevel()->CreateActor<BelialBulletBase>();
 	BelialBulletBasePtr->GetTransform()->SetWorldPosition({ 12080.0f,-250.0f,-800.0f });
 	GetLevel()->CreateActor<BelialHand_L>();
@@ -66,6 +65,7 @@ void BelialHead::Update(float _DeltaTime)
 		SubBGTime = 0.0f;
 	}
 	UpdateState(_DeltaTime);
+	BelialCollision(_DeltaTime);
 	BelialSwordPlay(_DeltaTime);
 	//소드 재생성
 	if (GameEngineInput::IsDown("DeBugKey"))
@@ -76,7 +76,42 @@ void BelialHead::Update(float _DeltaTime)
 
 	}
 
+}
+bool HitCheck = false;
+void BelialHead::BelialCollision(float _DeltaTime)
+{
+	if (BelialCol->Collision(ColOrder::GreatWeapon, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	{
+		if (HitCheck == false)
+		{
+			BelialHeadRender->ColorOptionValue.MulColor.r = 1.0f;
+			BelialHeadRender->ColorOptionValue.MulColor.g = 0.1f;
+			BelialHeadRender->ColorOptionValue.MulColor.b = 0.1f;
+			HitCheck = true;
+		}
+		
+	}
+	else {
+		if (HitCheck == true)
+		{
 
+			Invincibilitytime += _DeltaTime;
+			if (Invincibilitytime > 0.3f)
+			{
+				BelialHeadRender->ColorOptionValue.MulColor.r = 1.0f;
+				BelialHeadRender->ColorOptionValue.MulColor.g = 1.0f;
+				BelialHeadRender->ColorOptionValue.MulColor.b = 1.0f;
+			}
+			if (Invincibilitytime > 0.3f)
+			{
+				HitCheck = false;
+				Invincibilitytime = 0.0f;
+
+			}
+		}
+	
+
+	}
 }
 
 void BelialHead::BelialSwordPlay(float _Time)
