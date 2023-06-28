@@ -19,18 +19,8 @@ enum class MyMap
 
 enum class ColOrder
 {
-	//보스패턴
-	BelialHead,
-	BelialLasor_L,
-	BelialSword,
-	BelialBullet,
-	TunakBody,
-	TunakGoblinBomb,
-	TunakGroundBomb,
-	TunakBullet,
-	TunakWave,
-	TunakDoubleAttack,
-	TunakTakcle,
+	//몬스터 공격
+	MONSTERATTACK,
 	
 	////무기
 	GreatWeapon,

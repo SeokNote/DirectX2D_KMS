@@ -11,6 +11,7 @@
 #include "DashEffect.h"
 #include "PixelCollision.h"
 #include <GameEngineCore/GameEngineSprite.h>
+
 // State
 void Player::ChangeState(PlayerState _State)
 {

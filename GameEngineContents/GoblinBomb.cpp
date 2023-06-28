@@ -39,7 +39,7 @@ void GoblinBomb::Start()
 	GoblinBombEffectRender->GetTransform()->SetLocalPosition({ 0.0f,-40.f,0.0f });
 	GoblinBombEffectRender->CreateAnimation({ .AnimationName = "GoblinBombEffect", .SpriteName = "GoblinBombEffect", .Loop = false , .ScaleToTexture = true });
 	
-	GoblinBombCol = CreateComponent<GameEngineCollision>(ColOrder::TunakGoblinBomb);
+	GoblinBombCol = CreateComponent<GameEngineCollision>(ColOrder::MONSTERATTACK);
 	GoblinBombCol->GetTransform()->SetLocalScale(ColScale);
 	GoblinBombCol->SetColType(ColType::AABBBOX2D);
 	GoblinBombCol->Off();

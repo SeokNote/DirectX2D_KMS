@@ -1,6 +1,6 @@
 #include "PrecompileHeader.h"
 #include "PlayerHPbar.h"
-
+#include "Player.h"
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/GameEngineCamera.h>
 #include <GameEnginePlatform/GameEngineInput.h>
@@ -30,11 +30,31 @@ void PlayerHPbar::Start()
 	PlayerHpBarUI->GetTransform()->SetLocalPosition(PlayerHpBarPos);
 	PlayerHpBarUI->GetTransform()->SetLocalScale(PlayerHpBarUIScale);
 
-	//이다음에 빨간색 게이지
-	//그 후에 글자 렌더
+	PlayerHpBar = CreateComponent<GameEngineUIRenderer>(2);
+	PlayerHpBar->SetTexture("PlayerLife.png");
+	PlayerHpBar->GetTransform()->SetLocalPosition(PlayerHpPos);
+	PlayerHpBar->GetTransform()->SetLocalScale(PlayerHpScale);
+
+	PlayerHpAniRender = CreateComponent<GameEngineUIRenderer>(2);
+	PlayerHpAniRender->SetTexture("LifeWave0.png");
+	PlayerHpAniRender->CreateAnimation({ .AnimationName = "PlayerHp", .SpriteName = "PlayerHp",.FrameInter = 0.1f,.ScaleToTexture = true });
+	PlayerHpAniRender->GetTransform()->SetLocalPosition(PlayerHpAniPos);
+	PlayerHpAniRender->ChangeAnimation("PlayerHp");
+	
 }
 
 void PlayerHPbar::Update(float _Delta)
 {
+	int CurPhp = Player::MainPlayer->GetData().GetPlayerHP();
+	int Maxhp = Player::MainPlayer->GetData().GetPlayerMaxHP();
+	PlayerHpBar->ImageClippingX(static_cast<float>(CurPhp) / static_cast<float>(Maxhp), ClipXDir::Left);
+	float Cal = static_cast<float>(CurPhp) / static_cast<float>(Maxhp);
+	float XPos = 196.0f - 196.0f * Cal ;
+
+	if (Maxhp != CurPhp)
+	{
+		PlayerHpAniRender->GetTransform()->SetLocalPosition({ -342.0f - XPos, 318.0f, 0.0f });
+	}
+
 }
 

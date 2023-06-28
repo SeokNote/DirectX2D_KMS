@@ -66,7 +66,7 @@ void GreatWeapon::SetGreatWeapon(float _Delta)
 			GreatWeaponEffectRender->GetTransform()->SetWorldPosition({ PlayerPos.x + EffectPos.x * 100.0f ,PlayerPos.y + EffectPos.y * 100.0f,-802.0f });
 			GreatWeaponRender->GetTransform()->SetLocalRotation({ 0.0f,0.0f,WeaponBase::GetDeg() + 20.0f });
 			GreatWeaponRender->GetTransform()->SetLocalScale(GreatWeaponScale);
-			GreatWeaponRender->GetTransform()->SetLocalPosition({ 10.0f,-25.f,-750.f });
+			GreatWeaponRender->GetTransform()->SetLocalPosition({ 10.0f,-25.f,0.f });
 
 		}
 		else
@@ -74,7 +74,7 @@ void GreatWeapon::SetGreatWeapon(float _Delta)
 			GreatWeaponEffectRender->GetTransform()->SetWorldPosition({ PlayerPos.x + EffectPos.x * 100.0f ,PlayerPos.y + EffectPos.y * 100.0f,-802.0f });
 			GreatWeaponRender->GetTransform()->SetLocalRotation({ 0.0f,0.0f,WeaponBase::GetDeg() - 20.0f });
 			GreatWeaponRender->GetTransform()->SetLocalScale({ -256.0f,-256.0f,0.0f });
-			GreatWeaponRender->GetTransform()->SetLocalPosition({ -10.0f,-25.f,-750.f });
+			GreatWeaponRender->GetTransform()->SetLocalPosition({ -10.0f,-25.f,0.f });
 
 		}
 	}
@@ -86,7 +86,7 @@ void GreatWeapon::SetGreatWeapon(float _Delta)
 			GreatWeaponEffectRender->GetTransform()->SetWorldPosition({ PlayerPos.x + EffectPos.x * 100.0f ,PlayerPos.y + EffectPos.y * 100.0f,-802.0f });
 			GreatWeaponRender->GetTransform()->SetLocalRotation({ 0.0f,0.0f,WeaponBase::GetDeg() + 180.0f });
 			GreatWeaponRender->GetTransform()->SetLocalScale({ -256.0f,256.0f,0.0f });
-			GreatWeaponRender->GetTransform()->SetLocalPosition({ 20.0f,-50.f,-750.f });
+			GreatWeaponRender->GetTransform()->SetLocalPosition({ 20.0f,-50.f,0.f });
 
 		}
 		else
@@ -94,7 +94,7 @@ void GreatWeapon::SetGreatWeapon(float _Delta)
 			GreatWeaponEffectRender->GetTransform()->SetWorldPosition({ PlayerPos.x + EffectPos.x * 100.0f ,PlayerPos.y + EffectPos.y * 100.0f,-802.0f });
 			GreatWeaponRender->GetTransform()->SetLocalRotation({ 0.0f,0.0f,WeaponBase::GetDeg() - 180.0f });
 			GreatWeaponRender->GetTransform()->SetLocalScale({ -256.0f,-256.0f,0.0f });
-			GreatWeaponRender->GetTransform()->SetLocalPosition({ -20.0f,-50.f,-750.f });
+			GreatWeaponRender->GetTransform()->SetLocalPosition({ -20.0f,-50.f,0.f });
 
 		}
 	}

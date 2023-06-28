@@ -2,6 +2,7 @@
 #include "ContentsEnums.h"
 #include "BossSword.h"
 #include "Player.h"
+#include "PlayerDataBase.h"
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEnginePlatform/GameEngineWindow.h>
 #include <GameEngineCore/GameEngineLevel.h>
@@ -46,7 +47,7 @@ void BossSword::Start()
 	SwordColRender->CreateAnimation({ .AnimationName = "BossSwordFx", .SpriteName = "BossSwordFx", .Loop = false , .ScaleToTexture = true });
 	ChangeState(BossSwordState::IDLE);
 
-	SwordCol = CreateComponent<GameEngineCollision>(ColOrder::BelialSword);
+	SwordCol = CreateComponent<GameEngineCollision>(ColOrder::MONSTERATTACK);
 	SwordCol->GetTransform()->SetLocalScale({ 84.0f,-260.0f,0.0f });
 	SwordCol->SetColType(ColType::AABBBOX2D);
 }
@@ -55,15 +56,17 @@ void BossSword::Update(float _DeltaTime)
 {
 	PixelCheck();
 	UpdateState(_DeltaTime);
-
+	CollisionCheck(_DeltaTime);
 }
 
 bool BossSword::PixelCheck()
 {
-	SwordCol->GetTransform()->SetLocalPosition(SwordRender->GetTransform()->GetLocalPosition());
-	SwordCol->GetTransform()->SetLocalRotation(SwordRender->GetTransform()->GetLocalRotation());
-	//ÇÈ¼¿Ã¼Å©
 	float4 Pos = SwordRender->GetTransform()->GetWorldPosition();
+	float4 LocalPos = SwordRender->GetTransform()->GetLocalPosition();
+	float4 LocalRotation = SwordRender->GetTransform()->GetLocalRotation();
+	SwordCol->GetTransform()->SetLocalPosition({LocalPos.x,LocalPos.y,0.0f});
+	SwordCol->GetTransform()->SetLocalRotation(LocalRotation);
+	//ÇÈ¼¿Ã¼Å©
 	PixelMapResultPos = Player::MainPlayer->PixelCalculation(Pos, { 12084.0f,0.0f,0.0f }, { 704.0f,672.0f });
 	Ptr = GameEngineTexture::Find("BossRoomCol_1.png");
 	Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y));
@@ -76,4 +79,26 @@ bool BossSword::PixelCheck()
 	{
 		return false;
 	}
+}
+
+void BossSword::CollisionCheck(float _DeltaTime)
+{
+	if (InvinCheck==false && SwordCol->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	{
+		SwordCol->Off();
+		InvinCheck = true;
+		Player::MainPlayer->GetData().SubPlayerHP(SwordDamage);
+	}
+
+	//if (InvinCheck == true)
+	//{
+	//	InvinTime += _DeltaTime;
+	//	Player::MainPlayer->Invincible(_DeltaTime);
+	//	if (InvinTime > 1.1f)
+	//	{
+	//		InvinCheck = false;
+	//		Player::MainPlayer->SetBlinkTime(0.0f);
+	//		InvinTime = 0.0f;
+	//	}
+	//}
 }

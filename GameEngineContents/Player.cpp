@@ -35,22 +35,7 @@ Player::~Player()
 void Player::Start()
 {
 
-	if (nullptr == GameEngineSprite::Find("PlayerDead"))
-	{
-		GameEngineDirectory NewDir;
-		NewDir.MoveParentToDirectory("ContentResources");
-		NewDir.Move("ContentResources");
-		NewDir.Move("Animation");
-		NewDir.Move("MainLevelAnimation");
-		NewDir.Move("MainPlayer");
-		GameEngineSprite::LoadFolder(NewDir.GetPlusFileName("PlayerDead").GetFullPath());
-		GameEngineSprite::LoadFolder(NewDir.GetPlusFileName("PlayerIdle").GetFullPath());
-		GameEngineSprite::LoadFolder(NewDir.GetPlusFileName("PlayerJump").GetFullPath());
-		GameEngineSprite::LoadFolder(NewDir.GetPlusFileName("PlayerRun").GetFullPath());
-		GameEngineSprite::LoadFolder(NewDir.GetPlusFileName("PlayerJumpAni").GetFullPath());
-		GameEngineSprite::LoadFolder(NewDir.GetPlusFileName("PlayerWalkAni").GetFullPath());
 
-	}
 
 	GameEngineFont::Load("휴먼둥근헤드라인");
 	//////////폰트 사용법/////////
@@ -100,24 +85,29 @@ void Player::Update(float _DeltaTime)
 	CurMap = SetMyMap(CurMap);
 	ColRenderSet();
 	UpdateState(_DeltaTime);
-	GetTransform()->AddLocalPosition(MoveDir * PlayerDataBase::GetMoveSpeed() * _DeltaTime);
+	GetTransform()->AddLocalPosition(MoveDir * Data.GetMoveSpeed() * _DeltaTime);
+	SetPlayerCollision(_DeltaTime);
 	Filp();
-	//이미지 클립 해보기
-	//static float Test = 1.0f;
-	//
-	//Test -= _DeltaTime * 0.1f;
-	//if (Test < 0.0f) 
-	//{
-	//	PlayerRender->ImageClippingY(1.0f, ClipYDir::Top);
-
-	//}
-	///*else
-	//{
-	//	PlayerRender->ImageClippingY(Test, ClipYDir::Top);
-	//}*/
+	int CurPhp = Data.GetPlayerHP();
+	int Maxhp = Data.GetPlayerMaxHP();
+	if (PlayerCol->Collision(ColOrder::MONSTERATTACK, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	{
+		int a = 0;
+	}
 }
 
-
+void Player::Invincible(float _Delta)
+{
+	BlinkTime += _Delta;
+	PlayerCol->Off();
+	PlayerRender->ColorOptionValue.MulColor.a = 0.5f;
+	if (BlinkTime > 1.0f)
+	{
+		PlayerCol->On();
+		PlayerRender->ColorOptionValue.MulColor.a = 1.0f;
+	}
+	
+}
 MyMap Player::SetMyMap(MyMap _MyMap)
 {
 	float4 PlayerPos = GetTransform()->GetLocalPosition();
@@ -955,7 +945,8 @@ void Player::Filp()
 	}
 	PlayerJumpEffectRender->GetTransform()->SetWorldPosition({ StartXpos,StartYpos - 30.0f,-801.0f });
 
-};
+}
+
 
 void Player::ColRenderSet()
 {
@@ -969,7 +960,12 @@ void Player::ColRenderSet()
 
 
 }
+void Player::SetPlayerCollision(float _Delta)
+{
+	
 
+
+}
 void Player::Render(float _Delta)
 {
 }

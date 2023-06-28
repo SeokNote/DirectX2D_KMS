@@ -32,7 +32,7 @@ public:
 	{
 		return BelialHp;
 	}
-	void SubBelialHP(float _Damage)
+	void SubBelialHP(int _Damage)
 	{
 		BelialHp -= _Damage;
 	}
@@ -43,12 +43,21 @@ private:
 	void BelialCollision(float _DeltaTime);
 	void BelialSwordPlay(float _Time);
 	float4 MainBGPos =  { 12080.0f,-250.0f,-740.0f };
+	float4 HPBarBaseScale = { 500.0f,64.0f,0.f };
+	float4 HPBarScale = { 400.0f,40.0f,0.0f };
+	float4 HPBasePos = { 10.0f,-320.0f,0.0f };
+	float4 HPPos = { 48.0f,-320.0f,0.0f };
+
 	std::shared_ptr<class GameEngineSpriteRenderer> BelialHeadRender;
 	std::shared_ptr<class GameEngineSpriteRenderer> BelialBGRender;
 	std::shared_ptr<class GameEngineSpriteRenderer> BelialBulletComponet;
 	std::shared_ptr<class GameEngineCollision> BelialCol;
 	std::shared_ptr<class BelialBullet> BelialBulletRender = nullptr;
 	std::shared_ptr<class BelialBulletBase> BelialBulletBasePtr = nullptr;
+
+	std::shared_ptr<class GameEngineUIRenderer> BossHpBase;
+	std::shared_ptr<class GameEngineUIRenderer > BossHpFront;
+	std::shared_ptr<class GameEngineUIRenderer> BossHpBar;
 	BossHeadState StateValue = BossHeadState::IDLE;
 
 	std::shared_ptr<class BossSword> BossSwordPtr_0 = nullptr;

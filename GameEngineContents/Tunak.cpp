@@ -54,16 +54,16 @@ void Tunak::Start()
 	ChangeState(TunakState::IDLE);
 
 
-	TunakCol = CreateComponent<GameEngineCollision>(ColOrder::TunakBody);
+	TunakCol = CreateComponent<GameEngineCollision>(ColOrder::MONSTERATTACK);
 	TunakCol->GetTransform()->SetLocalScale(TunakColScale);
 	TunakCol->SetColType(ColType::AABBBOX2D);
 
-	TunakDoubleAttackCol = CreateComponent<GameEngineCollision>(ColOrder::TunakDoubleAttack);
+	TunakDoubleAttackCol = CreateComponent<GameEngineCollision>(ColOrder::MONSTERATTACK);
 	TunakDoubleAttackCol->GetTransform()->SetLocalScale(DoubleAttackScale);
 	TunakDoubleAttackCol->SetColType(ColType::AABBBOX2D);
 	TunakDoubleAttackCol->Off();
 
-	TunakTackleCol = CreateComponent<GameEngineCollision>(ColOrder::TunakTakcle);
+	TunakTackleCol = CreateComponent<GameEngineCollision>(ColOrder::MONSTERATTACK);
 	TunakTackleCol->GetTransform()->SetLocalScale(TakcleScale);
 	TunakTackleCol->SetColType(ColType::AABBBOX2D);
 	TunakTackleCol->Off();

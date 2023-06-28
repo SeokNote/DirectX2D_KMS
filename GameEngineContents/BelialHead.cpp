@@ -15,8 +15,23 @@
 #include <GameEngineCore/GameEngineRenderer.h>
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore/GameEngineSprite.h>
-BelialHead* BelialHead::MainBelialHead = nullptr;
+#include <GameEngineCore/GameEngineUIRenderer.h>
 
+BelialHead* BelialHead::MainBelialHead = nullptr;
+/*
+데미지가 25라고 하면 
+2.5퍼센트가 깎여야함
+
+
+그럼 a값은
+
+(1000-25)/100 값으로
+(최대체력 - 현재체력)/100
+을 공용기능으로 넣자.
+이번주까지 보스들과의 전투는 마무리 된 후에 이제 몬스터들 찍어낼듯.
+그 다음주에 이제 몬스터 찍어내고 전투까지하고
+그다음주에 이제 ui들 넣고 맵 애니메이션 
+*/
 //테스트
 #include "BelialHand_L.h"
 #include "BelialHand_R.h"
@@ -45,8 +60,25 @@ void BelialHead::Start()
 	BelialBGRender->ChangeAnimation("BelialMainBG");
 	ChangeState(BossHeadState::IDLE);
 
+	//HPBar
 
-	BelialCol = CreateComponent<GameEngineCollision>(ColOrder::BelialHead);
+	BossHpFront = CreateComponent<GameEngineUIRenderer>(1);
+	BossHpFront->SetTexture("BossLifeBack.png");
+	BossHpFront->GetTransform()->SetWorldPosition(HPBasePos);
+	BossHpFront->GetTransform()->SetLocalScale(HPBarBaseScale);
+
+	BossHpBase = CreateComponent<GameEngineUIRenderer>(1);
+	BossHpBase->SetTexture("BossLifeBase.png");
+	BossHpBase->GetTransform()->SetWorldPosition(HPBasePos);
+	BossHpBase->GetTransform()->SetLocalScale(HPBarBaseScale);
+
+	BossHpBar = CreateComponent<GameEngineUIRenderer>(1);
+	BossHpBar->SetTexture("BossHpBar.png");
+	BossHpBar->GetTransform()->SetWorldPosition(HPPos);
+	BossHpBar->GetTransform()->SetLocalScale(HPBarScale);
+
+
+	BelialCol = CreateComponent<GameEngineCollision>(ColOrder::MONSTERATTACK);
 	BelialCol->GetTransform()->SetLocalPosition({ 30.0f,-20.0f,0.f });
 	BelialCol->GetTransform()->SetLocalScale(BelialColScale);
 	BelialCol->SetColType(ColType::AABBBOX2D);
@@ -56,7 +88,19 @@ void BelialHead::Start()
 	GetLevel()->CreateActor<BelialHand_R>();
 
 }
+/*	if (Test < 0.0f) 
+	{
+		PlayerRender->ImageClippingY(1.0f, ClipYDir::Top);
 
+	}
+	else
+	{
+		PlayerRender->ImageClippingY(Test, ClipYDir::Top);
+	}
+	if (GameEngineInput::IsDown("DEBUGMODE"))
+	{
+		Test -= 0.1f;
+	}*/
 void BelialHead::Update(float _DeltaTime)
 {
 	SubBGTime += _DeltaTime;
@@ -81,11 +125,17 @@ void BelialHead::Update(float _DeltaTime)
 bool HitCheck = false;
 void BelialHead::BelialCollision(float _DeltaTime)
 {
+	if (BelialHp < 0)
+	{
+		int a = 0;
+	}
 	if (BelialCol->Collision(ColOrder::GreatWeapon, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		if (HitCheck == false)
 		{
 			BelialHp -= WeaponBase::WeaponBasePtr->GetWeaponStrength(Weapon::GreatWeapon_E);
+			//여기서 hp클립
+			BossHpBar->ImageClippingX(static_cast<float>(BelialHp)/1000.0f, ClipXDir::Left);
 			BelialHeadRender->ColorOptionValue.MulColor.r = 1.0f;
 			BelialHeadRender->ColorOptionValue.MulColor.g = 0.1f;
 			BelialHeadRender->ColorOptionValue.MulColor.b = 0.1f;
@@ -107,8 +157,6 @@ void BelialHead::BelialCollision(float _DeltaTime)
 				Invincibilitytime = 0.0f;
 			}
 		}
-	
-
 	}
 }
 

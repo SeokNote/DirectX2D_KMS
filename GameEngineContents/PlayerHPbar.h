@@ -1,5 +1,5 @@
 #pragma once
-#include <GameEngineCore/GameEngineActor.h>
+#include "PlayerDataBase.h"
 #include <GameEngineCore/GameEngineUIRenderer.h>
 // Ό³Έν :
 class PlayerHPbar : public GameEngineActor
@@ -21,10 +21,17 @@ protected:
 private:
 	std::shared_ptr<GameEngineUIRenderer> PlayerHpBarUI;
 	std::shared_ptr<GameEngineUIRenderer> PlayerHpBarBGUI;
+	std::shared_ptr<GameEngineUIRenderer> PlayerHpBar;
+	std::shared_ptr<GameEngineUIRenderer> PlayerHpAniRender;
 
 	float4 PlayerHpBarUIScale = { 296.0f,64.0f,0.0f };
+	float4 PlayerHpScale = { 196.0f,40.0f,0.0f };
 
-	float4 PlayerHpBarPos = { -482.0f, 318.0f };
+	float4 PlayerHpBarPos = { -482.0f, 318.0f,0.0f };
+	float4 PlayerHpPos = { -444.0f, 318.0f ,0.0f };
+	float4 PlayerHpAniPos = { -352.0f, 318.0f ,0.0f};
+
+	float Xpos = 196.0f;
 };
 
 

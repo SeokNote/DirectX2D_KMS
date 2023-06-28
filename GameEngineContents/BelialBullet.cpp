@@ -46,19 +46,19 @@ void BelialBullet::Start()
 	BelialBulletRender_D->ChangeAnimation("BelialBullet");
 	BelialBulletRender_D->GetTransform()->SetLocalPosition(PivotPos);
 
-	BelialBulletCol_0 = CreateComponent<GameEngineCollision>(ColOrder::BelialBullet);
+	BelialBulletCol_0 = CreateComponent<GameEngineCollision>(ColOrder::MONSTERATTACK);
 	BelialBulletCol_0->GetTransform()->SetLocalScale(BulletColScale);
 	BelialBulletCol_0->SetColType(ColType::AABBBOX2D);
 
-	BelialBulletCol_1 = CreateComponent<GameEngineCollision>(ColOrder::BelialBullet);
+	BelialBulletCol_1 = CreateComponent<GameEngineCollision>(ColOrder::MONSTERATTACK);
 	BelialBulletCol_1->GetTransform()->SetLocalScale(BulletColScale);
 	BelialBulletCol_1->SetColType(ColType::AABBBOX2D);
 
-	BelialBulletCol_2 = CreateComponent<GameEngineCollision>(ColOrder::BelialBullet);
+	BelialBulletCol_2 = CreateComponent<GameEngineCollision>(ColOrder::MONSTERATTACK);
 	BelialBulletCol_2->GetTransform()->SetLocalScale(BulletColScale);
 	BelialBulletCol_2->SetColType(ColType::AABBBOX2D);
 
-	BelialBulletCol_3 = CreateComponent<GameEngineCollision>(ColOrder::BelialBullet);
+	BelialBulletCol_3 = CreateComponent<GameEngineCollision>(ColOrder::MONSTERATTACK);
 	BelialBulletCol_3->GetTransform()->SetLocalScale(BulletColScale);
 	BelialBulletCol_3->SetColType(ColType::AABBBOX2D);
 

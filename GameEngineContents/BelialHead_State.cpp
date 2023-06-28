@@ -84,7 +84,7 @@ void BelialHead::IdleUpdate(float _Time)
 	if (TimeCheck_0 > 10.0f)
 	{
 		TimeCheck_0 = 0.0f;
-		ChangeState(BossHeadState::MOVE);
+	//	ChangeState(BossHeadState::MOVE);
 	}
 
 }

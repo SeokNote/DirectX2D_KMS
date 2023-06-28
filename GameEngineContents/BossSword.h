@@ -33,6 +33,7 @@ private:
 	std::shared_ptr<class GameEngineCollision> SwordCol;
 
 	bool PixelCheck();
+	void CollisionCheck(float _DeltaTime);
 	void ChangeState(BossSwordState _State);
 	void UpdateState(float _Time);
 
@@ -61,6 +62,9 @@ private:
 	float TimeCheck_2 = 0.0f;
 	float TimeCheck_3 = 0.0f;
 	float SwordSpeed = 1500.0f;
+	int SwordDamage = 3;
+	float InvinTime = 0.0f;
+	bool InvinCheck = false;
 	//현재 각도값
 	float4 CurDir = float4::Zero;
 	float4 SwordPos = float4::Zero;

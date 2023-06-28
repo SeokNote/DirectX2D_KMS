@@ -1,25 +1,27 @@
 #pragma once
-#include <gameEngineCore/GameEngineActor.h>
 // 설명 :
-class PlayerDataBase : public GameEngineActor
+class PlayerDataBase 
 {
 public:
-	// constrcuter destructer
 	PlayerDataBase();
 	~PlayerDataBase();
 
-	// delete Function
-	PlayerDataBase(const PlayerDataBase& _Other) = delete;
-	PlayerDataBase(PlayerDataBase&& _Other) noexcept = delete;
-	PlayerDataBase& operator=(const PlayerDataBase& _Other) = delete;
-	PlayerDataBase& operator=(PlayerDataBase&& _Other) noexcept = delete;
-
 protected:
-	void Start() override {}
-	void Update(float _DeltaTime) override {}
-	void Render(float _DeltaTime) override {}
+
 
 public:
+	int GetPlayerLevel()
+	{
+		return PlayerLevel;
+	}
+	void SubPlayerLevel(int _Value)
+	{
+		PlayerLevel -= _Value;
+	}
+	void PlusPlayerLevel(int _Value)
+	{
+		PlayerLevel += _Value;
+	}
 	int GetPlayerHP()
 	{
 		return PlayerHP;
@@ -141,10 +143,15 @@ public:
 	{
 		return DashPower;
 	}
-
+	int GetPlayerMaxHP()
+	{
+		PlayerMaxHP += (PlayerLevel - 1) * 2;
+		return PlayerMaxHP;
+	}
 private:
 	int PlayerLevel = 1;				//플레이어 레벨	
-	int PlayerHP = 30;					//플레이어 체력
+	int PlayerMaxHP = 60;
+	int PlayerHP = 60;					//플레이어 체력
 	int Coin = 0;						//돈
 	int DashCunt = 3;					//대쉬카운터
 	int Satiety = 0;					//포만감

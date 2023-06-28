@@ -46,7 +46,7 @@ void GroundBomb::Start()
 	BombBGRender_0->GetTransform()->SetLocalPosition({ 0.0f ,-125.f,0.0f });
 	BombBGRender_0->CreateAnimation({ .AnimationName = "BombBG_0", .SpriteName = "BombBG", .FrameInter=0.04f,.Loop = false , .ScaleToTexture = true });
 
-	GroundBombCol = CreateComponent<GameEngineCollision>(ColOrder::TunakGroundBomb);
+	GroundBombCol = CreateComponent<GameEngineCollision>(ColOrder::MONSTERATTACK);
 	GroundBombCol->GetTransform()->SetLocalScale(BombColScale);
 	GroundBombCol->SetColType(ColType::AABBBOX2D);
 	GroundBombCol->Off();

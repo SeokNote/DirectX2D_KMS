@@ -86,6 +86,23 @@ void PlayLevel::Start()
 	{
 		GameEngineTexture::Load(File[i].GetFullPath());
 	}
+	//플레이어 애니메이션 
+	
+	GameEngineDirectory PlayerDir;
+	PlayerDir.MoveParentToDirectory("ContentResources");
+	PlayerDir.Move("ContentResources");
+	PlayerDir.Move("Animation");
+	PlayerDir.Move("MainLevelAnimation");
+	PlayerDir.Move("MainPlayer");
+	GameEngineSprite::LoadFolder(PlayerDir.GetPlusFileName("PlayerDead").GetFullPath());
+	GameEngineSprite::LoadFolder(PlayerDir.GetPlusFileName("PlayerIdle").GetFullPath());
+	GameEngineSprite::LoadFolder(PlayerDir.GetPlusFileName("PlayerJump").GetFullPath());
+	GameEngineSprite::LoadFolder(PlayerDir.GetPlusFileName("PlayerRun").GetFullPath());
+	GameEngineSprite::LoadFolder(PlayerDir.GetPlusFileName("PlayerJumpAni").GetFullPath());
+	GameEngineSprite::LoadFolder(PlayerDir.GetPlusFileName("PlayerWalkAni").GetFullPath());
+	GameEngineSprite::LoadFolder(PlayerDir.GetPlusFileName("PlayerHp").GetFullPath());
+	
+	
 	//벨리알 무기 애니메이션
 	GameEngineDirectory BelialSwordDir;
 	BelialSwordDir.MoveParentToDirectory("ContentResources");
@@ -328,8 +345,8 @@ void PlayLevel::Start()
 	// 
 	static std::shared_ptr<BelialHead> BelialHeadPtr = CreateActor<BelialHead>(1);
 	BelialHeadPtr->GetTransform()->SetLocalPosition({ 12050.0f,-150.0f,-760.0f });
-	//std::shared_ptr<Tunak> TunakPtr = CreateActor<Tunak>(1);
-	//TunakPtr->GetTransform()->SetLocalPosition({ 15074.0f,-25.0f,-800.0f });
+	std::shared_ptr<Tunak> TunakPtr = CreateActor<Tunak>(1);
+	TunakPtr->GetTransform()->SetLocalPosition({ 15074.0f,-25.0f,-800.0f });
 
 	
 	

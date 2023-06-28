@@ -19,13 +19,16 @@ protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
 private:
-
+	void CollisionCheck(float _DeltaTime);
 	float4 LasorScale = { 1280.0f,220.0f,0.0f };
 	float4 LasorColScale = { 1280.0f,180.0f,0.0f };
 
 	std::shared_ptr<class GameEngineSpriteRenderer> BelialLasorRender;
-	std::shared_ptr<class GameEngineCollision> BelialLasorCol;
+	std::shared_ptr<class GameEngineCollision> BelialLasorCol_L;
 
 	float DeathTime = 0.0f;
+	int LasorDamage = 5;
+	float InvinTime = 0.0f;
+	bool InvinCheck = false;
 };
 

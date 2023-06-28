@@ -73,41 +73,41 @@ void TunakBullet::Start()
 	TunakBulletBGRender->ChangeAnimation("TunakBulletBG");
 	
 
-	TunakBulletCol_0 = CreateComponent<GameEngineCollision>(ColOrder::TunakBullet);
+	TunakBulletCol_0 = CreateComponent<GameEngineCollision>(ColOrder::MONSTERATTACK);
 	TunakBulletCol_0->GetTransform()->SetLocalScale(BulletScale);
 	TunakBulletCol_0->SetColType(ColType::AABBBOX2D);
 
 
-	TunakBulletCol_1 = CreateComponent<GameEngineCollision>(ColOrder::TunakBullet);
+	TunakBulletCol_1 = CreateComponent<GameEngineCollision>(ColOrder::MONSTERATTACK);
 	TunakBulletCol_1->GetTransform()->SetLocalScale(BulletScale);
 	TunakBulletCol_1->SetColType(ColType::AABBBOX2D);
 
 
-	TunakBulletCol_2 = CreateComponent<GameEngineCollision>(ColOrder::TunakBullet);
+	TunakBulletCol_2 = CreateComponent<GameEngineCollision>(ColOrder::MONSTERATTACK);
 	TunakBulletCol_2->GetTransform()->SetLocalScale(BulletScale);
 	TunakBulletCol_2->SetColType(ColType::AABBBOX2D);
 
 
-	TunakBulletCol_3 = CreateComponent<GameEngineCollision>(ColOrder::TunakBullet);
+	TunakBulletCol_3 = CreateComponent<GameEngineCollision>(ColOrder::MONSTERATTACK);
 	TunakBulletCol_3->GetTransform()->SetLocalScale(BulletScale);
 	TunakBulletCol_3->SetColType(ColType::AABBBOX2D);
 
 
-	TunakBulletCol_4 = CreateComponent<GameEngineCollision>(ColOrder::TunakBullet);
+	TunakBulletCol_4 = CreateComponent<GameEngineCollision>(ColOrder::MONSTERATTACK);
 	TunakBulletCol_4->GetTransform()->SetLocalScale(BulletScale);
 	TunakBulletCol_4->SetColType(ColType::AABBBOX2D);
 
 
-	TunakBulletCol_5 = CreateComponent<GameEngineCollision>(ColOrder::TunakBullet);
+	TunakBulletCol_5 = CreateComponent<GameEngineCollision>(ColOrder::MONSTERATTACK);
 	TunakBulletCol_5->GetTransform()->SetLocalScale(BulletScale);
 	TunakBulletCol_5->SetColType(ColType::AABBBOX2D);
 
 
-	TunakBulletCol_6 = CreateComponent<GameEngineCollision>(ColOrder::TunakBullet);
+	TunakBulletCol_6 = CreateComponent<GameEngineCollision>(ColOrder::MONSTERATTACK);
 	TunakBulletCol_6->GetTransform()->SetLocalScale(BulletScale);
 	TunakBulletCol_6->SetColType(ColType::AABBBOX2D);
 
-	TunakBulletCol_7 = CreateComponent<GameEngineCollision>(ColOrder::TunakBullet);
+	TunakBulletCol_7 = CreateComponent<GameEngineCollision>(ColOrder::MONSTERATTACK);
 	TunakBulletCol_7->GetTransform()->SetLocalScale(BulletScale);
 	TunakBulletCol_7->SetColType(ColType::AABBBOX2D);
 }					  

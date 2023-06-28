@@ -12,7 +12,7 @@ enum class PlayerState
 	FALL,
 	DASH,
 };
-class Player : public PlayerDataBase
+class Player : public GameEngineActor
 {
 public:
 	static Player* MainPlayer;
@@ -41,7 +41,11 @@ public:
 	bool LeftSideCheck();
 	bool RightSideCheck();
 	float4 PixelCalculation(float4 _TargetPos, float4 _MapCenterPos, float4 _TransColPos);
-
+	float SetBlinkTime(float _Value)
+	{
+		BlinkTime = _Value;
+		return BlinkTime;
+	}
 
 	int SetUICount(int _Value) {
 		UICount = _Value;
@@ -60,6 +64,11 @@ public:
 	{
 		return BeltCheck;
 	}
+	PlayerDataBase& GetData()
+	{
+		return Data;
+	}
+	void Invincible(float _Delta);
 protected:
 	void Start();
 	void Update(float _Delta) override;
@@ -69,8 +78,10 @@ protected:
 
 
 private:
+	PlayerDataBase Data = PlayerDataBase();
 	void Filp();
-
+	void SetPlayerCollision(float _Delta);
+	bool CollisonCheck = false;
 	float Angle = 0.0f;
 	std::shared_ptr<class GameEngineSpriteRenderer> PlayerRender;
 	std::shared_ptr<class GameEngineSpriteRenderer> PlayerJumpEffectRender;
@@ -96,7 +107,9 @@ private:
 	float4 TransColPos = float4::Zero;
 	float4 TargetPos = float4::Zero;
 	float4 PixelMapResultPos = float4::Zero;
-
+	//플레이어 무적
+	float BlinkTime = 0.0f;
+	float InvincibleTime = 0.0f;
 
 	// State
 	void ChangeState(PlayerState _State);
