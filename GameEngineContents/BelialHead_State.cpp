@@ -32,6 +32,9 @@ void BelialHead::ChangeState(BossHeadState _State)
 	case BossHeadState::DEAD:
 		DeadStart();
 		break;
+	case BossHeadState::SWORD:
+		SwordStart();
+		break;
 	default:
 		break;
 	}
@@ -45,6 +48,9 @@ void BelialHead::ChangeState(BossHeadState _State)
 		MoveEnd();
 		break;
 	case BossHeadState::DEAD:
+		DeadEnd();
+		break;
+	case BossHeadState::SWORD:
 		DeadEnd();
 		break;
 	default:
@@ -66,6 +72,9 @@ void BelialHead::UpdateState(float _Time)
 	case BossHeadState::DEAD:
 		DeadUpdate(_Time);
 		break;
+	case BossHeadState::SWORD:
+		SwordUpdate(_Time);
+		break;
 	default:
 		break;
 	}
@@ -84,7 +93,7 @@ void BelialHead::IdleUpdate(float _Time)
 	if (TimeCheck_0 > 10.0f)
 	{
 		TimeCheck_0 = 0.0f;
-	//	ChangeState(BossHeadState::MOVE);
+		ChangeState(BossHeadState::MOVE);
 	}
 
 }
@@ -105,7 +114,7 @@ void BelialHead::MoveUpdate(float _Time)
 	TimeCheck_1 += _Time;
 	if (TimeCheck_1 > 5.0f)
 	{
-		ChangeState(BossHeadState::IDLE);
+		ChangeState(BossHeadState::SWORD);
 		TimeCheck_1 = 0.0f;
 		IsBullet = false;
 	}
@@ -116,6 +125,24 @@ void BelialHead::MoveUpdate(float _Time)
 	}
 }
 void BelialHead::MoveEnd()
+{
+}
+void BelialHead::SwordStart()
+{
+	SwordIndex = 0;
+	StartX = 11800.0f;
+	YInvers = -100.0f;
+}
+void BelialHead::SwordUpdate(float _Time)
+{
+	TimeCheck_2 += _Time;
+	if (TimeCheck_2 > 5.0f)
+	{
+		ChangeState(BossHeadState::IDLE);
+		TimeCheck_2 = 0.0f;
+	}
+}
+void BelialHead::SwordEnd()
 {
 }
 void BelialHead::DeadStart()

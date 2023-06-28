@@ -5,6 +5,7 @@ enum class BossHeadState
 {
 	IDLE,
 	MOVE,
+	SWORD,
 	DEAD,
 };
 class BelialHead : public GameEngineActor
@@ -73,6 +74,10 @@ private:
 	void MoveUpdate(float _Time);
 	void MoveEnd();
 
+	void SwordStart();
+	void SwordUpdate(float _Time);
+	void SwordEnd();
+
 	void DeadStart();
 	void DeadUpdate(float _Time);
 	void DeadEnd();
@@ -86,6 +91,8 @@ private:
 	//패턴 시간체크
 	float TimeCheck_0 = 0.0f;
 	float TimeCheck_1 = 0.0f;
+	float TimeCheck_2 = 0.0f;
+
 	float SubBGTime = 0.0f;
 	float BulletTime = 0.0f;
 	float SwordTime = 0.0f;

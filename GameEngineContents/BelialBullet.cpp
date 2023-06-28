@@ -3,6 +3,7 @@
 #include "BelialBullet.h"
 #include "BelialBulletBase.h"
 #include "BelialHead.h"
+#include "Player.h"
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/GameEngineRenderer.h>
@@ -94,6 +95,22 @@ void BelialBullet::SetBullet(float _DeltaTime)
 	BelialBulletCol_2->GetTransform()->SetLocalPosition(BelialBulletRender_U->GetTransform()->GetLocalPosition());
 	BelialBulletCol_3->GetTransform()->SetLocalPosition(BelialBulletRender_D->GetTransform()->GetLocalPosition());
 
+	if (BelialBulletCol_0->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	{
+		Player::MainPlayer->GetData().SubPlayerHP(BulletDamage);
+	}
+	if (BelialBulletCol_0->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	{
+		Player::MainPlayer->GetData().SubPlayerHP(BulletDamage);
+	}
+	if (BelialBulletCol_0->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	{
+		Player::MainPlayer->GetData().SubPlayerHP(BulletDamage);
+	}
+	if (BelialBulletCol_0->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	{
+		Player::MainPlayer->GetData().SubPlayerHP(BulletDamage);
+	}
 }
 
 

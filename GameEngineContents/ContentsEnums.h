@@ -21,8 +21,10 @@ enum class ColOrder
 {
 	//몬스터 공격
 	MONSTERATTACK,
-	
-	////무기
+	//보스
+	BELIALHEAD,
+	TUNAK,
+	//무기
 	GreatWeapon,
 	//플레이어
 	PlayerBody,

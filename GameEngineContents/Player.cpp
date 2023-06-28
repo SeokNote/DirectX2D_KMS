@@ -4,6 +4,7 @@
 #include "PlayMouse.h"
 #include "ContentsEnums.h"
 #include <GameEngineCore/GameEngineTexture.h>
+#include <GameEngineCore/GameEngineUIRenderer.h>
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEnginePlatform/GameEngineWindow.h>
 #include <GameEngineCore/GameEngineLevel.h>
@@ -74,7 +75,12 @@ void Player::Start()
 	PlayerBottoomRender->SetTexture("TopBottom.png");
 	PlayerBottoomRender->GetTransform()->SetLocalScale({ 58.0f, 4.0f });
 
-
+	PlayerHitRender = CreateComponent<GameEngineUIRenderer>(2);
+	PlayerHitRender->SetTexture("RedWarningOnHit.png");
+	PlayerHitRender->GetTransform()->SetWorldPosition(float4::Zero);
+	PlayerHitRender->GetTransform()->SetLocalScale({1280.0f,720.0f,0.0f});
+	PlayerHitRender->ColorOptionValue.PlusColor.r = 2.0f;
+	PlayerHitRender->Off();
 	PlayerCol = CreateComponent<GameEngineCollision>(ColOrder::PlayerBody);
 	PlayerCol->GetTransform()->SetLocalScale({ 64.0f, 76.0f });
 	PlayerCol->SetColType(ColType::AABBBOX2D);
@@ -82,6 +88,7 @@ void Player::Start()
 }
 void Player::Update(float _DeltaTime)
 {
+	float4 CameraPos = GetLevel()->GetMainCamera()->GetTransform()->GetWorldPosition();
 	CurMap = SetMyMap(CurMap);
 	ColRenderSet();
 	UpdateState(_DeltaTime);
@@ -92,7 +99,35 @@ void Player::Update(float _DeltaTime)
 	int Maxhp = Data.GetPlayerMaxHP();
 	if (PlayerCol->Collision(ColOrder::MONSTERATTACK, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
-		int a = 0;
+		HitCameraShack();
+		PlayerHitRender->On();
+		PlayerCol->Off();
+		IsInvincible = true;
+	}
+	if (IsInvincible == true)
+	{
+		ShakeTime += _DeltaTime;
+		BlinkTime += _DeltaTime;
+		PlayerRender->ColorOptionValue.MulColor.a = 0.5f;
+		if (PlayerHitRender->ColorOptionValue.MulColor.a > 0.0f)
+		{
+			PlayerHitRender->ColorOptionValue.MulColor.a -= _DeltaTime * 2.0f;
+		}
+		if (ShakeTime > 0.6f)
+		{
+			x = 0.f;
+			ShakeTime = 0.0f;
+			GetLevel()->GetMainCamera()->GetTransform()->SetWorldPosition(CameraPos);
+		}
+		if (BlinkTime > 1.0f)
+		{
+			PlayerHitRender->Off();
+			IsInvincible = false;
+			PlayerCol->On();
+			PlayerHitRender->ColorOptionValue.MulColor.a = 1.0f;
+			PlayerRender->ColorOptionValue.MulColor.a = 1.0f;
+			BlinkTime = 0.0f;
+		}
 	}
 }
 
@@ -944,6 +979,18 @@ void Player::Filp()
 
 	}
 	PlayerJumpEffectRender->GetTransform()->SetWorldPosition({ StartXpos,StartYpos - 30.0f,-801.0f });
+
+}
+
+void Player::HitCameraShack()
+{
+	float4 PlayerPos = Player::MainPlayer->GetTransform()->GetLocalPosition();
+	float4 CameraPos = GetLevel()->GetMainCamera()->GetTransform()->GetWorldPosition();
+
+	x += 0.5;
+	y = sin(x * 10.0f) * powf(0.5f, x);
+
+	GetLevel()->GetMainCamera()->GetTransform()->SetWorldPosition({ CameraPos.x,CameraPos.y + abs(y * 30),CameraPos.z });
 
 }
 

@@ -25,10 +25,9 @@ private:
 
 	std::shared_ptr<class GameEngineSpriteRenderer> BelialLasorRender;
 	std::shared_ptr<class GameEngineCollision> BelialLasorCol_L;
-
 	float DeathTime = 0.0f;
-	int LasorDamage = 5;
-	float InvinTime = 0.0f;
+	int LasorDamage = 10;
+	float CheckTime = 0.0f;
 	bool InvinCheck = false;
 };
 

@@ -78,7 +78,7 @@ void BelialHead::Start()
 	BossHpBar->GetTransform()->SetLocalScale(HPBarScale);
 
 
-	BelialCol = CreateComponent<GameEngineCollision>(ColOrder::MONSTERATTACK);
+	BelialCol = CreateComponent<GameEngineCollision>(ColOrder::BELIALHEAD);
 	BelialCol->GetTransform()->SetLocalPosition({ 30.0f,-20.0f,0.f });
 	BelialCol->GetTransform()->SetLocalScale(BelialColScale);
 	BelialCol->SetColType(ColType::AABBBOX2D);
@@ -88,19 +88,7 @@ void BelialHead::Start()
 	GetLevel()->CreateActor<BelialHand_R>();
 
 }
-/*	if (Test < 0.0f) 
-	{
-		PlayerRender->ImageClippingY(1.0f, ClipYDir::Top);
 
-	}
-	else
-	{
-		PlayerRender->ImageClippingY(Test, ClipYDir::Top);
-	}
-	if (GameEngineInput::IsDown("DEBUGMODE"))
-	{
-		Test -= 0.1f;
-	}*/
 void BelialHead::Update(float _DeltaTime)
 {
 	SubBGTime += _DeltaTime;
@@ -115,9 +103,7 @@ void BelialHead::Update(float _DeltaTime)
 	//소드 재생성
 	if (GameEngineInput::IsDown("DeBugKey"))
 	{
-		SwordIndex = 0;
-		StartX = 11800.0f;
-		YInvers = -100.0f;
+
 
 	}
 

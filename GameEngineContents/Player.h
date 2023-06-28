@@ -80,12 +80,15 @@ protected:
 private:
 	PlayerDataBase Data = PlayerDataBase();
 	void Filp();
+	void HitCameraShack();
 	void SetPlayerCollision(float _Delta);
 	bool CollisonCheck = false;
 	float Angle = 0.0f;
 	std::shared_ptr<class GameEngineSpriteRenderer> PlayerRender;
 	std::shared_ptr<class GameEngineSpriteRenderer> PlayerJumpEffectRender;
 	std::shared_ptr<class GameEngineSpriteRenderer> PlayerWalkEffectRender;
+	std::shared_ptr<class GameEngineUIRenderer> PlayerHitRender;
+
 	std::shared_ptr<class DashEffect> DashEffectPtr;
 
 	
@@ -110,7 +113,7 @@ private:
 	//플레이어 무적
 	float BlinkTime = 0.0f;
 	float InvincibleTime = 0.0f;
-
+	bool IsInvincible = false;
 	// State
 	void ChangeState(PlayerState _State);
 	void UpdateState(float _Time);
@@ -155,7 +158,10 @@ private:
 	float4 PlayerTop = { 0.0f,15.0f,0.f };
 	float4 PlayerSide = { -25.0f,0.0f,0.f };
 	int UICount = 0;
-
+	//카메라 쉐이크
+	float ShakeTime = 0.0f;
+	float y = 0.0f;
+	float x = 0.0f;
 	float4 BottomPos_0 = float4::Zero;
 	float4 DashVector = float4::Zero;
 	float ZDeg = 0.0f;

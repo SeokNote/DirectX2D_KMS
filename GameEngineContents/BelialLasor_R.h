@@ -24,7 +24,7 @@ private:
 	float4 LasorColScale = { -1280.0f,180.0f,0.0f };
 	std::shared_ptr<class GameEngineSpriteRenderer> BelialLasorRender;
 	std::shared_ptr<class GameEngineCollision> BelialLasorCol;
-	int LasorDamage = 5;
+	int LasorDamage = 10;
 	float InvinTime = 0.0f;
 	bool InvinCheck = false;
 };

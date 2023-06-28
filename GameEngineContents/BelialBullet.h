@@ -50,5 +50,7 @@ private:
 	float4 DDir_t = float4::Zero;
 	float DeathTime = 0.0f;
 	float BulletSpeed = 500.0f;
+	int BulletDamage= 2;
+
 };
 

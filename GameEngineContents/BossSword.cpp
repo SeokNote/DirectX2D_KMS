@@ -83,10 +83,8 @@ bool BossSword::PixelCheck()
 
 void BossSword::CollisionCheck(float _DeltaTime)
 {
-	if (InvinCheck==false && SwordCol->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	if (SwordCol->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
-		SwordCol->Off();
-		InvinCheck = true;
 		Player::MainPlayer->GetData().SubPlayerHP(SwordDamage);
 	}
 
