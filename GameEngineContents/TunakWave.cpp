@@ -1,7 +1,7 @@
 #include "PrecompileHeader.h"
 #include "ContentsEnums.h"
 #include "TunakWave.h"
-
+#include "Player.h"
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/GameEngineCamera.h>
@@ -43,12 +43,12 @@ void TunakWave::Start()
 	TunakWaveRender_1->CreateAnimation({ .AnimationName = "WaveEffect_1", .SpriteName = "WaveEffect", .Loop = true , .ScaleToTexture = false });
 
 	TunakWaveCol = CreateComponent<GameEngineCollision>(ColOrder::MONSTERATTACK);
-	TunakWaveCol->GetTransform()->SetLocalScale(WaveScale);
+	TunakWaveCol->GetTransform()->SetLocalScale(WaveColScale);
 	TunakWaveCol->SetColType(ColType::AABBBOX2D);
 	TunakWaveCol->Off();
 
 	TunakWaveCol_1 = CreateComponent<GameEngineCollision>(ColOrder::MONSTERATTACK);
-	TunakWaveCol_1->GetTransform()->SetLocalScale(WaveScale);
+	TunakWaveCol_1->GetTransform()->SetLocalScale(WaveColScale);
 	TunakWaveCol_1->SetColType(ColType::AABBBOX2D);
 	TunakWaveCol_1->Off();
 }
@@ -57,7 +57,20 @@ void TunakWave::Update(float _DeltaTime)
 {
 	SetGroundBG(_DeltaTime);
 	CreatWave(_DeltaTime);
+	WaveCollision();
 	WaveDeath(_DeltaTime);
+}
+
+void TunakWave::WaveCollision()
+{
+	if (TunakWaveCol->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	{
+		Player::MainPlayer->GetData().SubPlayerHP(WaveDamege);
+	}
+	if (TunakWaveCol_1->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	{
+		Player::MainPlayer->GetData().SubPlayerHP(WaveDamege);
+	}
 }
 
 void TunakWave::SetGroundBG(float _DeltaTime)

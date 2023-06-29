@@ -275,8 +275,11 @@
     <ClInclude Include="PlayerDataBase.h">
       <Filter>Object\MainPlayer</Filter>
     </ClInclude>
-    <ClInclude Include="BossBase.h">
-      <Filter>Object\Boss</Filter>
+    <ClInclude Include="BossDead.h">
+      <Filter>Object\Boss\BossBase</Filter>
+    </ClInclude>
+    <ClInclude Include="BossDeadEffect.h">
+      <Filter>Object\Boss\BossBase</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -572,8 +575,11 @@
     <ClCompile Include="PlayerDataBase.cpp">
       <Filter>Object\MainPlayer</Filter>
     </ClCompile>
-    <ClCompile Include="BossBase.cpp">
-      <Filter>Object\Boss</Filter>
+    <ClCompile Include="BossDead.cpp">
+      <Filter>Object\Boss\BossBase</Filter>
+    </ClCompile>
+    <ClCompile Include="BossDeadEffect.cpp">
+      <Filter>Object\Boss\BossBase</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -759,6 +765,9 @@
     </Filter>
     <Filter Include="Object\Weapon\GreatWeapon">
       <UniqueIdentifier>{761fe4de-4d55-40bb-b16d-35f70e5d35ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Boss\BossBase">
+      <UniqueIdentifier>{d39c220f-b603-43fd-86f5-1908370f9ff9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -1,7 +1,7 @@
 #include "PrecompileHeader.h"
 #include "ContentsEnums.h"
 #include "TunakBullet.h"
-
+#include "Player.h"
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/GameEngineRenderer.h>
@@ -116,12 +116,50 @@ void TunakBullet::Update(float _DeltaTime)
 {
 	MoveBullet(_DeltaTime);
 	DeadTime += _DeltaTime;
+	BulletCollision();
 	if (DeadTime > 3.0f)
 	{
 		Death();
 		DeadTime = 0.0f;
 	}
 }
+
+void TunakBullet::BulletCollision()
+{
+	if (TunakBulletCol_0->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	{
+		Player::MainPlayer->GetData().SubPlayerHP(BulletDamege);
+	}
+	if (TunakBulletCol_1->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	{
+		Player::MainPlayer->GetData().SubPlayerHP(BulletDamege);
+	}
+	if (TunakBulletCol_2->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	{
+		Player::MainPlayer->GetData().SubPlayerHP(BulletDamege);
+	}
+	if (TunakBulletCol_3->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	{
+		Player::MainPlayer->GetData().SubPlayerHP(BulletDamege);
+	}
+	if (TunakBulletCol_4->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	{
+		Player::MainPlayer->GetData().SubPlayerHP(BulletDamege);
+	}
+	if (TunakBulletCol_5->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	{
+		Player::MainPlayer->GetData().SubPlayerHP(BulletDamege);
+	}
+	if (TunakBulletCol_6->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	{
+		Player::MainPlayer->GetData().SubPlayerHP(BulletDamege);
+	}
+	if (TunakBulletCol_7->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	{
+		Player::MainPlayer->GetData().SubPlayerHP(BulletDamege);
+	}
+}
+
 
 void TunakBullet::MoveBullet(float _DeltaTime)
 {

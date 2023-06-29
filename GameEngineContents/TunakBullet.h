@@ -19,6 +19,7 @@ protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
 private:
+	void BulletCollision();
 	void MoveBullet(float _DeltaTime);
 	float4 BulletScale = { 70.0f,70.0f,0.0f };
 	std::shared_ptr<class GameEngineSpriteRenderer> TunakBulletRender_0;
@@ -44,5 +45,6 @@ private:
 	//ºÒ¸´º¯¼ö
 	float BulletSpeed = 500.0f;
 	float DeadTime = 0.0f;
+	int BulletDamege = 3;
 };
 

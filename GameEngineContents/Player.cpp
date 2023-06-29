@@ -77,9 +77,9 @@ void Player::Start()
 
 	PlayerHitRender = CreateComponent<GameEngineUIRenderer>(2);
 	PlayerHitRender->SetTexture("RedWarningOnHit.png");
-	PlayerHitRender->GetTransform()->SetWorldPosition(float4::Zero);
+	PlayerHitRender->GetTransform()->SetWorldPosition({ 0.0f,0.0f,-90.0f });
 	PlayerHitRender->GetTransform()->SetLocalScale({1280.0f,720.0f,0.0f});
-	PlayerHitRender->ColorOptionValue.PlusColor.r = 2.0f;
+	PlayerHitRender->ColorOptionValue.PlusColor.r = 4.0f;
 	PlayerHitRender->Off();
 	PlayerCol = CreateComponent<GameEngineCollision>(ColOrder::PlayerBody);
 	PlayerCol->GetTransform()->SetLocalScale({ 64.0f, 76.0f });
@@ -99,25 +99,27 @@ void Player::Update(float _DeltaTime)
 	int Maxhp = Data.GetPlayerMaxHP();
 	if (PlayerCol->Collision(ColOrder::MONSTERATTACK, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
-		HitCameraShack();
 		PlayerHitRender->On();
 		PlayerCol->Off();
 		IsInvincible = true;
+		ShackCheck = false;
 	}
 	if (IsInvincible == true)
 	{
+		HitCameraShack();
 		ShakeTime += _DeltaTime;
 		BlinkTime += _DeltaTime;
 		PlayerRender->ColorOptionValue.MulColor.a = 0.5f;
 		if (PlayerHitRender->ColorOptionValue.MulColor.a > 0.0f)
 		{
-			PlayerHitRender->ColorOptionValue.MulColor.a -= _DeltaTime * 2.0f;
+			PlayerHitRender->ColorOptionValue.MulColor.a -= _DeltaTime * 3.0f;
 		}
-		if (ShakeTime > 0.6f)
+		if (ShackCheck ==false && ShakeTime > 0.4f)
 		{
 			x = 0.f;
 			ShakeTime = 0.0f;
 			GetLevel()->GetMainCamera()->GetTransform()->SetWorldPosition(CameraPos);
+			ShackCheck = true;
 		}
 		if (BlinkTime > 1.0f)
 		{
@@ -989,8 +991,9 @@ void Player::HitCameraShack()
 
 	x += 0.5;
 	y = sin(x * 10.0f) * powf(0.5f, x);
-
-	GetLevel()->GetMainCamera()->GetTransform()->SetWorldPosition({ CameraPos.x,CameraPos.y + abs(y * 30),CameraPos.z });
+	float a = x;
+	float b = y;
+	GetLevel()->GetMainCamera()->GetTransform()->SetWorldPosition({ CameraPos.x +(y * 50),CameraPos.y + abs(y * 50),CameraPos.z });
 
 }
 

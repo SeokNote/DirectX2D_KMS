@@ -51,6 +51,7 @@ void BelialHead::Start()
 	BelialHeadRender->SetTexture("SkellBossIdle0.png");
 	BelialHeadRender->CreateAnimation({ .AnimationName = "HeadIdle", .SpriteName = "HeadIdle", .Loop = true , .ScaleToTexture = true });
 	BelialHeadRender->CreateAnimation({ .AnimationName = "HeadMove", .SpriteName = "HeadMove", .Loop = false , .ScaleToTexture = true });
+	BelialHeadRender->CreateAnimation({ .AnimationName = "BelialBeforDead", .SpriteName = "BelialBeforDead", .Loop = false , .ScaleToTexture = true });
 
 	BelialBGRender = CreateComponent<GameEngineSpriteRenderer>(1);
 	BelialBGRender->SetTexture("BossSword.png");
@@ -59,7 +60,25 @@ void BelialHead::Start()
 	BelialBGRender->CreateAnimation({ .AnimationName = "BelialMainBG", .SpriteName = "MainBG", .Loop = true , .ScaleToTexture = true });
 	BelialBGRender->ChangeAnimation("BelialMainBG");
 	ChangeState(BossHeadState::IDLE);
+	//죽을시 머리 부품들
+	BelialHeadPice_0 = CreateComponent<GameEngineSpriteRenderer>(1);
 
+	BelialHeadPice_0->SetTexture("BelialHeadOne.png");
+	BelialHeadPice_0->GetTransform()->SetLocalPosition({0.0f,-80.0f,0.0f});
+	BelialHeadPice_0->GetTransform()->SetLocalScale(HeadScale);
+	BelialHeadPice_0->Off();
+
+	BelialHeadPice_2 = CreateComponent<GameEngineSpriteRenderer>(1);
+	BelialHeadPice_2->GetTransform()->SetLocalPosition({ 0.0f,40.0f,0.0f });
+	BelialHeadPice_2->SetTexture("BelialHeadThree.png");
+	BelialHeadPice_2->GetTransform()->SetLocalScale(HeadScale);
+	BelialHeadPice_2->Off();
+
+	BelialHeadPice_1 = CreateComponent<GameEngineSpriteRenderer>(1);
+	BelialHeadPice_1->GetTransform()->SetLocalPosition({ 0.0f,10.0f,0.0f });
+	BelialHeadPice_1->SetTexture("BelialHeadTwo.png");
+	BelialHeadPice_1->GetTransform()->SetLocalScale(HeadScale);
+	BelialHeadPice_1->Off();
 	//HPBar
 
 	BossHpFront = CreateComponent<GameEngineUIRenderer>(1);
@@ -101,11 +120,6 @@ void BelialHead::Update(float _DeltaTime)
 	BelialCollision(_DeltaTime);
 	BelialSwordPlay(_DeltaTime);
 	//소드 재생성
-	if (GameEngineInput::IsDown("DeBugKey"))
-	{
-
-
-	}
 
 }
 bool HitCheck = false;
@@ -119,6 +133,7 @@ void BelialHead::BelialCollision(float _DeltaTime)
 	{
 		if (HitCheck == false)
 		{
+			//나중에 ui작업때 캐릭터가 갖고있는 swich로 무기에 따라 정해주자.
 			BelialHp -= WeaponBase::WeaponBasePtr->GetWeaponStrength(Weapon::GreatWeapon_E);
 			//여기서 hp클립
 			BossHpBar->ImageClippingX(static_cast<float>(BelialHp)/1000.0f, ClipXDir::Left);

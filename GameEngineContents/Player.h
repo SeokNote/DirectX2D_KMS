@@ -162,10 +162,11 @@ private:
 	float ShakeTime = 0.0f;
 	float y = 0.0f;
 	float x = 0.0f;
+	bool ShackCheck = false;
+	//대쉬관련
 	float4 BottomPos_0 = float4::Zero;
 	float4 DashVector = float4::Zero;
 	float ZDeg = 0.0f;
-	//대쉬관련
 	int DashCount = 3;
 	float DashTime = 0.0f;
 	float4 DashCurPos = float4::Zero;

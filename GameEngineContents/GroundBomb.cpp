@@ -1,7 +1,7 @@
 #include "PrecompileHeader.h"
 #include "ContentsEnums.h"
 #include "GroundBomb.h"
-
+#include "Player.h"
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/GameEngineCamera.h>
@@ -57,6 +57,7 @@ void GroundBomb::Update(float _DeltaTime)
 	DeadTime += _DeltaTime;
 	SetGroundBG(_DeltaTime);
 	CreatBomb(_DeltaTime);
+	GroundBombCollision();
 	if (BombCheck == true) 
 	{
 		if (true == BombBGRender_0->IsAnimationEnd())
@@ -65,6 +66,14 @@ void GroundBomb::Update(float _DeltaTime)
 		}
 	}
 
+}
+
+void GroundBomb::GroundBombCollision()
+{
+	if (GroundBombCol->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	{
+		Player::MainPlayer->GetData().SubPlayerHP(GroundBombDamage);
+	}
 }
 
 void GroundBomb::SetGroundBG(float _DeltaTime)

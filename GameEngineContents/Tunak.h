@@ -1,6 +1,7 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
 #include "Player.h"
+#include "BossBase.h"
 enum class TunakState
 {
 	IDLE,
@@ -16,6 +17,7 @@ enum class TunakState
 	TACKLE,
 	HALFPATTON_S,
 	HALFPATTON_E,
+	TunakDead,
 };
 // ¼³¸í :
 class Tunak : public GameEngineActor
@@ -39,10 +41,13 @@ private:
 	float4 TunakColScale = { 230.0f,238.0f,0.0f };
 	float4 DoubleAttackScale = { 150.0f,238.0f,0.0f };
 	float4 TakcleScale = { 100.0f,188.0f,0.0f };
-
+	void DamegeCheck();
+	void DeadEvent(float _DeltaTime);
+	void TunakCameraShack(int _Value);
 	void CalBezierBulletTransform(const float4& _Start, const float4& _Height, const float4& _End, float _Ratio);
-	void TunakColision();
+	void TunakCollision(float _DeltaTime);
 	std::shared_ptr<class GameEngineSpriteRenderer> TunakRender;
+	std::shared_ptr<class GameEngineUIRenderer> DeadBGRender;
 	std::shared_ptr<class GameEngineCollision> TunakCol;
 	std::shared_ptr<class GameEngineCollision> TunakDoubleAttackCol;
 	std::shared_ptr<class GameEngineCollision> TunakTackleCol;
@@ -51,6 +56,8 @@ private:
 	std::shared_ptr<class GroundBomb> GroundBombPtr_1;
 	std::shared_ptr<class GroundBomb> GroundBombPtr_2;
 	std::shared_ptr<class GameEngineSpriteRenderer> TunakBulletBG;
+
+	std::shared_ptr<class BossDeadEffect> BossDeadEffectPtr;
 	void TunakFlip();
 	//FSM
 	TunakState StateValue = TunakState::IDLE;
@@ -108,24 +115,46 @@ private:
 	void HalfHp_EStart();
 	void HalfHp_EUpdate(float _Time);
 	void HalfHp_EEnd();
-	//Å×½ºÆ®
+
+	void TunakDeadStart();
+	void TunakDeadUpdate(float _Time);
+	void TunakDeadEnd();
+	//½Ã°£°ª
 	float TestTime = 0.0f;
 	float TestTime_0 = 0.0f;
 	float TestTime_1 = 0.0f;
 	float TestTime_2 = 0.0f;
-
+	//Ä«¸Þ¶ó ½¦ÀÌÅ©
+	float ShakeTime = 0.0f;
+	float y = 0.0f;
+	float x = 0.0f;
+	bool ShackStart = false;
+	bool DeadShack = false;
+	float DeadShackTime = 0.0f;
+	float ShackEnd = 0.0f;
+	//Åõ³« hp¹Ù
+	std::shared_ptr<class GameEngineUIRenderer> BossHpBase;
+	std::shared_ptr<class GameEngineUIRenderer > BossHpFront;
+	std::shared_ptr<class GameEngineUIRenderer> BossHpBar;
+	float4 HPBarBaseScale = { 500.0f,64.0f,0.f };
+	float4 HPBarScale = { 400.0f,40.0f,0.0f };
+	float4 HPBasePos = { 10.0f,-320.0f,-100.0f };
+	float4 HPPos = { 48.0f,-320.0f,-100.0f };
 	//Åõ³« spike ÆÐÅÏ
 	float4 CurPos = float4::Zero;
 	float4 SpikeEndPos = { 15580.0f,180.f,-800.0f };
 	float4 SpikeHeight = float4::Zero;
 	float InterRatio = 0.0f;
 	float AfterImageTime = 0.0f;
+	float FrameTime = 0.0f;
 	std::shared_ptr<class TunakAfterEffect> TunakAfter_E;
 	//Åõ³« Æø¹ß À§Ä¡
 	float BombX = 0.0f;
 	//Åõ³« ´õºí¾îÅÃ
 	float DoubleAttackSpeed = 150.0f;
 	float DoubleAttactTime = 0.0f;
+	int DoubleAttackDamege = 3;
+	float DoubleTime = 0.0f;
 	//Åõ³« ÃÑ¾Ë¹ß½ÎÀÕ
 	float BulletTime = 0.0f;
 	float StartTime = 0.0f;
@@ -152,6 +181,7 @@ private:
 	bool TackleCheck = false;
 	float PattonTime_S = 0.0f;
 	float TackleSpeed = 800.0f;
+	int TakcleDamage = 10;
 	//Åõ³« ´õ½ºÆ®
 	std::shared_ptr<class TunakDust> TunakDustSPtr;
 	std::shared_ptr<class TunakDust_D> TunakDustDPtr;
@@ -163,14 +193,23 @@ private:
 	float HalfAfterImage_T = 0.0f;
 	float GoblinTime = 0.0f;
 	float DownTime = 0.0f;
+	bool HalfCheck = false;
 	std::shared_ptr<class TunakJumpEffect> TunakJumpEffectPtr;
 	int GoblinCount = 0;
 	std::shared_ptr<class TunakWave> TunakWavePtr;
-	
+	//Åõ³« Á×À½
+	float DeadEffectTime = 0.0f;
+	float DeadTime = 0.0f;
+	float TimeCheck_D = 0.0f;
 	//º¯¼ö 
+	bool IsDead = false;
 	bool IsFilp = false;
 	float4 TunakPos = float4::Zero;
-	float FlipTime = 0.0f;
-	int RandomIndex = 0;
+	float FlipTime = 0.0f; //ÇÃ·¹ÀÌ¾î ¹æÇâÃ£´Â ½Ã°£
+	int RandomIndex = 0; //·£´ý°ª
+	bool TunakHitCheck = false; //È÷Æ®Ã¼Å©
+	int TunakHP = 1500;
+	float Invincibilitytime = 0.0f; //¹«Àû½Ã°£
+	float RatioValue = 0.0f; //ÆøÆÈÈÄ ÀÌÆåÆ® ºñÀ²
 };
 

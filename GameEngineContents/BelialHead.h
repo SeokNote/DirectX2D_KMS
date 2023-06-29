@@ -48,10 +48,14 @@ private:
 	float4 HPBarScale = { 400.0f,40.0f,0.0f };
 	float4 HPBasePos = { 10.0f,-320.0f,0.0f };
 	float4 HPPos = { 48.0f,-320.0f,0.0f };
-
+	float4 HeadScale = { 280.0f,512.0f,0.0f };
 	std::shared_ptr<class GameEngineSpriteRenderer> BelialHeadRender;
 	std::shared_ptr<class GameEngineSpriteRenderer> BelialBGRender;
 	std::shared_ptr<class GameEngineSpriteRenderer> BelialBulletComponet;
+	std::shared_ptr<class GameEngineSpriteRenderer> BelialHeadPice_0;
+	std::shared_ptr<class GameEngineSpriteRenderer> BelialHeadPice_1;
+	std::shared_ptr<class GameEngineSpriteRenderer> BelialHeadPice_2;
+
 	std::shared_ptr<class GameEngineCollision> BelialCol;
 	std::shared_ptr<class BelialBullet> BelialBulletRender = nullptr;
 	std::shared_ptr<class BelialBulletBase> BelialBulletBasePtr = nullptr;

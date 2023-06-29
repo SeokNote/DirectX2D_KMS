@@ -19,6 +19,7 @@ protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
 private:
+	void GroundBombCollision();
 	void SetGroundBG(float _DeltaTime);
 	void CreatBomb(float _DeltaTime);
 	void BombDeath(float _DeltaTime);
@@ -32,7 +33,7 @@ private:
 	float4 BGScale = { 150.0f,800.0f,0.0f };
 	float4 BombScale = { 300.0f,800.0f,0.0f };
 	float4 BombColScale = { 200.0f,800.0f,0.0f };
-
+	float GroundBombDamage = 5;
 	float Time = 0.0f;
 	float StartAlpha = 0.6f;
 	float AlphaTime = 0.0f;

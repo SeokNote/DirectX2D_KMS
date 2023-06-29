@@ -3,6 +3,8 @@
 #include "Tunak.h"
 #include "Player.h"
 #include "GroundBomb.h"
+#include "WeaponBase.h"
+#include "BossDeadEffect.h"
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/GameEngineCamera.h>
@@ -44,6 +46,7 @@ void Tunak::Start()
 	TunakRender->CreateAnimation({ .AnimationName = "TunakBombCall", .SpriteName = "TunakBombCall", .Loop = false , .ScaleToTexture = false });
 	TunakRender->CreateAnimation({ .AnimationName = "TunakShoulderTakleReady", .SpriteName = "TunakShoulderTakleReady", .Loop = false , .ScaleToTexture = false });
 	TunakRender->CreateAnimation({ .AnimationName = "TunakShoulderTakleStart", .SpriteName = "TunakShoulderTakleStart", .Loop = true , .ScaleToTexture = false });
+	TunakRender->CreateAnimation({ .AnimationName = "TunakDead", .SpriteName = "TunakDead", .Loop = false , .ScaleToTexture = false });
 
 	
 	TunakBulletBG = CreateComponent<GameEngineSpriteRenderer>(1);
@@ -54,7 +57,7 @@ void Tunak::Start()
 	ChangeState(TunakState::IDLE);
 
 
-	TunakCol = CreateComponent<GameEngineCollision>(ColOrder::MONSTERATTACK);
+	TunakCol = CreateComponent<GameEngineCollision>(ColOrder::TUNAK);
 	TunakCol->GetTransform()->SetLocalScale(TunakColScale);
 	TunakCol->SetColType(ColType::AABBBOX2D);
 
@@ -68,14 +71,108 @@ void Tunak::Start()
 	TunakTackleCol->SetColType(ColType::AABBBOX2D);
 	TunakTackleCol->Off();
 
-	
+	BossHpFront = CreateComponent<GameEngineUIRenderer>(1);
+	BossHpFront->SetTexture("BossLifeBack.png");
+	BossHpFront->GetTransform()->SetWorldPosition(HPBasePos);
+	BossHpFront->GetTransform()->SetLocalScale(HPBarBaseScale);
+
+	BossHpBase = CreateComponent<GameEngineUIRenderer>(1);
+	BossHpBase->SetTexture("BossLifeBase.png");
+	BossHpBase->GetTransform()->SetWorldPosition(HPBasePos);
+	BossHpBase->GetTransform()->SetLocalScale(HPBarBaseScale);
+
+	BossHpBar = CreateComponent<GameEngineUIRenderer>(1);
+	BossHpBar->SetTexture("BossHpBar.png");
+	BossHpBar->GetTransform()->SetWorldPosition(HPPos);
+	BossHpBar->GetTransform()->SetLocalScale(HPBarScale);
+
+	DeadBGRender = CreateComponent<GameEngineUIRenderer>(1);
+	DeadBGRender->SetTexture("BossDeadBG.png");
+	DeadBGRender->GetTransform()->SetWorldPosition(float4::Null);
+	DeadBGRender->GetTransform()->SetLocalScale({1280.0f,720.0f,0.0f});
+	DeadBGRender->Off();
 }
 
 void Tunak::Update(float _DeltaTime)
 {
-	TunakCol->Off();
 	UpdateState(_DeltaTime);
-	TunakColision();
+	TunakCollision(_DeltaTime);
+	DeadEvent(_DeltaTime);
+	DamegeCheck();
+}
+
+void Tunak::DamegeCheck()
+{
+	//숄더태클 데미지 계산
+	if (TunakTackleCol->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	{
+		Player::MainPlayer->GetData().SubPlayerHP(TakcleDamage);
+	}
+	if (TunakDoubleAttackCol->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	{
+		Player::MainPlayer->GetData().SubPlayerHP(DoubleAttackDamege);
+	}
+}
+
+void Tunak::DeadEvent(float _DeltaTime)
+{
+	float4 TunakCurPos = GetTransform()->GetLocalPosition();
+	if (ShackStart == true)
+	{
+		ShackEnd += _DeltaTime;
+		TunakCameraShack(120);
+		if (TunakHP > 0 && ShackEnd > 0.5f)
+		{
+			x = 0.f;
+			ShackStart = false;
+			ShackEnd = 0.0f;
+		}
+
+	}
+	if (DeadShack == true)
+	{
+		DeadTime += _DeltaTime;
+		DeadShackTime += _DeltaTime;
+		TunakCameraShack(30);
+		if (DeadShackTime > 0.05f)
+		{
+			x = 0.f;
+			DeadShackTime = 0.0f;
+		}
+		if (DeadTime > 5.0f)
+		{
+			TimeCheck_D += _DeltaTime;
+			TunakRender->Off();
+			IsDead = true;
+			if (TimeCheck_D > 0.1f)
+			{
+				TunakCurPos.y -= 100.0f;
+				TunakCurPos.z = -850.0f;
+				BossDeadEffectPtr = GetLevel()->CreateActor<BossDeadEffect>();
+				BossDeadEffectPtr->GetTransform()->SetLocalPosition(TunakCurPos);
+				BossDeadEffectPtr->SetRaioPos(RatioValue);
+				RatioValue += 20.0f;
+				TimeCheck_D = 0.0f;
+			}
+		}
+		if (DeadTime > 8.0f)
+		{
+			DeadTime = 0.0f;
+			Death();
+		}
+	}
+}
+
+void Tunak::TunakCameraShack(int _Value)
+{
+	float4 PlayerPos = Player::MainPlayer->GetTransform()->GetLocalPosition();
+	float4 CameraPos = GetLevel()->GetMainCamera()->GetTransform()->GetWorldPosition();
+
+	x += 0.5;
+	y = sin(x * 10.0f) * powf(0.5f, x);
+	float a = x;
+	float b = y;
+	GetLevel()->GetMainCamera()->GetTransform()->SetWorldPosition({ CameraPos.x + (y * 10),CameraPos.y + abs(y * _Value),CameraPos.z });
 }
 
 void Tunak::CalBezierBulletTransform(const float4& _Start, const float4& _Height, const float4& _End, float _Ratio)
@@ -86,14 +183,16 @@ void Tunak::CalBezierBulletTransform(const float4& _Start, const float4& _Height
 
 
 	GetTransform()->SetWorldPosition(Pos);
-	//std::shared_ptr<TunakBullet> TunakBulletPtr = CreateActor<TunakBullet>(1);
-	//TunakBulletPtr->GetTransform()->SetLocalPosition({ 15074.0f,-100.0f,-800.0f });
-	//TunakBulletPtr->GetTransform()->SetLocalRotation({ 0.0f,0.0f,15.0f });
+
 }
-void Tunak::TunakColision()
+void Tunak::TunakCollision(float _DeltaTime)
 {
+	BossHpFront->GetTransform()->SetWorldRotation(float4::Null);
+	BossHpBase->GetTransform()->SetWorldRotation(float4::Null);
+	BossHpBar->GetTransform()->SetWorldRotation(float4::Null);
+
 	float4 Pos = TunakRender->GetTransform()->GetLocalPosition();
-	//몸 충돌체 (플레이어가 때리는곳)
+	//몸 플립
 	if (IsFilp == false)
 	{
 		TunakCol->GetTransform()->SetLocalPosition({ Pos.x + 50.0f,Pos.y - 120.0f,0.0f});
@@ -104,6 +203,39 @@ void Tunak::TunakColision()
 		TunakCol->GetTransform()->SetLocalPosition({ Pos.x - 50.0f,Pos.y - 120.0f,0.0f });
 		TunakTackleCol->GetTransform()->SetLocalPosition({ Pos.x - 50.0f,Pos.y - 140.0f,0.0f });
 	}
+	//충돌시 깜빡이며 hp달기
+	if (TunakCol->Collision(ColOrder::GreatWeapon, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	{
+		if (TunakHitCheck == false)
+		{
+			//나중에 ui작업때 캐릭터가 갖고있는 swich로 무기에 따라 정해주자.
+			TunakHP -= WeaponBase::WeaponBasePtr->GetWeaponStrength(Weapon::GreatWeapon_E);
+			//여기서 hp클립
+			BossHpBar->ImageClippingX(static_cast<float>(TunakHP) / 1500.0f, ClipXDir::Left);
+			TunakRender->ColorOptionValue.MulColor.r = 1.0f;
+			TunakRender->ColorOptionValue.MulColor.g = 0.1f;
+			TunakRender->ColorOptionValue.MulColor.b = 0.1f;
+			TunakHitCheck = true;
+		}
+
+	}
+	else {
+		if (TunakHitCheck == true)
+		{
+
+			Invincibilitytime += _DeltaTime;
+			if (Invincibilitytime > 0.1f)
+			{
+				TunakRender->ColorOptionValue.MulColor.r = 1.0f;
+				TunakRender->ColorOptionValue.MulColor.g = 1.0f;
+				TunakRender->ColorOptionValue.MulColor.b = 1.0f;
+				TunakHitCheck = false;
+				Invincibilitytime = 0.0f;
+			}
+		}
+	}
+
+
 }
 void Tunak::TunakFlip()
 {

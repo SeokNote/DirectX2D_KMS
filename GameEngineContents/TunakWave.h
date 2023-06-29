@@ -19,6 +19,7 @@ protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
 private:
+	void WaveCollision();
 	void SetGroundBG(float _DeltaTime);
 	void CreatWave(float _DeltaTime);
 	void WaveDeath(float _DeltaTime);
@@ -35,15 +36,17 @@ private:
 	float AlphaTime = 0.0f;
 	float DeadTime = 0.0f;
 	float4 WaveScale = { 220.0f,212.0f,0.f };
+	float4 WaveColScale = { 220.0f,192.0f,0.f };
+
 	//불값
 	bool StartPatton = false;
 	bool IsCheck = false;
 	bool IsCheck_1 = false;
 	bool WaveStart = false;
-	//Wave 생성시간
+	//Wave
 	float StartWave = 0.0f;
-	//Wave 속도
 	float WaveSpeed = 800.0f;
 	float AddSpeed = 0.0f;
+	int WaveDamege = 10;
 };
 

@@ -19,6 +19,7 @@ protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
 private:
+	void GoblinCollision();
 	void SetGroundBG(float _DeltaTime);
 	void CreatBomb(float _DeltaTime);
 	void BombDeath(float _DeltaTime);
@@ -31,7 +32,7 @@ private:
 	float StartAlpha = 0.6f;
 	float AlphaTime = 0.0f;
 	float BombSpeed = 700.0f;
-
+	int GoblinDamage = 5;
 	//ºÒ°ª
 	bool StartPatton = false;
 	bool IsCheck = false;

@@ -1,7 +1,7 @@
 #include "PrecompileHeader.h"
 #include "ContentsEnums.h"
 #include "GoblinBomb.h"
-
+#include "Player.h"
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/GameEngineCamera.h>
@@ -50,6 +50,15 @@ void GoblinBomb::Update(float _DeltaTime)
 	SetGroundBG(_DeltaTime);
 	CreatBomb(_DeltaTime);
 	BombDeath(_DeltaTime);
+	GoblinCollision();
+}
+
+void GoblinBomb::GoblinCollision()
+{
+	if (GoblinBombCol->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	{
+		Player::MainPlayer->GetData().SubPlayerHP(GoblinDamage);
+	}
 }
 
 void GoblinBomb::SetGroundBG(float _DeltaTime)

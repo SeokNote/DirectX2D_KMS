@@ -9,6 +9,7 @@
 #include "TunakDust_D.h"
 #include "TunakJumpEffect.h"
 #include "TunakWave.h"
+#include "BossDead.h"
 
 #include <GameEngineCore/GameEngineTexture.h>
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
@@ -72,6 +73,9 @@ void Tunak::ChangeState(TunakState _State)
 	case TunakState::HALFPATTON_E:
 		HalfHp_EStart();
 		break;
+	case TunakState::TunakDead:
+		TunakDeadStart();
+		break;
 	default:
 		break;
 	}
@@ -116,6 +120,9 @@ void Tunak::ChangeState(TunakState _State)
 		break;
 	case TunakState::HALFPATTON_E:
 		HalfHp_EEnd();
+		break;
+	case TunakState::TunakDead:
+		TunakDeadEnd();
 		break;
 	default:
 		break;
@@ -165,6 +172,9 @@ void Tunak::UpdateState(float _Time)
 	case TunakState::HALFPATTON_E:
 		HalfHp_EUpdate(_Time);
 		break;
+	case TunakState::TunakDead:
+		TunakDeadUpdate(_Time);
+		break;
 	default:
 		break;
 	}
@@ -179,15 +189,20 @@ void Tunak::IdleStart()
 }
 void Tunak::IdleUpdate(float _Time)
 {
+	if (TunakHP < 0)
+	{
+		ChangeState(TunakState::TunakDead);
+	}
 	float4 TunakPos = GetTransform()->GetLocalPosition();
 	float4 PlayerPos = Player::MainPlayer->GetTransform()->GetLocalPosition();
 	//체력이 반이 되면 실행하는 패턴
-	if (GameEngineInput::IsDown("DeBugKey"))
+	if (HalfCheck ==false && TunakHP<500)
 	{
 		ChangeState(TunakState::HALFPATTON_S);
+		HalfCheck = true;
 
 	}
-	if (abs(PlayerPos.x - TunakPos.x) > 500 && PlayerPos.x>14300.0f)
+	if (abs(PlayerPos.x - TunakPos.x) > 700 && PlayerPos.x>14300.0f)
 	{
 		TimeCheck += _Time;
 		if (TimeCheck > 0.5)
@@ -205,7 +220,7 @@ void Tunak::IdleUpdate(float _Time)
 	}
 	if (Player::MainPlayer->SetMyMap(CurMap) == MyMap::Stage2_Boss)
 	{
-		if (TestTime > 2.0f)
+		if (TestTime > 1.5f)
 		{
 			if (RandomIndex == 0)
 			{
@@ -233,6 +248,8 @@ void Tunak::IdleUpdate(float _Time)
 			{
 				ChangeState(TunakState::TACKLE);
 			}
+			
+
 
 			TestTime = 0.0f;
 		}
@@ -305,6 +322,7 @@ void Tunak::SPIKE_SUpdate(float _Time)
 	//2초동안 메달린후에 찍어버리는 스테이트로 이동
 	if (TestTime_1 > 1.0f)
 	{
+		ShackStart = true;
 		GetTransform()->SetLocalRotation({ 0.0f,0.0f,0.0f });
 		GetTransform()->SetLocalPosition({ 15520.0f,-25.0f,-800.0f });
 		ChangeState(TunakState::SPIKE_U);
@@ -323,6 +341,7 @@ void Tunak::SPIKE_UStart()
 
 void Tunak::SPIKE_UUpdate(float _Time)
 {
+
 	//내려찍기가 끝나면 기모아서 땅찍기 실행
 	if (true == TunakRender->IsAnimationEnd())
 	{
@@ -339,6 +358,7 @@ void Tunak::SPIKE_EStart()
 {
 	BombX = GameEngineRandom::MainRandom.RandomFloat(14700.0f, 14840.0f);
 	TunakRender->ChangeAnimation("TunakOverPower");
+
 	GroundBombPtr_0 = GetLevel()->CreateActor<GroundBomb>();
 	GroundBombPtr_0->GetTransform()->SetWorldPosition({ BombX,-100.0f,-802.0f });
 	GroundBombPtr_1 = GetLevel()->CreateActor<GroundBomb>();
@@ -349,6 +369,11 @@ void Tunak::SPIKE_EStart()
 
 void Tunak::SPIKE_EUpdate(float _Time)
 {
+	size_t count = 10;
+	if (count == TunakRender->GetCurrentFrame())
+	{
+		ShackStart = true;
+	}
 	if (true == TunakRender->IsAnimationEnd())
 	{
 		ChangeState(TunakState::IDLE);
@@ -366,10 +391,16 @@ void Tunak::OverPowerStart()
 	TunakRender->ChangeAnimation("TunakOverPower");
 	GroundBombPtr_0 = GetLevel()->CreateActor<GroundBomb>();
 	GroundBombPtr_0->GetTransform()->SetLocalPosition({ PlayerPos.x,-100.0f,-802.f });
+
 }
 
 void Tunak::OverPowerUpdate(float _Time)
 {
+	size_t count = 10;
+	if (count == TunakRender->GetCurrentFrame())
+	{
+		ShackStart = true;
+	}
 	if (true == TunakRender->IsAnimationEnd())
 	{
 		ChangeState(TunakState::IDLE);
@@ -387,11 +418,18 @@ void Tunak::DoubleAttackStart()
 	float4 PlayerPos = Player::MainPlayer->GetTransform()->GetLocalPosition();
 	TunakPos = GetTransform()->GetLocalPosition();
 	TunakRender->ChangeAnimation("TunakDoubleAttack");
-	TunakDoubleAttackCol->On();
+	TunakDoubleAttackCol->Off();
+	DoubleTime = 0.0f;
 }
 
 void Tunak::DoubleAttackUpdate(float _Time)
 {
+	DoubleTime += _Time;
+	if (DoubleTime > 0.1f)
+	{
+		TunakDoubleAttackCol->On();
+
+	}
 	float4 TunakCurPos = GetTransform()->GetLocalPosition();
 	float4 Pos = TunakRender->GetTransform()->GetLocalPosition();
 		if (IsFilp == false)
@@ -588,7 +626,7 @@ void Tunak::TackleStart()
 {
 	TunakRender->ChangeAnimation("TunakShoulderTakleReady");
 	TackleCheck = false;
-	TunakTackleCol->On();
+	TunakTackleCol->Off();
 }
 
 void Tunak::TackleUpdate(float _Time)
@@ -600,6 +638,7 @@ void Tunak::TackleUpdate(float _Time)
 		if (PattonTime_S > 0.5f)
 		{
 			TunakRender->ChangeAnimation("TunakShoulderTakleStart");
+			TunakTackleCol->On();
 			TackleCheck = true;
 			PattonTime_S = 0.0f;
 		}
@@ -736,14 +775,47 @@ void Tunak::HalfHp_EUpdate(float _Time)
 		}
 		else
 		{
+			ShackStart = true;
 			ChangeState(TunakState::IDLE);
 		}
 	}
 	
 
-	//프레임이 4일때 밑으로 쭈우욱 떨어지고 땅에 닿으면 충격파 생성 후 카메라 쉐이크후 1초뒤 idle
 }
 
 void Tunak::HalfHp_EEnd()
+{
+}
+
+void Tunak::TunakDeadStart()
+{
+	BossHpFront->Off();		
+	BossHpBase->Off();
+	BossHpBar->Off();
+	TunakRender->ChangeAnimation("TunakDead");
+	DeadBGRender->On();
+}
+
+void Tunak::TunakDeadUpdate(float _Time)
+{
+	float4 TunakCurPos = GetTransform()->GetLocalPosition();
+	TunakCurPos.y -= 100.0f;
+	if (DeadBGRender->ColorOptionValue.MulColor.a > 0.0f)
+	{
+		DeadBGRender->ColorOptionValue.MulColor.a -= _Time*0.5f;
+	}
+	else if(IsDead==false)
+	{
+		DeadShack = true;
+		DeadEffectTime += _Time;
+		if (DeadEffectTime > 0.1f)
+		{
+			BossDead::CreateSubBG(GetLevel(), TunakCurPos);
+			DeadEffectTime = 0.0f;
+		}
+	}
+}
+
+void Tunak::TunakDeadEnd()
 {
 }

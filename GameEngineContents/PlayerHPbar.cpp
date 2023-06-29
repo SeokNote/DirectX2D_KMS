@@ -53,7 +53,7 @@ void PlayerHPbar::Update(float _Delta)
 
 	if (Maxhp != CurPhp)
 	{
-		PlayerHpAniRender->GetTransform()->SetLocalPosition({ -342.0f - XPos, 318.0f, 0.0f });
+		PlayerHpAniRender->GetTransform()->SetLocalPosition({ -342.0f - XPos, 318.0f, -100.0f });
 	}
 
 }

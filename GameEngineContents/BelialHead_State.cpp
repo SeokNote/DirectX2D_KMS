@@ -87,15 +87,24 @@ void BelialHead::IdleStart()
 }
 void BelialHead::IdleUpdate(float _Time)
 {
-	BelialCol->GetTransform()->SetLocalScale(BelialColScale);
-	BulletPatton = false;
 	TimeCheck_0 += _Time;
-	if (TimeCheck_0 > 10.0f)
+	//if (BelialHp < 0)
+	//{
+	//	
+	//}
+	//BelialCol->GetTransform()->SetLocalScale(BelialColScale);
+	//BulletPatton = false;
+	//TimeCheck_0 += _Time;
+	//if (TimeCheck_0 > 10.0f)
+	//{
+	//	TimeCheck_0 = 0.0f;
+	//	ChangeState(BossHeadState::MOVE);
+	//}
+	if (TimeCheck_0 > 2.0f)
 	{
-		TimeCheck_0 = 0.0f;
-		ChangeState(BossHeadState::MOVE);
-	}
+		ChangeState(BossHeadState::DEAD);
 
+	}
 }
 void BelialHead::IdleEnd()
 {
@@ -147,7 +156,7 @@ void BelialHead::SwordEnd()
 }
 void BelialHead::DeadStart()
 {
-
+	BelialHeadRender->ChangeAnimation("BelialBeforDead");
 }
 void BelialHead::DeadUpdate(float _Time)
 {

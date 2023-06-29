@@ -110,6 +110,7 @@ void PlayLevel::Start()
 	BelialSwordDir.Move("Animation");
 	BelialSwordDir.Move("MainLevelAnimation");
 	BelialSwordDir.Move("Boss");
+	GameEngineSprite::LoadFolder(BelialSwordDir.GetPlusFileName("BOSSDEAD").GetFullPath());
 	BelialSwordDir.Move("Belial");
 	BelialSwordDir.Move("BossSword");
 
@@ -126,7 +127,7 @@ void PlayLevel::Start()
 	BelialDir.Move("MainLevelAnimation");
 	BelialDir.Move("Boss");
 	BelialDir.Move("Belial");
-
+	GameEngineSprite::LoadFolder(BelialDir.GetPlusFileName("BelialBeforDead").GetFullPath());
 	GameEngineSprite::LoadFolder(BelialDir.GetPlusFileName("HeadMove").GetFullPath());
 	GameEngineSprite::LoadFolder(BelialDir.GetPlusFileName("BelialDead").GetFullPath());
 	GameEngineSprite::LoadFolder(BelialDir.GetPlusFileName("HandIdle").GetFullPath());
@@ -158,7 +159,7 @@ void PlayLevel::Start()
 	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("TunakDust").GetFullPath());
 	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("TunakDust_1").GetFullPath());
 	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("WaveEffect").GetFullPath());
-
+	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("TunakDead").GetFullPath());
 	TunakDir.Move("Spike");
 	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("TunakSpike").GetFullPath());
 	GameEngineSprite::LoadFolder(TunakDir.GetPlusFileName("TunakSpikeReady").GetFullPath());
@@ -339,14 +340,14 @@ void PlayLevel::Start()
 	static std::shared_ptr<Player> NewPlayer = CreateActor<Player>(1);
 	//NewPlayer->GetTransform()->SetLocalPosition({ 17790.0f,-67.0f,-801.0f });
 
-	//NewPlayer->GetTransform()->SetLocalPosition({ 14304.0f,-194.0f,-801.0f });
+//	NewPlayer->GetTransform()->SetLocalPosition({ 14304.0f,-194.0f,-801.0f });
 	//NewPlayer->GetTransform()->SetLocalPosition({ -2390.0f,-500.0f,-801.0f });
 	NewPlayer->GetTransform()->SetLocalPosition({ 11438.0f,-480.0f,-801.0f });
 	// 
 	static std::shared_ptr<BelialHead> BelialHeadPtr = CreateActor<BelialHead>(1);
 	BelialHeadPtr->GetTransform()->SetLocalPosition({ 12050.0f,-150.0f,-760.0f });
-	std::shared_ptr<Tunak> TunakPtr = CreateActor<Tunak>(1);
-	TunakPtr->GetTransform()->SetLocalPosition({ 15074.0f,-25.0f,-800.0f });
+	//std::shared_ptr<Tunak> TunakPtr = CreateActor<Tunak>(1);
+	//TunakPtr->GetTransform()->SetLocalPosition({ 15074.0f,-25.0f,-800.0f });
 
 	
 	
