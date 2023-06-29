@@ -7,7 +7,8 @@
 #include "Player.h"
 #include "BelialBullet.h"
 #include "BelialBulletBase.h"
-
+#include "BossDeadEffect.h"
+#include "BelialHeadPice.h"
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEnginePlatform/GameEngineWindow.h>
 #include <GameEngineCore/GameEngineLevel.h>
@@ -60,25 +61,7 @@ void BelialHead::Start()
 	BelialBGRender->CreateAnimation({ .AnimationName = "BelialMainBG", .SpriteName = "MainBG", .Loop = true , .ScaleToTexture = true });
 	BelialBGRender->ChangeAnimation("BelialMainBG");
 	ChangeState(BossHeadState::IDLE);
-	//죽을시 머리 부품들
-	BelialHeadPice_0 = CreateComponent<GameEngineSpriteRenderer>(1);
 
-	BelialHeadPice_0->SetTexture("BelialHeadOne.png");
-	BelialHeadPice_0->GetTransform()->SetLocalPosition({0.0f,-80.0f,0.0f});
-	BelialHeadPice_0->GetTransform()->SetLocalScale(HeadScale);
-	BelialHeadPice_0->Off();
-
-	BelialHeadPice_2 = CreateComponent<GameEngineSpriteRenderer>(1);
-	BelialHeadPice_2->GetTransform()->SetLocalPosition({ 0.0f,40.0f,0.0f });
-	BelialHeadPice_2->SetTexture("BelialHeadThree.png");
-	BelialHeadPice_2->GetTransform()->SetLocalScale(HeadScale);
-	BelialHeadPice_2->Off();
-
-	BelialHeadPice_1 = CreateComponent<GameEngineSpriteRenderer>(1);
-	BelialHeadPice_1->GetTransform()->SetLocalPosition({ 0.0f,10.0f,0.0f });
-	BelialHeadPice_1->SetTexture("BelialHeadTwo.png");
-	BelialHeadPice_1->GetTransform()->SetLocalScale(HeadScale);
-	BelialHeadPice_1->Off();
 	//HPBar
 
 	BossHpFront = CreateComponent<GameEngineUIRenderer>(1);
@@ -103,26 +86,93 @@ void BelialHead::Start()
 	BelialCol->SetColType(ColType::AABBBOX2D);
 	BelialBulletBasePtr = GetLevel()->CreateActor<BelialBulletBase>();
 	BelialBulletBasePtr->GetTransform()->SetWorldPosition({ 12080.0f,-250.0f,-800.0f });
-	GetLevel()->CreateActor<BelialHand_L>();
-	GetLevel()->CreateActor<BelialHand_R>();
+
+	DeadBGRender = CreateComponent<GameEngineUIRenderer>(1);
+	DeadBGRender->SetTexture("BossDeadBG.png");
+	DeadBGRender->GetTransform()->SetWorldPosition(float4::Null);
+	DeadBGRender->GetTransform()->SetLocalScale({ 1280.0f,720.0f,0.0f });
+	DeadBGRender->Off();
+
+	LeftPtr =GetLevel()->CreateActor<BelialHand_L>();
+	RightPtr = GetLevel()->CreateActor<BelialHand_R>();
 
 }
 
 void BelialHead::Update(float _DeltaTime)
 {
 	SubBGTime += _DeltaTime;
-	if (SubBGTime > 0.4f)
+	if (IsDead==false && SubBGTime > 0.4f)
 	{
 		BelialHeadSubBG::CreateSubBG(GetLevel(), MainBGPos);
 		SubBGTime = 0.0f;
 	}
 	UpdateState(_DeltaTime);
 	BelialCollision(_DeltaTime);
-	BelialSwordPlay(_DeltaTime);
+	DeathEvent(_DeltaTime);
 	//소드 재생성
 
 }
 bool HitCheck = false;
+void BelialHead::DeathEvent(float _DeltaTime)
+{
+	float4 CurPos = GetTransform()->GetWorldPosition();
+	if (DeathShack == true)
+	{
+		DeadTime += _DeltaTime;
+		DeadShackTime += _DeltaTime;
+		BelialCameraShack(30);
+		if (DeadShackTime > 0.05f)
+		{
+			x = 0.f;
+			DeadShackTime = 0.0f;
+		}
+		if (DeadTime > 5.0f)
+		{
+			TimeCheck_D += _DeltaTime;
+			BelialHeadRender->Off();
+			LeftPtr->Death();
+			RightPtr->Death();
+			BelialBGRender->Off();
+			IsDead = true;
+			IsCreateHead = true;
+			if (TimeCheck_D > 0.1f)
+			{
+				CurPos.x += 50.0f;
+				CurPos.y -= 100.0f;
+				CurPos.z = -850.0f;
+				BossDeadEffectPtr = GetLevel()->CreateActor<BossDeadEffect>();
+				BossDeadEffectPtr->GetTransform()->SetLocalPosition(CurPos);
+				BossDeadEffectPtr->SetRaioPos(RatioValue);
+				RatioValue += 20.0f;
+				TimeCheck_D = 0.0f;
+			}
+		}
+		if (DeadTime > 8.0f)
+		{
+			DeadTime = 0.0f;
+			Death();
+		}
+	}
+	if (CheckValue ==false && IsCreateHead == true)
+	{
+		CurPos.z = -100;
+		BelialHeadPicePtr = GetLevel()->CreateActor<BelialHeadPice>();
+		BelialHeadPicePtr->GetTransform()->SetLocalPosition(CurPos);
+		CheckValue = true;
+	}
+
+}
+void BelialHead::BelialCameraShack(int _Value)
+{
+	float4 PlayerPos = Player::MainPlayer->GetTransform()->GetLocalPosition();
+	float4 CameraPos = GetLevel()->GetMainCamera()->GetTransform()->GetWorldPosition();
+
+	x += 0.5;
+	y = sin(x * 10.0f) * powf(0.5f, x);
+	float a = x;
+	float b = y;
+	GetLevel()->GetMainCamera()->GetTransform()->SetWorldPosition({ CameraPos.x + (y * 10),CameraPos.y + abs(y * _Value),CameraPos.z });
+}
 void BelialHead::BelialCollision(float _DeltaTime)
 {
 	if (BelialHp < 0)

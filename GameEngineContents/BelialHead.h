@@ -37,10 +37,16 @@ public:
 	{
 		BelialHp -= _Damage;
 	}
+	bool GetHandStop()
+	{
+		return HandleStop;
+	}
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
 private:
+	void DeathEvent(float _DeltaTime);
+	void BelialCameraShack(int _Value);
 	void BelialCollision(float _DeltaTime);
 	void BelialSwordPlay(float _Time);
 	float4 MainBGPos =  { 12080.0f,-250.0f,-740.0f };
@@ -49,20 +55,30 @@ private:
 	float4 HPBasePos = { 10.0f,-320.0f,0.0f };
 	float4 HPPos = { 48.0f,-320.0f,0.0f };
 	float4 HeadScale = { 280.0f,512.0f,0.0f };
+	//카메라 쉐이크
+	float ShakeTime = 0.0f;
+	float y = 0.0f;
+	float x = 0.0f;
+	bool ShackStart = false;
+	bool DeadShack = false;
+	float DeadShackTime = 0.0f;
+	float ShackEnd = 0.0f;
+	std::shared_ptr<class BossDeadEffect> BossDeadEffectPtr;
 	std::shared_ptr<class GameEngineSpriteRenderer> BelialHeadRender;
 	std::shared_ptr<class GameEngineSpriteRenderer> BelialBGRender;
 	std::shared_ptr<class GameEngineSpriteRenderer> BelialBulletComponet;
-	std::shared_ptr<class GameEngineSpriteRenderer> BelialHeadPice_0;
-	std::shared_ptr<class GameEngineSpriteRenderer> BelialHeadPice_1;
-	std::shared_ptr<class GameEngineSpriteRenderer> BelialHeadPice_2;
-
 	std::shared_ptr<class GameEngineCollision> BelialCol;
+	std::shared_ptr<class BelialHeadPice> BelialHeadPicePtr = nullptr;
 	std::shared_ptr<class BelialBullet> BelialBulletRender = nullptr;
 	std::shared_ptr<class BelialBulletBase> BelialBulletBasePtr = nullptr;
 
 	std::shared_ptr<class GameEngineUIRenderer> BossHpBase;
 	std::shared_ptr<class GameEngineUIRenderer > BossHpFront;
 	std::shared_ptr<class GameEngineUIRenderer> BossHpBar;
+
+	std::shared_ptr<class BelialHand_L> LeftPtr;
+	std::shared_ptr<class BelialHand_R> RightPtr;
+
 	BossHeadState StateValue = BossHeadState::IDLE;
 
 	std::shared_ptr<class BossSword> BossSwordPtr_0 = nullptr;
@@ -106,13 +122,24 @@ private:
 	std::shared_ptr<class BossSword> BossSwordPtr_3 = nullptr;
 	std::shared_ptr<class BossSword> BossSwordPtr_4 = nullptr;
 	std::shared_ptr<class BossSword> BossSwordPtr_5 = nullptr;
+	std::shared_ptr<class GameEngineUIRenderer> DeadBGRender;
 
 	float YInvers= -100.f;
 
-
+	bool HandStop = false;
 	//칼 꽂히는 범위
 	float StartX = 11800.0f;
-
+	//벨리알 죽음
+	bool IsDeath = false;
+	bool HandleStop = false;
+	bool IsDead = false;
+	float DeadEffectTime = 0.0f;
+	bool DeathShack = false;
+	float DeadTime = 0.0f;
+	float TimeCheck_D = 0.0f;
+	float RatioValue = 0.0f;
+	bool IsCreateHead = false;
+	bool CheckValue = false;
 	//테스트용
 	float TestTime = 0.0f;
 

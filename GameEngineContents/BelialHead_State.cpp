@@ -2,6 +2,7 @@
 #include "BelialHead.h"
 #include "BelialBullet.h"
 #include "Player.h"
+#include "BossDead.h"
 #include <GameEngineCore/GameEngineTexture.h>
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEnginePlatform/GameEngineWindow.h>
@@ -88,23 +89,23 @@ void BelialHead::IdleStart()
 void BelialHead::IdleUpdate(float _Time)
 {
 	TimeCheck_0 += _Time;
-	//if (BelialHp < 0)
-	//{
-	//	
-	//}
-	//BelialCol->GetTransform()->SetLocalScale(BelialColScale);
-	//BulletPatton = false;
-	//TimeCheck_0 += _Time;
-	//if (TimeCheck_0 > 10.0f)
-	//{
-	//	TimeCheck_0 = 0.0f;
-	//	ChangeState(BossHeadState::MOVE);
-	//}
-	if (TimeCheck_0 > 2.0f)
+	if (BelialHp < 0)
 	{
 		ChangeState(BossHeadState::DEAD);
-
 	}
+	BelialCol->GetTransform()->SetLocalScale(BelialColScale);
+	BulletPatton = false;
+	TimeCheck_0 += _Time;
+	if (TimeCheck_0 > 10.0f)
+	{
+		TimeCheck_0 = 0.0f;
+		ChangeState(BossHeadState::MOVE);
+	}
+	//if (TimeCheck_0 > 2.0f)
+	//{
+	//
+	//
+	//}
 }
 void BelialHead::IdleEnd()
 {
@@ -138,12 +139,14 @@ void BelialHead::MoveEnd()
 }
 void BelialHead::SwordStart()
 {
+	BelialHeadRender->ChangeAnimation("HeadIdle");
 	SwordIndex = 0;
 	StartX = 11800.0f;
 	YInvers = -100.0f;
 }
 void BelialHead::SwordUpdate(float _Time)
 {
+	BelialSwordPlay(_Time);
 	TimeCheck_2 += _Time;
 	if (TimeCheck_2 > 5.0f)
 	{
@@ -156,11 +159,33 @@ void BelialHead::SwordEnd()
 }
 void BelialHead::DeadStart()
 {
+	BossHpFront->Off();
+	BossHpBase->Off();
+	BossHpBar->Off();
 	BelialHeadRender->ChangeAnimation("BelialBeforDead");
+	DeadBGRender->On();
+	IsDeath = true;
+	HandleStop = true;
 }
 void BelialHead::DeadUpdate(float _Time)
 {
 
+	float4 CurPod = BelialHeadRender->GetTransform()->GetWorldPosition();
+	if (DeadBGRender->ColorOptionValue.MulColor.a > 0.0f)
+	{
+		DeadBGRender->ColorOptionValue.MulColor.a -= _Time * 0.5f;
+	}
+
+	else if (IsDead == false)
+	{
+		DeathShack = true;
+		DeadEffectTime += _Time;
+		if (DeadEffectTime > 0.1f)
+		{
+			BossDead::CreateSubBG(GetLevel(), CurPod);
+			DeadEffectTime = 0.0f;
+		}
+	}
 }
 void BelialHead::DeadEnd()
 {

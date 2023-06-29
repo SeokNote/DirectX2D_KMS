@@ -6,6 +6,7 @@ enum class LeftHandState
 	IDLE,
 	MOVE,
 	LASOR,
+	DEAD,
 };
 class BelialHand_L : public GameEngineActor
 {
@@ -51,6 +52,9 @@ private:
 	void LasorUpdate(float _Time);
 	void LasorEnd();
 
+	void DeathStart();
+	void DeathUpdate(float _Time);
+	void DeathEnd();
 	//패턴시간체크
 	float M_StartTime = 0.0f;
 	

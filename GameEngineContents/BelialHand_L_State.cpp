@@ -34,6 +34,9 @@ void BelialHand_L::ChangeState(LeftHandState _State)
 	case LeftHandState::LASOR:
 		LasorStart();
 		break;
+	case LeftHandState::DEAD:
+		DeathStart();
+		break;
 	default:
 		break;
 	}
@@ -48,6 +51,9 @@ void BelialHand_L::ChangeState(LeftHandState _State)
 		break;
 	case LeftHandState::LASOR:
 		LasorEnd();
+		break;
+	case LeftHandState::DEAD:
+		DeathEnd();
 		break;
 	default:
 		break;
@@ -67,6 +73,9 @@ void BelialHand_L::UpdateState(float _Time)
 	case LeftHandState::LASOR:
 		LasorUpdate(_Time);
 		break;
+	case LeftHandState::DEAD:
+		DeathUpdate(_Time);
+		break;
 	default:
 		break;
 	}
@@ -79,6 +88,10 @@ void BelialHand_L::IdleStart()
 }
 void BelialHand_L::IdleUpdate(float _Time)
 {
+	if (true == BelialHead::MainBelialHead->GetHandStop())
+	{
+		ChangeState(LeftHandState::DEAD);
+	}
 	if (false == BelialHead::MainBelialHead->IsBulletPatton())
 	{
 		//일단 확인용으로 조건은 5초로 해놓는다.
@@ -148,6 +161,24 @@ void BelialHand_L::LasorUpdate(float _Time)
 		LasorPtr->Death();
 	}
 }
+
 void BelialHand_L::LasorEnd()
+{
+}
+void BelialHand_L::DeathStart()
+{
+	LeftHandRender->ChangeAnimation("LeftHandIdle");
+
+
+}
+void BelialHand_L::DeathUpdate(float _Time)
+{
+	if (LeftHandRender->GetCurrentFrame() == 3)
+	{
+		LeftHandRender->SetAnimPauseOn();
+	}
+}
+
+void BelialHand_L::DeathEnd()
 {
 }

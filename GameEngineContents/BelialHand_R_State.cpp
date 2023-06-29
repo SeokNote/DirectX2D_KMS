@@ -2,6 +2,7 @@
 #include "BelialHand_R.h"
 #include "BelialHand_L.h"
 #include "BelialBullet.h"
+#include "BelialHead.h"
 #include "Player.h"
 #include "BelialLasor_R.h"
 #include <GameEngineCore/GameEngineTexture.h>
@@ -34,6 +35,9 @@ void BelialHand_R::ChangeState(RightHandState _State)
 	case RightHandState::LASOR:
 		LasorStart();
 		break;
+	case RightHandState::DEAD:
+		DeathStart();
+		break;
 	default:
 		break;
 	}
@@ -48,6 +52,9 @@ void BelialHand_R::ChangeState(RightHandState _State)
 		break;
 	case RightHandState::LASOR:
 		LasorEnd();
+		break;
+	case RightHandState::DEAD:
+		DeathEnd();
 		break;
 	default:
 		break;
@@ -67,6 +74,9 @@ void BelialHand_R::UpdateState(float _Time)
 	case RightHandState::LASOR:
 		LasorUpdate(_Time);
 		break;
+	case RightHandState::DEAD:
+		DeathUpdate(_Time);
+		break;
 	default:
 		break;
 	}
@@ -79,6 +89,10 @@ void BelialHand_R::IdleStart()
 }
 void BelialHand_R::IdleUpdate(float _Time)
 {
+	if (true == BelialHead::MainBelialHead->GetHandStop())
+	{
+		ChangeState(RightHandState::DEAD);
+	}
 
 	//왼쪽 패턴이 끝나면 실행.
 	if (true == BelialHand_L::MainBelialHand_L->GetPattonCheck())
@@ -141,5 +155,23 @@ void BelialHand_R::LasorUpdate(float _Time)
 	}
 }
 void BelialHand_R::LasorEnd()
+{
+}
+
+void BelialHand_R::DeathStart()
+{
+	RightHandRender->ChangeAnimation("LeftHandIdle");
+	
+}
+
+void BelialHand_R::DeathUpdate(float _Time)
+{
+	if (RightHandRender->GetCurrentFrame() == 3)
+	{
+		RightHandRender->SetAnimPauseOn();
+	}
+}
+
+void BelialHand_R::DeathEnd()
 {
 }
