@@ -135,7 +135,7 @@ void BelialHead::DeathEvent(float _DeltaTime)
 			BelialBGRender->Off();
 			IsDead = true;
 			IsCreateHead = true;
-			if (TimeCheck_D > 0.1f)
+			if (TimeCheck_D > 0.2f)
 			{
 				CurPos.x += 50.0f;
 				CurPos.y -= 100.0f;
@@ -143,11 +143,11 @@ void BelialHead::DeathEvent(float _DeltaTime)
 				BossDeadEffectPtr = GetLevel()->CreateActor<BossDeadEffect>();
 				BossDeadEffectPtr->GetTransform()->SetLocalPosition(CurPos);
 				BossDeadEffectPtr->SetRaioPos(RatioValue);
-				RatioValue += 20.0f;
+				RatioValue += 50.0f;
 				TimeCheck_D = 0.0f;
 			}
 		}
-		if (DeadTime > 8.0f)
+		if (DeadTime > 7.0f)
 		{
 			DeadTime = 0.0f;
 			Death();

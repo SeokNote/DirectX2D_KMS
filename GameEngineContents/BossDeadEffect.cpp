@@ -22,52 +22,52 @@ void BossDeadEffect::Start()
 {
 	DeadEffecr_0 = CreateComponent<GameEngineSpriteRenderer>(1);
 	DeadEffecr_0->SetTexture("Die10.png");
-	DeadEffecr_0->CreateAnimation({ .AnimationName = "BossDeadEffect", .SpriteName = "BossDead",.FrameInter = 0.03f,.Loop = false , .ScaleToTexture = true });
+	DeadEffecr_0->CreateAnimation({ .AnimationName = "BossDeadEffect", .SpriteName = "BossDead",.FrameInter = 0.07f,.Loop = false , .ScaleToTexture = true });
 	DeadEffecr_0->ChangeAnimation("BossDeadEffect");
 
 	DeadEffecr_1 = CreateComponent<GameEngineSpriteRenderer>(1);
 	DeadEffecr_1->SetTexture("Die10.png");
-	DeadEffecr_1->CreateAnimation({ .AnimationName = "BossDeadEffect_1", .SpriteName = "BossDead",.FrameInter = 0.03f,.Loop = false , .ScaleToTexture = true });
+	DeadEffecr_1->CreateAnimation({ .AnimationName = "BossDeadEffect_1", .SpriteName = "BossDead",.FrameInter = 0.07f,.Loop = false , .ScaleToTexture = true });
 	DeadEffecr_1->ChangeAnimation("BossDeadEffect_1");
 
 	DeadEffecr_2 = CreateComponent<GameEngineSpriteRenderer>(1);
 	DeadEffecr_2->SetTexture("Die10.png");
-	DeadEffecr_2->CreateAnimation({ .AnimationName = "BossDeadEffect_2", .SpriteName = "BossDead",.FrameInter = 0.03f,.Loop = false , .ScaleToTexture = true });
+	DeadEffecr_2->CreateAnimation({ .AnimationName = "BossDeadEffect_2", .SpriteName = "BossDead",.FrameInter = 0.07f,.Loop = false , .ScaleToTexture = true });
 	DeadEffecr_2->ChangeAnimation("BossDeadEffect_2");
 
 	DeadEffecr_3 = CreateComponent<GameEngineSpriteRenderer>(1);
 	DeadEffecr_3->SetTexture("Die10.png");
-	DeadEffecr_3->CreateAnimation({ .AnimationName = "BossDeadEffect_3", .SpriteName = "BossDead",.FrameInter = 0.03f,.Loop = false , .ScaleToTexture = true });
+	DeadEffecr_3->CreateAnimation({ .AnimationName = "BossDeadEffect_3", .SpriteName = "BossDead",.FrameInter = 0.07f,.Loop = false , .ScaleToTexture = true });
 	DeadEffecr_3->ChangeAnimation("BossDeadEffect_3");
 
 	DeadEffecr_4 = CreateComponent<GameEngineSpriteRenderer>(1);
 	DeadEffecr_4->SetTexture("Die10.png");
-	DeadEffecr_4->CreateAnimation({ .AnimationName = "BossDeadEffect_4", .SpriteName = "BossDead",.FrameInter = 0.03f,.Loop = false , .ScaleToTexture = true });
+	DeadEffecr_4->CreateAnimation({ .AnimationName = "BossDeadEffect_4", .SpriteName = "BossDead",.FrameInter = 0.07f,.Loop = false , .ScaleToTexture = true });
 	DeadEffecr_4->ChangeAnimation("BossDeadEffect_4");
 			   
 	DeadEffecr_5 = CreateComponent<GameEngineSpriteRenderer>(1);
 	DeadEffecr_5->SetTexture("Die10.png");
-	DeadEffecr_5->CreateAnimation({ .AnimationName = "BossDeadEffect_5", .SpriteName = "BossDead",.FrameInter = 0.03f,.Loop = false , .ScaleToTexture = true });
+	DeadEffecr_5->CreateAnimation({ .AnimationName = "BossDeadEffect_5", .SpriteName = "BossDead",.FrameInter = 0.07f,.Loop = false , .ScaleToTexture = true });
 	DeadEffecr_5->ChangeAnimation("BossDeadEffect_5");
 
 	DeadEffecr_6 = CreateComponent<GameEngineSpriteRenderer>(1);
 	DeadEffecr_6->SetTexture("Die10.png");
-	DeadEffecr_6->CreateAnimation({ .AnimationName = "BossDeadEffect_6", .SpriteName = "BossDead",.FrameInter = 0.03f,.Loop = false , .ScaleToTexture = true });
+	DeadEffecr_6->CreateAnimation({ .AnimationName = "BossDeadEffect_6", .SpriteName = "BossDead",.FrameInter = 0.07f,.Loop = false , .ScaleToTexture = true });
 	DeadEffecr_6->ChangeAnimation("BossDeadEffect_6");
 
 	DeadEffecr_7 = CreateComponent<GameEngineSpriteRenderer>(1);
 	DeadEffecr_7->SetTexture("Die10.png");
-	DeadEffecr_7->CreateAnimation({ .AnimationName = "BossDeadEffect_7", .SpriteName = "BossDead",.FrameInter = 0.03f,.Loop = false , .ScaleToTexture = true });
+	DeadEffecr_7->CreateAnimation({ .AnimationName = "BossDeadEffect_7", .SpriteName = "BossDead",.FrameInter = 0.07f,.Loop = false , .ScaleToTexture = true });
 	DeadEffecr_7->ChangeAnimation("BossDeadEffect_7");
 
 	DeadEffecr_8 = CreateComponent<GameEngineSpriteRenderer>(1);
 	DeadEffecr_8->SetTexture("Die10.png");
-	DeadEffecr_8->CreateAnimation({ .AnimationName = "BossDeadEffect_8", .SpriteName = "BossDead",.FrameInter = 0.03f,.Loop = false , .ScaleToTexture = true });
+	DeadEffecr_8->CreateAnimation({ .AnimationName = "BossDeadEffect_8", .SpriteName = "BossDead",.FrameInter = 0.07f,.Loop = false , .ScaleToTexture = true });
 	DeadEffecr_8->ChangeAnimation("BossDeadEffect_8");
 
 	DeadEffecr_9 = CreateComponent<GameEngineSpriteRenderer>(1);
 	DeadEffecr_9->SetTexture("Die10.png");
-	DeadEffecr_9->CreateAnimation({ .AnimationName = "BossDeadEffect_9", .SpriteName = "BossDead",.FrameInter = 0.03f,.Loop = false , .ScaleToTexture = true });
+	DeadEffecr_9->CreateAnimation({ .AnimationName = "BossDeadEffect_9", .SpriteName = "BossDead",.FrameInter = 0.07f,.Loop = false , .ScaleToTexture = true });
 	DeadEffecr_9->ChangeAnimation("BossDeadEffect_9");
 
 

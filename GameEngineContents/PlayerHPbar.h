@@ -27,9 +27,9 @@ private:
 	float4 PlayerHpBarUIScale = { 296.0f,64.0f,0.0f };
 	float4 PlayerHpScale = { 196.0f,40.0f,0.0f };
 
-	float4 PlayerHpBarPos = { -482.0f, 318.0f,0.0f };
-	float4 PlayerHpPos = { -444.0f, 318.0f ,0.0f };
-	float4 PlayerHpAniPos = { -352.0f, 318.0f ,0.0f};
+	float4 PlayerHpBarPos = { -482.0f, 318.0f,-100.0f };
+	float4 PlayerHpPos = { -444.0f, 318.0f ,-100.0f };
+	float4 PlayerHpAniPos = { -352.0f, 318.0f ,-100.0f};
 
 	float Xpos = 196.0f;
 };

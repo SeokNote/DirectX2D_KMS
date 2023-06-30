@@ -340,15 +340,15 @@ void PlayLevel::Start()
 	static std::shared_ptr<Player> NewPlayer = CreateActor<Player>(1);
 	//NewPlayer->GetTransform()->SetLocalPosition({ 17790.0f,-67.0f,-801.0f });
 
-//	NewPlayer->GetTransform()->SetLocalPosition({ 14304.0f,-194.0f,-801.0f });
+	NewPlayer->GetTransform()->SetLocalPosition({ 14504.0f,-194.0f,-801.0f });
 	//NewPlayer->GetTransform()->SetLocalPosition({ -2390.0f,-500.0f,-801.0f });
-	NewPlayer->GetTransform()->SetLocalPosition({ 11438.0f,-480.0f,-801.0f });
+	//NewPlayer->GetTransform()->SetLocalPosition({ 11438.0f,-480.0f,-801.0f });
 	// 
-	static std::shared_ptr<BelialHead> BelialHeadPtr = CreateActor<BelialHead>(1);
-	BelialHeadPtr->GetTransform()->SetLocalPosition({ 12050.0f,-150.0f,-760.0f });
-	//std::shared_ptr<Tunak> TunakPtr = CreateActor<Tunak>(1);
-	//TunakPtr->GetTransform()->SetLocalPosition({ 15074.0f,-25.0f,-800.0f });
-
+	//static std::shared_ptr<BelialHead> BelialHeadPtr = CreateActor<BelialHead>(1);
+	//BelialHeadPtr->GetTransform()->SetLocalPosition({ 12050.0f,-150.0f,-760.0f });
+	static std::shared_ptr<Tunak> TunakPtr = CreateActor<Tunak>(1);
+	TunakPtr->GetTransform()->SetLocalPosition({ 15074.0f,-25.0f,-800.0f });
+	
 	
 	
 	std::shared_ptr<GreatWeapon> GreatWeaponPtr = CreateActor<GreatWeapon>(1);
@@ -425,7 +425,7 @@ void PlayLevel::CameraColMove(float _X,float _X1, float _Y,float _Y1)
 	float RightOut = PlayerPos.x + WindowSizeHalf.x;
 	float UpOut = PlayerPos.y + WindowSizeHalf.y;
 	float DownOut = PlayerPos.y - WindowSizeHalf.y;
-
+	
 	if (LeftOut < LeftOutCam)
 	{
 		GetMainCamera()->GetTransform()->SetWorldPosition({ LeftOutCam + WindowSizeHalf.x , GetMainCamera()->GetTransform()->GetWorldPosition().y,PlayerWorldPos.z });
@@ -471,7 +471,10 @@ void PlayLevel::CameraMoveSet()
 		CameraColMove(12888.0f, 14168.0f, 360.0f, -360.0f);
 	}
 	if (CurMap == MyMap::Stage2_Boss) {
-		CameraColMove(14268.0f, 15868.0f, 450.0f, -450.0f);
+		if (false == Tunak::MainTunak->GetCameraCtl())
+		{
+			CameraColMove(14268.0f, 15868.0f, 450.0f, -450.0f);
+		}
 	}
 	if (CurMap == MyMap::Stage3_1) {
 		CameraColMove(15968.0f, 17568.0f, 360.0f, -360.0f);

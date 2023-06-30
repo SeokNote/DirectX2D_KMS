@@ -712,9 +712,6 @@
     <Filter Include="Object\Boss\Belial\LeftHand">
       <UniqueIdentifier>{0b08d2e9-062d-4476-915a-46de66f6bf37}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Object\Boss\Belial\Lasor">
-      <UniqueIdentifier>{3c32541e-eb93-4f7c-9b5e-003a5245704e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Object\Boss\Belial\BossSword">
       <UniqueIdentifier>{cc67f630-d1c7-4ecb-b6e6-fe9ecbbc526e}</UniqueIdentifier>
     </Filter>
@@ -777,6 +774,9 @@
     </Filter>
     <Filter Include="Object\Boss\Belial\Head\BelialHeadPice">
       <UniqueIdentifier>{10be4dc5-9275-4f86-9c9b-fc3d45ec06c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Boss\Belial\Lasor">
+      <UniqueIdentifier>{3c32541e-eb93-4f7c-9b5e-003a5245704e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

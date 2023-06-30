@@ -18,11 +18,14 @@ enum class TunakState
 	HALFPATTON_S,
 	HALFPATTON_E,
 	TunakDead,
+	EVENT,
+	EVENT2,
 };
 // 설명 :
 class Tunak : public GameEngineActor
 {
 public:
+	static Tunak* MainTunak;
 	// constrcuter destructer
 	Tunak();
 	~Tunak();
@@ -32,7 +35,10 @@ public:
 	Tunak(Tunak&& _Other) noexcept = delete;
 	Tunak& operator=(const Tunak& _Other) = delete;
 	Tunak& operator=(Tunak&& _Other) noexcept = delete;
-
+	bool GetCameraCtl()
+	{
+		return CameraCtrl;
+	}
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
@@ -51,6 +57,7 @@ private:
 	std::shared_ptr<class GameEngineCollision> TunakCol;
 	std::shared_ptr<class GameEngineCollision> TunakDoubleAttackCol;
 	std::shared_ptr<class GameEngineCollision> TunakTackleCol;
+	std::shared_ptr<class GameEngineUIRenderer> BossLayout;
 
 	std::shared_ptr<class GroundBomb> GroundBombPtr_0;
 	std::shared_ptr<class GroundBomb> GroundBombPtr_1;
@@ -119,15 +126,27 @@ private:
 	void TunakDeadStart();
 	void TunakDeadUpdate(float _Time);
 	void TunakDeadEnd();
+
+	void EventStart();
+	void EventUpdate(float _Time);
+	void EventEnd();
+
+	void Event2Start();
+	void Event2Update(float _Time);
+	void Event2End();
+
 	//시간값
 	float TestTime = 0.0f;
 	float TestTime_0 = 0.0f;
 	float TestTime_1 = 0.0f;
 	float TestTime_2 = 0.0f;
-	//카메라 쉐이크
+	float TestTime_3 = 0.0f;
+	//카메라
+	bool CameraCtrl = false;
 	float ShakeTime = 0.0f;
 	float y = 0.0f;
 	float x = 0.0f;
+	float4 ZoomPos = float4::Zero;
 	bool ShackStart = false;
 	bool DeadShack = false;
 	float DeadShackTime = 0.0f;
@@ -140,6 +159,8 @@ private:
 	float4 HPBarScale = { 400.0f,40.0f,0.0f };
 	float4 HPBasePos = { 10.0f,-320.0f,-100.0f };
 	float4 HPPos = { 48.0f,-320.0f,-100.0f };
+	float4 LayoutPos = { 0.0f,0.0f,-101.0f };
+
 	//투낙 spike 패턴
 	float4 CurPos = float4::Zero;
 	float4 SpikeEndPos = { 15580.0f,180.f,-800.0f };

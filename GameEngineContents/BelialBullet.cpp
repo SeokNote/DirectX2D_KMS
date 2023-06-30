@@ -85,6 +85,7 @@ void BelialBullet::Update(float _DeltaTime)
 
 void BelialBullet::SetBullet(float _DeltaTime)
 {
+
 	BelialBulletRender_L->GetTransform()->AddWorldPosition({ LDir.x *BulletSpeed* _DeltaTime,LDir.y * BulletSpeed * _DeltaTime,0.0f });
 	BelialBulletRender_R->GetTransform()->AddWorldPosition({ RDir.x *BulletSpeed * _DeltaTime,RDir.y *  BulletSpeed * _DeltaTime,0.0f });
 	BelialBulletRender_U->GetTransform()->AddWorldPosition({ UDir.x *BulletSpeed * _DeltaTime,UDir.y * BulletSpeed * _DeltaTime,0.0f });
@@ -98,16 +99,18 @@ void BelialBullet::SetBullet(float _DeltaTime)
 	if (BelialBulletCol_0->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		Player::MainPlayer->GetData().SubPlayerHP(BulletDamage);
+		int ads = Player::MainPlayer->GetData().GetPlayerHP();
+
 	}
-	if (BelialBulletCol_0->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	if (BelialBulletCol_1->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		Player::MainPlayer->GetData().SubPlayerHP(BulletDamage);
 	}
-	if (BelialBulletCol_0->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	if (BelialBulletCol_2->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		Player::MainPlayer->GetData().SubPlayerHP(BulletDamage);
 	}
-	if (BelialBulletCol_0->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	if (BelialBulletCol_3->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		Player::MainPlayer->GetData().SubPlayerHP(BulletDamage);
 	}

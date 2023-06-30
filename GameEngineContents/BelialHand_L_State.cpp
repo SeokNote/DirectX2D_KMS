@@ -119,6 +119,10 @@ void BelialHand_L::MoveStart()
 }
 void BelialHand_L::MoveUpdate(float _Time)
 {
+	if (true == BelialHead::MainBelialHead->GetHandStop())
+	{
+		ChangeState(LeftHandState::DEAD);
+	}
 	CurPos = LeftHandRender->GetTransform()->GetLocalPosition();
 	if (PlayerPos.y - HandPos.y > 0.0f)
 	{

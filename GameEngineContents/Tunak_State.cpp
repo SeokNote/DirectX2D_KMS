@@ -76,6 +76,12 @@ void Tunak::ChangeState(TunakState _State)
 	case TunakState::TunakDead:
 		TunakDeadStart();
 		break;
+	case TunakState::EVENT:
+		EventStart();
+		break;
+	case TunakState::EVENT2:
+		Event2Start();
+		break;
 	default:
 		break;
 	}
@@ -123,6 +129,12 @@ void Tunak::ChangeState(TunakState _State)
 		break;
 	case TunakState::TunakDead:
 		TunakDeadEnd();
+		break;
+	case TunakState::EVENT:
+		EventEnd();
+		break;
+	case TunakState::EVENT2:
+		Event2End();
 		break;
 	default:
 		break;
@@ -175,6 +187,12 @@ void Tunak::UpdateState(float _Time)
 	case TunakState::TunakDead:
 		TunakDeadUpdate(_Time);
 		break;
+	case TunakState::EVENT:
+		EventUpdate(_Time);
+		break;
+	case TunakState::EVENT2:
+		Event2Update(_Time);
+		break;
 	default:
 		break;
 	}
@@ -187,8 +205,27 @@ void Tunak::IdleStart()
 	RandomIndex = GameEngineRandom::MainRandom.RandomInt(0,5);
 
 }
+bool FirstEvent = false;
+bool FadeValue = false;
 void Tunak::IdleUpdate(float _Time)
 {
+	if (FadeValue == true)
+	{
+		if (BossLayout->ColorOptionValue.MulColor.a > 0)
+		{
+			BossLayout->ColorOptionValue.MulColor.a -= _Time;
+
+		}
+		else
+		{
+			BossLayout->Off();
+		}
+	}
+	if (FirstEvent == false)
+	{
+		ChangeState(TunakState::EVENT);
+		FirstEvent = true;
+	}
 	if (TunakHP < 0)
 	{
 		ChangeState(TunakState::TunakDead);
@@ -202,7 +239,7 @@ void Tunak::IdleUpdate(float _Time)
 		HalfCheck = true;
 
 	}
-	if (abs(PlayerPos.x - TunakPos.x) > 700 && PlayerPos.x>14300.0f)
+	if (abs(PlayerPos.x - TunakPos.x) > 800 && PlayerPos.x>14300.0f)
 	{
 		TimeCheck += _Time;
 		if (TimeCheck > 0.5)
@@ -222,33 +259,34 @@ void Tunak::IdleUpdate(float _Time)
 	{
 		if (TestTime > 1.5f)
 		{
-			if (RandomIndex == 0)
-			{
-				ChangeState(TunakState::SPIKE_R);
-			
-			}
-			if (RandomIndex == 1)
-			{
-				ChangeState(TunakState::OVERPOWER);
-			
-			}
-			if (RandomIndex == 2)
-			{
-				ChangeState(TunakState::DOUBLEATTACK);
-			}
-			if (RandomIndex == 3)
-			{
-				ChangeState(TunakState::SHOUT);
-			}
-			if (RandomIndex == 4)
-			{
-				ChangeState(TunakState::GoblimBomb);
-			}
-			if (RandomIndex == 5)
-			{
-				ChangeState(TunakState::TACKLE);
-			}
-			
+			//if (RandomIndex == 0)
+			//{
+			//	ChangeState(TunakState::SPIKE_R);
+			//
+			//}
+			//if (RandomIndex == 1)
+			//{
+			//	ChangeState(TunakState::OVERPOWER);
+			//
+			//}
+			//if (RandomIndex == 2)
+			//{
+			//	ChangeState(TunakState::DOUBLEATTACK);
+			//}
+			//if (RandomIndex == 3)
+			//{
+			//	ChangeState(TunakState::SHOUT);
+			//}
+			//if (RandomIndex == 4)
+			//{
+			//	ChangeState(TunakState::GoblimBomb);
+			//}
+			//if (RandomIndex == 5)
+			//{
+			//	ChangeState(TunakState::TACKLE);
+			//}
+			//
+			ChangeState(TunakState::TunakDead);
 
 
 			TestTime = 0.0f;
@@ -799,7 +837,6 @@ void Tunak::TunakDeadStart()
 void Tunak::TunakDeadUpdate(float _Time)
 {
 	float4 TunakCurPos = GetTransform()->GetLocalPosition();
-	TunakCurPos.y -= 100.0f;
 	if (DeadBGRender->ColorOptionValue.MulColor.a > 0.0f)
 	{
 		DeadBGRender->ColorOptionValue.MulColor.a -= _Time*0.5f;
@@ -817,5 +854,72 @@ void Tunak::TunakDeadUpdate(float _Time)
 }
 
 void Tunak::TunakDeadEnd()
+{
+}
+
+void Tunak::EventStart()
+{
+	TunakRender->GetTransform()->SetLocalPosition({ 0.0f,700.0f,0.0f });
+	TunakRender->ChangeAnimation("TunakJumpAttack");
+}
+bool IsValue_0 = false;
+void Tunak::EventUpdate(float _Time)
+{
+	if (TunakRender->GetTransform()->GetLocalPosition().y > 0)
+	{
+		TunakRender->GetTransform()->AddLocalPosition({ 0.0f,-_Time * 1000.0f,0.0f });
+	}
+
+	if (true == TunakRender->IsAnimationEnd())
+	{
+		TestTime_3 += _Time;
+		CameraCtrl = true;
+		float4 PlayerPos = GetLevel()->GetMainCamera()->GetTransform()->GetLocalPosition();
+		PlayerPos.z = -1000.0f;
+		ZoomPos = GetTransform()->GetLocalPosition();
+		ZoomPos.y = PlayerPos.y;
+		ZoomPos.x += 50.0f;
+		ZoomPos.z = -1000.0f;
+		float4 CameraPos = float4::LerpClamp(PlayerPos, ZoomPos, _Time * 1.5f);
+		GetLevel()->GetMainCamera()->GetTransform()->SetWorldPosition(CameraPos);
+		BossLayout->On();
+		if (BossLayout->ColorOptionValue.MulColor.a < 1)
+		{
+			BossLayout->ColorOptionValue.MulColor.a += _Time;
+
+		}
+		if (TestTime_3 > 1.5f)
+		{
+			ChangeState(TunakState::EVENT2);
+		}
+
+	}
+	
+		
+	
+}
+
+void Tunak::EventEnd()
+{
+
+}
+
+void Tunak::Event2Start()
+{
+	TunakRender->ChangeAnimation("TunakShout");
+
+}
+void Tunak::Event2Update(float _Time)
+{
+
+	if (TunakRender->IsAnimationEnd())
+	{
+		CameraCtrl = false;
+		ChangeState(TunakState::IDLE);
+		FadeValue = true;
+	}
+}
+
+void Tunak::Event2End()
 {
 }

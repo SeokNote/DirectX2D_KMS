@@ -98,14 +98,11 @@ void BelialHead::IdleUpdate(float _Time)
 	TimeCheck_0 += _Time;
 	if (TimeCheck_0 > 10.0f)
 	{
+		//ChangeState(BossHeadState::DEAD);
+
 		TimeCheck_0 = 0.0f;
 		ChangeState(BossHeadState::MOVE);
 	}
-	//if (TimeCheck_0 > 2.0f)
-	//{
-	//
-	//
-	//}
 }
 void BelialHead::IdleEnd()
 {
@@ -119,11 +116,16 @@ void BelialHead::MoveStart()
 }
 void BelialHead::MoveUpdate(float _Time)
 {
+	if (BelialHp < 0)
+	{
+		ChangeState(BossHeadState::DEAD);
+	}
 	BulletPatton = true;
 	BulletTime += _Time;
 	TimeCheck_1 += _Time;
 	if (TimeCheck_1 > 5.0f)
 	{
+
 		ChangeState(BossHeadState::SWORD);
 		TimeCheck_1 = 0.0f;
 		IsBullet = false;
@@ -146,6 +148,10 @@ void BelialHead::SwordStart()
 }
 void BelialHead::SwordUpdate(float _Time)
 {
+	if (BelialHp < 0)
+	{
+		ChangeState(BossHeadState::DEAD);
+	}
 	BelialSwordPlay(_Time);
 	TimeCheck_2 += _Time;
 	if (TimeCheck_2 > 5.0f)

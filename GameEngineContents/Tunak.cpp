@@ -12,8 +12,10 @@
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore/GameEngineSprite.h>
 #include <GameEngineCore/GameEngineCollision.h>
+Tunak* Tunak::MainTunak = nullptr;
 Tunak::Tunak()
 {
+	MainTunak = this;
 }
 
 Tunak::~Tunak()
@@ -86,6 +88,12 @@ void Tunak::Start()
 	BossHpBar->GetTransform()->SetWorldPosition(HPPos);
 	BossHpBar->GetTransform()->SetLocalScale(HPBarScale);
 
+	BossLayout = CreateComponent<GameEngineUIRenderer>(1);
+	BossLayout->SetTexture("BossLayout.png");
+	BossLayout->GetTransform()->SetWorldPosition(LayoutPos);
+	BossLayout->GetTransform()->SetLocalScale({ 1280.0f,720.0f,0.0f });
+	BossLayout->ColorOptionValue.MulColor.a = 0.0f;
+	BossLayout->Off();
 	DeadBGRender = CreateComponent<GameEngineUIRenderer>(1);
 	DeadBGRender->SetTexture("BossDeadBG.png");
 	DeadBGRender->GetTransform()->SetWorldPosition(float4::Null);
@@ -144,19 +152,20 @@ void Tunak::DeadEvent(float _DeltaTime)
 			TimeCheck_D += _DeltaTime;
 			TunakRender->Off();
 			IsDead = true;
-			if (TimeCheck_D > 0.1f)
+			if (TimeCheck_D > 0.2f)
 			{
 				TunakCurPos.y -= 100.0f;
 				TunakCurPos.z = -850.0f;
 				BossDeadEffectPtr = GetLevel()->CreateActor<BossDeadEffect>();
 				BossDeadEffectPtr->GetTransform()->SetLocalPosition(TunakCurPos);
 				BossDeadEffectPtr->SetRaioPos(RatioValue);
-				RatioValue += 20.0f;
+				RatioValue += 50.0f;
 				TimeCheck_D = 0.0f;
 			}
 		}
-		if (DeadTime > 8.0f)
+		if (DeadTime > 7.0f)
 		{
+			CameraCtrl = false;
 			DeadTime = 0.0f;
 			Death();
 		}
