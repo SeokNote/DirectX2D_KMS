@@ -23,6 +23,8 @@
 #include "BossDoor_0.h"
 #include "BossDoor_1.h"
 #include "BossDoor_2.h"
+#include "BelialSpawner.h"
+#include "TunakSpawner.h"
 
 #include "Stage_1.h"
 #include "Stage_2.h"
@@ -63,7 +65,6 @@
 #include "BelialHead.h"
 #include "Tunak.h"
 #include "GoblinBomb.h"
-PlayLevel* PlayLevel::MainPlayLevel = nullptr;
 
 PlayLevel::PlayLevel()
 {
@@ -340,14 +341,14 @@ void PlayLevel::Start()
 	static std::shared_ptr<Player> NewPlayer = CreateActor<Player>(1);
 	//NewPlayer->GetTransform()->SetLocalPosition({ 17790.0f,-67.0f,-801.0f });
 
-	NewPlayer->GetTransform()->SetLocalPosition({ 14504.0f,-194.0f,-801.0f });
-	//NewPlayer->GetTransform()->SetLocalPosition({ -2390.0f,-500.0f,-801.0f });
+	//NewPlayer->GetTransform()->SetLocalPosition({ 14504.0f,-194.0f,-801.0f });
+	NewPlayer->GetTransform()->SetLocalPosition({ -2390.0f,-500.0f,-801.0f });
 	//NewPlayer->GetTransform()->SetLocalPosition({ 11438.0f,-480.0f,-801.0f });
 	// 
-	//static std::shared_ptr<BelialHead> BelialHeadPtr = CreateActor<BelialHead>(1);
-	//BelialHeadPtr->GetTransform()->SetLocalPosition({ 12050.0f,-150.0f,-760.0f });
-	static std::shared_ptr<Tunak> TunakPtr = CreateActor<Tunak>(1);
-	TunakPtr->GetTransform()->SetLocalPosition({ 15074.0f,-25.0f,-800.0f });
+	static std::shared_ptr<BelialSpawner> BelialSpawnerPtr = CreateActor<BelialSpawner>(1);
+	BelialSpawnerPtr->GetTransform()->SetLocalPosition({ 12050.0f,-350.0f,-760.0f });
+	static std::shared_ptr<TunakSpawner> TunakSpawnerPtr = CreateActor<TunakSpawner>(1);
+	TunakSpawnerPtr->GetTransform()->SetLocalPosition({ 14874.0f,-205.0f,-800.0f });
 	
 	
 	
@@ -465,13 +466,16 @@ void PlayLevel::CameraMoveSet()
 		CameraColMove(9360.0f, 11280, 360, -360);
 	}
 	if (CurMap == MyMap::Stage1_Boss) {
-		CameraColMove(11380.0f, 12788.0f, 672.0f, -672.0f);
+		if (false == Player::MainPlayer->GetData().GetBelialCtrl())
+		{
+			CameraColMove(11380.0f, 12788.0f, 672.0f, -672.0f);
+		}
 	}
 	if (CurMap == MyMap::Stage2_1) {
 		CameraColMove(12888.0f, 14168.0f, 360.0f, -360.0f);
 	}
 	if (CurMap == MyMap::Stage2_Boss) {
-		if (false == Tunak::MainTunak->GetCameraCtl())
+		if (false == Player::MainPlayer->GetData().GetTunakCtrl())
 		{
 			CameraColMove(14268.0f, 15868.0f, 450.0f, -450.0f);
 		}

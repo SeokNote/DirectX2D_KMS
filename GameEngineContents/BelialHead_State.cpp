@@ -36,6 +36,12 @@ void BelialHead::ChangeState(BossHeadState _State)
 	case BossHeadState::SWORD:
 		SwordStart();
 		break;
+	case BossHeadState::EVENT:
+		EventStart();
+		break;
+	case BossHeadState::EVENT2:
+		Event2Start();
+		break;
 	default:
 		break;
 	}
@@ -53,6 +59,12 @@ void BelialHead::ChangeState(BossHeadState _State)
 		break;
 	case BossHeadState::SWORD:
 		DeadEnd();
+		break;
+	case BossHeadState::EVENT:
+		EventEnd();
+		break;
+	case BossHeadState::EVENT2:
+		Event2End();
 		break;
 	default:
 		break;
@@ -76,6 +88,12 @@ void BelialHead::UpdateState(float _Time)
 	case BossHeadState::SWORD:
 		SwordUpdate(_Time);
 		break;
+	case BossHeadState::EVENT:
+		EventUpdate(_Time);
+		break;
+	case BossHeadState::EVENT2:
+		Event2Update(_Time);
+		break;
 	default:
 		break;
 	}
@@ -86,8 +104,14 @@ void BelialHead::IdleStart()
 {
 	BelialHeadRender->ChangeAnimation("HeadIdle");
 }
+bool EvnetStart = false;
 void BelialHead::IdleUpdate(float _Time)
 {
+	if (EvnetStart == false)
+	{
+		ChangeState(BossHeadState::EVENT);
+		EvnetStart = true;
+	}
 	TimeCheck_0 += _Time;
 	if (BelialHp < 0)
 	{
@@ -194,5 +218,73 @@ void BelialHead::DeadUpdate(float _Time)
 	}
 }
 void BelialHead::DeadEnd()
+{
+}
+
+void BelialHead::EventStart()
+{
+	BelialHeadRender->ChangeAnimation("HeadIdle");
+}
+
+void BelialHead::EventUpdate(float _Time)
+{
+	if (BelialHeadRender->ColorOptionValue.MulColor.a < 1)
+	{
+		BelialHeadRender->ColorOptionValue.MulColor.a += _Time;
+
+	}
+	else
+	{
+		BossLayout->On();
+		Player::MainPlayer->GetData().SetBelialCtrl(true);
+		float4 PlayerPos = GetLevel()->GetMainCamera()->GetTransform()->GetLocalPosition();
+		PlayerPos.z = -1000.0f;
+		ZoomPos = GetTransform()->GetLocalPosition();
+		ZoomPos.x += 50.0f;
+		ZoomPos.y -= 50.f;
+		ZoomPos.z = -1000.0f;
+		float4 CameraPos = float4::LerpClamp(PlayerPos, ZoomPos, _Time * 1.5f);
+		GetLevel()->GetMainCamera()->GetTransform()->SetWorldPosition(CameraPos);
+		if (BossLayout->ColorOptionValue.MulColor.a < 1)
+		{
+			BossLayout->ColorOptionValue.MulColor.a += _Time;
+
+		}
+		else
+		{
+			PattonStart += _Time;
+			if (PattonStart > 1.5f)
+			{
+				ChangeState(BossHeadState::EVENT2);
+			}
+		}
+	}
+}
+
+void BelialHead::EventEnd()
+{
+}
+
+void BelialHead::Event2Start()
+{
+}
+
+void BelialHead::Event2Update(float _Time)
+{
+	if (BossLayout->ColorOptionValue.MulColor.a > 0.0f)
+	{
+		BossLayout->ColorOptionValue.MulColor.a -= _Time;
+
+	}
+	else
+	{
+		BossLayout->Off();
+		Player::MainPlayer->GetData().SetBelialCtrl(false);
+		HandStart = true;
+		ChangeState(BossHeadState::IDLE);
+	}
+}
+
+void BelialHead::Event2End()
 {
 }

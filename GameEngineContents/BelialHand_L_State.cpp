@@ -88,11 +88,15 @@ void BelialHand_L::IdleStart()
 }
 void BelialHand_L::IdleUpdate(float _Time)
 {
+	if (LeftHandRender->ColorOptionValue.MulColor.a < 1.0f)
+	{
+		LeftHandRender->ColorOptionValue.MulColor.a += _Time*0.5f;
+	}
 	if (true == BelialHead::MainBelialHead->GetHandStop())
 	{
 		ChangeState(LeftHandState::DEAD);
 	}
-	if (false == BelialHead::MainBelialHead->IsBulletPatton())
+	if (BelialHead::MainBelialHead->GetHandStart() ==true && false == BelialHead::MainBelialHead->IsBulletPatton())
 	{
 		//일단 확인용으로 조건은 5초로 해놓는다.
 		M_StartTime += _Time;

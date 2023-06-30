@@ -873,7 +873,7 @@ void Tunak::EventUpdate(float _Time)
 	if (true == TunakRender->IsAnimationEnd())
 	{
 		TestTime_3 += _Time;
-		CameraCtrl = true;
+		Player::MainPlayer->GetData().SetTunakCtrl(true);
 		float4 PlayerPos = GetLevel()->GetMainCamera()->GetTransform()->GetLocalPosition();
 		PlayerPos.z = -1000.0f;
 		ZoomPos = GetTransform()->GetLocalPosition();
@@ -908,13 +908,17 @@ void Tunak::Event2Start()
 {
 	TunakRender->ChangeAnimation("TunakShout");
 
+
 }
 void Tunak::Event2Update(float _Time)
 {
 
 	if (TunakRender->IsAnimationEnd())
 	{
-		CameraCtrl = false;
+		BossHpBar->On();
+		BossHpFront->On();
+		BossHpBase->On();
+		Player::MainPlayer->GetData().SetTunakCtrl(false);
 		ChangeState(TunakState::IDLE);
 		FadeValue = true;
 	}

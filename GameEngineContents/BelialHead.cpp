@@ -53,6 +53,7 @@ void BelialHead::Start()
 	BelialHeadRender->CreateAnimation({ .AnimationName = "HeadIdle", .SpriteName = "HeadIdle", .Loop = true , .ScaleToTexture = true });
 	BelialHeadRender->CreateAnimation({ .AnimationName = "HeadMove", .SpriteName = "HeadMove", .Loop = false , .ScaleToTexture = true });
 	BelialHeadRender->CreateAnimation({ .AnimationName = "BelialBeforDead", .SpriteName = "BelialBeforDead", .Loop = false , .ScaleToTexture = true });
+	BelialHeadRender->ColorOptionValue.MulColor.a = 0.0f;
 
 	BelialBGRender = CreateComponent<GameEngineSpriteRenderer>(1);
 	BelialBGRender->SetTexture("BossSword.png");
@@ -92,6 +93,13 @@ void BelialHead::Start()
 	DeadBGRender->GetTransform()->SetWorldPosition(float4::Null);
 	DeadBGRender->GetTransform()->SetLocalScale({ 1280.0f,720.0f,0.0f });
 	DeadBGRender->Off();
+
+	BossLayout = CreateComponent<GameEngineUIRenderer>(1);
+	BossLayout->SetTexture("BossLayout.png");
+	BossLayout->GetTransform()->SetWorldPosition(LayoutPos);
+	BossLayout->GetTransform()->SetLocalScale({ 1280.0f,720.0f,0.0f });
+	BossLayout->ColorOptionValue.MulColor.a = 0.0f;
+	BossLayout->Off();
 
 	LeftPtr =GetLevel()->CreateActor<BelialHand_L>();
 	RightPtr = GetLevel()->CreateActor<BelialHand_R>();

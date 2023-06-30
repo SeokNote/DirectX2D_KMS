@@ -114,7 +114,7 @@ void Player::Update(float _DeltaTime)
 		{
 			PlayerHitRender->ColorOptionValue.MulColor.a -= _DeltaTime * 3.0f;
 		}
-		if (ShackCheck ==false && ShakeTime > 0.4f)
+		if (ShackCheck ==false && ShakeTime > 0.6f)
 		{
 			x = 0.f;
 			ShakeTime = 0.0f;
@@ -124,11 +124,12 @@ void Player::Update(float _DeltaTime)
 		if (BlinkTime > 1.0f)
 		{
 			PlayerHitRender->Off();
-			IsInvincible = false;
-			PlayerCol->On();
 			PlayerHitRender->ColorOptionValue.MulColor.a = 1.0f;
 			PlayerRender->ColorOptionValue.MulColor.a = 1.0f;
 			BlinkTime = 0.0f;
+			IsInvincible = false;
+			PlayerCol->On();
+
 		}
 	}
 }

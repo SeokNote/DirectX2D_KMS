@@ -24,6 +24,7 @@ void BelialHand_R::Start()
 	RightHandRender->GetTransform()->SetLocalPosition(RightHandPos);
 	RightHandRender->CreateAnimation({ .AnimationName = "LeftHandIdle", .SpriteName = "HandIdle", .Loop = true , .ScaleToTexture = false });
 	RightHandRender->CreateAnimation({ .AnimationName = "LeftHandLasor", .SpriteName = "HandLasor", .Loop = false , .ScaleToTexture = false });
+	RightHandRender->ColorOptionValue.MulColor.a = 0.0f;
 	ChangeState(RightHandState::IDLE);
 
 }

@@ -89,6 +89,10 @@ void BelialHand_R::IdleStart()
 }
 void BelialHand_R::IdleUpdate(float _Time)
 {
+	if (RightHandRender->ColorOptionValue.MulColor.a < 1.0f)
+	{
+		RightHandRender->ColorOptionValue.MulColor.a += _Time * 0.5f;
+	}
 	if (true == BelialHead::MainBelialHead->GetHandStop())
 	{
 		ChangeState(RightHandState::DEAD);

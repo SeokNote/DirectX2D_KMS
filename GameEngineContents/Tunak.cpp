@@ -77,17 +77,19 @@ void Tunak::Start()
 	BossHpFront->SetTexture("BossLifeBack.png");
 	BossHpFront->GetTransform()->SetWorldPosition(HPBasePos);
 	BossHpFront->GetTransform()->SetLocalScale(HPBarBaseScale);
+	BossHpFront->Off();
+
 
 	BossHpBase = CreateComponent<GameEngineUIRenderer>(1);
 	BossHpBase->SetTexture("BossLifeBase.png");
 	BossHpBase->GetTransform()->SetWorldPosition(HPBasePos);
 	BossHpBase->GetTransform()->SetLocalScale(HPBarBaseScale);
-
+	BossHpBase->Off();
 	BossHpBar = CreateComponent<GameEngineUIRenderer>(1);
 	BossHpBar->SetTexture("BossHpBar.png");
 	BossHpBar->GetTransform()->SetWorldPosition(HPPos);
 	BossHpBar->GetTransform()->SetLocalScale(HPBarScale);
-
+	BossHpBar->Off();
 	BossLayout = CreateComponent<GameEngineUIRenderer>(1);
 	BossLayout->SetTexture("BossLayout.png");
 	BossLayout->GetTransform()->SetWorldPosition(LayoutPos);

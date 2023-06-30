@@ -7,6 +7,8 @@ enum class BossHeadState
 	MOVE,
 	SWORD,
 	DEAD,
+	EVENT,
+	EVENT2,
 };
 class BelialHead : public GameEngineActor
 {
@@ -41,6 +43,11 @@ public:
 	{
 		return HandleStop;
 	}
+	bool GetHandStart()
+	{
+		return HandStart;
+	}
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
@@ -56,6 +63,7 @@ private:
 	float4 HPPos = { 48.0f,-320.0f,0.0f };
 	float4 HeadScale = { 280.0f,512.0f,0.0f };
 	//카메라 쉐이크
+	float PattonStart = 0.0f;
 	float ShakeTime = 0.0f;
 	float y = 0.0f;
 	float x = 0.0f;
@@ -101,6 +109,14 @@ private:
 	void DeadStart();
 	void DeadUpdate(float _Time);
 	void DeadEnd();
+
+	void EventStart();
+	void EventUpdate(float _Time);
+	void EventEnd();
+
+	void Event2Start();
+	void Event2Update(float _Time);
+	void Event2End();
 	//벨리알 
 	float4 BelialColScale = { 200.0f,320.f,0.0f };
 	float Invincibilitytime = 0.0f;
@@ -123,10 +139,16 @@ private:
 	std::shared_ptr<class BossSword> BossSwordPtr_4 = nullptr;
 	std::shared_ptr<class BossSword> BossSwordPtr_5 = nullptr;
 	std::shared_ptr<class GameEngineUIRenderer> DeadBGRender;
+	std::shared_ptr<class GameEngineUIRenderer> BossLayout;
+	//카메라
+	float4 ZoomPos = float4::Zero;
+	bool CameraCtrl = false;
+	float4 LayoutPos = { 0.0f,0.0f,-101.0f };
 
 	float YInvers= -100.f;
 
 	bool HandStop = false;
+	bool HandStart = false;
 	//칼 꽂히는 범위
 	float StartX = 11800.0f;
 	//벨리알 죽음

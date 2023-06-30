@@ -148,6 +148,22 @@ public:
 		PlayerMaxHP += (PlayerLevel - 1) * 2;
 		return PlayerMaxHP;
 	}
+	bool GetBelialCtrl()
+	{
+		return BelialCamera;
+	}
+	void SetBelialCtrl(bool _Value)
+	{
+		BelialCamera = _Value;
+	}
+	bool GetTunakCtrl()
+	{
+		return TunakCamera;
+	}
+	void SetTunakCtrl(bool _Value)
+	{
+		TunakCamera = _Value;
+	}
 private:
 	int PlayerLevel = 1;				//플레이어 레벨	
 	int PlayerMaxHP = 60;
@@ -166,5 +182,8 @@ private:
 	int CriticalChance = 0;				//크리티컬
 	int CriticalDamage = 0;				//크리티컬 데미지
 	int DashPower = 10;					// 대쉬 공격력
+	//보스 스폰카메라 컨트롤
+	bool BelialCamera = false;
+	bool TunakCamera = false;
 };
 

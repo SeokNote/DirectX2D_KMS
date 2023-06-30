@@ -26,6 +26,8 @@ enum class ColOrder
 	TUNAK,
 	//무기
 	GreatWeapon,
+	//스포너
+	Spawner,
 	//플레이어
 	PlayerBody,
 	//마우스

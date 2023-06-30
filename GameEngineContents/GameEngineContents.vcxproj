@@ -208,6 +208,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="BelialLasor_R.h" />
+    <ClInclude Include="BelialSpawner.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Bird.h">
       <SubType>
       </SubType>
@@ -531,6 +535,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="TunakSpawner.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="TunakWave.h">
       <SubType>
       </SubType>
@@ -589,6 +597,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="BelialLasor_R.cpp" />
+    <ClCompile Include="BelialSpawner.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Bird.cpp">
       <SubType>
       </SubType>
@@ -911,6 +923,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="TunakJumpEffect.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="TunakSpawner.cpp">
       <SubType>
       </SubType>
     </ClCompile>

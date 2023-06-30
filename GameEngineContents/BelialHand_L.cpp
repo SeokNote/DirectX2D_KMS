@@ -26,6 +26,8 @@ void BelialHand_L::Start()
 	LeftHandRender->GetTransform()->SetLocalPosition(LeftHandPos);
 	LeftHandRender->CreateAnimation({ .AnimationName = "LeftHandIdle", .SpriteName = "HandIdle", .Loop = true , .ScaleToTexture = true });
 	LeftHandRender->CreateAnimation({ .AnimationName = "LeftHandLasor", .SpriteName = "HandLasor", .Loop = false , .ScaleToTexture = true });
+	LeftHandRender->ColorOptionValue.MulColor.a = 0.0f;
+
 	ChangeState(LeftHandState::IDLE);
 
 }

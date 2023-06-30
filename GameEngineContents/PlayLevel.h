@@ -8,7 +8,6 @@
 class PlayLevel : public GameEngineLevel
 {
 public:
-	static PlayLevel* MainPlayLevel;
 
 	// constrcuter destructer
 	PlayLevel();
@@ -43,7 +42,6 @@ private:
 	std::shared_ptr<PlayerStat> Stat;
 	std::shared_ptr<MapTabUI> MapTab;
 	std::shared_ptr<InventoryUI> Inventory;
-
 	//Å×½ºÆ®
 	float FPS = 0.0f;
 	int Frame = 0;
