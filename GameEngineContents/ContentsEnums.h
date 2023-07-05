@@ -19,6 +19,8 @@ enum class MyMap
 
 enum class ColOrder
 {
+	//몬스터 인지 범위
+	ATTACKAREA,
 	//몬스터 공격
 	MONSTERATTACK,
 	//보스

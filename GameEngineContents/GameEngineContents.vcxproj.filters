@@ -290,6 +290,9 @@
     <ClInclude Include="TunakSpawner.h">
       <Filter>Object\Door\BossSpawner\Tunak</Filter>
     </ClInclude>
+    <ClInclude Include="WhiteSkell.h">
+      <Filter>Object\Monster</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -598,6 +601,12 @@
     </ClCompile>
     <ClCompile Include="Tunak_State.cpp">
       <Filter>Object\Boss\Tunak\Tunak</Filter>
+    </ClCompile>
+    <ClCompile Include="WhiteSkell.cpp">
+      <Filter>Object\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="WhiteSkell_State.cpp">
+      <Filter>Object\Monster</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

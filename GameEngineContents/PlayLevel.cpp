@@ -65,7 +65,7 @@
 #include "BelialHead.h"
 #include "Tunak.h"
 #include "GoblinBomb.h"
-
+#include "WhiteSkell.h"
 PlayLevel::PlayLevel()
 {
 }
@@ -198,6 +198,19 @@ void PlayLevel::Start()
 
 	GameEngineSprite::LoadFolder(SlimeMakeDir.GetPlusFileName("PlatBelt").GetFullPath());
 	GameEngineSprite::LoadFolder(SlimeMakeDir.GetPlusFileName("GroundBelt").GetFullPath());
+
+	//몬스터 로드
+	GameEngineDirectory MonsterDir;
+	MonsterDir.MoveParentToDirectory("ContentResources");
+	MonsterDir.Move("ContentResources");
+	MonsterDir.Move("Animation");
+	MonsterDir.Move("MainLevelAnimation");
+	MonsterDir.Move("Monster");
+	MonsterDir.Move("WhiteSkell");
+	GameEngineSprite::LoadFolder(MonsterDir.GetPlusFileName("WhiteSkellAttack").GetFullPath());
+	GameEngineSprite::LoadFolder(MonsterDir.GetPlusFileName("WhiteSkellIdle").GetFullPath());
+	GameEngineSprite::LoadFolder(MonsterDir.GetPlusFileName("WhiteSkellMove").GetFullPath());
+	
 	if (false == GameEngineInput::IsKey("LeftMove"))
 	{
 		GameEngineInput::CreateKey("LeftMove", 'A');
@@ -339,17 +352,19 @@ void PlayLevel::Start()
 	}
 	//	Player
 	static std::shared_ptr<Player> NewPlayer = CreateActor<Player>(1);
-	//NewPlayer->GetTransform()->SetLocalPosition({ 17790.0f,-67.0f,-801.0f });
+	NewPlayer->GetTransform()->SetLocalPosition({ 4381.0f,-468.0f,-801.0f });
 
 	//NewPlayer->GetTransform()->SetLocalPosition({ 14504.0f,-194.0f,-801.0f });
-	NewPlayer->GetTransform()->SetLocalPosition({ -2390.0f,-500.0f,-801.0f });
+	//NewPlayer->GetTransform()->SetLocalPosition({ -2390.0f,-500.0f,-801.0f });
 	//NewPlayer->GetTransform()->SetLocalPosition({ 11438.0f,-480.0f,-801.0f });
-	// 
+	//보스 스포너
 	static std::shared_ptr<BelialSpawner> BelialSpawnerPtr = CreateActor<BelialSpawner>(1);
 	BelialSpawnerPtr->GetTransform()->SetLocalPosition({ 12050.0f,-350.0f,-760.0f });
 	static std::shared_ptr<TunakSpawner> TunakSpawnerPtr = CreateActor<TunakSpawner>(1);
 	TunakSpawnerPtr->GetTransform()->SetLocalPosition({ 14874.0f,-205.0f,-800.0f });
-	
+	//테스트
+	std::shared_ptr<WhiteSkell> WhiteSkellPtr = CreateActor<WhiteSkell>(1);
+	WhiteSkellPtr->GetTransform()->SetLocalPosition({ 4981.0f,-268.0f,-800.0f });
 	
 	
 	std::shared_ptr<GreatWeapon> GreatWeaponPtr = CreateActor<GreatWeapon>(1);

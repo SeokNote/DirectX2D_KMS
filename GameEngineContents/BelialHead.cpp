@@ -17,6 +17,7 @@
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore/GameEngineSprite.h>
 #include <GameEngineCore/GameEngineUIRenderer.h>
+#include <GameEngineCore/GameEngineCollision.h>
 
 BelialHead* BelialHead::MainBelialHead = nullptr;
 /*
@@ -183,10 +184,6 @@ void BelialHead::BelialCameraShack(int _Value)
 }
 void BelialHead::BelialCollision(float _DeltaTime)
 {
-	if (BelialHp < 0)
-	{
-		int a = 0;
-	}
 	if (BelialCol->Collision(ColOrder::GreatWeapon, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		if (HitCheck == false)
