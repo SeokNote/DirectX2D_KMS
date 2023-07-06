@@ -102,8 +102,12 @@ void WhiteSkell::IdleStart()
 
 void WhiteSkell::IdleUpdate(float _Time)
 {
+	if (SkellHP < 0)
+	{
+		ChangeState(WhiteSkellState::DEAD);
+	}
 	MoveTerm += _Time;
-	if (GroundCheck() == false)
+	if (GroundCheck(GetTransform()->GetLocalPosition()) == false)
 	{
 		ChangeState(WhiteSkellState::FALL);
 	}
@@ -137,6 +141,10 @@ void WhiteSkell::MoveStart()
 
 void WhiteSkell::MoveUpdate(float _Time)
 {
+	if (SkellHP < 0)
+	{
+		ChangeState(WhiteSkellState::DEAD);
+	}
 	if (InArea == true)
 	{
 		ChangeState(WhiteSkellState::ATTACK);
@@ -149,6 +157,8 @@ void WhiteSkell::MoveUpdate(float _Time)
 		TargetAreaCol->GetTransform()->SetLocalPosition({ 230.0f,-40.0f,0.f });
 		SkellBodyCol->GetTransform()->SetLocalPosition({ -70.0f,-40.0f,0.f });
 		AttackAreaCol->GetTransform()->SetLocalPosition({ 40.0f,-40.0f,0.f });
+		HpRender->GetTransform()->SetLocalPosition({ -60.0f,-110.0f,0.0f });
+		HpBaseRender->GetTransform()->SetLocalPosition({ -60.0f,-110.0f,0.0f });
 
 		if (abs(CurPos.x - PrevPos.x) < 200.0f)
 		{
@@ -162,10 +172,12 @@ void WhiteSkell::MoveUpdate(float _Time)
 	else
 	{
 		WhiteSkellRender->GetTransform()->SetLocalNegativeScaleX();
-		WhiteSkellRender->GetTransform()->SetLocalPosition({ -50.0f,0.0f,0.f });
+		WhiteSkellRender->GetTransform()->SetLocalPosition({ -100.0f,0.0f,0.f });
 		TargetAreaCol->GetTransform()->SetLocalPosition({ -230.0f,-40.0f,0.f });
 		SkellBodyCol->GetTransform()->SetLocalPosition({ 0.0f,-40.0f,0.f });
 		AttackAreaCol->GetTransform()->SetLocalPosition({ -80.0f,-40.0f,0.f });
+		HpRender->GetTransform()->SetLocalPosition({ 10.0f,-110.0f,0.0f });
+		HpBaseRender->GetTransform()->SetLocalPosition({ 10.0f,-110.0f,0.0f });
 
 		if (abs(CurPos.x - PrevPos.x) < 200.0f)
 		{
@@ -191,6 +203,10 @@ void WhiteSkell::ChaseStart()
 
 void WhiteSkell::ChaseUpdate(float _Time)
 {
+	if (SkellHP < 0)
+	{
+		ChangeState(WhiteSkellState::DEAD);
+	}
 	if (WhiteSkellRender->GetCurrentFrame() > 1)
 	{
 		AttackAreaCol->On();
@@ -219,7 +235,7 @@ void WhiteSkell::FallStart()
 
 void WhiteSkell::FallUpdate(float _Time)
 {
-	if (GroundCheck() == false)
+	if (GroundCheck(GetTransform()->GetLocalPosition()) == false)
 	{
 		GetTransform()->AddLocalPosition({ 0.0f,-_Time * MoveSpeed,0.0f });
 	}
@@ -251,15 +267,19 @@ void WhiteSkell::AttackUpdate(float _Time)
 		TargetAreaCol->GetTransform()->SetLocalPosition({ 230.0f,-40.0f,0.f });
 		SkellBodyCol->GetTransform()->SetLocalPosition({ -70.0f,-40.0f,0.f });
 		AttackAreaCol->GetTransform()->SetLocalPosition({ 40.0f,-40.0f,0.f });
+		HpRender->GetTransform()->SetLocalPosition({ -60.0f,-110.0f,0.0f });
+		HpBaseRender->GetTransform()->SetLocalPosition({ -60.0f,-110.0f,0.0f });
 
 	}
 	else
 	{
 		WhiteSkellRender->GetTransform()->SetLocalNegativeScaleX();
-		WhiteSkellRender->GetTransform()->SetLocalPosition({ -50.0f,0.0f,0.f });
-		TargetAreaCol->GetTransform()->SetLocalPosition({ -230.0f,-40.0f,0.f });
-		SkellBodyCol->GetTransform()->SetLocalPosition({ 0.0f,-40.0f,0.f });
-		AttackAreaCol->GetTransform()->SetLocalPosition({ -80.0f,-40.0f,0.f });
+		WhiteSkellRender->GetTransform()->SetLocalPosition({ -100.0f,0.0f,0.f });
+		TargetAreaCol->GetTransform()->SetLocalPosition({ -280.0f,-40.0f,0.f });
+		SkellBodyCol->GetTransform()->SetLocalPosition({ -50.0f,-40.0f,0.f });
+		AttackAreaCol->GetTransform()->SetLocalPosition({ -130.0f,-40.0f,0.f });
+		HpRender->GetTransform()->SetLocalPosition({ -40.0f,-110.0f,0.0f });
+		HpBaseRender->GetTransform()->SetLocalPosition({ -30.0f,-110.0f,0.0f });
 
 	}
 	if (IsFirstRender==false)
@@ -301,10 +321,30 @@ void WhiteSkell::AttackEnd()
 
 void WhiteSkell::DeadStart()
 {
+	WhiteSkellRender->Off();
+	DeadRender->ChangeAnimation("SkellDead");
+	HpRender->Death();
+	HpBaseRender->Death();
+	TargetAreaCol->Death();
+	SkellBodyCol->Death();
+	AttackAreaCol->Death();
+	CurPos = GetTransform()->GetLocalPosition();
+	Pos1 = ParticleRender0->GetTransform()->GetWorldPosition();
+	Pos2 = ParticleRender1->GetTransform()->GetWorldPosition();
+	Pos3 = ParticleRender2->GetTransform()->GetWorldPosition();
+	Pos4 = ParticleRender3->GetTransform()->GetWorldPosition();
 }
-
+/*
+ParticleRender0
+ParticleRender1
+ParticleRender2
+ParticleRender3
+*/
 void WhiteSkell::DeadUpdate(float _Time)
 {
+	
+
+	CalBezierTransform(ParticleRender0, Pos1, { Pos1.x - 50,Pos1.y - 10.0f,0.0f }, { Pos1.x - 50,Pos1.y - 100.0f,0.0f }, _Time*0.0f);
 }
 
 void WhiteSkell::DeadEnd()

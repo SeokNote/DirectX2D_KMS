@@ -27,14 +27,26 @@ protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
 private:
+	float4 HpBaseScale = { 70.0f ,20.0f ,0.0f };
+	float4 HpBarScale = { 64.0f ,12.0f ,0.0f };
+
 	void SetCollision(float _DeltaTime);
-	bool GroundCheck();
+	bool GroundCheck(float4 _Pos);
 	void FlipCheck();
 	std::shared_ptr<class GameEngineSpriteRenderer> WhiteSkellRender;
 	std::shared_ptr<class GameEngineSpriteRenderer> AreaInRender;
+	std::shared_ptr<class GameEngineSpriteRenderer> HpBaseRender;
+	std::shared_ptr<class GameEngineSpriteRenderer> HpRender;
+	std::shared_ptr<class GameEngineSpriteRenderer> DeadRender;
+	std::shared_ptr<class GameEngineSpriteRenderer> ParticleRender0;
+	std::shared_ptr<class GameEngineSpriteRenderer> ParticleRender1;
+	std::shared_ptr<class GameEngineSpriteRenderer> ParticleRender2;
+	std::shared_ptr<class GameEngineSpriteRenderer> ParticleRender3;
+
 	std::shared_ptr<class GameEngineCollision> SkellBodyCol;
 	std::shared_ptr<class GameEngineCollision> TargetAreaCol;
 	std::shared_ptr<class GameEngineCollision> AttackAreaCol;
+	void CalBezierTransform(std::shared_ptr<GameEngineSpriteRenderer> _Render, const float4& _Start, const float4& _Height, const float4& _End, float _Ratio);
 
 	void ChangeState(WhiteSkellState _State);
 	void UpdateState(float _Time);
@@ -87,6 +99,10 @@ private:
 	int Damege = 3;
 	float4 InScale = { 56.0f,58.0f,0.0f };
 	int SkellHP = 80;
-
+	int MaxHP = 80;
+	float4 Pos1 = float4::Zero;
+	float4 Pos2 = float4::Zero;
+	float4 Pos3 = float4::Zero;
+	float4 Pos4 = float4::Zero;
 };
 
