@@ -1,7 +1,7 @@
 #pragma once
-
+#include <GameEngineCore/GameEngineFontRenderer.h>
 // Ό³Έν :
-class UIFontRender
+class UIFontRender :public GameEngineFontRenderer
 {
 public:
 	// constrcuter destructer
@@ -15,8 +15,9 @@ public:
 	UIFontRender& operator=(UIFontRender&& _Other) noexcept = delete;
 
 protected:
+	void Start() override;
 
 private:
-
+	
 };
 

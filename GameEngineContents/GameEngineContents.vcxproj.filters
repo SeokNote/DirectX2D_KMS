@@ -305,6 +305,9 @@
     <ClInclude Include="BatBullet.h">
       <Filter>Object\Monster\Bat\Bullet</Filter>
     </ClInclude>
+    <ClInclude Include="UIFontRender.h">
+      <Filter>Base\UIFontRender</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -641,6 +644,9 @@
     <ClCompile Include="BatBullet.cpp">
       <Filter>Object\Monster\Bat\Bullet</Filter>
     </ClCompile>
+    <ClCompile Include="UIFontRender.cpp">
+      <Filter>Base\UIFontRender</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Levels">
@@ -861,6 +867,12 @@
     </Filter>
     <Filter Include="Object\Monster\Bat\Bullet">
       <UniqueIdentifier>{b8b10752-00e9-43d1-b3a6-cbabd1719e3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base">
+      <UniqueIdentifier>{b69a4551-2646-4a7e-9ff6-6111bac7842c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base\UIFontRender">
+      <UniqueIdentifier>{9d683f0f-9188-40f5-99e1-6bb012dc15f6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

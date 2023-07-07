@@ -8,3 +8,8 @@ UIFontRender::~UIFontRender()
 {
 }
 
+void UIFontRender::Start()
+{
+	PushCameraRender(100);
+}
+
