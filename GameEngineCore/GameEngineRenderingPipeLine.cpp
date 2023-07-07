@@ -10,12 +10,12 @@
 #include "GameEngineInputLayOut.h"
 #include "GameEngineDepthState.h"
 
-GameEngineRenderingPipeLine::GameEngineRenderingPipeLine()
+GameEngineRenderingPipeLine::GameEngineRenderingPipeLine() 
 {
 	// InputLayOutPtr = std::make_shared<GameEngineInputLayOut>();
 }
 
-GameEngineRenderingPipeLine::~GameEngineRenderingPipeLine()
+GameEngineRenderingPipeLine::~GameEngineRenderingPipeLine() 
 {
 }
 
@@ -79,19 +79,19 @@ void GameEngineRenderingPipeLine::VertexShader()
 //}
 
 // 여기서부터
-void GameEngineRenderingPipeLine::HullShader()
+void GameEngineRenderingPipeLine::HullShader() 
 {
 
 }
-void GameEngineRenderingPipeLine::Tessellator()
+void GameEngineRenderingPipeLine::Tessellator() 
 {
 
 }
-void GameEngineRenderingPipeLine::DomainShader()
+void GameEngineRenderingPipeLine::DomainShader() 
 {
 
 }
-void GameEngineRenderingPipeLine::GeometryShaeder()
+void GameEngineRenderingPipeLine::GeometryShaeder() 
 {
 
 }
@@ -101,7 +101,7 @@ void GameEngineRenderingPipeLine::GeometryShaeder()
 // 뷰포트도 곱해줍니다.
 // 화면 컬링 
 // 픽셀 건지기
-void GameEngineRenderingPipeLine::Rasterizer()
+void GameEngineRenderingPipeLine::Rasterizer() 
 {
 	if (nullptr == RasterizerPtr)
 	{
@@ -109,14 +109,14 @@ void GameEngineRenderingPipeLine::Rasterizer()
 		return;
 	}
 
-	RasterizerPtr->SetFILL_MODE(D3D11_FILL_MODE::D3D11_FILL_SOLID); // fill_mode란 2개의 옵션이 있는데 선으로 그릴거냐 면으로 그릴거냐를 선택함
+	RasterizerPtr->SetFILL_MODE(FILL_MODE);
 	RasterizerPtr->Setting();
 
 	// GameEngineDevice::GetContext()->RSSetState
 }
 
 
-void GameEngineRenderingPipeLine::PixelShader()
+void GameEngineRenderingPipeLine::PixelShader() 
 {
 	if (nullptr == PixelShaderPtr)
 	{
@@ -129,7 +129,7 @@ void GameEngineRenderingPipeLine::PixelShader()
 
 	// GameEngineDevice::GetContext()->PSSetShader
 }
-void GameEngineRenderingPipeLine::OutputMerger()
+void GameEngineRenderingPipeLine::OutputMerger() 
 {
 	if (nullptr == BlendStatePtr)
 	{
@@ -267,7 +267,7 @@ void GameEngineRenderingPipeLine::Render()
 	//GameEngineDevice::GetContext()->DrawIndexed(IndexCount, 0, 0);
 }
 
-std::shared_ptr<GameEngineRenderingPipeLine> GameEngineRenderingPipeLine::Clone()
+std::shared_ptr<GameEngineRenderingPipeLine> GameEngineRenderingPipeLine::Clone() 
 {
 	std::shared_ptr<GameEngineRenderingPipeLine> ClonePipe = std::make_shared<GameEngineRenderingPipeLine>();
 

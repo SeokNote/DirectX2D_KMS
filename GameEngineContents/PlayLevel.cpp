@@ -55,6 +55,7 @@
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore/GameEngineCore.h>
 #include <GameEngineCore/GameEngineCoreWindow.h>
+#include <GameEngineCore/GameEngineFont.h>
 #include "FadeEffect.h"
 
 
@@ -79,6 +80,10 @@ PlayLevel::~PlayLevel()
 
 void PlayLevel::Start()
 {
+	//폰트 로드
+	GameEngineFont::Load("Aa카시오페아");
+
+
 	GameEngineDirectory NewDir;
 	NewDir.MoveParentToDirectory("ContentResources");
 	NewDir.Move("ContentResources");
@@ -253,11 +258,17 @@ void PlayLevel::Start()
 	}
 	GetMainCamera()->SetProjectionType(CameraType::Orthogonal);
 	GetMainCamera()->SetSortType(1, SortType::ZSort);
-	GetCamera(100)->SetSortType(2, SortType::ZSort);
+	GetMainCamera()->GetCamTarget()->DepthSettingOff();
 	FEffect = GetLastTarget()->CreateEffect<FadeEffect>();
 
 	std::shared_ptr<UICountBase> UICountBasePtr = CreateActor<UICountBase>(1);
+	//	Player
+	static std::shared_ptr<Player> NewPlayer = CreateActor<Player>(1);
+	//NewPlayer->GetTransform()->SetLocalPosition({ 4120.0f,-468.0f,-801.0f });
 
+	//NewPlayer->GetTransform()->SetLocalPosition({ 14504.0f,-194.0f,-801.0f });
+	NewPlayer->GetTransform()->SetLocalPosition({ -2390.0f,-500.0f,-801.0f });
+	//NewPlayer->GetTransform()->SetLocalPosition({ 11438.0f,-480.0f,-801.0f });
 
 	{	//Town
 		std::shared_ptr<Sky> SkyBG = CreateActor<Sky>(1);
@@ -299,6 +310,7 @@ void PlayLevel::Start()
 	{
 		//UI
 		std::shared_ptr<PlayerHPbar> PlayerHPbarPtr = CreateActor<PlayerHPbar>(-10);
+		PlayerHPbarPtr->GetTransform()->SetLocalPosition({ -482.0f, 318.0f,-100.0f });
 		std::shared_ptr<FoodBar> FoodBarPtr = CreateActor<FoodBar>(-10);
 		std::shared_ptr<CoinBar> CoinBarPtr = CreateActor<CoinBar>(-10);
 		std::shared_ptr<DashBar> DashBarPtr = CreateActor<DashBar>(-10);
@@ -366,36 +378,30 @@ void PlayLevel::Start()
 		std::shared_ptr<BossDoor_2> BossDoor3Ptr = CreateActor<BossDoor_2>(1);
 
 	}
-	//	Player
-	static std::shared_ptr<Player> NewPlayer = CreateActor<Player>(1);
-	//NewPlayer->GetTransform()->SetLocalPosition({ 4120.0f,-468.0f,-801.0f });
 
-	//NewPlayer->GetTransform()->SetLocalPosition({ 14504.0f,-194.0f,-801.0f });
-	NewPlayer->GetTransform()->SetLocalPosition({ -2390.0f,-500.0f,-801.0f });
-	//NewPlayer->GetTransform()->SetLocalPosition({ 11438.0f,-480.0f,-801.0f });
 	//보스 스포너
 	static std::shared_ptr<BelialSpawner> BelialSpawnerPtr = CreateActor<BelialSpawner>(1);
 	BelialSpawnerPtr->GetTransform()->SetLocalPosition({ 12050.0f,-350.0f,-760.0f });
 	static std::shared_ptr<TunakSpawner> TunakSpawnerPtr = CreateActor<TunakSpawner>(1);
 	TunakSpawnerPtr->GetTransform()->SetLocalPosition({ 14874.0f,-205.0f,-800.0f });
 	//테스트
-	//std::shared_ptr<WhiteSkell> WhiteSkellPtr = CreateActor<WhiteSkell>(1);
-	//WhiteSkellPtr->GetTransform()->SetLocalPosition({ 4981.0f,-268.0f,-800.0f });
-	//
-	//std::shared_ptr<WhiteSkell> WhiteSkellPtr1 = CreateActor<WhiteSkell>(1);
-	//WhiteSkellPtr1->GetTransform()->SetLocalPosition({ 5481.0f,-268.0f,-800.0f });
-	//
-	//std::shared_ptr<Ghost> GhostPtr = CreateActor<Ghost>(1);
-	//GhostPtr->GetTransform()->SetLocalPosition({ 4981.0f,-148.0f,-800.0f });
-	//
-	//std::shared_ptr<Minotaurs> MinotaursPtr = CreateActor<Minotaurs>(1);
-	//MinotaursPtr->GetTransform()->SetLocalPosition({ 5523.0f,258.0f,-800.0f });
-	//
-	//std::shared_ptr<SmallBat> SmallBatPtr = CreateActor<SmallBat>(1);
-	//SmallBatPtr->GetTransform()->SetLocalPosition({ 4781.0f,-198.0f,-800.0f });
-	//
-	//std::shared_ptr<SmallBat> SmallBatPtr1 = CreateActor<SmallBat>(1);
-	//SmallBatPtr1->GetTransform()->SetLocalPosition({ 5181.0f,-198.0f,-800.0f });
+	std::shared_ptr<WhiteSkell> WhiteSkellPtr = CreateActor<WhiteSkell>(1);
+	WhiteSkellPtr->GetTransform()->SetLocalPosition({ 4981.0f,-268.0f,-800.0f });
+	
+	std::shared_ptr<WhiteSkell> WhiteSkellPtr1 = CreateActor<WhiteSkell>(1);
+	WhiteSkellPtr1->GetTransform()->SetLocalPosition({ 5481.0f,-268.0f,-800.0f });
+	
+	std::shared_ptr<Ghost> GhostPtr = CreateActor<Ghost>(1);
+	GhostPtr->GetTransform()->SetLocalPosition({ 4981.0f,-148.0f,-800.0f });
+	
+	std::shared_ptr<Minotaurs> MinotaursPtr = CreateActor<Minotaurs>(1);
+	MinotaursPtr->GetTransform()->SetLocalPosition({ 5523.0f,258.0f,-800.0f });
+	
+	std::shared_ptr<SmallBat> SmallBatPtr = CreateActor<SmallBat>(1);
+	SmallBatPtr->GetTransform()->SetLocalPosition({ 4781.0f,-198.0f,-800.0f });
+	
+	std::shared_ptr<SmallBat> SmallBatPtr1 = CreateActor<SmallBat>(1);
+	SmallBatPtr1->GetTransform()->SetLocalPosition({ 5181.0f,-198.0f,-800.0f });
 
 
 

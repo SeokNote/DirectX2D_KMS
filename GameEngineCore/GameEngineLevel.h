@@ -20,7 +20,7 @@ class GameEngineLevel : public GameEngineObject
 	friend class GameEngineTexture;
 
 public:
-	static void IsDebugSwitch()
+	static void IsDebugSwitch() 
 	{
 		IsDebugRender = !IsDebugRender;
 	}
@@ -71,7 +71,7 @@ public:
 
 	std::shared_ptr<class GameEngineCamera> CreateNewCamera(int _Order);
 
-	std::shared_ptr<class GameEngineCamera> GetMainCamera()
+	std::shared_ptr<class GameEngineCamera> GetMainCamera() 
 	{
 		return MainCamera;
 	}
@@ -83,7 +83,7 @@ public:
 
 	std::shared_ptr<GameEngineCamera> GetCamera(int _CameraOrder);
 
-	std::shared_ptr<GameEngineRenderTarget> GetLastTarget()
+	std::shared_ptr<GameEngineRenderTarget> GetLastTarget() 
 	{
 		return LastTarget;
 	}
@@ -95,7 +95,7 @@ public:
 		return GetActorGroup(static_cast<int>(_Index));
 	}
 
-	std::list<std::shared_ptr<GameEngineActor>> GetActorGroup(int _Index)
+	std::list<std::shared_ptr<GameEngineActor>> GetActorGroup(int _Index) 
 	{
 		return Actors[_Index];
 	}
@@ -154,3 +154,4 @@ private:
 
 };
 
+ 

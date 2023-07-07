@@ -17,11 +17,11 @@ std::shared_ptr<GameEngineRenderTarget> GameEngineDevice::BackBufferTarget = nul
 //ID3D11RenderTargetView* GameEngineDevice::RenderTarget = nullptr;
 
 
-GameEngineDevice::GameEngineDevice()
+GameEngineDevice::GameEngineDevice() 
 {
 }
 
-GameEngineDevice::~GameEngineDevice()
+GameEngineDevice::~GameEngineDevice() 
 {
 }
 
@@ -84,7 +84,7 @@ void GameEngineDevice::CreateSwapChain()
 {
 	float4 ScreenSize = GameEngineWindow::GetScreenSize();
 
-	DXGI_SWAP_CHAIN_DESC SwapChainDesc = { 0, };
+	DXGI_SWAP_CHAIN_DESC SwapChainDesc = {0,};
 
 	// 기본정보
 	SwapChainDesc.BufferCount = 2;
@@ -123,7 +123,7 @@ void GameEngineDevice::CreateSwapChain()
 	// false면 전체화면 입니다.
 	SwapChainDesc.Windowed = true;
 
-	IDXGIDevice* SwapDevice = nullptr;
+	IDXGIDevice*  SwapDevice = nullptr;
 	IDXGIAdapter* SwapAdapter = nullptr;
 	IDXGIFactory* SwapFactory = nullptr;
 
@@ -172,13 +172,13 @@ void GameEngineDevice::CreateSwapChain()
 	std::shared_ptr<GameEngineTexture> BackBufferTexture = std::make_shared<GameEngineTexture>();
 	BackBufferTexture->ResCreate(SwapBackBufferTexture);
 
-	BackBufferTarget = GameEngineRenderTarget::Create("MainBackBufferTarget", BackBufferTexture, { 0.133f, 0.129f, 0.192f, 1.0f });
+	BackBufferTarget = GameEngineRenderTarget::Create("MainBackBufferTarget", BackBufferTexture, {0.0f, 0.0f, 1.0f, 1.0f});
 
 	BackBufferTarget->CreateDepthTexture();
 
 }
 
-void GameEngineDevice::RenderStart()
+void GameEngineDevice::RenderStart() 
 {
 	BackBufferTarget->Clear();
 
@@ -186,7 +186,7 @@ void GameEngineDevice::RenderStart()
 	BackBufferTarget->Setting();
 }
 
-void GameEngineDevice::RenderEnd()
+void GameEngineDevice::RenderEnd() 
 {
 	HRESULT Result = SwapChain->Present(0, 0);
 	if (Result == DXGI_ERROR_DEVICE_REMOVED || Result == DXGI_ERROR_DEVICE_RESET)
@@ -195,28 +195,28 @@ void GameEngineDevice::RenderEnd()
 		MsgAssert("랜더타겟 생성에 실패했습니다.");
 		return;
 	}
-
+	
 }
 
-void GameEngineDevice::VidioRenderStart()
+void GameEngineDevice::VidioRenderStart() 
 {
 	BackBufferTarget->Clear();
 	BackBufferTarget->Reset();
 }
 
-void GameEngineDevice::VidioRenderEnd()
+void GameEngineDevice::VidioRenderEnd() 
 {
 	HRESULT Result = SwapChain->Present(0, 0);
 }
 
-void GameEngineDevice::Initialize()
+void GameEngineDevice::Initialize() 
 {
 	// Com객체라고 해요.
 	// 9때는 
 	// Device->TextureLoad();
 	// Device->DrawMesh();
 
-	if (nullptr == GameEngineWindow::GetHWnd())
+	if (nullptr ==  GameEngineWindow::GetHWnd())
 	{
 		MsgAssert("윈도우가 만들어지지 않았는데 디바이스를 초가화 할수는 없습니다.");
 		return;
@@ -253,12 +253,12 @@ void GameEngineDevice::Initialize()
 	// D3D11_SDK_VERSION 그냥 이 윈도우에서 지원하는 sdk 버전이 define
 
 	HRESULT Result = D3D11CreateDevice(
-		Adapter,
-		D3D_DRIVER_TYPE::D3D_DRIVER_TYPE_UNKNOWN,
+		Adapter, 
+		D3D_DRIVER_TYPE::D3D_DRIVER_TYPE_UNKNOWN, 
 		nullptr,
 		iFlag,
 		nullptr,
-		0,
+		0, 
 		D3D11_SDK_VERSION,
 		&Device,
 		&Level,
@@ -289,6 +289,7 @@ void GameEngineDevice::Initialize()
 	// 윈도우와 연결하는 작업.
 	// 즉 백버퍼 만드는 작업을 하게 됩니다.
 	// 다이렉트 x에서 멀티쓰레드 관련 
+	// 멀티쓰레드 사용하겠다는 설정을 해놨다.
 	Result = CoInitializeEx(nullptr, COINIT_MULTITHREADED);
 
 	CreateSwapChain();

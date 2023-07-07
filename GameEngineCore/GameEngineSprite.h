@@ -47,12 +47,12 @@ public:
 		return NewTexture;
 	}
 
-	size_t GetSpriteCount()
+	size_t GetSpriteCount() 
 	{
 		return Sprites.size();
 	}
 
-	const SpriteInfo& GetSpriteInfo(size_t _Index)
+	const SpriteInfo& GetSpriteInfo(size_t _Index) 
 	{
 		if (_Index < 0)
 		{
@@ -94,7 +94,7 @@ public:
 
 		if (nullptr == NewTexture)
 		{
-			MsgAssert("존재하지 않는 텍스처를 로드 하려고 했습니다.");
+			return LoadFolder(_Name.data(), _Path);
 		}
 
 		NewTexture->ReLoad();

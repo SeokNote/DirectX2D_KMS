@@ -30,14 +30,14 @@ public:
 		return Res;
 	}
 
-	std::shared_ptr<GameEngineVertexBuffer> GetVertexBuffer()
+	std::shared_ptr<GameEngineVertexBuffer> GetVertexBuffer() 
 	{
 		return VertexBufferPtr;
 	}
 
 	void SetTopology(D3D11_PRIMITIVE_TOPOLOGY _TOPOLOGY)
 	{
-		TOPOLOGY = _TOPOLOGY;
+		TOPOLOGY= _TOPOLOGY;
 	}
 
 	// constrcuter destructer

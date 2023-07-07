@@ -4,11 +4,11 @@
 #include "GameEngineVertexShader.h"
 #include "GameEnginePixelShader.h"
 
-GameEngineShader::GameEngineShader()
+GameEngineShader::GameEngineShader() 
 {
 }
 
-GameEngineShader::~GameEngineShader()
+GameEngineShader::~GameEngineShader() 
 {
 	if (nullptr != BinaryCode)
 	{
@@ -73,7 +73,7 @@ void GameEngineShader::ShaderResCheck()
 
 			D3D11_SHADER_BUFFER_DESC BufferDesc;
 			CBufferPtr->GetDesc(&BufferDesc);
-
+			
 			std::shared_ptr<GameEngineConstantBuffer> Res = GameEngineConstantBuffer::CreateAndFind(BufferDesc.Size, UpperName, BufferDesc);
 
 			GameEngineConstantBufferSetter Setter;
@@ -109,7 +109,8 @@ void GameEngineShader::ShaderResCheck()
 
 			if (nullptr == Res)
 			{
-				MsgAssert("다음의 샘플러가 존재하지 않아서 쉐이더에 세팅해줄수가 없습니다. : " + UpperName);
+				Res = GameEngineSampler::Find("ENGINEBASE");
+				// MsgAssert("다음의 샘플러가 존재하지 않아서 쉐이더에 세팅해줄수가 없습니다. : " + UpperName);
 			}
 
 			GameEngineSamplerSetter Setter;

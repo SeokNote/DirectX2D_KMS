@@ -14,8 +14,66 @@
 #pragma comment(lib, "..\\GameEnginePlatform\\ThirdParty\\FMOD\\lib\\x64\\fmod_vc.lib")
 #endif
 
+//////////////////////////// GameEngineSoundPlayer ////////////////////////////
+
+void GameEngineSoundPlayer::SoundFadeIn(double _Time, float _Volume)
+{
+	if (false == IsValid())
+	{
+		MsgAssert("유효하지 않은 사운드를 페이드-인 하려 했습니다.");
+		return;
+	}
+
+	int Rate = 0;
+	unsigned long long ParentClock = 0u;
+
+	FMOD::System* SoundSys = nullptr;
+	Channel->getSystemObject(&SoundSys);
+	SoundSys->getSoftwareFormat(&Rate, 0, 0);
+	Channel->getDSPClock(nullptr, &ParentClock);
+
+	unsigned long long EndClock = static_cast<unsigned long long>(ParentClock + (Rate * _Time));
+
+	Channel->removeFadePoints(0, INT64_MAX);
+	Channel->addFadePoint(ParentClock, 0.0f);
+	Channel->addFadePoint(EndClock, _Volume);
+	Channel->setDelay(0, 0, false);
+	Channel->setPaused(false);
+}
+
+void GameEngineSoundPlayer::SoundFadeOut(double _Time, float _Volume, bool _IsStop /*= false*/)
+{
+	if (false == IsValid())
+	{
+		MsgAssert("유효하지 않은 사운드를 페이드-아웃 하려 했습니다.");
+		return;
+	}
+
+	int Rate = 0;
+	unsigned long long ParentClock = 0u;
+	float CurVolume = 0.0f;
+
+	Channel->setLoopCount(1);
+	FMOD::System* SoundSys = nullptr;
+	Channel->getSystemObject(&SoundSys);
+	SoundSys->getSoftwareFormat(&Rate, 0, 0);
+	Channel->getDSPClock(nullptr, &ParentClock);
+	Channel->getVolume(&CurVolume);
+
+	unsigned long long EndClock = static_cast<unsigned long long>(ParentClock + (Rate * _Time));
+
+	Channel->removeFadePoints(0, INT64_MAX);
+	Channel->addFadePoint(ParentClock, CurVolume);
+	Channel->addFadePoint(EndClock, _Volume);
+	Channel->setDelay(ParentClock, EndClock, _IsStop);
+}
+
+//////////////////////////// GameEngineSound ////////////////////////////
+
 // FMOD는 자신들의 기능을 이용할수 있게 해주는 클래스의 포인터를 주고
 FMOD::System* SoundSystem = nullptr;
+
+std::unordered_map<std::string, std::shared_ptr<GameEngineSound>> GameEngineSound::AllSound;
 
 class SoundSystemCreator
 {
@@ -61,6 +119,40 @@ GameEngineSound::GameEngineSound()
 
 GameEngineSound::~GameEngineSound()
 {
+	if (nullptr == FMODSound)
+	{
+		FMODSound->release();
+	}
+}
+
+void GameEngineSound::Load(const std::string_view& _Path)
+{
+	GameEnginePath NewPath(_Path);
+	return Load(NewPath.GetFileName(), _Path);
+}
+
+void GameEngineSound::Load(const std::string_view& _Name, const std::string_view& _Path)
+{
+	std::string UpperName = GameEngineString::ToUpper(_Name);
+	std::shared_ptr<GameEngineSound> NewSound = std::make_shared<GameEngineSound>();
+	NewSound->SoundLoad(_Path);
+	AllSound.insert(std::pair<std::string, std::shared_ptr<GameEngineSound>>(UpperName, NewSound));
+}
+
+GameEngineSoundPlayer GameEngineSound::Play(const std::string_view& _Name)
+{
+	std::string UpperName = GameEngineString::ToUpper(_Name);
+
+	std::unordered_map<std::string, std::shared_ptr<GameEngineSound>>::iterator Finditer = AllSound.find(UpperName);
+
+	if (Finditer == AllSound.end())
+	{
+		MsgAssert("존재하지 않는 사운드를 플레이하려고 했습니다.");
+		return nullptr;
+	}
+	FMOD::Channel* Channel = Finditer->second->SoundPlay();
+	Channel->setLoopCount(0);
+	return Channel;
 }
 
 void GameEngineSound::SoundLoad(const std::string_view& _Path)
@@ -75,7 +167,8 @@ void GameEngineSound::SoundLoad(const std::string_view& _Path)
 	return;
 }
 
-FMOD::Channel* GameEngineSound::Play()
+
+FMOD::Channel* GameEngineSound::SoundPlay()
 {
 	if (nullptr == FMODSound)
 	{
@@ -87,4 +180,9 @@ FMOD::Channel* GameEngineSound::Play()
 	SoundSystem->playSound(FMODSound, nullptr, false, &Return);
 
 	return Return;
+}
+
+void GameEngineSound::ResourcesClear()
+{
+	AllSound.clear();
 }

@@ -65,7 +65,6 @@ public:
 
 	// 랜더타겟에다가 effect를 준다는 개념이 됩니다.
 
-	void EffectInit(std::shared_ptr<GameEnginePostProcess> _PostProcess);
 
 	template<typename EffectType>
 	std::shared_ptr<EffectType> CreateEffect()
@@ -79,6 +78,8 @@ public:
 		return Effect;
 	}
 
+	void ReleaseEffect(std::shared_ptr<GameEnginePostProcess> _Effect);
+
 	void Effect(float _DeltaTime);
 
 	std::shared_ptr<GameEngineTexture> GetTexture(int _Index)
@@ -86,7 +87,7 @@ public:
 		return Textures[_Index];
 	}
 
-	void DepthSettingOn()
+	void DepthSettingOn() 
 	{
 		DepthSetting = true;
 	}
@@ -116,5 +117,7 @@ private:
 	void ResCreate(std::shared_ptr<GameEngineTexture> _Texture, float4 _Color);
 
 	void ResCreate(DXGI_FORMAT _Format, float4 _Scale, float4 _Color);
+
+	void EffectInit(std::shared_ptr<GameEnginePostProcess> _PostProcess);
 
 };

@@ -34,7 +34,7 @@ namespace GameEngineDebug
 		DebugDrawDatas[_Cam].push_back({ DebugDrawType::Box, _Trans, Color });
 	}
 
-	void DrawSphere(class GameEngineCamera* _Cam, class GameEngineTransform* _Trans, float4 Color)
+	void DrawSphere(class GameEngineCamera* _Cam, class GameEngineTransform* _Trans, float4 Color) 
 	{
 		if (DebugDrawDatas.end() == DebugDrawDatas.find(_Cam))
 		{

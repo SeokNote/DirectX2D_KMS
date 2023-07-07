@@ -10,13 +10,13 @@
 
 // #pragma comment(lib, "DirectXTex.lib")
 
-GameEnginePixelColor GameEnginePixelColor::Black = { 0, 0, 0, 0 };
+GameEnginePixelColor GameEnginePixelColor::Black = {0, 0, 0, 0};
 
-GameEngineTexture::GameEngineTexture()
+GameEngineTexture::GameEngineTexture() 
 {
 }
 
-GameEngineTexture::~GameEngineTexture()
+GameEngineTexture::~GameEngineTexture() 
 {
 	Release();
 }
@@ -86,7 +86,7 @@ void GameEngineTexture::CreateDepthStencilView()
 }
 
 
-void GameEngineTexture::ResLoad(const std::string_view& _Path)
+void GameEngineTexture::ResLoad(const std::string_view& _Path) 
 {
 	// GameEnginePath NewPath = 
 
@@ -98,11 +98,17 @@ void GameEngineTexture::ResLoad(const std::string_view& _Path)
 
 	if (Ext == ".TGA")
 	{
-		MsgAssert("아직 로드할 수 없는 포맷입니다." + std::string(_Path.data()));
+		if (S_OK != DirectX::LoadFromTGAFile(Path.c_str(), DirectX::TGA_FLAGS_NONE, &Data, Image))
+		{
+			MsgAssert("TGA 포맷 로드 실패." + std::string(_Path.data()));
+		}
 	}
 	else if (Ext == ".DDS")
 	{
-		MsgAssert("아직 로드할 수 없는 포맷입니다." + std::string(_Path.data()));
+		if (S_OK != DirectX::LoadFromDDSFile(Path.c_str(), DirectX::DDS_FLAGS_NONE, &Data, Image))
+		{
+			MsgAssert("DDS 포맷 로드 실패." + std::string(_Path.data()));
+		}
 	}
 	else if (S_OK != DirectX::LoadFromWICFile(Path.c_str(), DirectX::WIC_FLAGS_NONE, &Data, Image))
 	{
@@ -127,7 +133,7 @@ void GameEngineTexture::ResLoad(const std::string_view& _Path)
 	// Texture2D->GetDesc(&Desc);
 }
 
-void GameEngineTexture::VSSetting(UINT _Slot)
+void GameEngineTexture::VSSetting(UINT _Slot) 
 {
 	if (nullptr == SRV)
 	{
@@ -135,10 +141,10 @@ void GameEngineTexture::VSSetting(UINT _Slot)
 		return;
 	}
 
-	GameEngineDevice::GetContext()->VSSetShaderResources(_Slot, 1, &SRV);
+	GameEngineDevice::GetContext()->VSSetShaderResources(_Slot, 1,&SRV);
 }
 
-void GameEngineTexture::PSSetting(UINT _Slot)
+void GameEngineTexture::PSSetting(UINT _Slot) 
 {
 	if (nullptr == SRV)
 	{
@@ -162,7 +168,7 @@ void GameEngineTexture::PSReset(UINT _Slot)
 	GameEngineDevice::GetContext()->PSSetShaderResources(_Slot, 1, &Nullptr);
 }
 
-void GameEngineTexture::ResCreate(const D3D11_TEXTURE2D_DESC& _Value)
+void GameEngineTexture::ResCreate(const D3D11_TEXTURE2D_DESC& _Value) 
 {
 	Desc = _Value;
 
@@ -396,8 +402,6 @@ GameEnginePixelColor GameEngineTexture::GetPixel(int _X, int _Y, GameEnginePixel
 		break;
 	case DXGI_FORMAT_B8G8R8A8_UNORM:
 	{
-		// 컬러1개에 4바이트인 100 * 100
-		// 10, 10
 		int Index = _Y * static_cast<int>(GetWidth()) + _X;
 		ColorPtr = ColorPtr + (Index * 4);
 		GameEnginePixelColor Return;
@@ -407,7 +411,6 @@ GameEnginePixelColor GameEngineTexture::GetPixel(int _X, int _Y, GameEnginePixel
 		Return.a = ColorPtr[3];
 		return Return;
 	}
-		break;
 	case DXGI_FORMAT_B8G8R8X8_UNORM:
 	{
 		// 컬러1개에 4바이트인 100 * 100
@@ -562,3 +565,13 @@ void GameEngineTexture::ReLoad()
 
 	ResLoad(GetPath());
 }
+
+//void GameEngineTexture::SetPixel(int _X, int _Y, GameEnginePixelColor DefaultColor)
+//{
+//	const DirectX::Image* Ptr = Image.GetImages();
+//
+//	//Ptr->pixels[0] = 0;
+//	//Ptr->pixels[1] = 0;
+//	//Ptr->pixels[2] = 0;
+//	//Ptr->pixels[3] = 0;
+//}

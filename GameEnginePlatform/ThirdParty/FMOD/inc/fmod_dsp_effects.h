@@ -89,7 +89,7 @@ typedef enum
 typedef enum
 {
     FMOD_DSP_HIGHPASS_CUTOFF,
-    r
+    FMOD_DSP_HIGHPASS_RESONANCE
 } FMOD_DSP_HIGHPASS;
 
 
