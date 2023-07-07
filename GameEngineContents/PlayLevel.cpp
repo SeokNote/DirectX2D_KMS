@@ -67,6 +67,7 @@
 #include "GoblinBomb.h"
 #include "WhiteSkell.h"
 #include "Minotaurs.h"
+#include "Ghost.h"
 PlayLevel::PlayLevel()
 {
 }
@@ -212,7 +213,19 @@ void PlayLevel::Start()
 	GameEngineSprite::LoadFolder(MonsterDir.GetPlusFileName("WhiteSkellAttack").GetFullPath());
 	GameEngineSprite::LoadFolder(MonsterDir.GetPlusFileName("WhiteSkellIdle").GetFullPath());
 	GameEngineSprite::LoadFolder(MonsterDir.GetPlusFileName("WhiteSkellMove").GetFullPath());
-	
+	//미노타우르스
+	MonsterDir.MoveParentToDirectory("Monster");
+	MonsterDir.Move("Monster");
+	MonsterDir.Move("Minotaurs");
+	GameEngineSprite::LoadFolder(MonsterDir.GetPlusFileName("MinotaursAttack").GetFullPath());
+	GameEngineSprite::LoadFolder(MonsterDir.GetPlusFileName("MinotaursIdle").GetFullPath());
+	GameEngineSprite::LoadFolder(MonsterDir.GetPlusFileName("MinotaursTakcle").GetFullPath());
+	MonsterDir.MoveParentToDirectory("Monster");
+	MonsterDir.Move("Monster");
+	MonsterDir.Move("Ghost");
+	GameEngineSprite::LoadFolder(MonsterDir.GetPlusFileName("GhostAttack").GetFullPath());
+	GameEngineSprite::LoadFolder(MonsterDir.GetPlusFileName("GhostIdle").GetFullPath());
+
 	if (false == GameEngineInput::IsKey("LeftMove"))
 	{
 		GameEngineInput::CreateKey("LeftMove", 'A');
@@ -228,13 +241,6 @@ void PlayLevel::Start()
 		GameEngineInput::CreateKey("DeBugKey", 'Q');
 
 	}
-	//미노타우르스
-	MonsterDir.MoveParentToDirectory("Monster");
-	MonsterDir.Move("Monster");
-	MonsterDir.Move("Minotaurs");
-	GameEngineSprite::LoadFolder(MonsterDir.GetPlusFileName("MinotaursAttack").GetFullPath());
-	GameEngineSprite::LoadFolder(MonsterDir.GetPlusFileName("MinotaursIdle").GetFullPath());
-	GameEngineSprite::LoadFolder(MonsterDir.GetPlusFileName("MinotaursTakcle").GetFullPath());
 
 
 	if (false == GameEngineInput::IsKey("StatUI"))
@@ -360,7 +366,7 @@ void PlayLevel::Start()
 	}
 	//	Player
 	static std::shared_ptr<Player> NewPlayer = CreateActor<Player>(1);
-	NewPlayer->GetTransform()->SetLocalPosition({ 5423.0f,221.0f,-801.0f });
+	NewPlayer->GetTransform()->SetLocalPosition({ 4781.0f,221.0f,-801.0f });
 
 	//NewPlayer->GetTransform()->SetLocalPosition({ 14504.0f,-194.0f,-801.0f });
 	//NewPlayer->GetTransform()->SetLocalPosition({ -2390.0f,-500.0f,-801.0f });
@@ -373,6 +379,8 @@ void PlayLevel::Start()
 	//테스트
 	std::shared_ptr<WhiteSkell> WhiteSkellPtr = CreateActor<WhiteSkell>(1);
 	WhiteSkellPtr->GetTransform()->SetLocalPosition({ 4981.0f,-268.0f,-800.0f });
+	std::shared_ptr<Ghost> GhostPtr = CreateActor<Ghost>(1);
+	GhostPtr->GetTransform()->SetLocalPosition({ 4981.0f,-158.0f,-800.0f });
 	std::shared_ptr<Minotaurs> MinotaursPtr = CreateActor<Minotaurs>(1);
 	MinotaursPtr->GetTransform()->SetLocalPosition({ 5523.0f,258.0f,-800.0f });
 	

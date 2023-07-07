@@ -296,6 +296,9 @@
     <ClInclude Include="Minotaurs.h">
       <Filter>Object\Monster\Minotaurs</Filter>
     </ClInclude>
+    <ClInclude Include="Ghost.h">
+      <Filter>Object\Monster\Ghost</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -617,6 +620,12 @@
     <ClCompile Include="Minotaurs_State.cpp">
       <Filter>Object\Monster\Minotaurs</Filter>
     </ClCompile>
+    <ClCompile Include="Ghost.cpp">
+      <Filter>Object\Monster\Ghost</Filter>
+    </ClCompile>
+    <ClCompile Include="Ghost_State.cpp">
+      <Filter>Object\Monster\Ghost</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Levels">
@@ -825,6 +834,9 @@
     </Filter>
     <Filter Include="Object\Monster\Minotaurs">
       <UniqueIdentifier>{b5829fc6-01a5-460d-aec7-c63c0434aed4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Monster\Ghost">
+      <UniqueIdentifier>{f32286bd-537a-45aa-876b-61c5dc50e004}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
