@@ -499,6 +499,7 @@ void Player::DashUpdate(float _Time)
 	if (LeftSideCheck() == true)
 	{
 		ChangeState(PlayerState::FALL);
+		GetTransform()->AddLocalPosition({ 0.0f,-PrevDashPos.y * DashSpeed * _Time,0.0f });
 
 	}
 	if (RightSideCheck() == true)

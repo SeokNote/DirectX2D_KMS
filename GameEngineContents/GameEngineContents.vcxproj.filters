@@ -291,7 +291,10 @@
       <Filter>Object\Door\BossSpawner\Tunak</Filter>
     </ClInclude>
     <ClInclude Include="WhiteSkell.h">
-      <Filter>Object\Monster</Filter>
+      <Filter>Object\Monster\WhiteSkell</Filter>
+    </ClInclude>
+    <ClInclude Include="Minotaurs.h">
+      <Filter>Object\Monster\Minotaurs</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -603,10 +606,16 @@
       <Filter>Object\Boss\Tunak\Tunak</Filter>
     </ClCompile>
     <ClCompile Include="WhiteSkell.cpp">
-      <Filter>Object\Monster</Filter>
+      <Filter>Object\Monster\WhiteSkell</Filter>
     </ClCompile>
     <ClCompile Include="WhiteSkell_State.cpp">
-      <Filter>Object\Monster</Filter>
+      <Filter>Object\Monster\WhiteSkell</Filter>
+    </ClCompile>
+    <ClCompile Include="Minotaurs.cpp">
+      <Filter>Object\Monster\Minotaurs</Filter>
+    </ClCompile>
+    <ClCompile Include="Minotaurs_State.cpp">
+      <Filter>Object\Monster\Minotaurs</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -810,6 +819,12 @@
     </Filter>
     <Filter Include="Object\Door\BossSpawner\Tunak">
       <UniqueIdentifier>{d1869f62-773f-4ce9-b48d-86939fdc4a7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Monster\WhiteSkell">
+      <UniqueIdentifier>{b42ccbbb-158e-4d98-bb77-6131ef61d417}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Monster\Minotaurs">
+      <UniqueIdentifier>{b5829fc6-01a5-460d-aec7-c63c0434aed4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

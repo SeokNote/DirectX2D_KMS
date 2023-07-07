@@ -66,6 +66,7 @@
 #include "Tunak.h"
 #include "GoblinBomb.h"
 #include "WhiteSkell.h"
+#include "Minotaurs.h"
 PlayLevel::PlayLevel()
 {
 }
@@ -207,6 +208,7 @@ void PlayLevel::Start()
 	MonsterDir.Move("MainLevelAnimation");
 	MonsterDir.Move("Monster");
 	MonsterDir.Move("WhiteSkell");
+	//화이트스켈
 	GameEngineSprite::LoadFolder(MonsterDir.GetPlusFileName("WhiteSkellAttack").GetFullPath());
 	GameEngineSprite::LoadFolder(MonsterDir.GetPlusFileName("WhiteSkellIdle").GetFullPath());
 	GameEngineSprite::LoadFolder(MonsterDir.GetPlusFileName("WhiteSkellMove").GetFullPath());
@@ -226,7 +228,13 @@ void PlayLevel::Start()
 		GameEngineInput::CreateKey("DeBugKey", 'Q');
 
 	}
-	
+	//미노타우르스
+	MonsterDir.MoveParentToDirectory("Monster");
+	MonsterDir.Move("Monster");
+	MonsterDir.Move("Minotaurs");
+	GameEngineSprite::LoadFolder(MonsterDir.GetPlusFileName("MinotaursAttack").GetFullPath());
+	GameEngineSprite::LoadFolder(MonsterDir.GetPlusFileName("MinotaursIdle").GetFullPath());
+	GameEngineSprite::LoadFolder(MonsterDir.GetPlusFileName("MinotaursTakcle").GetFullPath());
 
 
 	if (false == GameEngineInput::IsKey("StatUI"))
@@ -352,7 +360,7 @@ void PlayLevel::Start()
 	}
 	//	Player
 	static std::shared_ptr<Player> NewPlayer = CreateActor<Player>(1);
-	NewPlayer->GetTransform()->SetLocalPosition({ 4381.0f,-468.0f,-801.0f });
+	NewPlayer->GetTransform()->SetLocalPosition({ 5423.0f,221.0f,-801.0f });
 
 	//NewPlayer->GetTransform()->SetLocalPosition({ 14504.0f,-194.0f,-801.0f });
 	//NewPlayer->GetTransform()->SetLocalPosition({ -2390.0f,-500.0f,-801.0f });
@@ -365,7 +373,8 @@ void PlayLevel::Start()
 	//테스트
 	std::shared_ptr<WhiteSkell> WhiteSkellPtr = CreateActor<WhiteSkell>(1);
 	WhiteSkellPtr->GetTransform()->SetLocalPosition({ 4981.0f,-268.0f,-800.0f });
-	
+	std::shared_ptr<Minotaurs> MinotaursPtr = CreateActor<Minotaurs>(1);
+	MinotaursPtr->GetTransform()->SetLocalPosition({ 5523.0f,258.0f,-800.0f });
 	
 	std::shared_ptr<GreatWeapon> GreatWeaponPtr = CreateActor<GreatWeapon>(1);
 	GreatWeaponPtr->GetTransform()->SetWorldPosition(NewPlayer->GetTransform()->GetWorldPosition());

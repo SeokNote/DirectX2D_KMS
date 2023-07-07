@@ -107,7 +107,7 @@ void WhiteSkell::IdleUpdate(float _Time)
 		ChangeState(WhiteSkellState::DEAD);
 	}
 	MoveTerm += _Time;
-	if (GroundCheck(GetTransform()->GetLocalPosition()) == false)
+	if (GroundCheck(GetTransform()->GetLocalPosition(),SkellPivot) == false)
 	{
 		ChangeState(WhiteSkellState::FALL);
 	}
@@ -235,7 +235,7 @@ void WhiteSkell::FallStart()
 
 void WhiteSkell::FallUpdate(float _Time)
 {
-	if (GroundCheck(GetTransform()->GetLocalPosition()) == false)
+	if (GroundCheck(GetTransform()->GetLocalPosition(), SkellPivot) == false)
 	{
 		GetTransform()->AddLocalPosition({ 0.0f,-_Time * MoveSpeed,0.0f });
 	}
@@ -279,7 +279,7 @@ void WhiteSkell::AttackUpdate(float _Time)
 		SkellBodyCol->GetTransform()->SetLocalPosition({ -50.0f,-40.0f,0.f });
 		AttackAreaCol->GetTransform()->SetLocalPosition({ -130.0f,-40.0f,0.f });
 		HpRender->GetTransform()->SetLocalPosition({ -40.0f,-110.0f,0.0f });
-		HpBaseRender->GetTransform()->SetLocalPosition({ -30.0f,-110.0f,0.0f });
+		HpBaseRender->GetTransform()->SetLocalPosition({ -40.0f,-110.0f,0.0f });
 
 	}
 	if (IsFirstRender==false)
@@ -321,6 +321,7 @@ void WhiteSkell::AttackEnd()
 
 void WhiteSkell::DeadStart()
 {
+
 	WhiteSkellRender->Off();
 	DeadRender->ChangeAnimation("SkellDead");
 	HpRender->Death();
@@ -330,9 +331,7 @@ void WhiteSkell::DeadStart()
 	AttackAreaCol->Death();
 	CurPos = GetTransform()->GetLocalPosition();
 	Pos1 = ParticleRender0->GetTransform()->GetWorldPosition();
-	Pos2 = ParticleRender1->GetTransform()->GetWorldPosition();
-	Pos3 = ParticleRender2->GetTransform()->GetWorldPosition();
-	Pos4 = ParticleRender3->GetTransform()->GetWorldPosition();
+	CurFlip = IsFlip;
 }
 /*
 ParticleRender0
@@ -342,9 +341,48 @@ ParticleRender3
 */
 void WhiteSkell::DeadUpdate(float _Time)
 {
-	
+	float4 Posas = ParticleRender0->GetTransform()->GetWorldPosition();
+	if (DeadRender->GetCurrentFrame()>2)
+	{
+		ParticleRender0->On();
+		ParticleRender1->On();
+		ParticleRender2->On();
+		ParticleRender3->On();
+	}
+	FallSpeed += _Time;
+	if (GroundCheck(Posas,90.0f) != true)
+	{
+		if (CurFlip == true)
+		{
+			CalBezierTransform(ParticleRender0, Pos1, { Pos1.x + 50,Pos1.y + 20.0f,Pos1.z }, { Pos1.x + 200,Pos1.y - 400.0f,Pos1.z }, FallSpeed * 0.7f);
+			CalBezierTransform(ParticleRender1, Pos1, { Pos1.x + 20,Pos1.y + 20.0f,Pos1.z }, { Pos1.x + 80,Pos1.y - 400.0f,Pos1.z }, FallSpeed * 0.7f);
+			CalBezierTransform(ParticleRender2, Pos1, { Pos1.x + 10,Pos1.y + 20.0f,Pos1.z }, { Pos1.x + 40,Pos1.y- 400.0f,Pos1.z }, FallSpeed * 0.7f);
+			CalBezierTransform(ParticleRender3, Pos1, { Pos1.x + 30,Pos1.y + 20.0f,Pos1.z }, { Pos1.x + 100,Pos1.y -400.0f,Pos1.z }, FallSpeed * 0.7f);
+		}
+		else
+		{
+			CalBezierTransform(ParticleRender0, Pos1, { Pos1.x - 50,Pos1.y + 20.0f,Pos1.z }, { Pos1.x - 200,Pos1.y - 400.0f,Pos1.z }, FallSpeed * 0.7f);
+			CalBezierTransform(ParticleRender1, Pos1, { Pos1.x - 20,Pos1.y + 20.0f,Pos1.z }, { Pos1.x - 80,Pos1.y - 400.0f,Pos1.z }, FallSpeed * 0.7f);
+			CalBezierTransform(ParticleRender2, Pos1, { Pos1.x - 10,Pos1.y + 20.0f,Pos1.z }, { Pos1.x - 40,Pos1.y - 400.0f,Pos1.z }, FallSpeed * 0.7f);
+			CalBezierTransform(ParticleRender3, Pos1, { Pos1.x - 30,Pos1.y + 20.0f,Pos1.z }, { Pos1.x - 100,Pos1.y - 400.0f,Pos1.z }, FallSpeed * 0.7f);
+		}
+	}
+	else
+	{
+		if (ParticleRender0->ColorOptionValue.MulColor.a > 0)
+		{
+			ParticleRender0->ColorOptionValue.MulColor.a -= FallSpeed * 0.001f;
+			ParticleRender1->ColorOptionValue.MulColor.a -= FallSpeed * 0.001f;
+			ParticleRender2->ColorOptionValue.MulColor.a -= FallSpeed * 0.001f;
+			ParticleRender3->ColorOptionValue.MulColor.a -= FallSpeed * 0.001f;
+		}
+		else
+		{
+			Death();
+		}
 
-	CalBezierTransform(ParticleRender0, Pos1, { Pos1.x - 50,Pos1.y - 10.0f,0.0f }, { Pos1.x - 50,Pos1.y - 100.0f,0.0f }, _Time*0.0f);
+	}
+
 }
 
 void WhiteSkell::DeadEnd()

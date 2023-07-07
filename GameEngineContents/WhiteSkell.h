@@ -31,7 +31,8 @@ private:
 	float4 HpBarScale = { 64.0f ,12.0f ,0.0f };
 
 	void SetCollision(float _DeltaTime);
-	bool GroundCheck(float4 _Pos);
+	bool GroundCheck(float4 _Pos,float _Pivot);
+
 	void FlipCheck();
 	std::shared_ptr<class GameEngineSpriteRenderer> WhiteSkellRender;
 	std::shared_ptr<class GameEngineSpriteRenderer> AreaInRender;
@@ -90,9 +91,12 @@ private:
 	float4 PlayerPos = float4::Zero;
 	bool InArea = false;
 	bool IsFlip = false;
+	bool CurFlip = false;
 	int FlipCount = 0;
 	float Invincibilitytime = 0.0f;
+	float FallSpeed = 0.0f;
 	//몬스터 정보
+	float SkellPivot = 167.0f;
 	float4 Scale = { 284.0f,192.0f,0.0f };
 	float4 ColScale = { 132.0f,120.0f,0.0f };
 	float4 AttackColScale = { 114.0f,118.0f,0.0f };

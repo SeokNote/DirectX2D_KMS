@@ -73,25 +73,25 @@ void WhiteSkell::Start()
 	ParticleRender0->SetTexture("WhiteSkellPTK0.png");
 	ParticleRender0->GetTransform()->SetLocalScale({40.0f,40.0f,0.0f});
 	ParticleRender0->GetTransform()->SetLocalPosition({ -60.0f,0.0f,-5.0f });
-//	ParticleRender0->Off();
+	ParticleRender0->Off();
 
 	ParticleRender1 = CreateComponent<GameEngineSpriteRenderer>(1);
 	ParticleRender1->SetTexture("WhiteSkellPTK1.png");
 	ParticleRender1->GetTransform()->SetLocalScale({12.0f,20.0f,0.0f});
 	ParticleRender1->GetTransform()->SetLocalPosition({ -60.0f,0.0f,-3.0f });
-	//ParticleRender1->Off();
+	ParticleRender1->Off();
 
 	ParticleRender2 = CreateComponent<GameEngineSpriteRenderer>(1);
 	ParticleRender2->SetTexture("WhiteSkellPTK2.png");
 	ParticleRender2->GetTransform()->SetLocalScale({ 40.0f,36.0f,0.0f });
 	ParticleRender2->GetTransform()->SetLocalPosition({ -60.0f,0.0f,-4.0f });
-	//ParticleRender2->Off();
+	ParticleRender2->Off();
 
 	ParticleRender3 = CreateComponent<GameEngineSpriteRenderer>(1);
 	ParticleRender3->SetTexture("WhiteSkellPTK3.png");
 	ParticleRender3->GetTransform()->SetLocalScale({ 36.0f,28.0f,0.0f });
 	ParticleRender3->GetTransform()->SetLocalPosition({ -60.0f,0.0f,0.0f });
-	
+	ParticleRender3->Off();
 }
 
 void WhiteSkell::Update(float _DeltaTime)
@@ -121,8 +121,7 @@ void WhiteSkell::SetCollision(float _DeltaTime)
 	}
 	if (TargetAreaCol->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
-		HpRender->On();
-		HpBaseRender->On();
+
 		InArea = true;
 	}
 	else
@@ -132,13 +131,13 @@ void WhiteSkell::SetCollision(float _DeltaTime)
 	}
 	if (SkellBodyCol->Collision(ColOrder::GreatWeapon, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
+		HpRender->On();
+		HpBaseRender->On();
 		InArea = true;
 		if (SkellBlink == false)
 		{
 			//나중에 ui작업때 캐릭터가 갖고있는 swich로 무기에 따라 정해주자.
 			SkellHP -= WeaponBase::WeaponBasePtr->GetWeaponStrength(Weapon::GreatWeapon_E);
-			//여기서 hp클립
-			//BossHpBar->ImageClippingX(static_cast<float>(BelialHp) / 1000.0f, ClipXDir::Left);
 			WhiteSkellRender->ColorOptionValue.MulColor.r = 1.0f;
 			WhiteSkellRender->ColorOptionValue.MulColor.g = 0.1f;
 			WhiteSkellRender->ColorOptionValue.MulColor.b = 0.1f;
@@ -163,11 +162,11 @@ void WhiteSkell::SetCollision(float _DeltaTime)
 	}
 }
 
-bool WhiteSkell::GroundCheck(float4 _Pos)
+bool WhiteSkell::GroundCheck(float4 _Pos,float _Pivot)
 {
 	PixelMapResultPos = PixelCalculation(_Pos, { 5320.0f,0.0f,0.0f }, { 1280.0f,720.0f });
 	Ptr = GameEngineTexture::Find("StageCol_2.png");
-	Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y + 167.0f));
+	Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y + _Pivot));
 	Pixel.a = 0;
 	if (Pixel == GameEnginePixelColor::Black)
 	{
@@ -178,6 +177,7 @@ bool WhiteSkell::GroundCheck(float4 _Pos)
 		return false;
 	}
 }
+
 void WhiteSkell::FlipCheck()
 {
 	float4 PlayerPos = Player::MainPlayer->GetTransform()->GetLocalPosition();
