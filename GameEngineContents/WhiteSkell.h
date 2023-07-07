@@ -96,6 +96,7 @@ private:
 	float Invincibilitytime = 0.0f;
 	float FallSpeed = 0.0f;
 	//몬스터 정보
+	bool SkellBlink = false;
 	float SkellPivot = 167.0f;
 	float4 Scale = { 284.0f,192.0f,0.0f };
 	float4 ColScale = { 132.0f,120.0f,0.0f };

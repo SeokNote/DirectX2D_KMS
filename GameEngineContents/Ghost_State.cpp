@@ -151,6 +151,7 @@ void Ghost::DeadStart()
 	DeadRender->ChangeAnimation("GhostDead");
 	HpRender->Death();
 	HpBaseRender->Death();
+	BodyCol->Off();
 }
 
 void Ghost::DeadUpdate(float _Time)

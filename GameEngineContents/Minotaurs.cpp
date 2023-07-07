@@ -69,7 +69,7 @@ void Minotaurs::Start()
 }
 
 void Minotaurs::Update(float _DeltaTime)
-{
+{	
 	UpdateState(_DeltaTime);
 	SetCollision(_DeltaTime);
 }

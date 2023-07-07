@@ -350,7 +350,7 @@ void WhiteSkell::DeadUpdate(float _Time)
 		ParticleRender3->On();
 	}
 	FallSpeed += _Time;
-	if (GroundCheck(Posas,90.0f) != true)
+	if (GroundCheck(Posas,86.0f) != true)
 	{
 		if (CurFlip == true)
 		{

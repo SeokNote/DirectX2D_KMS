@@ -100,7 +100,6 @@ void WhiteSkell::Update(float _DeltaTime)
 	SetCollision(_DeltaTime);
 	FlipCheck();
 }
-bool SkellBlink = false;
 void WhiteSkell::CalBezierTransform(std::shared_ptr<GameEngineSpriteRenderer> _Render , const float4& _Start, const float4& _Height, const float4& _End, float _Ratio)
 {
 	float4 M0 = float4::LerpClamp(_Start, _Height, _Ratio);

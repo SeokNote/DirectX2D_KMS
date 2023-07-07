@@ -68,6 +68,7 @@
 #include "WhiteSkell.h"
 #include "Minotaurs.h"
 #include "Ghost.h"
+#include "SmallBat.h"
 PlayLevel::PlayLevel()
 {
 }
@@ -208,6 +209,7 @@ void PlayLevel::Start()
 	MonsterDir.Move("Animation");
 	MonsterDir.Move("MainLevelAnimation");
 	MonsterDir.Move("Monster");
+	GameEngineSprite::LoadFolder(MonsterDir.GetPlusFileName("SmallBat").GetFullPath());
 	MonsterDir.Move("WhiteSkell");
 	//화이트스켈
 	GameEngineSprite::LoadFolder(MonsterDir.GetPlusFileName("WhiteSkellAttack").GetFullPath());
@@ -288,10 +290,10 @@ void PlayLevel::Start()
 
 		std::shared_ptr<Stage3_1> Stage1= CreateActor<Stage3_1>(-16);
 		std::shared_ptr<Stage3_Boss> BossStage_3 = CreateActor<Stage3_Boss>(-16);
-		std::shared_ptr<GroundBelt> GroundBeltPtr = CreateActor<GroundBelt>();
-		GroundBeltPtr->GetTransform()->SetLocalPosition({ 19395.0f,-245.0f,-800.0f });
-		std::shared_ptr<PlatBelt> PlatBeltPtr = CreateActor<PlatBelt>();
-		PlatBeltPtr->GetTransform()->SetLocalPosition({ 19395.0f,-125.0f,-800.0f });
+		//std::shared_ptr<GroundBelt> GroundBeltPtr = CreateActor<GroundBelt>();
+		//GroundBeltPtr->GetTransform()->SetLocalPosition({ 19395.0f,-245.0f,-800.0f });
+		//std::shared_ptr<PlatBelt> PlatBeltPtr = CreateActor<PlatBelt>();
+		//PlatBeltPtr->GetTransform()->SetLocalPosition({ 19395.0f,-125.0f,-800.0f });
 		
 	}
 	{
@@ -366,10 +368,10 @@ void PlayLevel::Start()
 	}
 	//	Player
 	static std::shared_ptr<Player> NewPlayer = CreateActor<Player>(1);
-	NewPlayer->GetTransform()->SetLocalPosition({ 4781.0f,221.0f,-801.0f });
+	//NewPlayer->GetTransform()->SetLocalPosition({ 4120.0f,-468.0f,-801.0f });
 
 	//NewPlayer->GetTransform()->SetLocalPosition({ 14504.0f,-194.0f,-801.0f });
-	//NewPlayer->GetTransform()->SetLocalPosition({ -2390.0f,-500.0f,-801.0f });
+	NewPlayer->GetTransform()->SetLocalPosition({ -2390.0f,-500.0f,-801.0f });
 	//NewPlayer->GetTransform()->SetLocalPosition({ 11438.0f,-480.0f,-801.0f });
 	//보스 스포너
 	static std::shared_ptr<BelialSpawner> BelialSpawnerPtr = CreateActor<BelialSpawner>(1);
@@ -377,13 +379,28 @@ void PlayLevel::Start()
 	static std::shared_ptr<TunakSpawner> TunakSpawnerPtr = CreateActor<TunakSpawner>(1);
 	TunakSpawnerPtr->GetTransform()->SetLocalPosition({ 14874.0f,-205.0f,-800.0f });
 	//테스트
-	std::shared_ptr<WhiteSkell> WhiteSkellPtr = CreateActor<WhiteSkell>(1);
-	WhiteSkellPtr->GetTransform()->SetLocalPosition({ 4981.0f,-268.0f,-800.0f });
-	std::shared_ptr<Ghost> GhostPtr = CreateActor<Ghost>(1);
-	GhostPtr->GetTransform()->SetLocalPosition({ 4981.0f,-158.0f,-800.0f });
-	std::shared_ptr<Minotaurs> MinotaursPtr = CreateActor<Minotaurs>(1);
-	MinotaursPtr->GetTransform()->SetLocalPosition({ 5523.0f,258.0f,-800.0f });
-	
+	//std::shared_ptr<WhiteSkell> WhiteSkellPtr = CreateActor<WhiteSkell>(1);
+	//WhiteSkellPtr->GetTransform()->SetLocalPosition({ 4981.0f,-268.0f,-800.0f });
+	//
+	//std::shared_ptr<WhiteSkell> WhiteSkellPtr1 = CreateActor<WhiteSkell>(1);
+	//WhiteSkellPtr1->GetTransform()->SetLocalPosition({ 5481.0f,-268.0f,-800.0f });
+	//
+	//std::shared_ptr<Ghost> GhostPtr = CreateActor<Ghost>(1);
+	//GhostPtr->GetTransform()->SetLocalPosition({ 4981.0f,-148.0f,-800.0f });
+	//
+	//std::shared_ptr<Minotaurs> MinotaursPtr = CreateActor<Minotaurs>(1);
+	//MinotaursPtr->GetTransform()->SetLocalPosition({ 5523.0f,258.0f,-800.0f });
+	//
+	//std::shared_ptr<SmallBat> SmallBatPtr = CreateActor<SmallBat>(1);
+	//SmallBatPtr->GetTransform()->SetLocalPosition({ 4781.0f,-198.0f,-800.0f });
+	//
+	//std::shared_ptr<SmallBat> SmallBatPtr1 = CreateActor<SmallBat>(1);
+	//SmallBatPtr1->GetTransform()->SetLocalPosition({ 5181.0f,-198.0f,-800.0f });
+
+
+
+
+	//무기
 	std::shared_ptr<GreatWeapon> GreatWeaponPtr = CreateActor<GreatWeapon>(1);
 	GreatWeaponPtr->GetTransform()->SetWorldPosition(NewPlayer->GetTransform()->GetWorldPosition());
 	GreatWeaponPtr->GetTransform()->SetParent(NewPlayer->GetTransform());

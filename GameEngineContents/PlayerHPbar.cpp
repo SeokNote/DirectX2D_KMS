@@ -4,6 +4,7 @@
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/GameEngineCamera.h>
 #include <GameEnginePlatform/GameEngineInput.h>
+#include "UIFontRender.h"
 PlayerHPbar::PlayerHPbar() 
 {
 }

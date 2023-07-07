@@ -299,6 +299,12 @@
     <ClInclude Include="Ghost.h">
       <Filter>Object\Monster\Ghost</Filter>
     </ClInclude>
+    <ClInclude Include="SmallBat.h">
+      <Filter>Object\Monster\Bat\SmallBat</Filter>
+    </ClInclude>
+    <ClInclude Include="BatBullet.h">
+      <Filter>Object\Monster\Bat\Bullet</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -626,6 +632,15 @@
     <ClCompile Include="Ghost_State.cpp">
       <Filter>Object\Monster\Ghost</Filter>
     </ClCompile>
+    <ClCompile Include="SmallBat.cpp">
+      <Filter>Object\Monster\Bat\SmallBat</Filter>
+    </ClCompile>
+    <ClCompile Include="SmallBat_State.cpp">
+      <Filter>Object\Monster\Bat\SmallBat</Filter>
+    </ClCompile>
+    <ClCompile Include="BatBullet.cpp">
+      <Filter>Object\Monster\Bat\Bullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Levels">
@@ -837,6 +852,15 @@
     </Filter>
     <Filter Include="Object\Monster\Ghost">
       <UniqueIdentifier>{f32286bd-537a-45aa-876b-61c5dc50e004}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Monster\Bat">
+      <UniqueIdentifier>{9f5a726b-fb05-4b33-8da0-cf7e4859a97f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Monster\Bat\SmallBat">
+      <UniqueIdentifier>{72677581-b1ad-4aba-bbeb-7151cb617bdc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Monster\Bat\Bullet">
+      <UniqueIdentifier>{b8b10752-00e9-43d1-b3a6-cbabd1719e3d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
