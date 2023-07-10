@@ -29,5 +29,7 @@ private:
 	int LasorDamage = 10;
 	float CheckTime = 0.0f;
 	bool InvinCheck = false;
+	bool LasorOnOff_1 = false;
+
 };
 

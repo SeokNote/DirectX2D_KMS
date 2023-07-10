@@ -48,5 +48,6 @@ private:
 	float WaveSpeed = 800.0f;
 	float AddSpeed = 0.0f;
 	int WaveDamege = 10;
+	bool FirstAttack = false;
 };
 

@@ -22,7 +22,7 @@ private:
 	std::shared_ptr<class GameEngineUIRenderer> PlayerDashBarUI;
 
 	float4 PlayerDashBarUIScale = { 132.0f,32.0f,0.0f };
-	float4 PlayerDashBarUIPos = { -562.0f, 266.0f };
+	float4 PlayerDashBarUIPos = { -562.0f, 266.0f , 0.0f };
 
 };
 

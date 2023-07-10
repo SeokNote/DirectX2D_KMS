@@ -22,7 +22,7 @@ void FoodBar::Start()
 	Camera->GetTransform()->SetLocalPosition({ 0, 0, -1000.0f });
 
 
-	PlayerFoodUI = CreateComponent<GameEngineUIRenderer>(2);
+	PlayerFoodUI = CreateComponent<GameEngineUIRenderer>(90);
 	PlayerFoodUI->SetTexture("PlayerFoodUI.png");
 	PlayerFoodUI->GetTransform()->SetLocalPosition(PlayerFoodUIPos);
 	PlayerFoodUI->GetTransform()->SetLocalScale(PlayerFoodUIScale);

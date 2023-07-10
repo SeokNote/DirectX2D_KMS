@@ -40,5 +40,6 @@ private:
 	bool DeadTime = false;
 	//ÆøÅº »ý¼º½Ã°£
 	float StartBomb = 0.0f;
+	bool FirstAttack = false;
 };
 

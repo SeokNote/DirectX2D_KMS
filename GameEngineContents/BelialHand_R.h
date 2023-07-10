@@ -62,6 +62,6 @@ private:
 	float4 PlayerPos = float4::Zero;
 	float YPos = 0.0f;
 	float HandSpeed = 600.0f;
-
+	bool FirstLasor = false;
 };
 

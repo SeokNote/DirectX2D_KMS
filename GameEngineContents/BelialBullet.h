@@ -51,6 +51,10 @@ private:
 	float DeathTime = 0.0f;
 	float BulletSpeed = 500.0f;
 	int BulletDamage= 2;
-
+	//최초 충돌 나오면 다 바꿔주자.
+	bool OnOffValue_0 = false;
+	bool OnOffValue_1 = false;
+	bool OnOffValue_2 = false;
+	bool OnOffValue_3 = false;
 };
 

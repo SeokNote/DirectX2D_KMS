@@ -22,7 +22,7 @@ void DashBar::Start()
 	Camera->GetTransform()->SetLocalPosition({ 0, 0, -1000.0f });
 
 
-	PlayerDashBarUI = CreateComponent<GameEngineUIRenderer>(2);
+	PlayerDashBarUI = CreateComponent<GameEngineUIRenderer>(90);
 	PlayerDashBarUI->SetTexture("DashCount3.png");
 	PlayerDashBarUI->GetTransform()->SetLocalPosition(PlayerDashBarUIPos);
 	PlayerDashBarUI->GetTransform()->SetLocalScale(PlayerDashBarUIScale);

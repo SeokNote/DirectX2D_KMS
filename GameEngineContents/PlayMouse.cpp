@@ -29,7 +29,7 @@ void PlayMouse::Start()
 	Camera->SetProjectionType(CameraType::Orthogonal);
 	Camera->GetTransform()->SetLocalPosition({ 0, 0, -1000.0f });
 
-	PlayMouseRender = CreateComponent<GameEngineUIRenderer>(2);
+	PlayMouseRender = CreateComponent<GameEngineUIRenderer>(1000);
 	PlayMouseRender->SetTexture("ShootingCursor.png");
 	PlayMouseRender->GetTransform()->SetLocalScale(PlayMouseScale);
 

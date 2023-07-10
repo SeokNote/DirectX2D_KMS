@@ -21,69 +21,69 @@ void MapTabUI::Start()
 	Camera->GetTransform()->SetLocalPosition({ 0, 0, -1000.0f });
 
 	
-		MapTabBaseBG = CreateComponent<GameEngineUIRenderer>(2);
+		MapTabBaseBG = CreateComponent<GameEngineUIRenderer>(160);
 		MapTabBaseBG->SetTexture("PlayWindowBG.png");
 		MapTabBaseBG->ColorOptionValue.MulColor.a = 0.8f;
 		MapTabBaseBG->GetTransform()->SetLocalPosition({ 0.0f,0.0f,0.0f });
 		MapTabBaseBG->GetTransform()->SetLocalScale(MapTabUIScale);
 
-		MapTabBase = CreateComponent<GameEngineUIRenderer>(2);
+		MapTabBase = CreateComponent<GameEngineUIRenderer>(161);
 		MapTabBase->SetTexture("MapBase_0.png");
 		MapTabBase->GetTransform()->SetLocalPosition({0.0f,0.0f,0.0f});
 		MapTabBase->GetTransform()->SetLocalScale(MapTabUIScale);
 		{
-			Menu_Builder = CreateComponent<GameEngineUIRenderer>(2);
+			Menu_Builder = CreateComponent<GameEngineUIRenderer>(162);
 			Menu_Builder->SetTexture("Menu_Builder0.png");
 			Menu_Builder->GetTransform()->SetLocalPosition(Menu_BuiderPos);
 			Menu_Builder->GetTransform()->SetLocalScale(MenuIconScale);
 
-			Menu_BuilderSelect = CreateComponent<GameEngineUIRenderer>(2);
+			Menu_BuilderSelect = CreateComponent<GameEngineUIRenderer>(162);
 			Menu_BuilderSelect->SetTexture("Menu_Builder1.png");
 			Menu_BuilderSelect->GetTransform()->SetLocalPosition(Menu_BuiderPos);
 			Menu_BuilderSelect->GetTransform()->SetLocalScale(MenuIconScale);
 			Menu_BuilderSelect->Off();
 
-			Menu_Commander = CreateComponent<GameEngineUIRenderer>(2);
+			Menu_Commander = CreateComponent<GameEngineUIRenderer>(162);
 			Menu_Commander->SetTexture("Menu_Commander0.png");
 			Menu_Commander->GetTransform()->SetLocalPosition(Menu_CommanderPos);
 			Menu_Commander->GetTransform()->SetLocalScale(MenuIconScale);
 
-			Menu_CommanderSelect = CreateComponent<GameEngineUIRenderer>(2);
+			Menu_CommanderSelect = CreateComponent<GameEngineUIRenderer>(162);
 			Menu_CommanderSelect->SetTexture("Menu_Commander1.png");
 			Menu_CommanderSelect->GetTransform()->SetLocalPosition(Menu_CommanderPos);
 			Menu_CommanderSelect->GetTransform()->SetLocalScale(MenuIconScale);
 			Menu_CommanderSelect->Off();
 			
-			Menu_Dungeon = CreateComponent<GameEngineUIRenderer>(2);
+			Menu_Dungeon = CreateComponent<GameEngineUIRenderer>(162);
 			Menu_Dungeon->SetTexture("Menu_Dungeon0.png");
 			Menu_Dungeon->GetTransform()->SetLocalPosition(Menu_DungeonPos);
 			Menu_Dungeon->GetTransform()->SetLocalScale(MenuIconScale);
 			
-			Menu_DungeonSelect = CreateComponent<GameEngineUIRenderer>(2);
+			Menu_DungeonSelect = CreateComponent<GameEngineUIRenderer>(162);
 			Menu_DungeonSelect->SetTexture("Menu_Dungeon1.png");
 			Menu_DungeonSelect->GetTransform()->SetLocalPosition(Menu_DungeonPos);
 			Menu_DungeonSelect->GetTransform()->SetLocalScale(MenuIconScale);
 			Menu_DungeonSelect->Off();
 			
-			Menu_Shop = CreateComponent<GameEngineUIRenderer>(2);
+			Menu_Shop = CreateComponent<GameEngineUIRenderer>(162);
 			Menu_Shop->SetTexture("Menu_Shop0.png");
 			Menu_Shop->GetTransform()->SetLocalPosition(Menu_ShopPos);
 			Menu_Shop->GetTransform()->SetLocalScale(MenuIconScale);
 			Menu_Shop->GetTransform()->SetLocalNegativeScaleX();
 
-			Menu_ShopSelect = CreateComponent<GameEngineUIRenderer>(2);
+			Menu_ShopSelect = CreateComponent<GameEngineUIRenderer>(162);
 			Menu_ShopSelect->SetTexture("Menu_Shop1.png");
 			Menu_ShopSelect->GetTransform()->SetLocalPosition(Menu_ShopPos);
 			Menu_ShopSelect->GetTransform()->SetLocalScale(MenuIconScale);
 			Menu_ShopSelect->GetTransform()->SetLocalNegativeScaleX();
 			Menu_ShopSelect->Off();
 			
-			Menu_TemPle = CreateComponent<GameEngineUIRenderer>(2);
+			Menu_TemPle = CreateComponent<GameEngineUIRenderer>(162);
 			Menu_TemPle->SetTexture("Menu_Temple0.png");
 			Menu_TemPle->GetTransform()->SetLocalPosition(Menu_TemplePos);
 			Menu_TemPle->GetTransform()->SetLocalScale(MenuIconScale);
 			
-			Menu_TemPleSelect = CreateComponent<GameEngineUIRenderer>(2);
+			Menu_TemPleSelect = CreateComponent<GameEngineUIRenderer>(162);
 			Menu_TemPleSelect->SetTexture("Menu_Temple1.png");
 			Menu_TemPleSelect->GetTransform()->SetLocalPosition(Menu_TemplePos);
 			Menu_TemPleSelect->GetTransform()->SetLocalScale(MenuIconScale);

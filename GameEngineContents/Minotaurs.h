@@ -78,5 +78,7 @@ private:
 	int MaxMinoHp = 150;
 	int MinoTackle = 5;
 	int MinoAttack = 3;
+	bool MinoBlink = false;
+
 };
 

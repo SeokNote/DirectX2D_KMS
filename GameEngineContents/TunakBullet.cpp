@@ -126,37 +126,45 @@ void TunakBullet::Update(float _DeltaTime)
 
 void TunakBullet::BulletCollision()
 {
-	if (TunakBulletCol_0->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	if (FirstAttack == false && TunakBulletCol_0->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		Player::MainPlayer->GetData().SubPlayerHP(BulletDamege);
+		FirstAttack = true;
 	}
-	if (TunakBulletCol_1->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	if (FirstAttack == false && TunakBulletCol_1->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		Player::MainPlayer->GetData().SubPlayerHP(BulletDamege);
+		FirstAttack = true;
 	}
-	if (TunakBulletCol_2->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	if (FirstAttack == false && TunakBulletCol_2->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		Player::MainPlayer->GetData().SubPlayerHP(BulletDamege);
+		FirstAttack = true;
 	}
-	if (TunakBulletCol_3->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	if (FirstAttack == false && TunakBulletCol_3->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		Player::MainPlayer->GetData().SubPlayerHP(BulletDamege);
+		FirstAttack = true;
 	}
-	if (TunakBulletCol_4->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	if (FirstAttack == false && TunakBulletCol_4->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		Player::MainPlayer->GetData().SubPlayerHP(BulletDamege);
+		FirstAttack = true;
 	}
-	if (TunakBulletCol_5->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	if (FirstAttack == false && TunakBulletCol_5->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		Player::MainPlayer->GetData().SubPlayerHP(BulletDamege);
+		FirstAttack = true;
 	}
-	if (TunakBulletCol_6->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	if (FirstAttack == false && TunakBulletCol_6->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		Player::MainPlayer->GetData().SubPlayerHP(BulletDamege);
+		FirstAttack = true;
 	}
-	if (TunakBulletCol_7->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	if (FirstAttack == false && TunakBulletCol_7->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		Player::MainPlayer->GetData().SubPlayerHP(BulletDamege);
+		FirstAttack = true;
 	}
 }
 

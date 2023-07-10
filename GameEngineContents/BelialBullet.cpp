@@ -76,17 +76,13 @@ void BelialBullet::Update(float _DeltaTime)
 {
 	SetBullet(_DeltaTime);
 	DeathTime += _DeltaTime;
-	if (DeathTime >3.0f)
+	if (DeathTime >2.5f)
 	{
 		Death();
 		DeathTime = 0.0f;
 	}
 }
-//최초 충돌 나오면 다 바꿔주자.
-bool OnOffValue_0 = false;
-bool OnOffValue_1 = false;
-bool OnOffValue_2 = false;
-bool OnOffValue_3 = false;
+
 void BelialBullet::SetBullet(float _DeltaTime)
 {
 
@@ -103,29 +99,21 @@ void BelialBullet::SetBullet(float _DeltaTime)
 	if (OnOffValue_0 ==false && BelialBulletCol_0->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		Player::MainPlayer->GetData().SubPlayerHP(BulletDamage);
-		int ads = Player::MainPlayer->GetData().GetPlayerHP();
-		int a = 0;
 		OnOffValue_0 = true;
 	}
 	if (OnOffValue_1 ==false && BelialBulletCol_1->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		Player::MainPlayer->GetData().SubPlayerHP(BulletDamage);
-		int ads = Player::MainPlayer->GetData().GetPlayerHP();
 		OnOffValue_1 = true;
-		int a = 0;
 	}
 	if (OnOffValue_2==false && BelialBulletCol_2->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		Player::MainPlayer->GetData().SubPlayerHP(BulletDamage);
-		int ads = Player::MainPlayer->GetData().GetPlayerHP();
-		int a = 0;
 		OnOffValue_2 = true;
 	}
 	if (OnOffValue_3 ==false && BelialBulletCol_3->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		Player::MainPlayer->GetData().SubPlayerHP(BulletDamage);
-		int ads = Player::MainPlayer->GetData().GetPlayerHP();
-		int a = 0;
 		OnOffValue_3 = true;
 	}
 }

@@ -66,9 +66,9 @@ void Player::Start()
 	PlayerBottoomRender->SetTexture("TopBottom.png");
 	PlayerBottoomRender->GetTransform()->SetLocalScale({ 58.0f, 4.0f });
 
-	PlayerHitRender = CreateComponent<GameEngineUIRenderer>(2);
+	PlayerHitRender = CreateComponent<GameEngineUIRenderer>(50);
 	PlayerHitRender->SetTexture("RedWarningOnHit.png");
-	PlayerHitRender->GetTransform()->SetWorldPosition({ 0.0f,0.0f,-90.0f });
+	PlayerHitRender->GetTransform()->SetWorldPosition({ 0.0f,0.0f,0.0f });
 	PlayerHitRender->GetTransform()->SetLocalScale({1280.0f,720.0f,0.0f});
 	PlayerHitRender->ColorOptionValue.PlusColor.r = 4.0f;
 	PlayerHitRender->Off();

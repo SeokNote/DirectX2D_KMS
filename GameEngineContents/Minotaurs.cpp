@@ -99,7 +99,6 @@ bool Minotaurs::IsAreaIn()
 		return false;
 	}
 }
-bool MinoBlink = false;
 
 void Minotaurs::SetCollision(float _Delta)
 {

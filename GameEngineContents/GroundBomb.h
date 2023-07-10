@@ -42,5 +42,7 @@ private:
 	//ÆøÅº º¯¼ö
 	bool BombCheck = false;
 	float StartBomb = 0.0f;
+	bool FirstAttack = false;
+
 };
 

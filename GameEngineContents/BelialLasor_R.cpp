@@ -39,14 +39,14 @@ void BelialLasor_R::Update(float _DeltaTime)
 	{
 		Death();
 	}
+	bool asd = LasorOnOff_10;
 }
-bool LasorOnOff_0 = false;
 void BelialLasor_R::CollisionCheck(float _DeltaTime)
 {
-	if (LasorOnOff_0==false && BelialLasorCol->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	if (LasorOnOff_10 == false && BelialLasorCol->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
+		LasorOnOff_10 = true;
 		Player::MainPlayer->GetData().SubPlayerHP(LasorDamage);
-		LasorOnOff_0 = true;
 	}
 
 }

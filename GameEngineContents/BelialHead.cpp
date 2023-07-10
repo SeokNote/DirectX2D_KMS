@@ -89,13 +89,13 @@ void BelialHead::Start()
 	BelialBulletBasePtr = GetLevel()->CreateActor<BelialBulletBase>();
 	BelialBulletBasePtr->GetTransform()->SetWorldPosition({ 12080.0f,-250.0f,-800.0f });
 
-	DeadBGRender = CreateComponent<GameEngineUIRenderer>(1);
+	DeadBGRender = CreateComponent<GameEngineUIRenderer>(999);
 	DeadBGRender->SetTexture("BossDeadBG.png");
 	DeadBGRender->GetTransform()->SetWorldPosition(float4::Null);
 	DeadBGRender->GetTransform()->SetLocalScale({ 1280.0f,720.0f,0.0f });
 	DeadBGRender->Off();
 
-	BossLayout = CreateComponent<GameEngineUIRenderer>(1);
+	BossLayout = CreateComponent<GameEngineUIRenderer>(999);
 	BossLayout->SetTexture("BossLayout.png");
 	BossLayout->GetTransform()->SetWorldPosition(LayoutPos);
 	BossLayout->GetTransform()->SetLocalScale({ 1280.0f,720.0f,0.0f });

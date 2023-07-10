@@ -21,7 +21,7 @@ protected:
 private:
 	std::shared_ptr<class GameEngineSpriteRenderer> BossDoor3Render;
 	std::shared_ptr<class GameEngineCollision> BossDoor3Col;
-	float4 Door3Pos = { 3046,-135.0f,-801.0f };
+	float4 Door3Pos = { 3046,-135.0f,-750.0f };
 	float4 Door3Scale = { 228.0f,260.0f,0.f };
 	float Time = 0.0f;
 };

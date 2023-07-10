@@ -63,13 +63,15 @@ void TunakWave::Update(float _DeltaTime)
 
 void TunakWave::WaveCollision()
 {
-	if (TunakWaveCol->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	if (FirstAttack ==false && TunakWaveCol->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		Player::MainPlayer->GetData().SubPlayerHP(WaveDamege);
+		FirstAttack = true;
 	}
-	if (TunakWaveCol_1->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	if (FirstAttack == false && TunakWaveCol_1->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		Player::MainPlayer->GetData().SubPlayerHP(WaveDamege);
+		FirstAttack = true;
 	}
 }
 

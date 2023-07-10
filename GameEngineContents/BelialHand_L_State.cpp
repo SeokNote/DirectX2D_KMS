@@ -152,15 +152,16 @@ void BelialHand_L::LasorStart()
 {
 	LeftHandRender->ChangeAnimation("LeftHandLasor");
 
-
+	FirstLasor = false;
 }
 void BelialHand_L::LasorUpdate(float _Time)
 {
 	size_t Frame = LeftHandRender->GetCurrentFrame();
-	if (Frame == 8)
+	if (FirstLasor ==false && Frame == 8)
 	{
 		LasorPtr = GetLevel()->CreateActor<BelialLasor>();
 		LasorPtr->GetTransform()->SetLocalPosition({ CurPos.x + 650.0f,CurPos.y-20.0f,-850 });
+		FirstLasor = true;
 	}
 	if (true == LeftHandRender->IsAnimationEnd())
 	{

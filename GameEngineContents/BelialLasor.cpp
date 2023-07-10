@@ -40,7 +40,6 @@ void BelialLasor::Update(float _DeltaTime)
 		Death();
 	}
 }
-bool LasorOnOff_1 = false;
 void BelialLasor::CollisionCheck(float _DeltaTime)
 {
 	if (LasorOnOff_1==false && BelialLasorCol_L->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))

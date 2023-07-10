@@ -25,17 +25,17 @@ void ShopTextBox::Start()
 	Camera->GetTransform()->SetLocalPosition({ 0, 0, -1000.0f });
 
 
-	ShopTextBoxUI = CreateComponent<GameEngineUIRenderer>(2);
+	ShopTextBoxUI = CreateComponent<GameEngineUIRenderer>(170);
 	ShopTextBoxUI->SetTexture("ShopTextBoxBase.png");
 	ShopTextBoxUI->GetTransform()->SetLocalPosition({ 0.0f, -250.0f , -100.0f });
 	ShopTextBoxUI->GetTransform()->SetLocalScale(TextBoxScale);
 
-	ShopTextBoxUI_S = CreateComponent<GameEngineUIRenderer>(2);
+	ShopTextBoxUI_S = CreateComponent<GameEngineUIRenderer>(170);
 	ShopTextBoxUI_S->SetTexture("TextBoxBase_1.png");
 	ShopTextBoxUI_S->GetTransform()->SetLocalPosition({ 480.0f, -30.0f , -100.0f });
 	ShopTextBoxUI_S->GetTransform()->SetLocalScale(SelectBoxScale);
 
-	ShopSelectTextUI = CreateComponent<GameEngineUIRenderer>(2);
+	ShopSelectTextUI = CreateComponent<GameEngineUIRenderer>(171);
 	ShopSelectTextUI->SetTexture("SelectText_2.png");
 	ShopSelectTextUI->GetTransform()->SetLocalPosition({ 480.0f, -35.0f , -200.0f });
 	ShopSelectTextUI->GetTransform()->SetLocalScale(SelectTextBoxScale);

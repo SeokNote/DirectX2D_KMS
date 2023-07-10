@@ -21,21 +21,21 @@ void PlayerHPbar::Start()
 	Camera->GetTransform()->SetLocalPosition({ 0, 0, -1000.0f });
 
 
-	PlayerHpBarBGUI = CreateComponent<GameEngineUIRenderer>(2);
+	PlayerHpBarBGUI = CreateComponent<GameEngineUIRenderer>(90);
 	PlayerHpBarBGUI->SetTexture("PlayerLifeBack.png");
 	PlayerHpBarBGUI->GetTransform()->SetLocalScale(PlayerHpBarUIScale);
 
-	PlayerHpBarUI = CreateComponent<GameEngineUIRenderer>(2);
+	PlayerHpBarUI = CreateComponent<GameEngineUIRenderer>(90);
 	PlayerHpBarUI->SetTexture("PlayerLifeBase 1.png");
 	//PlayerHpBarUI->GetTransform()->SetLocalPosition();
 	PlayerHpBarUI->GetTransform()->SetLocalScale(PlayerHpBarUIScale);
 
-	PlayerHpBar = CreateComponent<GameEngineUIRenderer>(2);
+	PlayerHpBar = CreateComponent<GameEngineUIRenderer>(90);
 	PlayerHpBar->SetTexture("PlayerLife.png");
 	PlayerHpBar->GetTransform()->SetLocalPosition({38.0f,0.0f,0.0f});
 	PlayerHpBar->GetTransform()->SetLocalScale(PlayerHpScale);
 
-	PlayerHpAniRender = CreateComponent<GameEngineUIRenderer>(2);
+	PlayerHpAniRender = CreateComponent<GameEngineUIRenderer>(90);
 	PlayerHpAniRender->SetTexture("LifeWave0.png");
 	PlayerHpAniRender->CreateAnimation({ .AnimationName = "PlayerHp", .SpriteName = "PlayerHp",.FrameInter = 0.1f,.ScaleToTexture = true });
 //	PlayerHpAniRender->GetTransform()->SetLocalPosition(PlayerHpAniPos);

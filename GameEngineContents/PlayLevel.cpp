@@ -310,7 +310,7 @@ void PlayLevel::Start()
 	{
 		//UI
 		std::shared_ptr<PlayerHPbar> PlayerHPbarPtr = CreateActor<PlayerHPbar>(-10);
-		PlayerHPbarPtr->GetTransform()->SetLocalPosition({ -482.0f, 318.0f,-100.0f });
+		PlayerHPbarPtr->GetTransform()->SetLocalPosition({ -482.0f, 318.0f,0.0f });
 		std::shared_ptr<FoodBar> FoodBarPtr = CreateActor<FoodBar>(-10);
 		std::shared_ptr<CoinBar> CoinBarPtr = CreateActor<CoinBar>(-10);
 		std::shared_ptr<DashBar> DashBarPtr = CreateActor<DashBar>(-10);

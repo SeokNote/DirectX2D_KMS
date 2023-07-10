@@ -55,9 +55,10 @@ void GoblinBomb::Update(float _DeltaTime)
 
 void GoblinBomb::GoblinCollision()
 {
-	if (GoblinBombCol->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	if (FirstAttack == false && GoblinBombCol->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		Player::MainPlayer->GetData().SubPlayerHP(GoblinDamage);
+		FirstAttack = true;
 	}
 }
 

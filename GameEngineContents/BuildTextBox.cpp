@@ -24,17 +24,17 @@ void BuildTextBox::Start()
 	Camera->GetTransform()->SetLocalPosition({ 0, 0, -1000.0f });
 
 
-	BuildTextBoxUI = CreateComponent<GameEngineUIRenderer>(2);
+	BuildTextBoxUI = CreateComponent<GameEngineUIRenderer>(170);
 	BuildTextBoxUI->SetTexture("BuildTextBoxBase.png");
 	BuildTextBoxUI->GetTransform()->SetLocalPosition({ 0.0f, -250.0f , -100.0f });
 	BuildTextBoxUI->GetTransform()->SetLocalScale(TextBoxScale);
 
-	BuildTextBoxUI_S = CreateComponent<GameEngineUIRenderer>(2);
+	BuildTextBoxUI_S = CreateComponent<GameEngineUIRenderer>(170);
 	BuildTextBoxUI_S->SetTexture("TextBoxBase_1.png");
 	BuildTextBoxUI_S->GetTransform()->SetLocalPosition({ 480.0f, -30.0f , -100.0f });
 	BuildTextBoxUI_S->GetTransform()->SetLocalScale(SelectBoxScale);
 
-	BuildSelectTextUI = CreateComponent<GameEngineUIRenderer>(2);
+	BuildSelectTextUI = CreateComponent<GameEngineUIRenderer>(171);
 	BuildSelectTextUI->SetTexture("SelectText_1.png");
 	BuildSelectTextUI->GetTransform()->SetLocalPosition({ 480.0f, -30.0f , -200.0f });
 	BuildSelectTextUI->GetTransform()->SetLocalScale(SelectTextBoxScale);
@@ -44,7 +44,6 @@ void BuildTextBox::Start()
 	BuildSelectUI->GetTransform()->SetLocalScale(SelectTextScale);
 	BuildSelectUI->Off();
 
-	////////////////////// 충돌디버그 뜨면 그때 위치값 셋팅해주기////////////////
 	ButtonCol_0 = CreateComponent<GameEngineCollision>();
 	ButtonCol_0->GetTransform()->SetLocalScale(SelectTextScale);
 	ButtonCol_0->GetTransform()->SetLocalPosition({ 480.0f, -30.0f ,0.0f });

@@ -46,5 +46,6 @@ private:
 	float BulletSpeed = 500.0f;
 	float DeadTime = 0.0f;
 	int BulletDamege = 3;
+	bool FirstAttack = false;
 };
 
