@@ -1,5 +1,6 @@
 #pragma once
 // 설명 :
+#include <cmath>
 class PlayerDataBase 
 {
 public:
@@ -82,9 +83,9 @@ public:
 	{
 		Power += _Value;
 	}
-	int GetDefense()
+	float GetDefense()
 	{
-		return Defense;
+		return round(Defense * 100) / 100;
 	}
 	float GetAttackSpeed()
 	{
@@ -164,6 +165,14 @@ public:
 	{
 		TunakCamera = _Value;
 	}
+	bool GetSkillcul()
+	{
+		return Skillcul;
+	}
+	void SetSkillcul(bool _Value)
+	{
+		Skillcul = _Value;
+	}
 private:
 	int PlayerLevel = 1;				//플레이어 레벨	
 	int PlayerMaxHP = 60;
@@ -172,7 +181,7 @@ private:
 	int DashCunt = 3;					//대쉬카운터
 	int Satiety = 0;					//포만감
 	int Power = 100;					//위력
-	int Defense = 0;					//방어력
+	float Defense = 1.5f;					//방어력
 	float AttackSpeed = 1.0f;			//공격속도
 	float MoveSpeed = 350.0f;			//이동속도
 	int Evasion = 0;					//회피
@@ -180,8 +189,9 @@ private:
 	int Toughness = 0;					//강인함
 	int TrueDamage = 0;					//고정 데미지
 	int CriticalChance = 0;				//크리티컬
-	int CriticalDamage = 0;				//크리티컬 데미지
-	int DashPower = 10;					// 대쉬 공격력
+	int CriticalDamage = 100;				//크리티컬 데미지
+	int DashPower = 50;					// 대쉬 공격력
+	int Skillcul = 0;
 	//보스 스폰카메라 컨트롤
 	bool BelialCamera = false;
 	bool TunakCamera = false;

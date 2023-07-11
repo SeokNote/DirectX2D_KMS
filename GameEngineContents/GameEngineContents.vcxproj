@@ -167,6 +167,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AbilityButton.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="AbilityUI.h">
       <SubType>
       </SubType>
@@ -261,6 +265,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="CommanderNpc.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="ContentButton.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -574,6 +582,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AbilityButton.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="AbilityUI.cpp">
       <SubType>
       </SubType>
@@ -675,6 +687,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="CommanderNpc.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="ContentButton.cpp">
       <SubType>
       </SubType>
     </ClCompile>

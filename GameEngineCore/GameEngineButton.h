@@ -56,7 +56,6 @@ private:
 	std::string_view ReleaseImage = "";
 	std::string_view HoverImage = "";
 	std::string_view PressImage = "";
-
 	// std::shared_ptr<GameEngineCollision> Collision;
 };
 

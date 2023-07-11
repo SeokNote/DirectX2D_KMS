@@ -106,9 +106,6 @@
     <ClInclude Include="PlayStartWindow.h">
       <Filter>Map\Title\TitleActor</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerStat.h">
-      <Filter>Object\UI\Stat</Filter>
-    </ClInclude>
     <ClInclude Include="MapTabUI.h">
       <Filter>Object\UI\MapTab</Filter>
     </ClInclude>
@@ -308,6 +305,15 @@
     <ClInclude Include="UIFontRender.h">
       <Filter>Base\UIFontRender</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerStat.h">
+      <Filter>Object\UI\Stat\Stat</Filter>
+    </ClInclude>
+    <ClInclude Include="AbilityButton.h">
+      <Filter>Object\UI\Stat\AbilityButton</Filter>
+    </ClInclude>
+    <ClInclude Include="ContentButton.h">
+      <Filter>Object\UI\ContentButton</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -413,9 +419,6 @@
     </ClCompile>
     <ClCompile Include="PlayStartWindow.cpp">
       <Filter>Map\Title\TitleActor</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerStat.cpp">
-      <Filter>Object\UI\Stat</Filter>
     </ClCompile>
     <ClCompile Include="MapTabUI.cpp">
       <Filter>Object\UI\MapTab</Filter>
@@ -647,6 +650,15 @@
     <ClCompile Include="UIFontRender.cpp">
       <Filter>Base\UIFontRender</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerStat.cpp">
+      <Filter>Object\UI\Stat\Stat</Filter>
+    </ClCompile>
+    <ClCompile Include="AbilityButton.cpp">
+      <Filter>Object\UI\Stat\AbilityButton</Filter>
+    </ClCompile>
+    <ClCompile Include="ContentButton.cpp">
+      <Filter>Object\UI\ContentButton</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Levels">
@@ -873,6 +885,15 @@
     </Filter>
     <Filter Include="Base\UIFontRender">
       <UniqueIdentifier>{9d683f0f-9188-40f5-99e1-6bb012dc15f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\UI\Stat\Stat">
+      <UniqueIdentifier>{dfd6f66d-03a2-42af-95ea-0d64da4661c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\UI\Stat\AbilityButton">
+      <UniqueIdentifier>{a022299e-3351-40ba-bbd0-5f3f8ec17bb0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\UI\ContentButton">
+      <UniqueIdentifier>{2bd29f46-cd5d-4a81-b09c-1b72045bd16c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -32,7 +32,7 @@ protected:
 private:
 	void CameraColMove(float _X, float _X1, float _Y, float _Y1);
 	void CameraMoveSet();
-	
+	void SetStatButtone();
 	void UICtr();
 	
 	float4 TownScale = float4::Zero;
@@ -42,6 +42,9 @@ private:
 	std::shared_ptr<PlayerStat> Stat;
 	std::shared_ptr<MapTabUI> MapTab;
 	std::shared_ptr<InventoryUI> Inventory;
+	bool CheckUICtr_0 = false;
+	bool CheckUICtr_1 = false;
+	bool CheckUICtr_2 = false;
 	//Å×½ºÆ®
 	float FPS = 0.0f;
 	int Frame = 0;

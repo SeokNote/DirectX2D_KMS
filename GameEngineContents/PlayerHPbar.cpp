@@ -71,6 +71,7 @@ void PlayerHPbar::SetLevelFont()
 	PlayerLevelFont->SetColor(float4::White);
 	PlayerLevelFont->SetText(std::to_string(Player::MainPlayer->GetData().GetPlayerLevel()));
 	PlayerLevelFont->GetTransform()->SetLocalPosition({-100.0f,30.0f,0.0f});
+
 	PlayerLevelBG_0 = CreateComponent<UIFontRender>(99);
 	PlayerLevelBG_0->SetFont(font);
 	PlayerLevelBG_0->SetFontFlag(FW1_CENTER);

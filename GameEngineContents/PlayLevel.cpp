@@ -57,7 +57,7 @@
 #include <GameEngineCore/GameEngineCoreWindow.h>
 #include <GameEngineCore/GameEngineFont.h>
 #include "FadeEffect.h"
-
+#include "ContentButton.h"
 
 //Å×½ºÆ®
 #include "BossSword.h"
@@ -543,9 +543,7 @@ void PlayLevel::CameraMoveSet()
 	}
 }
 
-bool CheckUICtr_0 = false;
-bool CheckUICtr_1 = false;
-bool CheckUICtr_2 = false;
+
 
 void PlayLevel::UICtr()
 {
