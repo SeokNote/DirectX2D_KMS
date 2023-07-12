@@ -102,6 +102,7 @@ void PlayLevel::Start()
 	PlayerDir.Move("ContentResources");
 	PlayerDir.Move("Animation");
 	PlayerDir.Move("MainLevelAnimation");
+	GameEngineSprite::LoadFolder(PlayerDir.GetPlusFileName("FoodAni").GetFullPath());
 	PlayerDir.Move("MainPlayer");
 	GameEngineSprite::LoadFolder(PlayerDir.GetPlusFileName("PlayerDead").GetFullPath());
 	GameEngineSprite::LoadFolder(PlayerDir.GetPlusFileName("PlayerIdle").GetFullPath());
@@ -442,7 +443,7 @@ void PlayLevel::Update(float _DeltaTime)
 		if (60 >= FRAME)
 		{
 			int a = 0;
-		}
+		} 
 
 
 		Frame = 0;

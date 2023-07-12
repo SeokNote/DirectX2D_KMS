@@ -9,7 +9,8 @@
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore/GameEngineUIRenderer.h>
 #include <GameEngineCore/GameEngineCollision.h>
-
+#include "ContentButton.h"
+#include "UIFontRender.h"
 FoodUI::FoodUI()
 {
 }
@@ -44,8 +45,14 @@ void FoodUI::Start()
 	FoodUIExitCol->GetTransform()->SetLocalPosition(ExitButtonPos);
 	FoodUIExitCol->GetTransform()->SetLocalScale(ExitButtonScale);
 	FoodUIExitCol->SetOrder(2998);
-	//	
 
+	FoodBGRender = CreateComponent<GameEngineUIRenderer>(151);
+	FoodBGRender->SetTexture("FoodUI.png");
+	FoodBGRender->CreateAnimation({ .AnimationName = "FoodAni", .SpriteName = "FoodAni",.FrameInter = 0.1f, .Loop = true, .ScaleToTexture = true });
+	FoodBGRender->GetTransform()->SetLocalPosition({242.0f,0.0f,0.0f});
+
+	FoodBGRender->ChangeAnimation("FoodAni");
+	SetButton();
 }
 void FoodUI::Update(float _Delta)
 {
@@ -64,4 +71,26 @@ void FoodUI::Update(float _Delta)
 		ExitButtonSelectRender->Off();
 		ExitButtonRender->On();
 	}
+}
+
+void FoodUI::SetButton()
+{
+	BreadButton = GetLevel()->CreateActor<ContentButton>();
+	BreadButton->GetTransform()->SetParent(GetTransform());
+	BreadButton->GetTransform()->SetLocalPosition({ -402.0f,143.0f,0.0f });
+	BreadButton->GetRender()->SetTexture("FoodBread_01.png");
+	BreadButton->GetRender()->GetTransform()->SetWorldScale({ 400.0f,200.0f,0.0f });
+	BreadButton->GetExplaneRender()->SetTexture("01_Bread.png");
+	BreadButton->GetExplaneRender()->GetTransform()->SetWorldPosition({ 240.0f,-20.0f,0.0f });
+	BreadButton->GetExplaneRender()->GetTransform()->SetWorldScale({ 292.0f,120.0f,1.0f });
+
+	TomatoButton = GetLevel()->CreateActor<ContentButton>();
+	TomatoButton->GetTransform()->SetParent(GetTransform());
+	TomatoButton->GetTransform()->SetLocalPosition({ -402.0f,-65.0f,0.0f });
+	TomatoButton->GetRender()->SetTexture("FoodTomatoSoup_01.png");
+	TomatoButton->GetRender()->GetTransform()->SetWorldScale({ 400.0f,200.0f,0.0f });
+	TomatoButton->GetExplaneRender()->SetTexture("04_TamatoSoup.png");
+	TomatoButton->GetExplaneRender()->GetTransform()->SetWorldPosition({ 240.0f,-20.0f,0.0f });
+	TomatoButton->GetExplaneRender()->GetTransform()->SetWorldScale({ 292.0f,120.0f,1.0f });
+
 }

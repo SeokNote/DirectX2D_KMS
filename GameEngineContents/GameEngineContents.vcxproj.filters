@@ -312,7 +312,7 @@
       <Filter>Object\UI\Stat\AbilityButton</Filter>
     </ClInclude>
     <ClInclude Include="ContentButton.h">
-      <Filter>Object\UI\ContentButton</Filter>
+      <Filter>Object\UI\Stat\StatBase</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -657,7 +657,7 @@
       <Filter>Object\UI\Stat\AbilityButton</Filter>
     </ClCompile>
     <ClCompile Include="ContentButton.cpp">
-      <Filter>Object\UI\ContentButton</Filter>
+      <Filter>Object\UI\Stat\StatBase</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -894,6 +894,12 @@
     </Filter>
     <Filter Include="Object\UI\ContentButton">
       <UniqueIdentifier>{2bd29f46-cd5d-4a81-b09c-1b72045bd16c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\UI\Stat\StatBase">
+      <UniqueIdentifier>{224a2156-405d-4876-9115-cff3b54f61b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\UI\FoodShop\FoodUIBase">
+      <UniqueIdentifier>{04b7a8c1-dba8-4f40-a13b-bef90d5b0e0e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

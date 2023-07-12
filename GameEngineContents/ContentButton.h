@@ -47,6 +47,7 @@ protected:
 private:
 	void FontCreate();
 	std::shared_ptr<GameEngineUIRenderer> Render;
+	std::shared_ptr<GameEngineUIRenderer> Render_Select;
 	std::shared_ptr<GameEngineUIRenderer> ExplaneRender;
 	std::shared_ptr<class UIFontRender> StatName;
 	std::shared_ptr<class UIFontRender> StatExplane;

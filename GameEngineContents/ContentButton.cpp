@@ -19,6 +19,8 @@ ContentButton::~ContentButton()
 void ContentButton::Start()
 {
 	Render = CreateComponent<GameEngineUIRenderer>(151);
+	Render_Select = CreateComponent<GameEngineUIRenderer>(151);
+	Render_Select->Off();
 	ExplaneRender = CreateComponent<GameEngineUIRenderer>(152);
 	FontCreate();
 }
@@ -51,9 +53,13 @@ void ContentButton::Update(float _Delta)
 		StatName->On();
 		StatExplane->On();
 		TwoExplane->On();
+		Render_Select->On();
+		Render->Off();
 	}
 	else
 	{
+		Render->On();
+		Render_Select->Off();
 		ExplaneRender->Off();
 		StatName->Off();
 		StatExplane->Off();

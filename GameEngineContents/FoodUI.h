@@ -22,6 +22,7 @@ protected:
 	void Update(float _Delta) override;
 
 private:
+	void SetButton();
 
 	float4 FoodUIScale = { 1280.f,720.0f,0.0f };
 	float4 ExitButtonScale = { 88.0f,76.0f,0.0f };
@@ -29,9 +30,15 @@ private:
 	std::shared_ptr<class GameEngineUIRenderer> FoodUIRender;
 	std::shared_ptr<class GameEngineUIRenderer> ExitButtonRender;
 	std::shared_ptr<class GameEngineUIRenderer> ExitButtonSelectRender;
+	std::shared_ptr<class GameEngineUIRenderer> FoodBGRender;
 
 	std::shared_ptr<class GameEngineCollision> FoodUIExitCol;
-	float4 ExitButtonPos = { 590, 315, 0 };
+	float4 ExitButtonPos = { 590.0f, 315.0f, 0.0f };
 
 	std::shared_ptr<class TempleNpc> TempleNpcPtr;
+
+
+	std::shared_ptr<class ContentButton> BreadButton;
+	std::shared_ptr<class ContentButton> TomatoButton;
+
 };
