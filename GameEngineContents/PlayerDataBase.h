@@ -132,7 +132,7 @@ public:
 		return TrueDamage;
 	}
 
-	int GetCriticalChance()
+	float GetCriticalChance()
 	{
 		return CriticalChance;
 	}
@@ -173,6 +173,18 @@ public:
 	{
 		Skillcul = _Value;
 	}
+	void PlusDefense(float _Value)
+	{
+		Defense += _Value;
+	}
+	void PlusCriticalChance(float _Value)
+	{
+		CriticalChance += _Value;
+	}
+	int GetMaxSatiety()
+	{
+		return MaxSatiety;
+	}
 private:
 	int PlayerLevel = 1;				//플레이어 레벨	
 	int PlayerMaxHP = 60;
@@ -180,6 +192,7 @@ private:
 	int Coin = 0;						//돈
 	int DashCunt = 3;					//대쉬카운터
 	int Satiety = 0;					//포만감
+	int MaxSatiety = 100;
 	int Power = 100;					//위력
 	float Defense = 1.5f;					//방어력
 	float AttackSpeed = 1.0f;			//공격속도
@@ -188,7 +201,7 @@ private:
 	int Block = 0;						//막기
 	int Toughness = 0;					//강인함
 	int TrueDamage = 0;					//고정 데미지
-	int CriticalChance = 0;				//크리티컬
+	float CriticalChance = 0;				//크리티컬
 	int CriticalDamage = 100;				//크리티컬 데미지
 	int DashPower = 50;					// 대쉬 공격력
 	int Skillcul = 0;

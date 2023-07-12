@@ -28,7 +28,6 @@ void ContentButton::Start()
 void ContentButton::Update(float _Delta)
 {
 
-	// 이카메라가 원근 투영이면
 	GameEngineCamera* Camera = Render->GetCamera();
 
 	// 랜더러 
@@ -55,6 +54,13 @@ void ContentButton::Update(float _Delta)
 		TwoExplane->On();
 		Render_Select->On();
 		Render->Off();
+		if (true == GameEngineInput::IsUp("EngineMouseLeft"))
+		{
+			if (nullptr != Click)
+			{
+				Click();
+			}
+		}
 	}
 	else
 	{

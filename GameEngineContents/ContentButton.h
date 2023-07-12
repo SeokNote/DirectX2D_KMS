@@ -28,7 +28,10 @@ public:
 	ContentButton(ContentButton&& _Other) noexcept = delete;
 	ContentButton& operator=(const ContentButton& _Other) = delete;
 	ContentButton& operator=(ContentButton&& _Other) noexcept = delete;
-
+	void SetEvent(std::function<void()> _Click)
+	{
+		Click = _Click;
+	}
 	std::shared_ptr<GameEngineUIRenderer> GetRender()
 	{
 		return Render;
@@ -37,6 +40,10 @@ public:
 	std::shared_ptr<GameEngineUIRenderer> GetExplaneRender()
 	{
 		return ExplaneRender;
+	}
+	std::shared_ptr<GameEngineUIRenderer> GetRender_Select()
+	{
+		return Render_Select;
 	}
 	void SetStatFont(const StatStringParameter& _Paramter);
 
@@ -53,6 +60,7 @@ private:
 	std::shared_ptr<class UIFontRender> StatExplane;
 	std::shared_ptr<class UIFontRender> TwoExplane;
 	std::shared_ptr<class UIFontRender> StatValue;
+	std::function<void()> Click;
 
 	std::string Font = "Aa카시오페아";
 

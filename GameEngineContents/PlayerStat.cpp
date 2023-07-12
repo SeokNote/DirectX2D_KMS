@@ -274,7 +274,7 @@ void PlayerStat::UpdateStat()
 	.Value = (std::to_string(Player::MainPlayer->GetData().GetBlock()) + "%"),.Index = 1 });
 
 	CritcalButton->SetStatFont({ .Name = "크리티컬",.ExplaneName = "적에게 치명적인 피해를 입힐 수 있는",.TwoExplaneName = "기회가 늘어납니다.",
-	.Value = std::to_string(Player::MainPlayer->GetData().GetCriticalChance()),.Index = 1 });
+	.Value = SubString(std::to_string(Player::MainPlayer->GetData().GetCriticalChance()),1),.Index = 1 });
 
 	CriDamageButton->SetStatFont({ .Name = "크리티컬 데미지",.ExplaneName = "크리티컬 추가 피해량을 나타냅니다.",
 	.Value = (std::to_string(Player::MainPlayer->GetData().GetCriticalDamage())+"%")});
