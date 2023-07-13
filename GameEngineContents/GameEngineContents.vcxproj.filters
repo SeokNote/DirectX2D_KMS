@@ -314,6 +314,9 @@
     <ClInclude Include="DashBar.h">
       <Filter>Object\UI\PlayerUI\Dash</Filter>
     </ClInclude>
+    <ClInclude Include="WeaponSwichUI.h">
+      <Filter>Object\UI\PlayerUI\WeaponSwich</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -659,6 +662,9 @@
     <ClCompile Include="DashBar.cpp">
       <Filter>Object\UI\PlayerUI\Dash</Filter>
     </ClCompile>
+    <ClCompile Include="WeaponSwichUI.cpp">
+      <Filter>Object\UI\PlayerUI\WeaponSwich</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Levels">
@@ -909,6 +915,9 @@
     </Filter>
     <Filter Include="Object\UI\PlayerUI\HP">
       <UniqueIdentifier>{e54bb3fd-6d47-46e6-bc46-0797e1e8c132}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\UI\PlayerUI\WeaponSwich">
+      <UniqueIdentifier>{cab97663-723d-4057-9628-24c3dd47ef63}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

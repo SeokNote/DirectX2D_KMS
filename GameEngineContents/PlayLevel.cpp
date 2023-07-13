@@ -13,6 +13,7 @@
 #include "CoinBar.h"
 #include "FoodBar.h"
 #include "PlayerHPbar.h"
+#include "WeaponSwichUI.h"
 #include "ShopNpc.h"
 #include "BuilderNpc.h"
 #include "TempleNpc.h"
@@ -247,6 +248,7 @@ void PlayLevel::Start()
 		GameEngineInput::CreateKey("DEBUGMODE", 'U');
 		GameEngineInput::CreateKey("DASH", VK_RBUTTON);
 		GameEngineInput::CreateKey("DeBugKey", 'Q');
+		GameEngineInput::CreateKey("WEAPONSWICH", VK_OEM_3);
 
 	}
 
@@ -315,6 +317,7 @@ void PlayLevel::Start()
 		std::shared_ptr<FoodBar> FoodBarPtr = CreateActor<FoodBar>(-10);
 		std::shared_ptr<CoinBar> CoinBarPtr = CreateActor<CoinBar>(-10);
 		std::shared_ptr<DashBar> DashBarPtr = CreateActor<DashBar>(-10);
+		std::shared_ptr<WeaponSwichUI> WeaponSwichUIPtr = CreateActor<WeaponSwichUI>(-10);
 
 		Stat = CreateActor<PlayerStat>(-10);
 		Stat->Off();
