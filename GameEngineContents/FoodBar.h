@@ -21,14 +21,18 @@ protected:
 private:
 	void FontSet();
 	std::shared_ptr<class GameEngineUIRenderer> PlayerFoodUI;
+	std::shared_ptr<class GameEngineUIRenderer> PlayerFoodBarBG;
+	std::shared_ptr<class GameEngineUIRenderer> PlayerFoodBar;
 
 	float4 PlayerFoodUIScale = { 34.0f,28.0f,0.0f };
 	float4 PlayerFoodUIPos = { -610.0f,-320.0f,0.0f };
 
 	std::shared_ptr<class UIFontRender> CurSatityRender;
+	std::shared_ptr<class UIFontRender> CurSatityRender_0;
 	std::shared_ptr<class UIFontRender> SlashRender;
 	std::shared_ptr<class UIFontRender> MaxSatityRender;
-	std::string font = "Aa카시오페아";
+	std::shared_ptr<class UIFontRender> MaxSatityRender_0;
+	std::string font = "8-bit Operator+ SC";
 
 
 };

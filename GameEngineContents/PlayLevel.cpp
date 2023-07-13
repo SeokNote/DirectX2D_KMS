@@ -82,7 +82,7 @@ void PlayLevel::Start()
 {
 	//폰트 로드
 	GameEngineFont::Load("Aa카시오페아");
-
+	GameEngineFont::Load("8-bit Operator+ SC");
 
 	GameEngineDirectory NewDir;
 	NewDir.MoveParentToDirectory("ContentResources");

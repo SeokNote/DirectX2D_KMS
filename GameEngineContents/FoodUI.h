@@ -26,6 +26,7 @@ private:
 	void MoveFood(float _Delta);
 	void SetSatieyFont();
 	void FontUpdate();
+	std::shared_ptr<class UIFontRender> FontCreate();
 	float4 FoodUIScale = { 1280.f,720.0f,0.0f };
 	float4 ExitButtonScale = { 88.0f,76.0f,0.0f };
 
@@ -34,6 +35,9 @@ private:
 	std::shared_ptr<class GameEngineUIRenderer> ExitButtonSelectRender;
 	std::shared_ptr<class GameEngineUIRenderer> FoodBGRender;
 	std::shared_ptr<class GameEngineUIRenderer> SatietyBGRender;
+	std::shared_ptr<class GameEngineUIRenderer> HPBaseRender;
+	std::shared_ptr<class GameEngineUIRenderer> HPRender;
+
 	std::shared_ptr<class GameEngineCollision> FoodUIExitCol;
 	float4 ExitButtonPos = { 590.0f, 315.0f, 0.0f };
 	std::shared_ptr<class TempleNpc> TempleNpcPtr;
@@ -61,6 +65,28 @@ private:
 	std::shared_ptr<class UIFontRender> SlashFont_1;
 	std::shared_ptr<class UIFontRender> SlashFont_2;
 	std::shared_ptr<class UIFontRender> SlashFont_3;
+
+	std::shared_ptr<class UIFontRender> PlayerHPFont;
+	std::shared_ptr<class UIFontRender> PlayerHPBG_0;
+	std::shared_ptr<class UIFontRender> PlayerHPBG_1;
+	std::shared_ptr<class UIFontRender> PlayerHPBG_2;
+	std::shared_ptr<class UIFontRender> PlayerHPBG_3;
+
+
+	std::shared_ptr<class UIFontRender> PlayerMaxHP;
+	std::shared_ptr<class UIFontRender> PlayerMaxHP_0;
+	std::shared_ptr<class UIFontRender> PlayerMaxHP_1;
+	std::shared_ptr<class UIFontRender> PlayerMaxHP_2;
+	std::shared_ptr<class UIFontRender> PlayerMaxHP_3;
+
+	std::shared_ptr<class UIFontRender> SlashFontHP;
+	std::shared_ptr<class UIFontRender> SlashFontHP_0;
+	std::shared_ptr<class UIFontRender> SlashFontHP_1;
+	std::shared_ptr<class UIFontRender> SlashFontHP_2;
+	std::shared_ptr<class UIFontRender> SlashFontHP_3;
+
+	std::shared_ptr<class UIFontRender> CoinRender;
+
 	bool MoveBread = false;
 	bool MoveTomato = false;
 	std::string font = "Aa카시오페아";

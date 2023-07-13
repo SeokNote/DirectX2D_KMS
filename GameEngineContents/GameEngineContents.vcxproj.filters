@@ -898,8 +898,5 @@
     <Filter Include="Object\UI\Stat\StatBase">
       <UniqueIdentifier>{224a2156-405d-4876-9115-cff3b54f61b1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Object\UI\FoodShop\FoodUIBase">
-      <UniqueIdentifier>{04b7a8c1-dba8-4f40-a13b-bef90d5b0e0e}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
 </Project>

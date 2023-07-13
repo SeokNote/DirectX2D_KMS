@@ -56,6 +56,16 @@ void FoodUI::Start()
 	FoodBGRender->CreateAnimation({ .AnimationName = "FoodAni", .SpriteName = "FoodAni",.FrameInter = 0.1f, .Loop = true, .ScaleToTexture = true });
 	FoodBGRender->GetTransform()->SetLocalPosition({242.0f,0.0f,0.0f});
 
+	HPBaseRender = CreateComponent<GameEngineUIRenderer>(153);
+	HPBaseRender->SetTexture("RestaurantLifeBaseBack.png");
+	HPBaseRender->GetTransform()->SetLocalScale({ 220.0f,64.0f,0.0f });
+	HPBaseRender->GetTransform()->SetLocalPosition({ 503.0f,-220.0f,0.0f });
+
+	HPRender = CreateComponent<GameEngineUIRenderer>(153);
+	HPRender->SetTexture("RestaurantLife.png");
+	HPRender->GetTransform()->SetLocalScale({ 196.0f,40.0f,0.0f });
+	HPRender->GetTransform()->SetLocalPosition({ 503.0f,-220.0f,0.0f });
+
 	FoodBGRender->ChangeAnimation("FoodAni");
 	SetButton();
 	SetSatieyFont();
@@ -102,13 +112,18 @@ void FoodUI::SetButton()
 	BreadButton->GetExplaneRender()->GetTransform()->SetWorldScale({ 292.0f,120.0f,1.0f });
 	BreadButton->SetEvent([this]()
 		{
-			if (Player::MainPlayer->GetData().GetSatiety() + 50 < 100)
+			if (Player::MainPlayer->GetData().GetSatiety() + 50 < 100 && Player::MainPlayer->GetData().GetCoin() > 540)
 			{
 				BreadButton->GetRender()->SetTexture("FoodThank.png");
 				BreadButton->GetRender_Select()->SetTexture("FoodThank.png");
 				MoveBread = true;
 				Player::MainPlayer->GetData().PlusDefense(5.8f);
 				Player::MainPlayer->GetData().PlusSatiety(50);
+				float PlusHp = static_cast<float>(Player::MainPlayer->GetData().GetPlayerMaxHP()) * 0.12f;
+				Player::MainPlayer->GetData().PlusPlayerHP(static_cast<int>(PlusHp));
+				Player::MainPlayer->GetData().SubCoin(540);
+
+
 			}
 
 		});
@@ -124,13 +139,17 @@ void FoodUI::SetButton()
 	TomatoButton->GetExplaneRender()->GetTransform()->SetWorldScale({ 292.0f,120.0f,1.0f });
 	TomatoButton->SetEvent([this]()
 		{	
-			if (Player::MainPlayer->GetData().GetSatiety() + 46 < 100)
+			if (Player::MainPlayer->GetData().GetSatiety() + 46 < 100 && Player::MainPlayer->GetData().GetCoin()>380)
 			{
 				TomatoButton->GetRender()->SetTexture("FoodThank.png");
 				TomatoButton->GetRender_Select()->SetTexture("FoodThank.png");
 				MoveTomato = true;
 				Player::MainPlayer->GetData().PlusCriticalChance(7.1f);
 				Player::MainPlayer->GetData().PlusSatiety(46);
+				float PlusHp = static_cast<float>(Player::MainPlayer->GetData().GetPlayerMaxHP()) * 0.092f;
+				Player::MainPlayer->GetData().PlusPlayerHP(static_cast<int>(PlusHp));
+				Player::MainPlayer->GetData().SubCoin(380);
+
 			}
 			
 
@@ -140,6 +159,7 @@ void FoodUI::SetButton()
 void FoodUI::MoveFood(float _Delta)
 {
 	SatietyBGRender->ImageClippingX(static_cast<float>(100-Player::MainPlayer->GetData().GetSatiety()) / static_cast<float>(Player::MainPlayer->GetData().GetMaxSatiety()), ClipXDir::Right);
+	HPRender->ImageClippingX(static_cast<float>(Player::MainPlayer->GetData().GetPlayerHP()) / static_cast<float>(Player::MainPlayer->GetData().GetPlayerMaxHP()), ClipXDir::Left);
 
 	if (MoveBread == true)
 	{
@@ -285,6 +305,124 @@ void FoodUI::SetSatieyFont()
 	PlayerMaxFood_3->SetColor(float4::Black);
 	PlayerMaxFood_3->SetText(std::to_string(Player::MainPlayer->GetData().GetMaxSatiety()));
 	PlayerMaxFood_3->GetTransform()->SetLocalPosition({ -307.0f,-285.0f,0.0f });
+	// 체력 폰트
+	PlayerHPFont = CreateComponent<UIFontRender>(155);
+	PlayerHPFont->SetFont(font);
+	PlayerHPFont->SetFontFlag(FW1_CENTER);
+	PlayerHPFont->SetScale(48);
+	PlayerHPFont->SetColor(float4::White);
+	PlayerHPFont->GetTransform()->SetLocalPosition({ 465.0f,-190.0f,0.0f });
+
+	PlayerHPBG_0 = CreateComponent<UIFontRender>(154);
+	PlayerHPBG_0->SetFont(font);
+	PlayerHPBG_0->SetFontFlag(FW1_CENTER);
+	PlayerHPBG_0->SetScale(48);
+	PlayerHPBG_0->SetColor(float4::Black);
+	PlayerHPBG_0->GetTransform()->SetLocalPosition({ 468.0f,-190.0f,0.0f });
+
+	PlayerHPBG_1 = CreateComponent<UIFontRender>(154);
+	PlayerHPBG_1->SetFont(font);
+	PlayerHPBG_1->SetFontFlag(FW1_CENTER);
+	PlayerHPBG_1->SetScale(48);
+	PlayerHPBG_1->SetColor(float4::Black);
+	PlayerHPBG_1->GetTransform()->SetLocalPosition({ 462.0f,-190.0f,0.0f });
+
+	PlayerHPBG_2 = CreateComponent<UIFontRender>(154);
+	PlayerHPBG_2->SetFont(font);
+	PlayerHPBG_2->SetFontFlag(FW1_CENTER);
+	PlayerHPBG_2->SetScale(48);
+	PlayerHPBG_2->SetColor(float4::Black);
+	PlayerHPBG_2->GetTransform()->SetLocalPosition({ 465.0f,-193.0f,0.0f });
+
+	PlayerHPBG_3 = CreateComponent<UIFontRender>(154);
+	PlayerHPBG_3->SetFont(font);
+	PlayerHPBG_3->SetFontFlag(FW1_CENTER);
+	PlayerHPBG_3->SetScale(48);
+	PlayerHPBG_3->SetColor(float4::Black);
+	PlayerHPBG_3->GetTransform()->SetLocalPosition({ 465.0f,-187.0f,0.0f });
+
+	PlayerMaxHP = CreateComponent<UIFontRender>(155);
+	PlayerMaxHP->SetFont(font);
+	PlayerMaxHP->SetFontFlag(FW1_CENTER);
+	PlayerMaxHP->SetScale(48);
+	PlayerMaxHP->SetColor(float4::White);
+	PlayerMaxHP->GetTransform()->SetLocalPosition({ 555.0f,-190.0f,0.0f });
+
+	PlayerMaxHP_0 = CreateComponent<UIFontRender>(154);
+	PlayerMaxHP_0->SetFont(font);
+	PlayerMaxHP_0->SetFontFlag(FW1_CENTER);
+	PlayerMaxHP_0->SetScale(48);
+	PlayerMaxHP_0->SetColor(float4::Black);
+	PlayerMaxHP_0->GetTransform()->SetLocalPosition({ 552.0f,-190.0f,0.0f });
+
+	PlayerMaxHP_1 = CreateComponent<UIFontRender>(154);
+	PlayerMaxHP_1->SetFont(font);
+	PlayerMaxHP_1->SetFontFlag(FW1_CENTER);
+	PlayerMaxHP_1->SetScale(48);
+	PlayerMaxHP_1->SetColor(float4::Black);
+	PlayerMaxHP_1->GetTransform()->SetLocalPosition({ 558.0f,-190.0f,0.0f });
+	
+	PlayerMaxHP_2 = CreateComponent<UIFontRender>(154);
+	PlayerMaxHP_2->SetFont(font);
+	PlayerMaxHP_2->SetFontFlag(FW1_CENTER);
+	PlayerMaxHP_2->SetScale(48);
+	PlayerMaxHP_2->SetColor(float4::Black);
+	PlayerMaxHP_2->GetTransform()->SetLocalPosition({ 555.0f,-193.0f,0.0f });
+	
+	PlayerMaxHP_3 = CreateComponent<UIFontRender>(154);
+	PlayerMaxHP_3->SetFont(font);
+	PlayerMaxHP_3->SetFontFlag(FW1_CENTER);
+	PlayerMaxHP_3->SetScale(48);
+	PlayerMaxHP_3->SetColor(float4::Black);
+	PlayerMaxHP_3->GetTransform()->SetLocalPosition({ 555.0f,-187.0f,0.0f });
+
+	SlashFontHP = CreateComponent<UIFontRender>(155);
+	SlashFontHP->SetFont(font);
+	SlashFontHP->SetFontFlag(FW1_CENTER);
+	SlashFontHP->SetScale(37);
+	SlashFontHP->SetColor(float4::White);
+	SlashFontHP->SetText("/");
+	SlashFontHP->GetTransform()->SetLocalPosition({ 510.0f,-197.0f,0.0f });
+
+	SlashFontHP_0 = CreateComponent<UIFontRender>(154);
+	SlashFontHP_0->SetFont(font);
+	SlashFontHP_0->SetFontFlag(FW1_CENTER);
+	SlashFontHP_0->SetScale(37);
+	SlashFontHP_0->SetColor(float4::Black);
+	SlashFontHP_0->SetText("/");
+	SlashFontHP_0->GetTransform()->SetLocalPosition({ 510.0f,-194.0f,0.0f });
+
+	SlashFontHP_1 = CreateComponent<UIFontRender>(154);
+	SlashFontHP_1->SetFont(font);
+	SlashFontHP_1->SetFontFlag(FW1_CENTER);
+	SlashFontHP_1->SetScale(37);
+	SlashFontHP_1->SetColor(float4::Black);
+	SlashFontHP_1->SetText("/");
+	SlashFontHP_1->GetTransform()->SetLocalPosition({ 510.0f,-200.0f,0.0f });
+
+	SlashFontHP_2 = CreateComponent<UIFontRender>(154);
+	SlashFontHP_2->SetFont(font);
+	SlashFontHP_2->SetFontFlag(FW1_CENTER);
+	SlashFontHP_2->SetScale(37);
+	SlashFontHP_2->SetColor(float4::Black);
+	SlashFontHP_2->SetText("/");
+	SlashFontHP_2->GetTransform()->SetLocalPosition({ 507.0f,-197.0f,0.0f });
+
+	SlashFontHP_3 = CreateComponent<UIFontRender>(154);
+	SlashFontHP_3->SetFont(font);
+	SlashFontHP_3->SetFontFlag(FW1_CENTER);
+	SlashFontHP_3->SetScale(37);
+	SlashFontHP_3->SetColor(float4::Black);
+	SlashFontHP_3->SetText("/");
+	SlashFontHP_3->GetTransform()->SetLocalPosition({ 513.0f,-197.0f,0.0f });
+
+	CoinRender = CreateComponent<UIFontRender>(154);
+	CoinRender->SetFont(font);
+	CoinRender->SetFontFlag(FW1_RIGHT);
+	CoinRender->SetScale(48);
+	CoinRender->SetColor(float4::White);
+	CoinRender->GetTransform()->SetLocalPosition({ 550.0f,-283.0f,0.0f });
+	
 }
 
 void FoodUI::FontUpdate()
@@ -294,5 +432,16 @@ void FoodUI::FontUpdate()
 	PlayerFoodBG_2->SetText(std::to_string(Player::MainPlayer->GetData().GetSatiety()));
 	PlayerFoodBG_1->SetText(std::to_string(Player::MainPlayer->GetData().GetSatiety()));
 	PlayerFoodBG_3->SetText(std::to_string(Player::MainPlayer->GetData().GetSatiety()));
+	PlayerMaxHP->SetText(std::to_string(Player::MainPlayer->GetData().GetPlayerMaxHP()));
+	PlayerMaxHP_0->SetText(std::to_string(Player::MainPlayer->GetData().GetPlayerMaxHP()));
+	PlayerMaxHP_1->SetText(std::to_string(Player::MainPlayer->GetData().GetPlayerMaxHP()));
+	PlayerMaxHP_2->SetText(std::to_string(Player::MainPlayer->GetData().GetPlayerMaxHP()));
+	PlayerMaxHP_3->SetText(std::to_string(Player::MainPlayer->GetData().GetPlayerMaxHP()));
+	PlayerHPFont->SetText(std::to_string(Player::MainPlayer->GetData().GetPlayerHP()));
+	PlayerHPBG_0->SetText(std::to_string(Player::MainPlayer->GetData().GetPlayerHP()));
+	PlayerHPBG_1->SetText(std::to_string(Player::MainPlayer->GetData().GetPlayerHP()));
+	PlayerHPBG_2->SetText(std::to_string(Player::MainPlayer->GetData().GetPlayerHP()));
+	PlayerHPBG_3->SetText(std::to_string(Player::MainPlayer->GetData().GetPlayerHP()));
+	CoinRender->SetText(std::to_string(Player::MainPlayer->GetData().GetCoin()));
 
 }

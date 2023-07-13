@@ -20,6 +20,8 @@ protected:
 	void Update(float _Delta) override;
 private:
 	std::shared_ptr<class GameEngineUIRenderer> PlayerCoinBarUI;
+	std::shared_ptr<class UIFontRender> CoinFontRender;
+	std::shared_ptr<class UIFontRender> CoinFontRender_1;
 
 	float4 PlayerCoinBarUIScale = { 14.0f,14.0f,0.0f };
 	float4 PlayerCoinBarUIPos = { -610.0f,-290.0f,0.0f };
