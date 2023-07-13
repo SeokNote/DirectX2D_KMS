@@ -51,10 +51,9 @@ public:
 		UICount = _Value;
 		return UICount;
 	}
-	int GetDashCount(int _Count)
+	int GetDashCount()
 	{
-		_Count = DashCount;
-		return _Count;
+		return DashCount;
 	}
 	bool GetFilpCheck()
 	{
@@ -82,6 +81,7 @@ private:
 	void Filp();
 	void HitCameraShack();
 	void SetPlayerCollision(float _Delta);
+	void DashPlusCount(float _Delta);
 	bool CollisonCheck = false;
 	float Angle = 0.0f;
 	std::shared_ptr<class GameEngineSpriteRenderer> PlayerRender;
@@ -173,6 +173,7 @@ private:
 	float4 PrevDashPos = float4::Zero;
 	float UpDashTime = 0.0f;
 	float DashSpeed = 1000.0f;
+	float DashPlus = 0.0f;
 	//대쉬 이펙트 관련
 	bool Effect_Check = false;
 	float DashEffectTime = 0.0f;

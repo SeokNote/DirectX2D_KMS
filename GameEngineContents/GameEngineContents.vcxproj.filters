@@ -161,18 +161,6 @@
     <ClInclude Include="Door.h">
       <Filter>Object\Door</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerHPbar.h">
-      <Filter>Object\UI\PlayerUI</Filter>
-    </ClInclude>
-    <ClInclude Include="DashBar.h">
-      <Filter>Object\UI\PlayerUI</Filter>
-    </ClInclude>
-    <ClInclude Include="CoinBar.h">
-      <Filter>Object\UI\PlayerUI</Filter>
-    </ClInclude>
-    <ClInclude Include="FoodBar.h">
-      <Filter>Object\UI\PlayerUI</Filter>
-    </ClInclude>
     <ClInclude Include="ShopTextBox.h">
       <Filter>Object\UI\TextBox</Filter>
     </ClInclude>
@@ -313,6 +301,18 @@
     </ClInclude>
     <ClInclude Include="ContentButton.h">
       <Filter>Object\UI\Stat\StatBase</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerHPbar.h">
+      <Filter>Object\UI\PlayerUI\HP</Filter>
+    </ClInclude>
+    <ClInclude Include="CoinBar.h">
+      <Filter>Object\UI\PlayerUI\Coin</Filter>
+    </ClInclude>
+    <ClInclude Include="FoodBar.h">
+      <Filter>Object\UI\PlayerUI\Food</Filter>
+    </ClInclude>
+    <ClInclude Include="DashBar.h">
+      <Filter>Object\UI\PlayerUI\Dash</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -478,18 +478,6 @@
     </ClCompile>
     <ClCompile Include="Door.cpp">
       <Filter>Object\Door</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerHPbar.cpp">
-      <Filter>Object\UI\PlayerUI</Filter>
-    </ClCompile>
-    <ClCompile Include="DashBar.cpp">
-      <Filter>Object\UI\PlayerUI</Filter>
-    </ClCompile>
-    <ClCompile Include="CoinBar.cpp">
-      <Filter>Object\UI\PlayerUI</Filter>
-    </ClCompile>
-    <ClCompile Include="FoodBar.cpp">
-      <Filter>Object\UI\PlayerUI</Filter>
     </ClCompile>
     <ClCompile Include="ShopTextBox.cpp">
       <Filter>Object\UI\TextBox</Filter>
@@ -658,6 +646,18 @@
     </ClCompile>
     <ClCompile Include="ContentButton.cpp">
       <Filter>Object\UI\Stat\StatBase</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerHPbar.cpp">
+      <Filter>Object\UI\PlayerUI\HP</Filter>
+    </ClCompile>
+    <ClCompile Include="CoinBar.cpp">
+      <Filter>Object\UI\PlayerUI\Coin</Filter>
+    </ClCompile>
+    <ClCompile Include="FoodBar.cpp">
+      <Filter>Object\UI\PlayerUI\Food</Filter>
+    </ClCompile>
+    <ClCompile Include="DashBar.cpp">
+      <Filter>Object\UI\PlayerUI\Dash</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -897,6 +897,18 @@
     </Filter>
     <Filter Include="Object\UI\Stat\StatBase">
       <UniqueIdentifier>{224a2156-405d-4876-9115-cff3b54f61b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\UI\PlayerUI\Coin">
+      <UniqueIdentifier>{1025154f-6344-4261-80d6-44805578b21b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\UI\PlayerUI\Dash">
+      <UniqueIdentifier>{8dcf2afd-f5cd-4c06-ac45-dd22c15f107d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\UI\PlayerUI\Food">
+      <UniqueIdentifier>{8ef09fa1-53c0-4e72-b51c-fc15c9133c02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\UI\PlayerUI\HP">
+      <UniqueIdentifier>{e54bb3fd-6d47-46e6-bc46-0797e1e8c132}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

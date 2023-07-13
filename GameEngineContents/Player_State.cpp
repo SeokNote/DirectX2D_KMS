@@ -469,49 +469,59 @@ void Player::DashStart()
 
 void Player::DashUpdate(float _Time)
 {
-	float4 PlayerPos = GetTransform()->GetLocalPosition();
-	DashTime += _Time;
-	DashEffectTime += _Time;
-	GetTransform()->AddLocalPosition({ PrevDashPos.x* DashSpeed* _Time,PrevDashPos.y* DashSpeed * _Time ,0.0f});
-	float YValue = (DashCurPos.y - PlayerPos.y);
-	if (DashEffectTime > 0.05f)
+	if (DashCount >= 0)
 	{
-		Effect_Check = true;
-		DashEffectTime = 0.0f;
-	}
-	if (Effect_Check == true)
-	{
-		DashEffectPtr = GetLevel()->CreateActor<DashEffect>();
-		DashEffectPtr->GetTransform()->SetWorldPosition(PlayerPos);
-		Effect_Check = false;
-	}
-	if (YValue > 0.0f)
-	{
-		GetTransform()->AddLocalPosition({ 0.0f,-PrevDashPos.y * DashSpeed * _Time ,0.0f});
+		float4 PlayerPos = GetTransform()->GetLocalPosition();
+		DashTime += _Time;
+		DashEffectTime += _Time;
+		GetTransform()->AddLocalPosition({ PrevDashPos.x * DashSpeed * _Time,PrevDashPos.y * DashSpeed * _Time ,0.0f });
+		float YValue = (DashCurPos.y - PlayerPos.y);
+		if (DashEffectTime > 0.05f)
+		{
+			Effect_Check = true;
+			DashEffectTime = 0.0f;
+		}
+		if (Effect_Check == true)
+		{
+			DashEffectPtr = GetLevel()->CreateActor<DashEffect>();
+			DashEffectPtr->GetTransform()->SetWorldPosition(PlayerPos);
+			Effect_Check = false;
+		}
+		if (YValue > 0.0f)
+		{
+			GetTransform()->AddLocalPosition({ 0.0f,-PrevDashPos.y * DashSpeed * _Time ,0.0f });
 
-	}
-	if(DashTime>0.2)
-	{
+		}
+		if (DashTime > 0.2)
+		{
+			DashCount--;
+			ChangeState(PlayerState::FALL);
+			DashTime = 0.0f;
+		}
+		if (LeftSideCheck() == true)
+		{
+			DashCount--;
+			ChangeState(PlayerState::FALL);
+			GetTransform()->AddLocalPosition({ 0.0f,-PrevDashPos.y * DashSpeed * _Time,0.0f });
 
-		ChangeState(PlayerState::FALL);
-		DashTime = 0.0f;
-	}
-	if (LeftSideCheck() == true)
-	{
-		ChangeState(PlayerState::FALL);
-		GetTransform()->AddLocalPosition({ 0.0f,-PrevDashPos.y * DashSpeed * _Time,0.0f });
+		}
+		if (RightSideCheck() == true)
+		{
+			DashCount--;
+			ChangeState(PlayerState::FALL);
 
-	}
-	if (RightSideCheck() == true)
-	{
-		ChangeState(PlayerState::FALL);
+		}
+		if (TopCheck() == true)
+		{
+			GetTransform()->AddLocalPosition({ 0.0f,-PrevDashPos.y * DashSpeed * _Time,0.0f });
 
+		}
 	}
-	if (TopCheck() == true)
+	else
 	{
-		GetTransform()->AddLocalPosition({ 0.0f,-PrevDashPos.y * DashSpeed * _Time,0.0f });
-
+		ChangeState(PlayerState::IDLE);
 	}
+	
 
 }
 

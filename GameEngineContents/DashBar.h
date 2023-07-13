@@ -19,10 +19,11 @@ protected:
 	void Start();
 	void Update(float _Delta) override;
 private:
-	std::shared_ptr<class GameEngineUIRenderer> PlayerDashBarUI;
-
+	std::shared_ptr<class GameEngineUIRenderer> PlayerDashBarUI3;
+	std::shared_ptr<class GameEngineUIRenderer> PlayerDashBarUI2;
+	std::shared_ptr<class GameEngineUIRenderer> PlayerDashBarUI1;
+	std::shared_ptr<class GameEngineUIRenderer> PlayerDashBarUI0;
 	float4 PlayerDashBarUIScale = { 132.0f,32.0f,0.0f };
 	float4 PlayerDashBarUIPos = { -562.0f, 266.0f , 0.0f };
-
 };
 

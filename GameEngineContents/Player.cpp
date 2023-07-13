@@ -79,50 +79,14 @@ void Player::Start()
 }
 void Player::Update(float _DeltaTime)
 {
-	float4 CameraPos = GetLevel()->GetMainCamera()->GetTransform()->GetWorldPosition();
+	DashPlusCount(_DeltaTime);
 	CurMap = SetMyMap(CurMap);
 	ColRenderSet();
 	UpdateState(_DeltaTime);
 	GetTransform()->AddLocalPosition(MoveDir * Data.GetMoveSpeed() * _DeltaTime);
 	SetPlayerCollision(_DeltaTime);
 	Filp();
-	int CurPhp = Data.GetPlayerHP();
-	int Maxhp = Data.GetPlayerMaxHP();
-	if (PlayerCol->Collision(ColOrder::MONSTERATTACK, ColType::AABBBOX2D, ColType::AABBBOX2D))
-	{
-		PlayerHitRender->On();
-		PlayerCol->Off();
-		IsInvincible = true;
-		ShackCheck = false;
-	}
-	if (IsInvincible == true)
-	{
-		HitCameraShack();
-		ShakeTime += _DeltaTime;
-		BlinkTime += _DeltaTime;
-		PlayerRender->ColorOptionValue.MulColor.a = 0.5f;
-		if (PlayerHitRender->ColorOptionValue.MulColor.a > 0.0f)
-		{
-			PlayerHitRender->ColorOptionValue.MulColor.a -= _DeltaTime * 3.0f;
-		}
-		if (ShackCheck ==false && ShakeTime > 0.6f)
-		{
-			x = 0.f;
-			ShakeTime = 0.0f;
-			GetLevel()->GetMainCamera()->GetTransform()->SetWorldPosition(CameraPos);
-			ShackCheck = true;
-		}
-		if (BlinkTime > 1.0f)
-		{
-			PlayerHitRender->Off();
-			PlayerHitRender->ColorOptionValue.MulColor.a = 1.0f;
-			PlayerRender->ColorOptionValue.MulColor.a = 1.0f;
-			BlinkTime = 0.0f;
-			IsInvincible = false;
-			PlayerCol->On();
-
-		}
-	}
+	
 }
 
 void Player::Invincible(float _Delta)
@@ -1002,11 +966,60 @@ void Player::ColRenderSet()
 
 
 }
-void Player::SetPlayerCollision(float _Delta)
+void Player::SetPlayerCollision(float _DeltaTime)
 {
-	
+	float4 CameraPos = GetLevel()->GetMainCamera()->GetTransform()->GetWorldPosition();
 
+	int CurPhp = Data.GetPlayerHP();
+	int Maxhp = Data.GetPlayerMaxHP();
+	if (PlayerCol->Collision(ColOrder::MONSTERATTACK, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	{
+		PlayerHitRender->On();
+		PlayerCol->Off();
+		IsInvincible = true;
+		ShackCheck = false;
+	}
+	if (IsInvincible == true)
+	{
+		HitCameraShack();
+		ShakeTime += _DeltaTime;
+		BlinkTime += _DeltaTime;
+		PlayerRender->ColorOptionValue.MulColor.a = 0.5f;
+		if (PlayerHitRender->ColorOptionValue.MulColor.a > 0.0f)
+		{
+			PlayerHitRender->ColorOptionValue.MulColor.a -= _DeltaTime * 3.0f;
+		}
+		if (ShackCheck == false && ShakeTime > 0.6f)
+		{
+			x = 0.f;
+			ShakeTime = 0.0f;
+			GetLevel()->GetMainCamera()->GetTransform()->SetWorldPosition(CameraPos);
+			ShackCheck = true;
+		}
+		if (BlinkTime > 1.0f)
+		{
+			PlayerHitRender->Off();
+			PlayerHitRender->ColorOptionValue.MulColor.a = 1.0f;
+			PlayerRender->ColorOptionValue.MulColor.a = 1.0f;
+			BlinkTime = 0.0f;
+			IsInvincible = false;
+			PlayerCol->On();
 
+		}
+	}
+
+}
+void Player::DashPlusCount(float _Delta)
+{
+	if (DashCount < 3)
+	{
+		DashPlus += _Delta;
+		if (DashPlus > 2.0f)
+		{
+			DashCount++;
+			DashPlus = 0.0f;
+		}
+	}
 }
 void Player::Render(float _Delta)
 {
