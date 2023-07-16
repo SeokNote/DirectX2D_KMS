@@ -20,7 +20,14 @@ public:
 	WeaponBase& operator=(const WeaponBase& _Other) = delete;
 	WeaponBase& operator=(WeaponBase&& _Other) noexcept = delete;
 	int GetWeaponStrength(Weapon _MyWeapon);
-
+	int GetWeaponIndex()
+	{
+		return WeaponIndex;
+	}
+	void SetWeaponIndex(int _Value)
+	{
+		WeaponIndex = _Value;
+	}
 protected:
 	void Start();
 	void Update(float _Delta) override;
@@ -30,6 +37,7 @@ protected:
 	float4 GetMousePos();
 //	float4 GetEffectDir();
 private:
+	int WeaponIndex = 0;
 	Weapon MyWeapon = Weapon::None;
 	float4 MousePos = float4::Zero;
 	float4 PlayerPos = float4::Zero;

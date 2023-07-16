@@ -15,17 +15,7 @@ GreatWeapon::~GreatWeapon()
 
 void GreatWeapon::Start()
 {
-	if (nullptr == GameEngineSprite::Find("GreatSwordAni"))
-	{
-		GameEngineDirectory NewDir;
-		NewDir.MoveParentToDirectory("ContentResources");
-		NewDir.Move("ContentResources");
-		NewDir.Move("Animation");
-		NewDir.Move("MainLevelAnimation");
-		NewDir.Move("WeaponAni");
-		GameEngineSprite::LoadFolder(NewDir.GetPlusFileName("GreatSwordAni").GetFullPath());
 
-	}
 
 	GreatWeaponRender = CreateComponent<GameEngineSpriteRenderer>(1);
 	GreatWeaponRender->SetTexture("GreatSword0.png");
@@ -40,6 +30,7 @@ void GreatWeapon::Start()
 	GreatWeaponCol->GetTransform()->SetLocalScale(GreatWeaponColScale);
 	GreatWeaponCol->SetColType(ColType::AABBBOX2D);
 	GreatWeaponCol->Off();
+	WeaponBase::SetWeaponIndex(1);
 }
 bool DirCheck = false;
 void GreatWeapon::Update(float _Delta)

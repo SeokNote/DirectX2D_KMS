@@ -34,7 +34,8 @@ void WeaponSwichUI::Start()
 
 
 }
-
+// 스왑을 누를수 있는 시간을 정해주자.
+// 내가 보유하고 있는 무기에 따른 렌더러를 띄우고 둘이 겹치는 순간 렌더러를 바꿔줌.
 void WeaponSwichUI::Update(float _Delta)
 {
 	if (true == GameEngineInput::IsDown("WEAPONSWICH"))

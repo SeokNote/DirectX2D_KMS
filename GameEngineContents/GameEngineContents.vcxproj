@@ -167,10 +167,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="AbilityButton.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="AbilityUI.h">
       <SubType>
       </SubType>
@@ -346,7 +342,15 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="InventoryButton.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="InventoryUI.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="ItemData.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -440,6 +444,14 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="SoundButton.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="SpaceSkill.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="SpaceWeapon.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -586,10 +598,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AbilityButton.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
     <ClCompile Include="AbilityUI.cpp">
       <SubType>
       </SubType>
@@ -773,7 +781,15 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="InventoryButton.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="InventoryUI.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="ItemData.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -870,6 +886,14 @@
     </ClCompile>
     <ClCompile Include="SmallBat_State.cpp" />
     <ClCompile Include="SoundButton.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="SpaceSkill.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="SpaceWeapon.cpp">
       <SubType>
       </SubType>
     </ClCompile>

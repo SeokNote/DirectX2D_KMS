@@ -71,6 +71,7 @@
 #include "Minotaurs.h"
 #include "Ghost.h"
 #include "SmallBat.h"
+#include "SpaceWeapon.h"
 PlayLevel::PlayLevel()
 {
 }
@@ -112,8 +113,20 @@ void PlayLevel::Start()
 	GameEngineSprite::LoadFolder(PlayerDir.GetPlusFileName("PlayerJumpAni").GetFullPath());
 	GameEngineSprite::LoadFolder(PlayerDir.GetPlusFileName("PlayerWalkAni").GetFullPath());
 	GameEngineSprite::LoadFolder(PlayerDir.GetPlusFileName("PlayerHp").GetFullPath());
-	
-	
+	//무기 애니메이션
+
+	GameEngineDirectory WeaponDir;
+	WeaponDir.MoveParentToDirectory("ContentResources");
+	WeaponDir.Move("ContentResources");
+	WeaponDir.Move("Animation");
+	WeaponDir.Move("MainLevelAnimation");
+	WeaponDir.Move("WeaponAni");
+	GameEngineSprite::LoadFolder(WeaponDir.GetPlusFileName("GreatSwordAni").GetFullPath());
+	WeaponDir.Move("SpaceSword");
+	GameEngineSprite::LoadFolder(WeaponDir.GetPlusFileName("SpaceSwordIdle").GetFullPath());
+	GameEngineSprite::LoadFolder(WeaponDir.GetPlusFileName("SpaceSwordSwing").GetFullPath());
+
+
 	//벨리알 무기 애니메이션
 	GameEngineDirectory BelialSwordDir;
 	BelialSwordDir.MoveParentToDirectory("ContentResources");
@@ -249,6 +262,7 @@ void PlayLevel::Start()
 		GameEngineInput::CreateKey("DASH", VK_RBUTTON);
 		GameEngineInput::CreateKey("DeBugKey", 'Q');
 		GameEngineInput::CreateKey("WEAPONSWICH", VK_OEM_3);
+		GameEngineInput::CreateKey("Skill", 'Q');
 
 	}
 
@@ -411,7 +425,7 @@ void PlayLevel::Start()
 
 
 	//무기
-	std::shared_ptr<GreatWeapon> GreatWeaponPtr = CreateActor<GreatWeapon>(1);
+	std::shared_ptr<SpaceWeapon> GreatWeaponPtr = CreateActor<SpaceWeapon>(1);
 	GreatWeaponPtr->GetTransform()->SetWorldPosition(NewPlayer->GetTransform()->GetWorldPosition());
 	GreatWeaponPtr->GetTransform()->SetParent(NewPlayer->GetTransform());
 }

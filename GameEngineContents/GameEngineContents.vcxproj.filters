@@ -296,9 +296,6 @@
     <ClInclude Include="PlayerStat.h">
       <Filter>Object\UI\Stat\Stat</Filter>
     </ClInclude>
-    <ClInclude Include="AbilityButton.h">
-      <Filter>Object\UI\Stat\AbilityButton</Filter>
-    </ClInclude>
     <ClInclude Include="ContentButton.h">
       <Filter>Object\UI\Stat\StatBase</Filter>
     </ClInclude>
@@ -316,6 +313,18 @@
     </ClInclude>
     <ClInclude Include="WeaponSwichUI.h">
       <Filter>Object\UI\PlayerUI\WeaponSwich</Filter>
+    </ClInclude>
+    <ClInclude Include="InventoryButton.h">
+      <Filter>Object\UI\Inventory\InventoryBase</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemData.h">
+      <Filter>Object\UI\Inventory\InventoryBase</Filter>
+    </ClInclude>
+    <ClInclude Include="SpaceWeapon.h">
+      <Filter>Object\Weapon\SpaceWeapon</Filter>
+    </ClInclude>
+    <ClInclude Include="SpaceSkill.h">
+      <Filter>Object\Weapon\SpaceWeapon\SpaceSkillUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -644,9 +653,6 @@
     <ClCompile Include="PlayerStat.cpp">
       <Filter>Object\UI\Stat\Stat</Filter>
     </ClCompile>
-    <ClCompile Include="AbilityButton.cpp">
-      <Filter>Object\UI\Stat\AbilityButton</Filter>
-    </ClCompile>
     <ClCompile Include="ContentButton.cpp">
       <Filter>Object\UI\Stat\StatBase</Filter>
     </ClCompile>
@@ -664,6 +670,18 @@
     </ClCompile>
     <ClCompile Include="WeaponSwichUI.cpp">
       <Filter>Object\UI\PlayerUI\WeaponSwich</Filter>
+    </ClCompile>
+    <ClCompile Include="InventoryButton.cpp">
+      <Filter>Object\UI\Inventory\InventoryBase</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemData.cpp">
+      <Filter>Object\UI\Inventory\InventoryBase</Filter>
+    </ClCompile>
+    <ClCompile Include="SpaceWeapon.cpp">
+      <Filter>Object\Weapon\SpaceWeapon</Filter>
+    </ClCompile>
+    <ClCompile Include="SpaceSkill.cpp">
+      <Filter>Object\Weapon\SpaceWeapon\SpaceSkillUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -895,9 +913,6 @@
     <Filter Include="Object\UI\Stat\Stat">
       <UniqueIdentifier>{dfd6f66d-03a2-42af-95ea-0d64da4661c1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Object\UI\Stat\AbilityButton">
-      <UniqueIdentifier>{a022299e-3351-40ba-bbd0-5f3f8ec17bb0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Object\UI\ContentButton">
       <UniqueIdentifier>{2bd29f46-cd5d-4a81-b09c-1b72045bd16c}</UniqueIdentifier>
     </Filter>
@@ -918,6 +933,15 @@
     </Filter>
     <Filter Include="Object\UI\PlayerUI\WeaponSwich">
       <UniqueIdentifier>{cab97663-723d-4057-9628-24c3dd47ef63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\UI\Inventory\InventoryBase">
+      <UniqueIdentifier>{07354001-be23-4e1c-8553-5ce4cbddcf9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Weapon\SpaceWeapon">
+      <UniqueIdentifier>{561c49e3-5a51-4e32-a150-0c99d5aff0ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Weapon\SpaceWeapon\SpaceSkillUI">
+      <UniqueIdentifier>{73220edb-85d6-4a17-b3ec-3cdd8afe417a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

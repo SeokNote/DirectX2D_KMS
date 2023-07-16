@@ -263,55 +263,55 @@ void PlayerStat::UpdateStat()
 {
 	PowButton->SetStatFont({ .Name = "무기공격력(위력)",.ExplaneName = "위력은 무기공격력을 기반으로 추가",.TwoExplaneName = "피해량에 영향을 줍니다.",
 	.Value = "임시 ~ 임시",.Index = 1});
-
+	
 	DefButton->SetStatFont({ .Name = "방어력",.ExplaneName = "받는 피해를 경감시켜줍니다.",
 	.Value = SubString(std::to_string(Player::MainPlayer->GetData().GetDefense()),1) });
-
+	
 	ToughtButton->SetStatFont({.Name = "강인함",.ExplaneName = "강인함 수치에 따라 고정값의 ",.TwoExplaneName="피해를 감소시킨다.",
 	.Value = std::to_string(Player::MainPlayer->GetData().GetToughness()),.Index = 1});
-
+	
 	BlockButton->SetStatFont({ .Name = "막기",.ExplaneName = "적의 공격을 막을 수 있는 ",.TwoExplaneName = "확률을 증가시킨다.",
 	.Value = (std::to_string(Player::MainPlayer->GetData().GetBlock()) + "%"),.Index = 1 });
-
+	
 	CritcalButton->SetStatFont({ .Name = "크리티컬",.ExplaneName = "적에게 치명적인 피해를 입힐 수 있는",.TwoExplaneName = "기회가 늘어납니다.",
 	.Value = SubString(std::to_string(Player::MainPlayer->GetData().GetCriticalChance()),1),.Index = 1 });
-
+	
 	CriDamageButton->SetStatFont({ .Name = "크리티컬 데미지",.ExplaneName = "크리티컬 추가 피해량을 나타냅니다.",
 	.Value = (std::to_string(Player::MainPlayer->GetData().GetCriticalDamage())+"%")});
-
+	
 	EvadeButton->SetStatFont({ .Name = "회피",.ExplaneName = "적의 공격을 회피할 수 있는 확률을",.TwoExplaneName = "증가시킨다.",
 	.Value = (std::to_string(Player::MainPlayer->GetData().GetEvasion()) + "%"),.Index = 1 });
-
+	
 	SpeedButton->SetStatFont({ .Name = "이동 속도",.ExplaneName = "더 빠르게 움직이게 해줍니다",
 	.Value = SubString(std::to_string(Player::MainPlayer->GetData().GetMoveSpeed()/100.0f),1)});
-
+	
 	AttackSpeedButton->SetStatFont({ .Name = "공격 속도",.ExplaneName = "1초에 공격할 수 있는 횟수를 나타냅니다",
 	.Value = SubString(std::to_string(Player::MainPlayer->GetData().GetAttackSpeed()),1) });
-
+	
 	ReloadButton->SetStatFont({ .Name = "재장전 속도",.ExplaneName = "재장전시 걸리는 시간을 나타냅니다.",
 	.Value = "-"});
-
+	
 	DashAttackButton->SetStatFont({ .Name = "대쉬 공격력",.ExplaneName = "대쉬 공격력은 무기공격력의 %로",.TwoExplaneName = "계산됩니다.",
 	.Value = (std::to_string(Player::MainPlayer->GetData().GetDashPower()) + "%"),.Index = 1 });
-
+	
 	TruDamageButton->SetStatFont({ .Name = "고정 대미지",.ExplaneName = "적의 방어력등을 무시하고 고정된 피해를",.TwoExplaneName = "입힙니다.",
 	.Value = std::to_string(Player::MainPlayer->GetData().GetTrueDamage()),.Index = 1 });
-
+	
 	SkillCulButton->SetStatFont({ .Name = "스킬 쿨타임",.ExplaneName = "스킬을 더 빠르게 사용할 수 있게합니다.",
 	.Value = (std::to_string(Player::MainPlayer->GetData().GetSkillcul()) + "%") });
-
+	
 	BurnButton->SetStatFont({ .Name = "화상",.ExplaneName = "적을 불태워 짧은 시간동안 대미지를",.TwoExplaneName = "줍니다.",
 	.Value = "0",.Index = 1});
-
+	
 	PoisonButton->SetStatFont({ .Name = "중독",.ExplaneName = "적을 중독시켜 긴 시간동안 대미지를.",.TwoExplaneName = "줍니다.",
 	.Value = "0",.Index = 1 });
-
+	
 	ColdButton->SetStatFont({ .Name = "추위",.ExplaneName = "적을 느리게 만듭니다",
 	.Value = "0%"});
-
+	
 	ShockButton->SetStatFont({ .Name = "감전",.ExplaneName = "짧은 시간동안 대미지를 주고 공격 시",.TwoExplaneName = "추가 피해를 입힙니다.",
 	.Value = "0%",.Index = 1});
-
+	
 	StunButton->SetStatFont({ .Name = "기절",.ExplaneName = "적을 일시적으로 행동불가 상태로 만듭니다.",
 	.Value = "0%"});
 }

@@ -20,9 +20,16 @@ protected:
 	void Update(float _Delta) override;
 
 private:
-
+	void SetInventory();
+	void MoveItem();
 	float4 InventoryUIScale = { 492.0f,720.0f,0.0f };
 
 	std::shared_ptr<class GameEngineUIRenderer> InventoryUIRender;
 	std::shared_ptr<class GameEngineUIRenderer> MapTabBaseBG;
+
+	std::shared_ptr<class InventoryButton> Inventory00;
+	float4 InventoryPos00 = { 235.0f,-30.0f,0.0f };
+	float4 ExplanePos00 = { 30.0f,-130.0f,0.0f };
+
+	
 };

@@ -18,14 +18,18 @@ public:
 protected:
 	void Start();
 	void Update(float _Delta) override;
-
+	void SetItem();
 private:
 
 	float4 ShopUIScale = { 492.0f,720.0f,0.0f };
+	float4 ItemScale = { 44.0f,132.0f,0.0f };
 
 	std::shared_ptr<class GameEngineUIRenderer> ShopUIRender;
 	std::shared_ptr<class GameEngineUIRenderer> MapTabBaseBG;
+	std::shared_ptr<class GameEngineUIRenderer> ItemRender0;
 	std::shared_ptr<class InventoryUI> InventoryUIPtr;
+	std::shared_ptr<class ContentButton> ItemButton0;
+
 
 };
 
