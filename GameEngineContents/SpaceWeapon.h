@@ -23,13 +23,17 @@ private:
 	void SetSpaceWeapon(float _Delta);
 	std::shared_ptr<class GameEngineSpriteRenderer> SpaceWeaponRender;
 	std::shared_ptr<class GameEngineSpriteRenderer> SpaceWeaponEffectRender;
+
 	std::shared_ptr<class GameEngineCollision> SpaceWeaponCol;
 	std::shared_ptr<class SpaceSkill> SkillRender;
+	std::shared_ptr<class Skill> SkillPtr;
+
 	float4 SpaceWeaponScale = { -255.0f,255.0f,0.0f };
 	float4 SpaceWeaponColScale = { 244.0f,188.0f,0.0f };
 	int index = 0;
 	float4 SpaceWeaponPos = float4::Zero;
 	float4 MousePos = float4::Zero;
+	float4 EffectPos = float4::Zero;
 	float ShakeTime = 0.0f;
 	float ShakeTime_0 = 0.0f;
 	bool DirCheck = false;

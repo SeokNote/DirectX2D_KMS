@@ -6,8 +6,10 @@
 #include <GameEngineCore/GameEngineUIRenderer.h>
 #include "InventoryButton.h"
 #include "ItemData.h"
+InventoryUI* InventoryUI::InventoryUIPtr = nullptr;
 InventoryUI::InventoryUI()
 {
+	InventoryUIPtr = this;
 }
 
 InventoryUI::~InventoryUI()
@@ -31,35 +33,200 @@ void InventoryUI::Start()
 }
 void InventoryUI::Update(float _Delta)
 {
-	Inventory00->GetExplaneRender()->SetTexture(ItemData::MainItemData->GetExplaneRender());
-	Inventory00->GetItmeRender()->SetTexture(ItemData::MainItemData->GetWeaponRender());
+	Inventory00->GetExplaneRender()->SetTexture(Inventory00->GetData().ItemExplaneRender);
+	Inventory00->GetItmeRender()->SetTexture(Inventory00->GetData().ItemRender);
+	WeaponInven0->GetExplaneRender()->SetTexture(WeaponInven0->GetData().ItemExplaneRender);
+	WeaponInven0->GetItmeRender()->SetTexture(WeaponInven0->GetData().ItemRender);
+	WeaponInven1->GetExplaneRender()->SetTexture(WeaponInven1->GetData().ItemExplaneRender);
+	WeaponInven1->GetItmeRender()->SetTexture(WeaponInven1->GetData().ItemRender);
 	MoveItem();
 }
 
 void InventoryUI::SetInventory()
 {
 	Inventory00 = GetLevel()->CreateActor<InventoryButton>();
+
 	Inventory00->GetTransform()->SetParent(GetTransform());
 	Inventory00->GetRender()->GetTransform()->SetLocalPosition(InventoryPos00);
 	Inventory00->GetExplaneRender()->GetTransform()->SetLocalPosition(ExplanePos00);
 	Inventory00->GetItmeRender()->GetTransform()->SetLocalPosition(InventoryPos00);
 	Inventory00->GetRender_Select()->GetTransform()->SetLocalPosition(InventoryPos00);
-
-	Inventory00->SetPressEvent([this]()
+	Inventory00->SetClick([this]()
+		{
+			if (Inventory00->GetData().WeaponType != WeaponDatas::VACANCY)
 			{
+				Prev = PrevClick::INVENTORT0;
+			}
+		});
+	Inventory00->SetDropItem([this]()
+		{
+			switch (Prev)
+			{
+			case PrevClick::NONE:
+				break;
+			case PrevClick::INVENTORT0:
+				break;
+			case PrevClick::W_INVENTORT0:
+				PrevData = Inventory00->GetData().WeaponType;
+				Inventory00->SetItemData(WeaponInven0->GetData().WeaponType);
+				WeaponInven0->SetItemData(PrevData);
+				Prev = PrevClick::NONE;
+				break;
+			case PrevClick::W_INVENTORT1:
+				PrevData = Inventory00->GetData().WeaponType;
+				Inventory00->SetItemData(WeaponInven1->GetData().WeaponType);
+				WeaponInven1->SetItemData(PrevData);
+				Prev = PrevClick::NONE;
+				break;
+			default:
+				break;
+			}
 			});
+	Inventory00->SetDrop([this]()
+			{
+				AreaOut = true;
+			});
+	WeaponInven0 = GetLevel()->CreateActor<InventoryButton>();
+	WeaponInven0->GetTransform()->SetParent(GetTransform());
+	WeaponInven0->GetRender()->GetTransform()->SetLocalPosition(W_InventoryPos0);
+	WeaponInven0->GetRender()->SetTexture("W_ItemBase00.png");
+	WeaponInven0->GetRender_Select()->SetTexture("W_ItemBase01.png");
+	WeaponInven0->GetExplaneRender()->GetTransform()->SetLocalPosition(W_ExplanePos0);
+	WeaponInven0->GetItmeRender()->GetTransform()->SetLocalPosition(W_InventoryPos0);
+	WeaponInven0->GetRender_Select()->GetTransform()->SetLocalPosition(W_InventoryPos0);
+	WeaponInven0->SetClick([this]()
+		{
+			if (WeaponInven0->GetData().WeaponType != WeaponDatas::VACANCY)
+			{
+				Prev = PrevClick::W_INVENTORT0;
+			}
+		});
+	WeaponInven0->SetDrop([this]()
+		{
+			AreaOut = true;
+		});
+	WeaponInven0->SetDropItem([this]()
+		{
+			switch (Prev)
+			{
+			case PrevClick::NONE:
+				break;
+			case PrevClick::INVENTORT0:
+				PrevData = WeaponInven0->GetData().WeaponType;
+				WeaponInven0->SetItemData(Inventory00->GetData().WeaponType);
+				Inventory00->SetItemData(PrevData);
+				Prev = PrevClick::NONE;
+				break;
+			case PrevClick::W_INVENTORT0:
+				break;
+			case PrevClick::W_INVENTORT1:
+				PrevData = WeaponInven0->GetData().WeaponType;
+				WeaponInven0->SetItemData(WeaponInven1->GetData().WeaponType);
+				WeaponInven1->SetItemData(PrevData);
+				Prev = PrevClick::NONE;
+				break;
+			default:
+				break;
+			}
+		});
+	WeaponInven1 = GetLevel()->CreateActor<InventoryButton>();
+	WeaponInven1->GetTransform()->SetParent(GetTransform());
+	WeaponInven1->GetRender()->GetTransform()->SetLocalPosition(W_InventoryPos1);
+	WeaponInven1->GetRender()->SetTexture("W_ItemBase00.png");
+	WeaponInven1->GetRender_Select()->SetTexture("W_ItemBase01.png");
+	WeaponInven1->GetExplaneRender()->GetTransform()->SetLocalPosition(W_ExplanePos1);
+	WeaponInven1->GetItmeRender()->GetTransform()->SetLocalPosition(W_InventoryPos1);
+	WeaponInven1->GetRender_Select()->GetTransform()->SetLocalPosition(W_InventoryPos1);
+	WeaponInven1->SetClick([this]()
+		{
+			if (WeaponInven1->GetData().WeaponType != WeaponDatas::VACANCY)
+			{
+				Prev = PrevClick::W_INVENTORT1;
+			}
+		});
+	WeaponInven1->SetDrop([this]()
+		{
+			AreaOut = true;
+		});
+	WeaponInven1->SetDropItem([this]()
+		{
+			switch (Prev)
+			{
+			case PrevClick::NONE:
+				break;
+			case PrevClick::INVENTORT0:
+				PrevData = WeaponInven1->GetData().WeaponType;
+				WeaponInven1->SetItemData(Inventory00->GetData().WeaponType);
+				Inventory00->SetItemData(PrevData);
+				Prev = PrevClick::NONE;
+				break;
+			case PrevClick::W_INVENTORT0:
+				PrevData = WeaponInven1->GetData().WeaponType;
+				WeaponInven1->SetItemData(WeaponInven0->GetData().WeaponType);
+				WeaponInven0->SetItemData(PrevData);
+				Prev = PrevClick::NONE;
+				break;
+			case PrevClick::W_INVENTORT1:
+				break;
+			default:
+				break;
+			}
+		});
 }
 
 void InventoryUI::MoveItem()
 {
+	float4 MousePos = Inventory00->GetMousePos();
 	if (true == Inventory00->GetPressValue())
 	{
-		Inventory00->GetExplaneRender()->GetTransform()->SetLocalPosition(Inventory00->GetMousePos());
-		Inventory00->GetItmeRender()->GetTransform()->SetLocalPosition(Inventory00->GetMousePos());
+		if(Inventory00->GetData().WeaponType!=WeaponDatas::VACANCY)
+		{
+			Inventory00->GetExplaneRender()->GetTransform()->SetLocalPosition({ MousePos.x,MousePos.y,0.0f });
+			Inventory00->GetItmeRender()->GetTransform()->SetLocalPosition({ MousePos.x,MousePos.y,0.0f });
+			
+		}
+
 	}
-	else
+	if (Inventory00->GetData().WeaponType != WeaponDatas::VACANCY && AreaOut == true)
 	{
 		Inventory00->GetExplaneRender()->GetTransform()->SetLocalPosition(ExplanePos00);
 		Inventory00->GetItmeRender()->GetTransform()->SetLocalPosition(InventoryPos00);
+		Prev = PrevClick::NONE;
+		AreaOut = false;
 	}
+	if (true == WeaponInven0->GetPressValue())
+	{
+		if (WeaponInven0->GetData().WeaponType != WeaponDatas::VACANCY)
+		{
+			WeaponInven0->GetExplaneRender()->GetTransform()->SetWorldPosition({ MousePos.x,MousePos.y,0.0f });
+			WeaponInven0->GetItmeRender()->GetTransform()->SetWorldPosition({ MousePos.x,MousePos.y,0.0f });
+
+		}
+
+	}
+	if (WeaponInven0->GetData().WeaponType != WeaponDatas::VACANCY && AreaOut == true)
+	{
+		WeaponInven0->GetExplaneRender()->GetTransform()->SetWorldPosition(W_ExplanePos0);
+		WeaponInven0->GetItmeRender()->GetTransform()->SetWorldPosition(W_InventoryPos0);
+		Prev = PrevClick::NONE;
+		AreaOut = false;
+	}
+	if (true == WeaponInven1->GetPressValue())
+	{
+		if (WeaponInven1->GetData().WeaponType != WeaponDatas::VACANCY)
+		{
+			WeaponInven1->GetExplaneRender()->GetTransform()->SetWorldPosition({ MousePos.x,MousePos.y,0.0f });
+			WeaponInven1->GetItmeRender()->GetTransform()->SetWorldPosition({ MousePos.x,MousePos.y,0.0f });
+
+		}
+
+	}
+	if (WeaponInven1->GetData().WeaponType != WeaponDatas::VACANCY && AreaOut == true)
+	{
+		WeaponInven1->GetExplaneRender()->GetTransform()->SetWorldPosition(W_ExplanePos1);
+		WeaponInven1->GetItmeRender()->GetTransform()->SetWorldPosition(W_InventoryPos1);
+		Prev = PrevClick::NONE;
+		AreaOut = false;
+	}
+
 }

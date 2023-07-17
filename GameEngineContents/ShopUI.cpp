@@ -5,7 +5,7 @@
 #include <GameEngineCore/GameEngineCamera.h>
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore/GameEngineUIRenderer.h>
-#include "ContentButton.h"
+#include "ShopButton.h"
 #include "InventoryButton.h"
 #include "ItemData.h"
 ShopUI::ShopUI()
@@ -35,36 +35,34 @@ void ShopUI::Start()
 
 	
 	//	
-	InventoryUIPtr = GetLevel()->CreateActor<InventoryUI>();
-
+	InventoryUI::InventoryUIPtr->On();
 	SetItem();
 }
 void ShopUI::Update(float _Delta)
 {
 	if (GameEngineInput::IsDown("ESC"))
 	{
-		InventoryUIPtr->Off();
+		InventoryUI::InventoryUIPtr->Off();
 		Death();
 	}
 }
 
 void ShopUI::SetItem()
 {
-	ItemButton0 = GetLevel()->CreateActor<ContentButton>();
+	ItemButton0 = GetLevel()->CreateActor<ShopButton>();
+	ItemButton0->GetItemData().SetData(WeaponDatas::SpaceSword);
 	ItemButton0->GetTransform()->SetParent(GetTransform());
 	ItemButton0->GetTransform()->SetLocalPosition({ -369.0f,171.0f,0.0f });
 	ItemButton0->GetRender()->SetTexture("ItemBase0.png");
 	ItemButton0->GetRender()->GetTransform()->SetWorldScale({ 334.0f,105.0f,0.0f });
 	ItemButton0->GetRender_Select()->SetTexture("ItemSelect0.png");
 	ItemButton0->GetRender_Select()->GetTransform()->SetWorldScale({ 334.0f,105.0f,0.0f });
-	ItemButton0->GetExplaneRender()->SetTexture("SpaceWeaponEx.png");
+	ItemButton0->GetExplaneRender()->SetTexture(ItemButton0->GetItemData().ItemExplaneRender);
 	ItemButton0->GetExplaneRender()->GetTransform()->SetLocalPosition({ 370.0f,-125.0f,0.0f });
 	ItemButton0->GetExplaneRender()->GetTransform()->SetWorldScale({ 396.0f,360.0f,1.0f });
 	ItemButton0->SetEvent([this]()
 		{
-			ItemData::MainItemData->SetItemNumber(1);
-			ItemData::MainItemData->SetWeaponRender("CosmosUI.png");
-			ItemData::MainItemData->SetExplaneRender("SpaceWeaponEx.png");
+			InventoryUI::InventoryUIPtr->GetInven0()->SetItemData(ItemButton0->GetItemData().WeaponType);
 			ItemButton0->Death();
 			ItemRender0->Death();
 		});

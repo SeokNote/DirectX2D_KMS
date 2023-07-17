@@ -323,8 +323,14 @@
     <ClInclude Include="SpaceWeapon.h">
       <Filter>Object\Weapon\SpaceWeapon</Filter>
     </ClInclude>
+    <ClInclude Include="Skill.h">
+      <Filter>Object\Weapon\SpaceWeapon\SpaceSkill</Filter>
+    </ClInclude>
     <ClInclude Include="SpaceSkill.h">
       <Filter>Object\Weapon\SpaceWeapon\SpaceSkillUI</Filter>
+    </ClInclude>
+    <ClInclude Include="ShopButton.h">
+      <Filter>Object\UI\Shop\Shop</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -683,6 +689,12 @@
     <ClCompile Include="SpaceSkill.cpp">
       <Filter>Object\Weapon\SpaceWeapon\SpaceSkillUI</Filter>
     </ClCompile>
+    <ClCompile Include="Skill.cpp">
+      <Filter>Object\Weapon\SpaceWeapon\SpaceSkill</Filter>
+    </ClCompile>
+    <ClCompile Include="ShopButton.cpp">
+      <Filter>Object\UI\Shop\Shop</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Levels">
@@ -942,6 +954,12 @@
     </Filter>
     <Filter Include="Object\Weapon\SpaceWeapon\SpaceSkillUI">
       <UniqueIdentifier>{73220edb-85d6-4a17-b3ec-3cdd8afe417a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Weapon\SpaceWeapon\SpaceSkill">
+      <UniqueIdentifier>{4ba02c05-28c8-4c6c-b751-c22ac5f4fc89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\UI\Shop\Shop">
+      <UniqueIdentifier>{9a51203b-ba29-4782-bef2-52293766ebfa}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

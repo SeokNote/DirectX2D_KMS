@@ -15,7 +15,10 @@ public:
 	SpaceSkill(SpaceSkill&& _Other) noexcept = delete;
 	SpaceSkill& operator=(const SpaceSkill& _Other) = delete;
 	SpaceSkill& operator=(SpaceSkill&& _Other) noexcept = delete;
-
+	int GetSkillIndex()
+	{
+		return SkillIndex;
+	}
 protected:
 	void Start();
 	void Update(float _Delta) override;
@@ -29,5 +32,6 @@ private:
 	bool IsValue = false;
 	float CurCulltime = 0.0f;
 	float MaxCulltime = 3.0f;
+	int SkillIndex = 1;
 };
 

@@ -1,6 +1,7 @@
 #include "PrecompileHeader.h"
 #include "Player.h"
 #include "SpaceWeapon.h"
+#include "Skill.h"
 #include "SpaceSkill.h"
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/GameEngineCamera.h>
@@ -35,6 +36,7 @@ void SpaceWeapon::Start()
 	SpaceWeaponCol->Off();
 	SkillRender = GetLevel()->CreateActor<SpaceSkill>();
 	SkillRender->GetTransform()->SetWorldPosition({ 430.0f, -307.0f , 0.0f });
+
 	WeaponBase::SetWeaponIndex(1);
 }
 void SpaceWeapon::Update(float _Delta)
@@ -50,7 +52,7 @@ void SpaceWeapon::SetSpaceWeapon(float _Delta)
 	float4 PlayerPos = Player::MainPlayer->GetTransform()->GetLocalPosition();
 
 	MousePos = WeaponBase::GetMousePos();
-	float4 EffectPos = (MousePos - PlayerPos).NormalizeReturn();
+	EffectPos = (MousePos - PlayerPos).NormalizeReturn();
 	float4 GreatSwordPos = SpaceWeaponRender->GetTransform()->GetWorldPosition();
 	SpaceWeaponEffectRender->GetTransform()->SetLocalRotation({ 0.0f,0.0f,WeaponBase::GetDeg() - 90.0f });
 
@@ -103,6 +105,24 @@ void SpaceWeapon::SetSpaceWeapon(float _Delta)
 	}
 	else if (index == 1 && GameEngineInput::IsDown("ATTACK"))
 	{
+		ShakeValue = true;
+		DirCheck = false;
+		index = 0;
+		SpaceWeaponEffectRender->ChangeAnimation("SpaceSwordSwing");
+	}
+	if (SpaceSkill::MainSkillPtr->GetSkillIndex() == 1 && index == 0 && GameEngineInput::IsDown("Skill"))
+	{
+		SkillPtr = GetLevel()->CreateActor<Skill>();
+		SkillPtr->GetTransform()->SetLocalPosition(PlayerPos);
+		ShakeValue = true;
+		DirCheck = true;
+		index = 1;
+		SpaceWeaponEffectRender->ChangeAnimation("SpaceSwordSwing");
+	}
+	else if (SpaceSkill::MainSkillPtr->GetSkillIndex() == 1 && index == 1 && GameEngineInput::IsDown("Skill"))
+	{
+		SkillPtr = GetLevel()->CreateActor<Skill>();
+		SkillPtr->GetTransform()->SetLocalPosition(PlayerPos);
 		ShakeValue = true;
 		DirCheck = false;
 		index = 0;

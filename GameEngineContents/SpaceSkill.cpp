@@ -8,6 +8,7 @@
 SpaceSkill* SpaceSkill::MainSkillPtr = nullptr;
 SpaceSkill::SpaceSkill() 
 {
+	MainSkillPtr = this;
 }
 
 SpaceSkill::~SpaceSkill() 
@@ -44,10 +45,15 @@ void SpaceSkill::Update(float _Delta)
 	if (IsValue == true)
 	{
 		CurCulltime += _Delta;
-		CulTimeUI->ImageClippingY(1-(CurCulltime/ MaxCulltime), ClipYDir::Bot);
+		if (CurCulltime > 0.1f)
+		{
+			SkillIndex = 0;
 
+		}
+		CulTimeUI->ImageClippingY(1-(CurCulltime/ MaxCulltime), ClipYDir::Bot);
 		if (CurCulltime > 3.0f)
 		{
+			SkillIndex = 1;
 			CurCulltime = 0.0f;
 			IsValue = false;
 		}

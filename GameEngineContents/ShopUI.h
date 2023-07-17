@@ -1,6 +1,6 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
-
+#include "ItemData.h"
 // Ό³Έν :
 class ShopUI : public GameEngineActor
 {
@@ -14,7 +14,6 @@ public:
 	ShopUI(ShopUI&& _Other) noexcept = delete;
 	ShopUI& operator=(const ShopUI& _Other) = delete;
 	ShopUI& operator=(ShopUI&& _Other) noexcept = delete;
-
 protected:
 	void Start();
 	void Update(float _Delta) override;
@@ -28,8 +27,9 @@ private:
 	std::shared_ptr<class GameEngineUIRenderer> MapTabBaseBG;
 	std::shared_ptr<class GameEngineUIRenderer> ItemRender0;
 	std::shared_ptr<class InventoryUI> InventoryUIPtr;
-	std::shared_ptr<class ContentButton> ItemButton0;
+	std::shared_ptr<class ShopButton> ItemButton0;
 
+	WeaponDatas WeaponType = WeaponDatas::SpaceSword;
 
 };
 

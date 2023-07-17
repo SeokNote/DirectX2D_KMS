@@ -64,17 +64,24 @@ void InventoryButton::Update(float _Delta)
 		Render->Off();
 		if (true == GameEngineInput::IsUp("EngineMouseLeft"))
 		{
-			PressValue = false;
+			//이때 만약 들고있으면 데이터를 준다.
+			if (PressValue == false)
+			{
+				if (nullptr != DropItem)
+				{
+					DropItem();
+				}
+			}
+			
+		}
+		if (true == GameEngineInput::IsDown("EngineMouseLeft"))
+		{
 			if (nullptr != Click)
 			{
 				Click();
 			}
-		}
-		if (true == GameEngineInput::IsDown("EngineMouseLeft"))
-		{
 			PressValue = true;
 		}
-	
 		if (true == GameEngineInput::IsPress("EngineMouseLeft"))
 		{
 			ExplaneRender->Off();
@@ -82,6 +89,7 @@ void InventoryButton::Update(float _Delta)
 		else 
 		{
 			ExplaneRender->On();
+		
 		}
 	}
 	else
@@ -91,10 +99,21 @@ void InventoryButton::Update(float _Delta)
 		ExplaneRender->Off();
 
 	}
-	if (I_Data.ItemNumber == 1)
+
+	if (PressValue == true)
 	{
+		if (true == GameEngineInput::IsUp("EngineMouseLeft"))
+		{
+			if (nullptr != Drop)
+			{
+				Drop();
+			}
+			PressValue = false;
 
-
-		int a = 0;
+		}
+		else
+		{
+			int a = 0;
+		}
 	}
 }

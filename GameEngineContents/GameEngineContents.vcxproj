@@ -419,6 +419,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="ShopButton.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="ShopNpc.h">
       <SubType>
       </SubType>
@@ -428,6 +432,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="ShopUI.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Skill.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -860,6 +868,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="ShopButton.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="ShopNpc.cpp">
       <SubType>
       </SubType>
@@ -869,6 +881,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="ShopUI.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Skill.cpp">
       <SubType>
       </SubType>
     </ClCompile>

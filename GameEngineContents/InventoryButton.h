@@ -27,10 +27,15 @@ public:
 	{
 		Drop = _Drop;
 	}
+	void SetDropItem(std::function<void()> _DropItem)
+	{
+		DropItem = _DropItem;
+	}
 	void SetPressEvent(std::function<void()> _Press)
 	{
 		Press = _Press;
 	}
+	
 	std::shared_ptr<GameEngineUIRenderer> GetRender()
 	{
 		return Render;
@@ -53,9 +58,21 @@ public:
 	{
 		return PressValue;
 	}
+	bool GetSwichValue()
+	{
+		return SwichValue;
+	}
 	float4 GetMousePos()
 	{
 		return Mouse;
+	}
+	void SetItemData(WeaponDatas _Data)
+	{
+		I_Data.SetData(_Data);
+	}
+	ItemData& GetData()
+	{
+		return I_Data;
 	}
 protected:
 	void Start() override;
@@ -70,11 +87,13 @@ private:
 
 	std::function<void()> Click;
 	std::function<void()> Drop;
+	std::function<void()> DropItem;
 	std::function<void()> Press;
 
 
 	float4 YellowColor = { 1.0f,0.93f,0.721f };
 	float4 Mouse = float4::Zero;
 	bool PressValue = false;
+	bool SwichValue = false;
 };
 

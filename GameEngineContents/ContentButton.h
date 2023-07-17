@@ -1,6 +1,7 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
 #include <GameEngineCore/GameEngineCollision.h>
+#include "ItemData.h"
 class StatStringParameter
 {
 public:
@@ -46,7 +47,6 @@ public:
 		return Render_Select;
 	}
 	void SetStatFont(const StatStringParameter& _Paramter);
-
 protected:
 	void Start() override;
 	void Update(float _Delta) override;

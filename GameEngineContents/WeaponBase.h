@@ -28,13 +28,13 @@ public:
 	{
 		WeaponIndex = _Value;
 	}
+	float4 GetMousePos();
+	float GetDeg();
 protected:
 	void Start();
 	void Update(float _Delta) override;
 	void CameraShake(float _Delta);
 	bool IsFlip();
-	float GetDeg();
-	float4 GetMousePos();
 //	float4 GetEffectDir();
 private:
 	int WeaponIndex = 0;
