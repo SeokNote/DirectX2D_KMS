@@ -20,9 +20,13 @@ ShopButton::~ShopButton()
 void ShopButton::Start()
 {
 	Render = CreateComponent<GameEngineUIRenderer>(151);
+	Render->Off();
+
 	Render_Select = CreateComponent<GameEngineUIRenderer>(151);
 	Render_Select->Off();
+
 	ExplaneRender = CreateComponent<GameEngineUIRenderer>(152);
+	ExplaneRender->Off();
 }
 
 void ShopButton::Update(float _Delta)
@@ -60,7 +64,7 @@ void ShopButton::Update(float _Delta)
 		}
 	}
 	else
-	{
+	{	
 		Render->On();
 		Render_Select->Off();
 		ExplaneRender->Off();

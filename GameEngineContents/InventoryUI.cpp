@@ -16,6 +16,43 @@ InventoryUI::~InventoryUI()
 {
 }
 
+void InventoryUI::InventoryOn()
+{
+	InventoryUIRender->On();
+	WeaponInven0->GetExplaneRender()->On();
+	WeaponInven0->GetItmeRender()->On();
+	WeaponInven0->GetRender_Select()->On();
+	WeaponInven0->GetRender()->On();
+	WeaponInven1->GetExplaneRender()->On();
+	WeaponInven1->GetItmeRender()->On();
+	WeaponInven1->GetRender_Select()->On();
+	WeaponInven1->GetRender()->On();
+	Inventory00->GetExplaneRender()->On();
+	Inventory00->GetItmeRender()->On();
+	Inventory00->GetRender_Select()->On();
+	Inventory00->GetRender()->On();
+	IsOff = true;
+}
+
+void InventoryUI::InventoryOff()
+{
+	InventoryUIRender->Off();
+	WeaponInven0->GetExplaneRender()->Off();
+	WeaponInven0->GetItmeRender()->Off();
+	WeaponInven0->GetRender_Select()->Off();
+	WeaponInven0->GetRender()->Off();
+	WeaponInven1->GetExplaneRender()->Off();
+	WeaponInven1->GetItmeRender()->Off();
+	WeaponInven1->GetRender_Select()->Off();
+	WeaponInven1->GetRender()->Off();
+	Inventory00->GetExplaneRender()->Off();
+	Inventory00->GetItmeRender()->Off();
+	Inventory00->GetRender_Select()->Off();
+	Inventory00->GetRender()->Off();
+	IsOff = false;
+
+}
+
 void InventoryUI::Start()
 {
 	std::shared_ptr<GameEngineCamera> Camera = GetLevel()->GetCamera(100);
@@ -40,6 +77,7 @@ void InventoryUI::Update(float _Delta)
 	WeaponInven1->GetExplaneRender()->SetTexture(WeaponInven1->GetData().ItemExplaneRender);
 	WeaponInven1->GetItmeRender()->SetTexture(WeaponInven1->GetData().ItemRender);
 	MoveItem();
+	CheckData = WeaponInven0->GetData().WeaponType;
 }
 
 void InventoryUI::SetInventory()
@@ -63,8 +101,10 @@ void InventoryUI::SetInventory()
 			switch (Prev)
 			{
 			case PrevClick::NONE:
+				Prev = PrevClick::NONE;
 				break;
 			case PrevClick::INVENTORT0:
+				Inventory00->SetItemData(Inventory00->GetData().WeaponType);
 				break;
 			case PrevClick::W_INVENTORT0:
 				PrevData = Inventory00->GetData().WeaponType;
@@ -87,6 +127,7 @@ void InventoryUI::SetInventory()
 				AreaOut = true;
 			});
 	WeaponInven0 = GetLevel()->CreateActor<InventoryButton>();
+	WeaponInven0->SetItemData(WeaponDatas::GreatWeapon);
 	WeaponInven0->GetTransform()->SetParent(GetTransform());
 	WeaponInven0->GetRender()->GetTransform()->SetLocalPosition(W_InventoryPos0);
 	WeaponInven0->GetRender()->SetTexture("W_ItemBase00.png");
@@ -110,6 +151,7 @@ void InventoryUI::SetInventory()
 			switch (Prev)
 			{
 			case PrevClick::NONE:
+				Prev = PrevClick::NONE;
 				break;
 			case PrevClick::INVENTORT0:
 				PrevData = WeaponInven0->GetData().WeaponType;
@@ -118,6 +160,7 @@ void InventoryUI::SetInventory()
 				Prev = PrevClick::NONE;
 				break;
 			case PrevClick::W_INVENTORT0:
+				WeaponInven0->SetItemData(WeaponInven0->GetData().WeaponType);
 				break;
 			case PrevClick::W_INVENTORT1:
 				PrevData = WeaponInven0->GetData().WeaponType;
@@ -153,6 +196,7 @@ void InventoryUI::SetInventory()
 			switch (Prev)
 			{
 			case PrevClick::NONE:
+				Prev = PrevClick::NONE;
 				break;
 			case PrevClick::INVENTORT0:
 				PrevData = WeaponInven1->GetData().WeaponType;
@@ -167,6 +211,7 @@ void InventoryUI::SetInventory()
 				Prev = PrevClick::NONE;
 				break;
 			case PrevClick::W_INVENTORT1:
+				WeaponInven1->SetItemData(WeaponInven1->GetData().WeaponType);
 				break;
 			default:
 				break;

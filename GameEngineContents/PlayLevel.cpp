@@ -336,7 +336,7 @@ void PlayLevel::Start()
 		Stat = CreateActor<PlayerStat>(-10);
 		Stat->Off();
 		Inventory = CreateActor<InventoryUI>(-10);
-		Inventory->Off();
+		Inventory->InventoryOff();
 		MapTab = CreateActor<MapTabUI>(-10);
 		MapTab->Off();
 		//Cusor
@@ -424,10 +424,7 @@ void PlayLevel::Start()
 
 
 
-	//¹«±â
-	std::shared_ptr<SpaceWeapon> GreatWeaponPtr = CreateActor<SpaceWeapon>(1);
-	GreatWeaponPtr->GetTransform()->SetWorldPosition(NewPlayer->GetTransform()->GetWorldPosition());
-	GreatWeaponPtr->GetTransform()->SetParent(NewPlayer->GetTransform());
+
 }
 
 
@@ -571,12 +568,12 @@ void PlayLevel::UICtr()
 		{
 			Inventory = CreateActor<InventoryUI>(-10);
 		}
-		Inventory->On();
+		Inventory->InventoryOn();
 		CheckUICtr_2 = true;
 	}
 	else if (true == CheckUICtr_2 && GameEngineInput::IsDown("Inven"))
 	{
-		Inventory->Off();
+		Inventory->InventoryOff();
 		CheckUICtr_2 = false;
 	}
 

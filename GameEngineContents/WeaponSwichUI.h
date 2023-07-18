@@ -1,5 +1,6 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
+#include "ItemData.h"
 
 // Ό³Έν :
 class WeaponSwichUI : public GameEngineActor
@@ -23,6 +24,8 @@ private:
 	std::shared_ptr<class GameEngineUIRenderer> PlayerWeaponSwichUIUI2;
 	std::shared_ptr<class GameEngineUIRenderer> PlayerWeaponSwichUIUI1;
 	std::shared_ptr<class GameEngineUIRenderer> PlayerWeaponSwichUIUI0;
+	std::shared_ptr<class GameEngineUIRenderer> PlayerWeaponRender;
+
 	float4 PlayerWeaponSwichUIScale = { 136.0f,96.0f,0.0f };
 	float4 PlayerWeaponSwichUIPos = { 547.0f, -296.0f , 0.0f };
 	float4 PlayerWeaponSwichUIPos_B = { 565.0f, -276.0f , 0.0f };
@@ -33,5 +36,16 @@ private:
 	float Ratio = 0.0f;
 	float4 M1 = float4::Zero;
 	float4 M2 = float4::Zero;
+	WeaponDatas MyWeapon0 = WeaponDatas::VACANCY;
+	WeaponDatas MyWeapon1 = WeaponDatas::VACANCY;
+	int Count = 0;
+	int CurWeaponIndex = 0;
+	bool SwichValue = false;
+
+
+
+	std::shared_ptr<class GreatWeapon> GreatWeaponPtr = nullptr;
+	std::shared_ptr<class SpaceWeapon> SpaceWeaponPtr = nullptr;
+
 };
 

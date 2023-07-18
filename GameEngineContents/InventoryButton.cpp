@@ -1,5 +1,6 @@
 #include "PrecompileHeader.h"
 #include "InventoryButton.h"
+#include "InventoryUI.h"
 #include "UIFontRender.h"
 #include <GameEngineCore/GameEngineUIRenderer.h>
 #include <GameEnginePlatform/GameEngineInput.h>
@@ -57,49 +58,50 @@ void InventoryButton::Update(float _Delta)
 	MouseData.SPHERE.Center = Mouse.DirectFloat3;
 	MouseData.SPHERE.Radius = 0.0f;
 
-	if (true == GameEngineTransform::AABB2DToSpehre2D(Render->GetTransform()->GetCollisionData(), MouseData))
+	if (InventoryUI::InventoryUIPtr->IsOnOff() == true)
 	{
-		ExplaneRender->On();
-		Render_Select->On();
-		Render->Off();
-		if (true == GameEngineInput::IsUp("EngineMouseLeft"))
-		{
-			//이때 만약 들고있으면 데이터를 준다.
-			if (PressValue == false)
-			{
-				if (nullptr != DropItem)
-				{
-					DropItem();
-				}
-			}
-			
-		}
-		if (true == GameEngineInput::IsDown("EngineMouseLeft"))
-		{
-			if (nullptr != Click)
-			{
-				Click();
-			}
-			PressValue = true;
-		}
-		if (true == GameEngineInput::IsPress("EngineMouseLeft"))
-		{
-			ExplaneRender->Off();
-		}
-		else 
+		if (true == GameEngineTransform::AABB2DToSpehre2D(Render->GetTransform()->GetCollisionData(), MouseData))
 		{
 			ExplaneRender->On();
-		
+			Render_Select->On();
+			Render->Off();
+			if (true == GameEngineInput::IsUp("EngineMouseLeft"))
+			{
+				//이때 만약 들고있으면 데이터를 준다.
+				if (PressValue == false)
+				{
+					if (nullptr != DropItem)
+					{
+						DropItem();
+					}
+				}
+
+			}
+			if (true == GameEngineInput::IsDown("EngineMouseLeft"))
+			{
+				if (nullptr != Click)
+				{
+					Click();
+				}
+				PressValue = true;
+			}
+			if (true == GameEngineInput::IsPress("EngineMouseLeft"))
+			{
+				ExplaneRender->Off();
+			}
+			else
+			{
+				ExplaneRender->On();
+
+			}
+		}
+		else
+		{
+			Render->On();
+			Render_Select->Off();
+			ExplaneRender->Off();
 		}
 	}
-	else
-	{
-		Render->On();
-		Render_Select->Off();
-		ExplaneRender->Off();
-
-	}
-
 	if (PressValue == true)
 	{
 		if (true == GameEngineInput::IsUp("EngineMouseLeft"))

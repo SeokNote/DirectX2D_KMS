@@ -38,6 +38,12 @@ public:
 	{
 		return InventoryUIRender;
 	}
+	void InventoryOn();
+	void InventoryOff();
+	bool IsOnOff()
+	{
+		return IsOff;
+	}
 protected:
 	void Start();
 	void Update(float _Delta) override;
@@ -63,12 +69,10 @@ private:
 
 	float4 W_InventoryPos1 = { 474.0f,189.0f,0.0f };
 	float4 W_ExplanePos1 = { 130.0f,30.0f,0.0f };
-	std::vector<class InventoryButton> InventoryButtons;
-	bool AreaOut = false;
-	int INVEN0index = 0;
-	int wINVEN0index0 = 0;
-
-	int wINVEN0index1 = 0;
 	PrevClick Prev = PrevClick::NONE;
 	WeaponDatas PrevData = WeaponDatas::VACANCY;
+	WeaponDatas CheckData = WeaponDatas::VACANCY;
+	bool AreaOut = false;
+	bool IsOff = false;
+
 };

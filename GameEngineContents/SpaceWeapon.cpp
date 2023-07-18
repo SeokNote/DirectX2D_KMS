@@ -36,8 +36,6 @@ void SpaceWeapon::Start()
 	SpaceWeaponCol->Off();
 	SkillRender = GetLevel()->CreateActor<SpaceSkill>();
 	SkillRender->GetTransform()->SetWorldPosition({ 430.0f, -307.0f , 0.0f });
-
-	WeaponBase::SetWeaponIndex(1);
 }
 void SpaceWeapon::Update(float _Delta)
 {

@@ -35,14 +35,14 @@ void ShopUI::Start()
 
 	
 	//	
-	InventoryUI::InventoryUIPtr->On();
+	InventoryUI::InventoryUIPtr->InventoryOn();
 	SetItem();
 }
 void ShopUI::Update(float _Delta)
 {
 	if (GameEngineInput::IsDown("ESC"))
 	{
-		InventoryUI::InventoryUIPtr->Off();
+		InventoryUI::InventoryUIPtr->InventoryOff();
 		Death();
 	}
 }
