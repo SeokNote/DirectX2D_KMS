@@ -59,6 +59,7 @@ void TrainTextBox::Start()
 	ButtonCol_2->GetTransform()->SetLocalScale(SelectTextScale);
 	ButtonCol_2->GetTransform()->SetLocalPosition({ 480.0f, -93.0f ,0.0f });
 	ButtonCol_2->SetOrder(3011);
+
 }
 bool TrainningCheck = false;
 void TrainTextBox::Update(float _Delta)
@@ -82,8 +83,8 @@ void TrainTextBox::Update(float _Delta)
 			int a = 0;
 			if (TrainningCheck == false)
 			{
-			  //¾îºô¸®Æ¼ UI¶ç¿ì±â
-				AbilityUIPtr = GetLevel()->CreateActor<AbilityUI>();
+				//Å°±â.
+				AbilityUI::AbilityUIPtr->On();
 			}
 			Player::MainPlayer->SetUICount(0);
 			UICountBase::MainUICountBase->SetUICount(0);

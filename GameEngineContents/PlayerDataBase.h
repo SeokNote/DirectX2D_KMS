@@ -146,7 +146,6 @@ public:
 	}
 	int GetPlayerMaxHP()
 	{
-		PlayerMaxHP += (PlayerLevel - 1) * 2;
 		return PlayerMaxHP;
 	}
 	bool GetBelialCtrl()
@@ -186,8 +185,8 @@ public:
 		return MaxSatiety;
 	}
 private:
-	int PlayerLevel = 1;				//플레이어 레벨	
-	int PlayerMaxHP = 60;
+	int PlayerLevel = 10;				//플레이어 레벨	
+	int PlayerMaxHP = PlayerLevel*2+60;
 	int PlayerHP = 40;					//플레이어 체력
 	int Coin = 5000;						//돈
 	int DashCunt = 3;					//대쉬카운터

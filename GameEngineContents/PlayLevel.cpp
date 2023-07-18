@@ -26,7 +26,7 @@
 #include "BossDoor_2.h"
 #include "BelialSpawner.h"
 #include "TunakSpawner.h"
-
+#include "AbilityUI.h"
 #include "Stage_1.h"
 #include "Stage_2.h"
 #include "Stage_3.h"
@@ -85,6 +85,7 @@ void PlayLevel::Start()
 	//폰트 로드
 	GameEngineFont::Load("Aa카시오페아");
 	GameEngineFont::Load("8-bit Operator+ SC");
+	GameEngineFont::Load("8-bit Operator+");
 
 	GameEngineDirectory NewDir;
 	NewDir.MoveParentToDirectory("ContentResources");
@@ -332,7 +333,8 @@ void PlayLevel::Start()
 		std::shared_ptr<CoinBar> CoinBarPtr = CreateActor<CoinBar>(-10);
 		std::shared_ptr<DashBar> DashBarPtr = CreateActor<DashBar>(-10);
 		std::shared_ptr<WeaponSwichUI> WeaponSwichUIPtr = CreateActor<WeaponSwichUI>(-10);
-
+		static std::shared_ptr<AbilityUI> AbilityUIPtr = CreateActor<AbilityUI>(-10);
+		AbilityUIPtr->Off();
 		Stat = CreateActor<PlayerStat>(-10);
 		Stat->Off();
 		Inventory = CreateActor<InventoryUI>(-10);

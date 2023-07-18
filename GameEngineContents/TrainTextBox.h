@@ -28,7 +28,7 @@ private:
 	std::shared_ptr<class GameEngineCollision> ButtonCol_1;
 	std::shared_ptr<class GameEngineCollision> ButtonCol_2;
 
-	std::shared_ptr<class AbilityUI> AbilityUIPtr;
+	static std::shared_ptr<class AbilityUI> AbilityUIPtr;
 
 	float4 TextBoxScale = { 1280.0f,220.0f,0.0f };
 	float4 SelectBoxScale = { 320.f, 210.0f,0.0f };
