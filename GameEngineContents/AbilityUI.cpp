@@ -3,6 +3,7 @@
 #include "AbilityUI.h"
 #include "Player.h"
 #include "UIFontRender.h"
+#include "ContentButton.h"
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/GameEngineCamera.h>
 #include <GameEnginePlatform/GameEngineInput.h>
@@ -14,6 +15,22 @@ AbilityUI::AbilityUI()
 
 AbilityUI::~AbilityUI() 
 {
+}
+
+void AbilityUI::PlusStat()
+{
+	if (IsValue == false)
+	{
+		Player::MainPlayer->GetData().SetAttackSpeed(Player::MainPlayer->GetData().GetAttackSpeed() + A_AttackSpeed);
+		Player::MainPlayer->GetData().SetMoveSpeed(Player::MainPlayer->GetData().GetMoveSpeed() + A_Speed);
+		Player::MainPlayer->GetData().SetDefense(Player::MainPlayer->GetData().GetDefense() + A_Aamor);
+		Player::MainPlayer->GetData().SetCriticalChance(Player::MainPlayer->GetData().GetCriticalChance() + A_Cri);
+		Player::MainPlayer->GetData().SetEvasion(Player::MainPlayer->GetData().GetEvasion() + static_cast<int>(A_Evasion));
+		Player::MainPlayer->GetData().SetPlayerMaxHP(Player::MainPlayer->GetData().GetPlayerMaxHP() + A_MaxHP);
+		IsValue = true;
+	}
+
+
 }
 
 void AbilityUI::Start()
@@ -92,6 +109,7 @@ void AbilityUI::Start()
 		Button_YellowCol->SetOrder(3002);
 	}
 	FontCreate();
+	ButtonCreate();
 }
 
 void AbilityUI::Update(float _Delta)
@@ -106,9 +124,11 @@ void AbilityUI::SetCollision()
 {
 	if (Button_RedCol->Collision(ColOrder::PlayMouse, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
+
 		Button_RedRender->On();
-		if (GameEngineInput::IsUp("ClickMouse"))
+		if (Point != 0 && GameEngineInput::IsUp("ClickMouse"))
 		{
+			Point--;
 			Anger++;
 			//어빌리티 스텟 올라가는 함수
 		}
@@ -120,8 +140,9 @@ void AbilityUI::SetCollision()
 	if (Button_GreenCol->Collision(ColOrder::PlayMouse, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		Button_GreenRender->On();
-		if (GameEngineInput::IsUp("ClickMouse")) {
+		if (Point != 0 && GameEngineInput::IsUp("ClickMouse")) {
 			Fast++;
+			Point--;
 			//어빌리티 스텟 올라가는 함수
 
 		}
@@ -133,8 +154,9 @@ void AbilityUI::SetCollision()
 	if (Button_WhiteCol->Collision(ColOrder::PlayMouse, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		Button_WhiteRender->On();
-		if (GameEngineInput::IsUp("ClickMouse")) {
+		if (Point != 0 && GameEngineInput::IsUp("ClickMouse")) {
 			Patience++;
+			Point--;
 			//어빌리티 스텟 올라가는 함수
 
 		}
@@ -146,8 +168,9 @@ void AbilityUI::SetCollision()
 	if (Button_BlueCol->Collision(ColOrder::PlayMouse, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		Button_BlueRender->On();
-		if (GameEngineInput::IsUp("ClickMouse")) {
+		if (Point != 0 && GameEngineInput::IsUp("ClickMouse")) {
 			Mystery++;
+			Point--;
 			//어빌리티 스텟 올라가는 함수
 
 		}
@@ -159,8 +182,9 @@ void AbilityUI::SetCollision()
 	if (Button_YellowCol->Collision(ColOrder::PlayMouse, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		Button_YellowRender->On();
-		if (GameEngineInput::IsUp("ClickMouse")) {
+		if (Point != 0 && GameEngineInput::IsUp("ClickMouse")) {
 			Avarice++;
+			Point--;
 			//어빌리티 스텟 올라가는 함수
 
 		}
@@ -169,8 +193,9 @@ void AbilityUI::SetCollision()
 	{
 		Button_YellowRender->Off();
 	}
-	if (GameEngineInput::IsDown("ESC"))
+	if (GameEngineInput::IsUp("ESC"))
 	{
+		PlusStat();
 		Off();
 	}
 }
@@ -456,6 +481,8 @@ void AbilityUI::SetFont()
 	MysteryValue->SetText("+" + SubString(std::to_string(A_Evasion), 1));
 	MysteryValue1->SetText("+" + SubString(std::to_string(A_Cri),1));
 	AvariceValue->SetText("+" + std::to_string(A_MaxHP));
+	PointFont->SetText("남은 포인트 : " + std::to_string(Point));
+
 }
 
 void AbilityUI::StatCalCulation()
@@ -468,6 +495,50 @@ void AbilityUI::StatCalCulation()
 	A_Cri = Mystery * 0.5f;
 	A_MaxHP = Avarice * 2;
 
+}
+
+void AbilityUI::ButtonCreate()
+{
+	
+	ResetFont = CreateComponent<UIFontRender>(155);
+	ResetFont->SetFont(font1);
+	ResetFont->SetFontFlag(FW1_CENTER);
+	ResetFont->SetScale(32);
+	ResetFont->SetColor(float4::White);
+	ResetFont->GetTransform()->SetWorldPosition({ 304.0f,-299.0f,0.0f });
+	ResetFont->SetText("초기화");
+
+	PointFont = CreateComponent<UIFontRender>(155);
+	PointFont->SetFont(font1);
+	PointFont->SetFontFlag(FW1_CENTER);
+	PointFont->SetScale(32);
+	PointFont->SetColor(float4::White);
+	PointFont->GetTransform()->SetWorldPosition({ 514.0f,-299.0f,0.0f });
+	
+	ResetButton = GetLevel()->CreateActor<ContentButton>();
+	ResetButton->GetTransform()->SetParent(GetTransform());
+	ResetButton->GetTransform()->SetLocalPosition({ 304.0f,-319.0f,0.0f });
+	ResetButton->GetRender()->SetTexture("ResetButton.png");
+	ResetButton->GetRender()->GetTransform()->SetWorldScale({ 180.0f,68.0f,0.0f });
+	ResetButton->GetRender_Select()->SetTexture("ResetButton.png");
+	ResetButton->GetRender_Select()->GetTransform()->SetWorldScale({ 180.0f,68.0f,0.0f });
+	ResetButton->SetEvent([this]()
+		{
+			IsValue = false;
+			Player::MainPlayer->GetData().SetAttackSpeed(Player::MainPlayer->GetData().GetAttackSpeed() - A_AttackSpeed);
+			Player::MainPlayer->GetData().SetMoveSpeed(Player::MainPlayer->GetData().GetMoveSpeed() - A_Speed);
+			Player::MainPlayer->GetData().SetDefense(Player::MainPlayer->GetData().GetDefense() - A_Aamor);
+			Player::MainPlayer->GetData().SetCriticalChance(Player::MainPlayer->GetData().GetCriticalChance() - A_Cri);
+			Player::MainPlayer->GetData().SetEvasion(Player::MainPlayer->GetData().GetEvasion() - static_cast<int>(A_Evasion));
+			Player::MainPlayer->GetData().SetPlayerMaxHP(Player::MainPlayer->GetData().GetPlayerMaxHP() - A_MaxHP);
+			Anger = 0;
+			Fast = 0;
+			Patience = 0;
+			Mystery = 0;
+			Avarice = 0;
+
+			Point = Player::MainPlayer->GetData().GetPlayerLevel();
+		});
 }
 
 std::string AbilityUI::SubString(std::string num, int pos)

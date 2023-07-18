@@ -85,7 +85,7 @@ public:
 	}
 	float GetDefense()
 	{
-		return round(Defense * 100) / 100;
+		return Defense;
 	}
 	float GetAttackSpeed()
 	{
@@ -183,6 +183,34 @@ public:
 	int GetMaxSatiety()
 	{
 		return MaxSatiety;
+	}
+	void SetPower(int _Value)
+	{
+		Power = _Value;
+	}
+	void SetAttackSpeed(float _Value)
+	{
+		AttackSpeed = _Value;
+	}
+	void SetMoveSpeed(float _Value)
+	{
+		MoveSpeed = _Value;
+	}
+	void SetDefense(float _Value)
+	{
+		Defense = _Value;
+	}
+	void SetCriticalChance(float _Value)
+	{
+		CriticalChance = _Value;
+	}
+	void SetEvasion(int _Value)
+	{
+		Evasion = _Value;
+	}
+	void SetPlayerMaxHP(int _Value)
+	{
+		PlayerMaxHP = _Value;
 	}
 private:
 	int PlayerLevel = 10;				//플레이어 레벨	

@@ -16,7 +16,11 @@ public:
 	AbilityUI(AbilityUI&& _Other) noexcept = delete;
 	AbilityUI& operator=(const AbilityUI& _Other) = delete;
 	AbilityUI& operator=(AbilityUI&& _Other) noexcept = delete;
-
+	void SetPoint(int _Value)
+	{
+		Point = _Value;
+	}
+	void PlusStat();
 protected:
 	void Start();
 	void Update(float _Delta) override;
@@ -26,6 +30,7 @@ private:
 	void FontCreate();
 	void SetFont();
 	void StatCalCulation();
+	void ButtonCreate();
 	std::string SubString(std::string num, int pos);
 
 	float4 AbilityUIScale = { 1280.0f,720.0f,0.0f };
@@ -91,7 +96,11 @@ private:
 	std::shared_ptr<class UIFontRender> MysteryValue;
 	std::shared_ptr<class UIFontRender> MysteryValue1;
 	std::shared_ptr<class UIFontRender> AvariceValue;
+	std::shared_ptr<class UIFontRender> ResetFont;
+	std::shared_ptr<class UIFontRender> PointFont;
 
+	std::shared_ptr<class ContentButton> ResetButton;
+	bool IsValue = false;
 	int Anger = 0;
 	int Fast = 0;
 	int Patience = 0;
@@ -112,6 +121,8 @@ private:
 	float4 MysteryColor = { 0.596f,0.66f,0.792f };
 	float4 AvariceColor = { 0.917f,0.717f,0.3f };
 	std::string font = "8-bit Operator+";
+	std::string font1 = "Aa카시오페아";
 
+	int Point = 10;
 };
 
