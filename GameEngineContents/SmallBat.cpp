@@ -1,7 +1,7 @@
 #include "PrecompileHeader.h"
 #include "SmallBat.h"
 #include "Player.h"
-
+#include "TextUI.h"
 #include "ContentsEnums.h"
 #include "WeaponBase.h"
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
@@ -94,6 +94,8 @@ void SmallBat::SetCollision(float _DeltaTime)
 			//나중에 ui작업때 캐릭터가 갖고있는 swich로 무기에 따라 정해주자.
 			SmallBatBlink = true;
 			Hp -= WeaponBase::WeaponBasePtr->GetWeaponStrength(Weapon::GreatWeapon_E);
+			TextUI::TextCreat(GetLevel(), GetTransform()->GetLocalPosition(), float4::White,
+				std::to_string(WeaponBase::WeaponBasePtr->GetWeaponStrength(Weapon::GreatWeapon_E)), true);
 			SmallBatRender->ColorOptionValue.MulColor.r = 1.0f;
 			SmallBatRender->ColorOptionValue.MulColor.g = 0.1f;
 			SmallBatRender->ColorOptionValue.MulColor.b = 0.1f;

@@ -341,6 +341,9 @@
     <ClInclude Include="BansheeBullet.h">
       <Filter>Object\Monster\Banshee\BansheeBullet</Filter>
     </ClInclude>
+    <ClInclude Include="TextUI.h">
+      <Filter>Object\UI\TextUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -719,6 +722,9 @@
     <ClCompile Include="BansheeBullet.cpp">
       <Filter>Object\Monster\Banshee\BansheeBullet</Filter>
     </ClCompile>
+    <ClCompile Include="TextUI.cpp">
+      <Filter>Object\UI\TextUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Levels">
@@ -993,6 +999,9 @@
     </Filter>
     <Filter Include="Object\Monster\Banshee\BansheeBullet">
       <UniqueIdentifier>{16c0c147-5847-4fdf-8f44-e8ae7a8b1658}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\UI\TextUI">
+      <UniqueIdentifier>{429bde3f-893d-4b76-a872-e76e25745cf2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

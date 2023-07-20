@@ -2,6 +2,7 @@
 #include "Banshee.h"
 #include "Player.h"
 #include "BansheeBullet.h"
+#include "TextUI.h"
 #include <GameEngineCore/GameEngineTexture.h>
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEnginePlatform/GameEngineWindow.h>
@@ -112,7 +113,6 @@ void Banshee::AttackReadyStart()
 
 void Banshee::AttackReadyUpdate(float _Time)
 {
-	Count++;
 	if (Count <14)
 	{
 		BansheeBullet::CreatBansheeBullet(GetLevel(), 10.0f, Degs[Count], GetTransform()->GetLocalPosition());
@@ -122,6 +122,7 @@ void Banshee::AttackReadyUpdate(float _Time)
 	{
 		ChangeState(BansheeState::ATTACK);
 	}
+	Count++;
 
 }
 
