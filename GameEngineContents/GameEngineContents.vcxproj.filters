@@ -335,6 +335,12 @@
     <ClInclude Include="BatBullet.h">
       <Filter>Object\Monster\GiantBat\Bullet</Filter>
     </ClInclude>
+    <ClInclude Include="Banshee.h">
+      <Filter>Object\Monster\Banshee</Filter>
+    </ClInclude>
+    <ClInclude Include="BansheeBullet.h">
+      <Filter>Object\Monster\Banshee\BansheeBullet</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -704,6 +710,15 @@
     <ClCompile Include="BatBullet.cpp">
       <Filter>Object\Monster\GiantBat\Bullet</Filter>
     </ClCompile>
+    <ClCompile Include="Banshee.cpp">
+      <Filter>Object\Monster\Banshee</Filter>
+    </ClCompile>
+    <ClCompile Include="Banshee_State.cpp">
+      <Filter>Object\Monster\Banshee</Filter>
+    </ClCompile>
+    <ClCompile Include="BansheeBullet.cpp">
+      <Filter>Object\Monster\Banshee\BansheeBullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Levels">
@@ -972,6 +987,12 @@
     </Filter>
     <Filter Include="Object\Monster\GiantBat\Bullet">
       <UniqueIdentifier>{1c4727fd-f5ba-43be-88a9-1bfdc34c3d31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Monster\Banshee">
+      <UniqueIdentifier>{20dc222d-d1df-4ff5-8ccb-b955d62751b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Monster\Banshee\BansheeBullet">
+      <UniqueIdentifier>{16c0c147-5847-4fdf-8f44-e8ae7a8b1658}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

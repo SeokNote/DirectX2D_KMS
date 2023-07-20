@@ -73,6 +73,7 @@
 #include "SmallBat.h"
 #include "SpaceWeapon.h"
 #include "GiantBat.h"
+#include "Banshee.h"
 
 PlayLevel::PlayLevel()
 {
@@ -259,6 +260,15 @@ void PlayLevel::Start()
 	MonsterDir.Move("BatBullet");
 	GameEngineSprite::LoadFolder(MonsterDir.GetPlusFileName("BatBulletIdle").GetFullPath());
 	GameEngineSprite::LoadFolder(MonsterDir.GetPlusFileName("BatBulletDie").GetFullPath());
+	MonsterDir.MoveParentToDirectory("Monster");
+	MonsterDir.Move("Monster");
+	MonsterDir.Move("Banshee");
+	GameEngineSprite::LoadFolder(MonsterDir.GetPlusFileName("BansheeAttack").GetFullPath());
+	GameEngineSprite::LoadFolder(MonsterDir.GetPlusFileName("BansheeIdle").GetFullPath());
+	MonsterDir.Move("BansheeBullet");
+	GameEngineSprite::LoadFolder(MonsterDir.GetPlusFileName("BansheeBulletHit").GetFullPath());
+	GameEngineSprite::LoadFolder(MonsterDir.GetPlusFileName("BansheeBulletIdle").GetFullPath());
+
 	if (false == GameEngineInput::IsKey("LeftMove"))
 	{
 		GameEngineInput::CreateKey("LeftMove", 'A');
@@ -421,7 +431,7 @@ void PlayLevel::Start()
 	//std::shared_ptr<WhiteSkell> WhiteSkellPtr1 = CreateActor<WhiteSkell>(1);
 	//WhiteSkellPtr1->GetTransform()->SetLocalPosition({ 5481.0f,-268.0f,-800.0f });
 	//
-	std::shared_ptr<GiantBat> GiantBatPtr = CreateActor<GiantBat>(1);
+	std::shared_ptr<Banshee> GiantBatPtr = CreateActor<Banshee>(1);
 	GiantBatPtr->GetTransform()->SetLocalPosition({ 4981.0f,-148.0f,-790.0f });
 	//
 	//std::shared_ptr<Minotaurs> MinotaursPtr = CreateActor<Minotaurs>(1);
