@@ -70,7 +70,6 @@ void Ghost::Update(float _DeltaTime)
 	SetCollision(_DeltaTime);
 	Flip();
 }
-bool GhostBlink = false;
 void Ghost::SetCollision(float _DeltaTime)
 {
 	HpRender->ImageClippingX(static_cast<float>(Hp) / static_cast<float>(MaxHp), ClipXDir::Left);

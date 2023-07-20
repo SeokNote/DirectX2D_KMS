@@ -79,12 +79,12 @@ void Player::Start()
 }
 void Player::Update(float _DeltaTime)
 {
+	SetPlayerCollision(_DeltaTime);
 	DashPlusCount(_DeltaTime);
 	CurMap = SetMyMap(CurMap);
 	ColRenderSet();
 	UpdateState(_DeltaTime);
 	GetTransform()->AddLocalPosition(MoveDir * Data.GetMoveSpeed() * _DeltaTime);
-	SetPlayerCollision(_DeltaTime);
 	Filp();
 	
 }
@@ -991,18 +991,18 @@ void Player::SetPlayerCollision(float _DeltaTime)
 		}
 		if (ShackCheck == false && ShakeTime > 0.6f)
 		{
-			x = 0.f;
 			ShakeTime = 0.0f;
+			x = 0.f;
 			GetLevel()->GetMainCamera()->GetTransform()->SetWorldPosition(CameraPos);
 			ShackCheck = true;
 		}
 		if (BlinkTime > 1.0f)
 		{
+			BlinkTime = 0.0f;
+			IsInvincible = false;
 			PlayerHitRender->Off();
 			PlayerHitRender->ColorOptionValue.MulColor.a = 1.0f;
 			PlayerRender->ColorOptionValue.MulColor.a = 1.0f;
-			BlinkTime = 0.0f;
-			IsInvincible = false;
 			PlayerCol->On();
 
 		}

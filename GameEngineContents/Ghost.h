@@ -70,5 +70,6 @@ private:
 	int MaxHp = 50;
 	int Hp = 50;
 	int Damege = 3;
+	bool GhostBlink = false;
 };
 

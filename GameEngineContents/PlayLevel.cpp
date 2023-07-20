@@ -72,6 +72,8 @@
 #include "Ghost.h"
 #include "SmallBat.h"
 #include "SpaceWeapon.h"
+#include "GiantBat.h"
+
 PlayLevel::PlayLevel()
 {
 }
@@ -248,7 +250,15 @@ void PlayLevel::Start()
 	MonsterDir.Move("Ghost");
 	GameEngineSprite::LoadFolder(MonsterDir.GetPlusFileName("GhostAttack").GetFullPath());
 	GameEngineSprite::LoadFolder(MonsterDir.GetPlusFileName("GhostIdle").GetFullPath());
-
+	MonsterDir.MoveParentToDirectory("Monster");
+	MonsterDir.Move("Monster");
+	MonsterDir.Move("GiantBat");
+	GameEngineSprite::LoadFolder(MonsterDir.GetPlusFileName("GiantBatAttack").GetFullPath());
+	GameEngineSprite::LoadFolder(MonsterDir.GetPlusFileName("GiantBatIdle").GetFullPath());
+	GameEngineSprite::LoadFolder(MonsterDir.GetPlusFileName("GiantBatDead").GetFullPath());
+	MonsterDir.Move("BatBullet");
+	GameEngineSprite::LoadFolder(MonsterDir.GetPlusFileName("BatBulletIdle").GetFullPath());
+	GameEngineSprite::LoadFolder(MonsterDir.GetPlusFileName("BatBulletDie").GetFullPath());
 	if (false == GameEngineInput::IsKey("LeftMove"))
 	{
 		GameEngineInput::CreateKey("LeftMove", 'A');
@@ -282,10 +292,10 @@ void PlayLevel::Start()
 	std::shared_ptr<UICountBase> UICountBasePtr = CreateActor<UICountBase>(1);
 	//	Player
 	static std::shared_ptr<Player> NewPlayer = CreateActor<Player>(1);
-	//NewPlayer->GetTransform()->SetLocalPosition({ 4120.0f,-468.0f,-801.0f });
+	NewPlayer->GetTransform()->SetLocalPosition({ 4120.0f,-468.0f,-801.0f });
 
 	//NewPlayer->GetTransform()->SetLocalPosition({ 14504.0f,-194.0f,-801.0f });
-	NewPlayer->GetTransform()->SetLocalPosition({ -2390.0f,-500.0f,-801.0f });
+	//NewPlayer->GetTransform()->SetLocalPosition({ -2390.0f,-500.0f,-801.0f });
 	//NewPlayer->GetTransform()->SetLocalPosition({ 11438.0f,-480.0f,-801.0f });
 
 	{	//Town
@@ -405,23 +415,23 @@ void PlayLevel::Start()
 	static std::shared_ptr<TunakSpawner> TunakSpawnerPtr = CreateActor<TunakSpawner>(1);
 	TunakSpawnerPtr->GetTransform()->SetLocalPosition({ 14874.0f,-205.0f,-800.0f });
 	//Å×½ºÆ®
-	std::shared_ptr<WhiteSkell> WhiteSkellPtr = CreateActor<WhiteSkell>(1);
-	WhiteSkellPtr->GetTransform()->SetLocalPosition({ 4981.0f,-268.0f,-800.0f });
-	
-	std::shared_ptr<WhiteSkell> WhiteSkellPtr1 = CreateActor<WhiteSkell>(1);
-	WhiteSkellPtr1->GetTransform()->SetLocalPosition({ 5481.0f,-268.0f,-800.0f });
-	
-	std::shared_ptr<Ghost> GhostPtr = CreateActor<Ghost>(1);
-	GhostPtr->GetTransform()->SetLocalPosition({ 4981.0f,-148.0f,-800.0f });
-	
-	std::shared_ptr<Minotaurs> MinotaursPtr = CreateActor<Minotaurs>(1);
-	MinotaursPtr->GetTransform()->SetLocalPosition({ 5523.0f,258.0f,-800.0f });
-	
-	std::shared_ptr<SmallBat> SmallBatPtr = CreateActor<SmallBat>(1);
-	SmallBatPtr->GetTransform()->SetLocalPosition({ 4781.0f,-198.0f,-800.0f });
-	
-	std::shared_ptr<SmallBat> SmallBatPtr1 = CreateActor<SmallBat>(1);
-	SmallBatPtr1->GetTransform()->SetLocalPosition({ 5181.0f,-198.0f,-800.0f });
+	//std::shared_ptr<WhiteSkell> WhiteSkellPtr = CreateActor<WhiteSkell>(1);
+	//WhiteSkellPtr->GetTransform()->SetLocalPosition({ 4981.0f,-268.0f,-800.0f });
+	//
+	//std::shared_ptr<WhiteSkell> WhiteSkellPtr1 = CreateActor<WhiteSkell>(1);
+	//WhiteSkellPtr1->GetTransform()->SetLocalPosition({ 5481.0f,-268.0f,-800.0f });
+	//
+	std::shared_ptr<GiantBat> GiantBatPtr = CreateActor<GiantBat>(1);
+	GiantBatPtr->GetTransform()->SetLocalPosition({ 4981.0f,-148.0f,-790.0f });
+	//
+	//std::shared_ptr<Minotaurs> MinotaursPtr = CreateActor<Minotaurs>(1);
+	//MinotaursPtr->GetTransform()->SetLocalPosition({ 5523.0f,258.0f,-800.0f });
+	//
+	//std::shared_ptr<SmallBat> SmallBatPtr = CreateActor<SmallBat>(1);
+	//SmallBatPtr->GetTransform()->SetLocalPosition({ 4781.0f,-198.0f,-800.0f });
+	//
+	//std::shared_ptr<SmallBat> SmallBatPtr1 = CreateActor<SmallBat>(1);
+	//SmallBatPtr1->GetTransform()->SetLocalPosition({ 5181.0f,-198.0f,-800.0f });
 
 
 

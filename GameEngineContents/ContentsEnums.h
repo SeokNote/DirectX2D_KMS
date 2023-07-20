@@ -23,6 +23,7 @@ enum class ColOrder
 	ATTACKAREA,
 	//몬스터 공격
 	MONSTERATTACK,
+	MONSTERBODY,
 	//보스
 	BELIALHEAD,
 	TUNAK,
