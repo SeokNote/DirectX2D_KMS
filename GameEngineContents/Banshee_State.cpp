@@ -92,7 +92,7 @@ void Banshee::IdleUpdate(float _Time)
 	if (AttackMove == true)
 	{
 		AttackTime += _Time;
-		if (AttackTime > 5.0f)
+		if (AttackTime > 3.0f)
 		{
 			ChangeState(BansheeState::ATTACKREADY);
 			AttackTime = 0.0f;
@@ -139,10 +139,12 @@ void Banshee::AttackStart()
 
 void Banshee::AttackUpdate(float _Time)
 {
-	if (true == BansheeRender->IsAnimationEnd())
+	NextTime += _Time;
+	if (NextTime > 3.f)
 	{
 		ChangeState(BansheeState::IDLE);
 	}
+
 	if (Hp < 0)
 	{
 		ChangeState(BansheeState::DEAD);

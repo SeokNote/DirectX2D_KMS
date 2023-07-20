@@ -75,7 +75,7 @@ private:
 	bool BansheeBlink = false;
 	int MaxHp = 100;
 	int Hp = 100;
-
+	float NextTime = 0.0f;
 	std::shared_ptr<class BatBullet> BulletPtr = nullptr;
 	//공격변수
 	std::vector<float4> Degs;
