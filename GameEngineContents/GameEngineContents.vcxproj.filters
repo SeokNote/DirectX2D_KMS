@@ -344,6 +344,9 @@
     <ClInclude Include="TextUI.h">
       <Filter>Object\UI\TextUI</Filter>
     </ClInclude>
+    <ClInclude Include="GoldCoin.h">
+      <Filter>Object\Coin</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -725,6 +728,9 @@
     <ClCompile Include="TextUI.cpp">
       <Filter>Object\UI\TextUI</Filter>
     </ClCompile>
+    <ClCompile Include="GoldCoin.cpp">
+      <Filter>Object\Coin</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Levels">
@@ -1002,6 +1008,9 @@
     </Filter>
     <Filter Include="Object\UI\TextUI">
       <UniqueIdentifier>{429bde3f-893d-4b76-a872-e76e25745cf2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Coin">
+      <UniqueIdentifier>{38e16cc7-6528-4a72-b0db-c8fb455b035a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

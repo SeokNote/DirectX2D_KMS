@@ -153,12 +153,16 @@ MyMap Player::SetMyMap(MyMap _MyMap)
 		_MyMap = MyMap::Stage3_Boss;
 		return _MyMap;
 	}
+	else
+	{
+		return MyMap::None;
+	}
 }
 
-bool Player::GroundCheck()
+bool Player::GroundCheck(float4 _Pos)
 {
 	float4 PlayerPos = GetTransform()->GetLocalPosition();
-	float4 BottomPos = PlayerBottoomRender->GetTransform()->GetWorldPosition();
+	float4 BottomPos = _Pos;
 	CurMap = SetMyMap(CurMap);
 	switch (CurMap)
 	{
@@ -320,10 +324,10 @@ bool Player::GroundCheck()
 
 }
 
-bool Player::MiddleCheck()
+bool Player::MiddleCheck(float4 _Pos)
 {
 	float4 PlayerPos = GetTransform()->GetLocalPosition();
-	float4 BottomPos = PlayerTopRender->GetTransform()->GetWorldPosition();
+	float4 BottomPos = _Pos;
 	CurMap = SetMyMap(CurMap);
 	switch (CurMap)
 	{

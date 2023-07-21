@@ -1,7 +1,7 @@
 #include "PrecompileHeader.h"
 #include "WhiteSkell.h"
 #include "Player.h"
-
+#include "GoldCoin.h"
 #include <GameEngineCore/GameEngineTexture.h>
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEnginePlatform/GameEngineWindow.h>
@@ -332,6 +332,7 @@ void WhiteSkell::DeadStart()
 	CurPos = GetTransform()->GetLocalPosition();
 	Pos1 = ParticleRender0->GetTransform()->GetWorldPosition();
 	CurFlip = IsFlip;
+	GoldCoin::CoinCreat(GetLevel(), GetTransform()->GetLocalPosition(), true);
 }
 /*
 ParticleRender0

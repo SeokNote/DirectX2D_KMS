@@ -109,6 +109,7 @@ void PlayLevel::Start()
 	PlayerDir.Move("Animation");
 	PlayerDir.Move("MainLevelAnimation");
 	GameEngineSprite::LoadFolder(PlayerDir.GetPlusFileName("FoodAni").GetFullPath());
+	GameEngineSprite::LoadFolder(PlayerDir.GetPlusFileName("CoinIdle").GetFullPath());
 	PlayerDir.Move("MainPlayer");
 	GameEngineSprite::LoadFolder(PlayerDir.GetPlusFileName("PlayerDead").GetFullPath());
 	GameEngineSprite::LoadFolder(PlayerDir.GetPlusFileName("PlayerIdle").GetFullPath());
@@ -425,23 +426,23 @@ void PlayLevel::Start()
 	static std::shared_ptr<TunakSpawner> TunakSpawnerPtr = CreateActor<TunakSpawner>(1);
 	TunakSpawnerPtr->GetTransform()->SetLocalPosition({ 14874.0f,-205.0f,-800.0f });
 	//Å×½ºÆ®
-	//std::shared_ptr<WhiteSkell> WhiteSkellPtr = CreateActor<WhiteSkell>(1);
-	//WhiteSkellPtr->GetTransform()->SetLocalPosition({ 4981.0f,-268.0f,-800.0f });
-	//
-	//std::shared_ptr<WhiteSkell> WhiteSkellPtr1 = CreateActor<WhiteSkell>(1);
-	//WhiteSkellPtr1->GetTransform()->SetLocalPosition({ 5481.0f,-268.0f,-800.0f });
-	//
+	std::shared_ptr<WhiteSkell> WhiteSkellPtr = CreateActor<WhiteSkell>(1);
+	WhiteSkellPtr->GetTransform()->SetLocalPosition({ 4981.0f,-268.0f,-800.0f });
+	
+	std::shared_ptr<WhiteSkell> WhiteSkellPtr1 = CreateActor<WhiteSkell>(1);
+	WhiteSkellPtr1->GetTransform()->SetLocalPosition({ 5481.0f,-268.0f,-800.0f });
+	
 	std::shared_ptr<Banshee> GiantBatPtr = CreateActor<Banshee>(1);
 	GiantBatPtr->GetTransform()->SetLocalPosition({ 4981.0f,-148.0f,-790.0f });
-	//
-	//std::shared_ptr<Minotaurs> MinotaursPtr = CreateActor<Minotaurs>(1);
-	//MinotaursPtr->GetTransform()->SetLocalPosition({ 5523.0f,258.0f,-800.0f });
-	//
-	//std::shared_ptr<SmallBat> SmallBatPtr = CreateActor<SmallBat>(1);
-	//SmallBatPtr->GetTransform()->SetLocalPosition({ 4781.0f,-198.0f,-800.0f });
-	//
-	//std::shared_ptr<SmallBat> SmallBatPtr1 = CreateActor<SmallBat>(1);
-	//SmallBatPtr1->GetTransform()->SetLocalPosition({ 5181.0f,-198.0f,-800.0f });
+	
+	std::shared_ptr<Minotaurs> MinotaursPtr = CreateActor<Minotaurs>(1);
+	MinotaursPtr->GetTransform()->SetLocalPosition({ 5523.0f,258.0f,-800.0f });
+	
+	std::shared_ptr<SmallBat> SmallBatPtr = CreateActor<SmallBat>(1);
+	SmallBatPtr->GetTransform()->SetLocalPosition({ 4781.0f,-198.0f,-800.0f });
+	
+	std::shared_ptr<SmallBat> SmallBatPtr1 = CreateActor<SmallBat>(1);
+	SmallBatPtr1->GetTransform()->SetLocalPosition({ 5181.0f,-198.0f,-800.0f });
 
 
 

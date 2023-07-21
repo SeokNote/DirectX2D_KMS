@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "BansheeBullet.h"
 #include "TextUI.h"
+#include "GoldCoin.h"
 #include <GameEngineCore/GameEngineTexture.h>
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEnginePlatform/GameEngineWindow.h>
@@ -81,6 +82,7 @@ void Banshee::UpdateState(float _Time)
 void Banshee::IdleStart()
 {
 	BansheeRender->ChangeAnimation("BansheeIdle");
+
 
 }
 
@@ -165,12 +167,14 @@ void Banshee::DeadStart()
 	BodyCol->Off();
 	HpRender->Death();
 	HpBaseRender->Death();
+
 }
 
 void Banshee::DeadUpdate(float _Time)
 {
 	if (DeadRender->IsAnimationEnd())
 	{
+		GoldCoin::CoinCreat(GetLevel(), GetTransform()->GetLocalPosition(), true);
 		Death();
 	}
 }

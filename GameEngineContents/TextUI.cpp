@@ -13,7 +13,7 @@ TextUI::~TextUI()
 {
 }
 
-void TextUI::TextSetting(float4 _Pos, float4 _FontColor,std::string _Text , bool _MoveValue)
+void TextUI::TextSetting(float4 _Pos, float4 _FontColor,std::string _Text , bool _MoveValue ,int _FontSize)
 {
 	Value = _MoveValue;
 	Pos = _Pos;
@@ -21,17 +21,17 @@ void TextUI::TextSetting(float4 _Pos, float4 _FontColor,std::string _Text , bool
 	FontRender->SetFont(font);
 	FontRender->SetText(_Text);
 	FontRender->SetFontFlag(FW1_CENTER);
-	FontRender->SetScale(32);
+	FontRender->SetScale(_FontSize);
 	FontRender->SetColor(Color);
 	FontRender->GetTransform()->SetWorldPosition(_Pos);
 
 	int a = 0;
 
 }
-void TextUI::TextCreat(GameEngineLevel* _Level, float4 _Pos, float4 _FontColor,std::string _Text,bool _MoveValue)
+void TextUI::TextCreat(GameEngineLevel* _Level, float4 _Pos, float4 _FontColor,std::string _Text,bool _MoveValue,int _FontSize)
 {
 	std::shared_ptr<TextUI> TextPtr = _Level->CreateActor<TextUI>();
-	TextPtr->TextSetting(_Pos, _FontColor , _Text , _MoveValue);
+	TextPtr->TextSetting(_Pos, _FontColor , _Text , _MoveValue, _FontSize);
 
 }
 
@@ -66,10 +66,10 @@ void TextUI::MoveFont(float _Delta)
 	else
 	{
 		Ratio += _Delta;
-		FontRender->GetTransform()->AddWorldPosition({ 0.0f,Ratio * 5.0f,0.0f });
-		FontRender->SetColor({ Color.r,Color.g,Color.b,Color.a - Ratio * 0.5f });
+		FontRender->GetTransform()->AddWorldPosition({ 0.0f,Ratio,0.0f });
+		FontRender->SetColor({ Color.r,Color.g,Color.b,Color.a - Ratio});
 
-		if (Color.a - Ratio * 0.5f < 0)
+		if (Color.a - Ratio < 0)
 		{
 			Ratio = 0.0f;
 			Death();

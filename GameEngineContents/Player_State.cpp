@@ -91,7 +91,7 @@ void Player::UpdateState(float _Time)
 
 void Player::IdleStart()
 {
-	if (true == GroundCheck()|| true ==MiddleCheck())
+	if (true == GroundCheck(PlayerBottoomRender->GetTransform()->GetWorldPosition())|| true ==MiddleCheck(PlayerTopRender->GetTransform()->GetWorldPosition()))
 	{
 		PlayerRender->ChangeAnimation("Player_Idle");
 
@@ -128,11 +128,11 @@ void Player::IdleUpdate(float _Time)
 	{
 		MoveDir = float4::Zero;
 	}
-	if (false == GroundCheck() && false == IsMiddle)
+	if (false == GroundCheck(PlayerBottoomRender->GetTransform()->GetWorldPosition()) && false == IsMiddle)
 	{
 			ChangeState(PlayerState::FALL);
 	}
-	if (true == GroundCheck() || IsMiddle == true) {
+	if (true == GroundCheck(PlayerBottoomRender->GetTransform()->GetWorldPosition()) || IsMiddle == true) {
 		Falling = false;
 	}
 	if (UICount == 0 && GameEngineInput::IsDown("DASH")) {
@@ -174,12 +174,12 @@ void Player::MoveUpdate(float _Time)
 	{
 		Falling = true;
 	}
-	if (GroundCheck() == true)
+	if (GroundCheck(PlayerBottoomRender->GetTransform()->GetWorldPosition()) == true)
 	{
 		Falling = false;
 	}
 
-	if(false == GroundCheck() && false == MiddleCheck())
+	if(false == GroundCheck(PlayerBottoomRender->GetTransform()->GetWorldPosition()) && false == MiddleCheck(PlayerTopRender->GetTransform()->GetWorldPosition()))
 	{
 		ChangeState(PlayerState::FALL);
 		Falling = false;
@@ -189,7 +189,7 @@ void Player::MoveUpdate(float _Time)
 		false == GameEngineInput::IsPress("RightMove")
 		)
 	{
-		if (GroundCheck() == true || true == IsMiddle) {
+		if (GroundCheck(PlayerBottoomRender->GetTransform()->GetWorldPosition()) == true || true == IsMiddle) {
 			ChangeState(PlayerState::IDLE);
 			Falling = false;
 		}
@@ -302,7 +302,7 @@ void Player::JumpUpdate(float _Time)
 	//떨어지는 상태일때
 	if(Falling ==true)
 	{
-		if (true == GroundCheck() || true == MiddleCheck())
+		if (true == GroundCheck(PlayerBottoomRender->GetTransform()->GetWorldPosition()) || true == MiddleCheck(PlayerTopRender->GetTransform()->GetWorldPosition()))
 		{
 			if (CurMap == MyMap::Stage2_Boss)
 			{
@@ -317,12 +317,12 @@ void Player::JumpUpdate(float _Time)
 			ChangeState(PlayerState::IDLE);
 			Falling = false;
 		}
-		if (true == MiddleCheck())
+		if (true == MiddleCheck(PlayerTopRender->GetTransform()->GetWorldPosition()))
 		{
 			BeltCheck = true;
 		}
 	}
-	if (false == MiddleCheck() && false == GroundCheck())
+	if (false == MiddleCheck(PlayerTopRender->GetTransform()->GetWorldPosition()) && false == GroundCheck(PlayerBottoomRender->GetTransform()->GetWorldPosition()))
 	{
 		if (MoveDir.y != 0.0f) 
 		{
@@ -392,7 +392,7 @@ void Player::FallUpdate(float _Time)
 
 			}
 		}
-		if (false == MiddleCheck())
+		if (false == MiddleCheck(PlayerTopRender->GetTransform()->GetWorldPosition()))
 		{
 			MoveDir.y -= 7.5f * _Time;;
 		}
@@ -401,13 +401,13 @@ void Player::FallUpdate(float _Time)
 			ChangeState(PlayerState::IDLE);
 
 		}
-		if (true == GroundCheck())
+		if (true == GroundCheck(PlayerBottoomRender->GetTransform()->GetWorldPosition()))
 		{
 			BeltCheck = false;
 			MoveDir.y = 0.0f;
 			ChangeState(PlayerState::IDLE);
 		}
-		if (true == MiddleCheck())
+		if (true == MiddleCheck(PlayerTopRender->GetTransform()->GetWorldPosition()))
 		{ 
 			BeltCheck = true;
 			MoveDir.y = 0.0f;
@@ -430,7 +430,7 @@ void Player::FallUpdate(float _Time)
 			Falling = true;
 		}
 		MoveDir.y -= 7.5f * _Time;;
-		if (true == GroundCheck())
+		if (true == GroundCheck(PlayerBottoomRender->GetTransform()->GetWorldPosition()))
 		{
 		
 			MoveDir.y = 0.0f;
@@ -441,7 +441,7 @@ void Player::FallUpdate(float _Time)
 		}	
 		// 밑점프를 눌렀을 때 들어오는곳 
 		// 이때는 미들체크를 하면 안됐다.
-		if (true == MiddleCheck())
+		if (true == MiddleCheck(PlayerTopRender->GetTransform()->GetWorldPosition()))
 		{
 			BeltCheck = true;
 			CheckTime = 0.0f;

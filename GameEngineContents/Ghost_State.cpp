@@ -1,7 +1,7 @@
 #include "PrecompileHeader.h"
 #include "Ghost.h"
 #include "Player.h"
-
+#include "GoldCoin.h"
 #include <GameEngineCore/GameEngineTexture.h>
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEnginePlatform/GameEngineWindow.h>
@@ -158,6 +158,7 @@ void Ghost::DeadUpdate(float _Time)
 {
 	if (DeadRender->IsAnimationEnd())
 	{
+		GoldCoin::CoinCreat(GetLevel(), GetTransform()->GetLocalPosition(), true);
 		Death();
 	}
 }

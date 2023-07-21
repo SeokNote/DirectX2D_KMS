@@ -95,7 +95,7 @@ void SmallBat::SetCollision(float _DeltaTime)
 			SmallBatBlink = true;
 			Hp -= WeaponBase::WeaponBasePtr->GetWeaponStrength(Weapon::GreatWeapon_E);
 			TextUI::TextCreat(GetLevel(), GetTransform()->GetLocalPosition(), float4::White,
-				std::to_string(WeaponBase::WeaponBasePtr->GetWeaponStrength(Weapon::GreatWeapon_E)), true);
+				std::to_string(WeaponBase::WeaponBasePtr->GetWeaponStrength(Weapon::GreatWeapon_E)), true,24);
 			SmallBatRender->ColorOptionValue.MulColor.r = 1.0f;
 			SmallBatRender->ColorOptionValue.MulColor.g = 0.1f;
 			SmallBatRender->ColorOptionValue.MulColor.b = 0.1f;

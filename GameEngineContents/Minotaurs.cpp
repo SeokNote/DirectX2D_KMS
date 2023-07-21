@@ -123,7 +123,7 @@ void Minotaurs::SetCollision(float _Delta)
 			//나중에 ui작업때 캐릭터가 갖고있는 swich로 무기에 따라 정해주자.
 			MinoHp -= WeaponBase::WeaponBasePtr->GetWeaponStrength(Weapon::GreatWeapon_E);
 			TextUI::TextCreat(GetLevel(), GetTransform()->GetLocalPosition(), float4::White,
-				std::to_string(WeaponBase::WeaponBasePtr->GetWeaponStrength(Weapon::GreatWeapon_E)), true);
+				std::to_string(WeaponBase::WeaponBasePtr->GetWeaponStrength(Weapon::GreatWeapon_E)), true,24);
 			MinotaursRender->ColorOptionValue.MulColor.r = 1.0f;
 			MinotaursRender->ColorOptionValue.MulColor.g = 0.1f;
 			MinotaursRender->ColorOptionValue.MulColor.b = 0.1f;

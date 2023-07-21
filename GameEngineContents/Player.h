@@ -35,8 +35,8 @@ public:
 	}
 	MyMap SetMyMap(MyMap _MyMap);
 
-	bool GroundCheck();
-	bool MiddleCheck();
+	bool GroundCheck(float4 _Pos);
+	bool MiddleCheck(float4 _Pos);
 	bool TopCheck();
 	bool LeftSideCheck();
 	bool RightSideCheck();
@@ -67,6 +67,7 @@ public:
 	{
 		return Data;
 	}
+
 	void Invincible(float _Delta);
 protected:
 	void Start();
@@ -96,10 +97,11 @@ private:
 	std::shared_ptr<class GameEngineSpriteRenderer> PlayerBottoomRender;
 
 	std::shared_ptr<class GameEngineCollision> PlayerCol;
-	std::shared_ptr<class GameEngineTexture> Ptr = nullptr;
 	bool IsGround = false;
 	bool Fall = false;
 	GameEnginePixelColor Pixel = GameEnginePixelColor::Black;
+	std::shared_ptr<class GameEngineTexture> Ptr = nullptr;
+
 	MyMap CurMap = MyMap::None;
 	PixelCollision* NomalPixel = nullptr;
 

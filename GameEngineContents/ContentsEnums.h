@@ -35,5 +35,7 @@ enum class ColOrder
 	PlayerBody,
 	//마우스
 	PlayMouse,
+	//코인
+	COIN,
 };
 

@@ -2,6 +2,7 @@
 #include "GiantBat.h"
 #include "Player.h"
 #include "BatBullet.h"
+#include "GoldCoin.h"
 #include <GameEngineCore/GameEngineTexture.h>
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEnginePlatform/GameEngineWindow.h>
@@ -172,6 +173,7 @@ void GiantBat::DeadUpdate(float _Time)
 	if (DeadTime > 3)
 	{
 		DeadTime = 0.0f;
+		GoldCoin::CoinCreat(GetLevel(), GetTransform()->GetLocalPosition(), true);
 		Death();
 	}
 }

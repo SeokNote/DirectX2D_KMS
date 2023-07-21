@@ -13,8 +13,8 @@ public:
 	TextUI(TextUI&& _Other) noexcept = delete;
 	TextUI& operator=(const TextUI& _Other) = delete;
 	TextUI& operator=(TextUI&& _Other) noexcept = delete;
-	void TextSetting(float4 _Pos, float4 _FontColor, std::string _Text, bool _MoveValue);
-	static void TextCreat(GameEngineLevel* _Level, float4 _Pos, float4 _FontColor, std::string _Text, bool _MoveValue);
+	void TextSetting(float4 _Pos, float4 _FontColor, std::string _Text, bool _MoveValue, int _FontSize);
+	static void TextCreat(GameEngineLevel* _Level, float4 _Pos, float4 _FontColor, std::string _Text, bool _MoveValue, int _FontSize);
 protected:
 	void Start();
 	void Update(float _Delta) override;
