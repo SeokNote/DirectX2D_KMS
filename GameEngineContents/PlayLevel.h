@@ -4,6 +4,8 @@
 #include "PlayerStat.h"
 #include "MapTabUI.h"
 #include "InventoryUI.h"
+#include "PointLightEffect.h"
+
 // 설명 :
 class PlayLevel : public GameEngineLevel
 {
@@ -20,6 +22,7 @@ public:
 	PlayLevel& operator=(PlayLevel&& _Other) noexcept = delete;
 
 	std::shared_ptr<class FadeEffect> FEffect;
+	void SetCandle();
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
@@ -38,6 +41,7 @@ private:
 	float4 TownScale = float4::Zero;
 	MyMap CurMap = MyMap::None;
 	float4 WindowSizeHalf = float4::Zero;
+	MyMap CandleMap = MyMap::None;
 
 	std::shared_ptr<PlayerStat> Stat;
 	std::shared_ptr<MapTabUI> MapTab;
@@ -48,4 +52,10 @@ private:
 	//테스트
 	float FPS = 0.0f;
 	int Frame = 0;
+
+	//양초
+	std::shared_ptr<class Candle> CandlePtr_0 = nullptr;
+	std::shared_ptr<class Candle> CandlePtr_1 = nullptr;
+	std::shared_ptr<class Candle> CandlePtr_2 = nullptr;
+
 };

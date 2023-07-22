@@ -19,6 +19,7 @@
 #include "TempleNpc.h"
 #include "DungeonIn.h"
 #include "UICountBase.h"
+#include "Candle.h"
 #include "GreatWeapon.h"
 #include "Door.h"
 #include "BossDoor_0.h"
@@ -51,6 +52,7 @@
 #include "GroundBelt.h"
 #include "PlatBelt.h"
 
+
 #include <GameEngineCore/GameEngineCamera.h>
 #include <GameEngineCore/GameEngineTexture.h>
 #include <GameEnginePlatform/GameEngineInput.h>
@@ -59,7 +61,7 @@
 #include <GameEngineCore/GameEngineFont.h>
 #include "FadeEffect.h"
 #include "ContentButton.h"
-
+#include "PointLightEffect.h"
 //테스트
 #include "BossSword.h"
 #include "BelialHeadSubBG.h"
@@ -82,6 +84,8 @@ PlayLevel::PlayLevel()
 PlayLevel::~PlayLevel()
 {
 }
+
+
 
 void PlayLevel::Start()
 {
@@ -108,8 +112,6 @@ void PlayLevel::Start()
 	PlayerDir.Move("ContentResources");
 	PlayerDir.Move("Animation");
 	PlayerDir.Move("MainLevelAnimation");
-	GameEngineSprite::LoadFolder(PlayerDir.GetPlusFileName("FoodAni").GetFullPath());
-	GameEngineSprite::LoadFolder(PlayerDir.GetPlusFileName("CoinIdle").GetFullPath());
 	PlayerDir.Move("MainPlayer");
 	GameEngineSprite::LoadFolder(PlayerDir.GetPlusFileName("PlayerDead").GetFullPath());
 	GameEngineSprite::LoadFolder(PlayerDir.GetPlusFileName("PlayerIdle").GetFullPath());
@@ -118,6 +120,16 @@ void PlayLevel::Start()
 	GameEngineSprite::LoadFolder(PlayerDir.GetPlusFileName("PlayerJumpAni").GetFullPath());
 	GameEngineSprite::LoadFolder(PlayerDir.GetPlusFileName("PlayerWalkAni").GetFullPath());
 	GameEngineSprite::LoadFolder(PlayerDir.GetPlusFileName("PlayerHp").GetFullPath());
+	//오브젝트 애니메이션
+	GameEngineDirectory ObjectDir;
+	ObjectDir.MoveParentToDirectory("ContentResources");
+	ObjectDir.Move("ContentResources");
+	ObjectDir.Move("Animation");
+	ObjectDir.Move("MainLevelAnimation");
+	ObjectDir.Move("Object");
+	GameEngineSprite::LoadFolder(ObjectDir.GetPlusFileName("CandleIdle").GetFullPath());
+	GameEngineSprite::LoadFolder(ObjectDir.GetPlusFileName("FoodAni").GetFullPath());
+	GameEngineSprite::LoadFolder(ObjectDir.GetPlusFileName("CoinIdle").GetFullPath());
 	//무기 애니메이션
 
 	GameEngineDirectory WeaponDir;
@@ -303,10 +315,10 @@ void PlayLevel::Start()
 	std::shared_ptr<UICountBase> UICountBasePtr = CreateActor<UICountBase>(1);
 	//	Player
 	static std::shared_ptr<Player> NewPlayer = CreateActor<Player>(1);
-	NewPlayer->GetTransform()->SetLocalPosition({ 4120.0f,-468.0f,-801.0f });
+	//NewPlayer->GetTransform()->SetLocalPosition({ 4120.0f,-468.0f,-801.0f });
 
 	//NewPlayer->GetTransform()->SetLocalPosition({ 14504.0f,-194.0f,-801.0f });
-	//NewPlayer->GetTransform()->SetLocalPosition({ -2390.0f,-500.0f,-801.0f });
+	NewPlayer->GetTransform()->SetLocalPosition({ -2390.0f,-500.0f,-801.0f });
 	//NewPlayer->GetTransform()->SetLocalPosition({ 11438.0f,-480.0f,-801.0f });
 
 	{	//Town
@@ -333,13 +345,13 @@ void PlayLevel::Start()
 	}
 	{
 		//	Stage_3
-		std::shared_ptr<Stage3_BG_1> Stage3_BG1 = CreateActor<Stage3_BG_1>(-21);
-		std::shared_ptr<Stage3_BG_2> Stage3_BG2 = CreateActor<Stage3_BG_2>(-20);
-		std::shared_ptr<Stage3_BG_3> Stage3_BG3 = CreateActor<Stage3_BG_3>(-19);
-		std::shared_ptr<Stage3_BG_4> Stage3_BG4 = CreateActor<Stage3_BG_4>(-18);
-
-		std::shared_ptr<Stage3_1> Stage1= CreateActor<Stage3_1>(-16);
-		std::shared_ptr<Stage3_Boss> BossStage_3 = CreateActor<Stage3_Boss>(-16);
+		//std::shared_ptr<Stage3_BG_1> Stage3_BG1 = CreateActor<Stage3_BG_1>(-21);
+		//std::shared_ptr<Stage3_BG_2> Stage3_BG2 = CreateActor<Stage3_BG_2>(-20);
+		//std::shared_ptr<Stage3_BG_3> Stage3_BG3 = CreateActor<Stage3_BG_3>(-19);
+		//std::shared_ptr<Stage3_BG_4> Stage3_BG4 = CreateActor<Stage3_BG_4>(-18);
+		//
+		//std::shared_ptr<Stage3_1> Stage1= CreateActor<Stage3_1>(-16);
+		//std::shared_ptr<Stage3_Boss> BossStage_3 = CreateActor<Stage3_Boss>(-16);
 		//std::shared_ptr<GroundBelt> GroundBeltPtr = CreateActor<GroundBelt>();
 		//GroundBeltPtr->GetTransform()->SetLocalPosition({ 19395.0f,-245.0f,-800.0f });
 		//std::shared_ptr<PlatBelt> PlatBeltPtr = CreateActor<PlatBelt>();
@@ -419,6 +431,23 @@ void PlayLevel::Start()
 		std::shared_ptr<BossDoor_2> BossDoor3Ptr = CreateActor<BossDoor_2>(1);
 
 	}
+	CandlePtr_0 = CreateActor<Candle>(1);
+	CandlePtr_0->GetTransform()->SetLocalPosition({ 3409.f,-106.f,-790.0f });
+	CandlePtr_0->SetCandleColor(float4::Red);
+	CandlePtr_0->SetMyMap(MyMap::Stage1_1);
+	CandlePtr_0->Off();
+
+	CandlePtr_1 = CreateActor<Candle>(1);
+	CandlePtr_1->GetTransform()->SetLocalPosition({ 11730.f,-400.f,-790.0f });
+	CandlePtr_1->SetCandleColor(float4(0.65f,0.4f,0.917f));
+	CandlePtr_1->SetMyMap(MyMap::Stage1_Boss);
+	CandlePtr_1->Off();
+
+	CandlePtr_2 = CreateActor<Candle>(1);
+	CandlePtr_2->GetTransform()->SetLocalPosition({ 12432.f,-400,-790.0f });
+	CandlePtr_2->SetCandleColor(float4(0.65f, 0.4f, 0.917f));
+	CandlePtr_2->SetMyMap(MyMap::Stage1_Boss);
+	CandlePtr_2->Off();
 
 	//보스 스포너
 	static std::shared_ptr<BelialSpawner> BelialSpawnerPtr = CreateActor<BelialSpawner>(1);
@@ -449,10 +478,33 @@ void PlayLevel::Start()
 
 
 }
+void PlayLevel::SetCandle()
+{
+	CandleMap = Player::MainPlayer->SetMyMap(CandleMap);
+	if (CandleMap == MyMap::Stage1_1)
+	{
+		CandlePtr_0->On();
+	}
+	else
+	{
+		CandlePtr_0->Off();
+	}
+	if (CandleMap == MyMap::Stage1_Boss)
+	{
+		CandlePtr_1->On();
+		CandlePtr_2->On();
 
+	}
+	else
+	{
+		CandlePtr_1->Off();
+		CandlePtr_2->Off();
+	}
+}
 
 void PlayLevel::Update(float _DeltaTime)
 {
+	SetCandle();
 	static float Time = 0.0f;
 
 	Time += _DeltaTime;

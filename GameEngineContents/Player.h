@@ -95,6 +95,7 @@ private:
 	
 	std::shared_ptr<class GameEngineSpriteRenderer> PlayerTopRender;
 	std::shared_ptr<class GameEngineSpriteRenderer> PlayerBottoomRender;
+	std::shared_ptr<class PointLightEffect> LightEffect = nullptr;
 
 	std::shared_ptr<class GameEngineCollision> PlayerCol;
 	bool IsGround = false;

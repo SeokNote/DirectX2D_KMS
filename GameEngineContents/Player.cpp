@@ -3,6 +3,7 @@
 #include "PixelCollision.h"
 #include "PlayMouse.h"
 #include "ContentsEnums.h"
+#include "PointLightEffect.h"
 #include <GameEngineCore/GameEngineTexture.h>
 #include <GameEngineCore/GameEngineUIRenderer.h>
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
@@ -76,9 +77,30 @@ void Player::Start()
 	PlayerCol->GetTransform()->SetLocalScale({ 64.0f, 76.0f });
 	PlayerCol->SetColType(ColType::AABBBOX2D);
 
+	//포인트 라이팅
+	LightEffect =  GetLevel()->GetMainCamera()->GetCamTarget()->CreateEffect<PointLightEffect>();
+	LightEffect->SetState(PointLightType::Circle);
+	LightEffect->LightBuffer.LightColor = float4(0.3f, 0.3f, 0.3f, 1.0f);
+	LightEffect->LightBuffer.LightOption.x = 1.0f;
+	LightEffect->LightBuffer.LightOption.y = 250.0f;
+
 }
 void Player::Update(float _DeltaTime)
 {
+	if (nullptr != LightEffect)
+	{
+		std::shared_ptr<GameEngineCamera> MainCam = GetLevel()->GetMainCamera();
+		float4 Result = GetTransform()->GetWorldPosition();
+		Result *= MainCam->GetView();
+		Result *= MainCam->GetProjection();
+		Result *= MainCam->GetViewPort();
+		LightEffect->LightBuffer.LightPos = Result;
+	}
+
+
+
+
+
 	SetPlayerCollision(_DeltaTime);
 	DashPlusCount(_DeltaTime);
 	CurMap = SetMyMap(CurMap);
@@ -86,7 +108,10 @@ void Player::Update(float _DeltaTime)
 	UpdateState(_DeltaTime);
 	GetTransform()->AddLocalPosition(MoveDir * Data.GetMoveSpeed() * _DeltaTime);
 	Filp();
-	
+	//if (nullptr != LightEffect)
+	//	float4 Result = GetTransform()->GetWorldPosition();
+	//	LightEffect->LightBuffer.LightPos = Result;
+	//}
 }
 
 void Player::Invincible(float _Delta)
@@ -104,6 +129,7 @@ void Player::Invincible(float _Delta)
 MyMap Player::SetMyMap(MyMap _MyMap)
 {
 	float4 PlayerPos = GetTransform()->GetLocalPosition();
+
 	if (PlayerPos.x > -2560.0f && PlayerPos.x < 2560) {
 		_MyMap = MyMap::Town;
 		return _MyMap;

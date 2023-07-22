@@ -347,6 +347,12 @@
     <ClInclude Include="GoldCoin.h">
       <Filter>Object\Coin</Filter>
     </ClInclude>
+    <ClInclude Include="PointLightEffect.h">
+      <Filter>PostEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="Candle.h">
+      <Filter>Object\Candle</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -731,6 +737,12 @@
     <ClCompile Include="GoldCoin.cpp">
       <Filter>Object\Coin</Filter>
     </ClCompile>
+    <ClCompile Include="PointLightEffect.cpp">
+      <Filter>PostEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="Candle.cpp">
+      <Filter>Object\Candle</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Levels">
@@ -1011,6 +1023,9 @@
     </Filter>
     <Filter Include="Object\Coin">
       <UniqueIdentifier>{38e16cc7-6528-4a72-b0db-c8fb455b035a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Candle">
+      <UniqueIdentifier>{c1d5631f-545d-468c-a6c2-5323885558e9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
