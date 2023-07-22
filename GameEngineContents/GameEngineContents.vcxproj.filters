@@ -351,7 +351,10 @@
       <Filter>PostEffect</Filter>
     </ClInclude>
     <ClInclude Include="Candle.h">
-      <Filter>Object\Candle</Filter>
+      <Filter>Object\Candle\Candle</Filter>
+    </ClInclude>
+    <ClInclude Include="StandCandle.h">
+      <Filter>Object\Candle\StandCandle</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -741,7 +744,10 @@
       <Filter>PostEffect</Filter>
     </ClCompile>
     <ClCompile Include="Candle.cpp">
-      <Filter>Object\Candle</Filter>
+      <Filter>Object\Candle\Candle</Filter>
+    </ClCompile>
+    <ClCompile Include="StandCandle.cpp">
+      <Filter>Object\Candle\StandCandle</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1026,6 +1032,12 @@
     </Filter>
     <Filter Include="Object\Candle">
       <UniqueIdentifier>{c1d5631f-545d-468c-a6c2-5323885558e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Candle\Candle">
+      <UniqueIdentifier>{ff6d9030-7daa-45c4-aaa2-0b87e37269b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Candle\StandCandle">
+      <UniqueIdentifier>{bdb36813-af88-4d91-8bc4-215d1ced487b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

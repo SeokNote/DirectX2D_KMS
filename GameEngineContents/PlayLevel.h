@@ -35,7 +35,6 @@ protected:
 private:
 	void CameraColMove(float _X, float _X1, float _Y, float _Y1);
 	void CameraMoveSet();
-	void SetStatButtone();
 	void UICtr();
 	
 	float4 TownScale = float4::Zero;
@@ -57,5 +56,7 @@ private:
 	std::shared_ptr<class Candle> CandlePtr_0 = nullptr;
 	std::shared_ptr<class Candle> CandlePtr_1 = nullptr;
 	std::shared_ptr<class Candle> CandlePtr_2 = nullptr;
+	std::shared_ptr<class StandCandle> S_CandlePtr0 = nullptr;
+	std::shared_ptr<class StandCandle> S_CandlePtr1 = nullptr;
 
 };
