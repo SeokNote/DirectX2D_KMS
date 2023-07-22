@@ -132,6 +132,7 @@ void PlayLevel::Start()
 	GameEngineSprite::LoadFolder(ObjectDir.GetPlusFileName("FoodAni").GetFullPath());
 	GameEngineSprite::LoadFolder(ObjectDir.GetPlusFileName("CoinIdle").GetFullPath());
 	GameEngineSprite::LoadFolder(ObjectDir.GetPlusFileName("StandCandleIdle").GetFullPath());
+	GameEngineSprite::LoadFolder(ObjectDir.GetPlusFileName("SpownAni").GetFullPath());
 
 	//무기 애니메이션
 
@@ -318,11 +319,11 @@ void PlayLevel::Start()
 	std::shared_ptr<UICountBase> UICountBasePtr = CreateActor<UICountBase>(1);
 	//	Player
 	static std::shared_ptr<Player> NewPlayer = CreateActor<Player>(1);
-	//NewPlayer->GetTransform()->SetLocalPosition({ 4120.0f,-468.0f,-801.0f });
+	NewPlayer->GetTransform()->SetLocalPosition({ 4120.0f,-468.0f,-801.0f });
 
 	//NewPlayer->GetTransform()->SetLocalPosition({ 14504.0f,-194.0f,-801.0f });
 	//NewPlayer->GetTransform()->SetLocalPosition({ -2390.0f,-500.0f,-801.0f });
-	NewPlayer->GetTransform()->SetLocalPosition({ 9925.0f,-254.0f,-801.0f });
+	//NewPlayer->GetTransform()->SetLocalPosition({ 9925.0f,-254.0f,-801.0f });
 
 	{	//Town
 		std::shared_ptr<Sky> SkyBG = CreateActor<Sky>(1);
@@ -470,10 +471,10 @@ void PlayLevel::Start()
 	TunakSpawnerPtr->GetTransform()->SetLocalPosition({ 14874.0f,-205.0f,-800.0f });
 	//테스트
 	std::shared_ptr<WhiteSkell> WhiteSkellPtr = CreateActor<WhiteSkell>(1);
-	WhiteSkellPtr->GetTransform()->SetLocalPosition({ 4981.0f,-268.0f,-800.0f });
+	WhiteSkellPtr->GetTransform()->SetLocalPosition({ 4981.0f,-437.0f,-800.0f });
 	
 	std::shared_ptr<WhiteSkell> WhiteSkellPtr1 = CreateActor<WhiteSkell>(1);
-	WhiteSkellPtr1->GetTransform()->SetLocalPosition({ 5481.0f,-268.0f,-800.0f });
+	WhiteSkellPtr1->GetTransform()->SetLocalPosition({ 5481.0f,-437.0f,-800.0f });
 	
 	std::shared_ptr<Banshee> GiantBatPtr = CreateActor<Banshee>(1);
 	GiantBatPtr->GetTransform()->SetLocalPosition({ 4981.0f,-148.0f,-790.0f });

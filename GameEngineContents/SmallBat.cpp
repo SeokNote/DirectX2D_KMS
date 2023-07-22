@@ -28,7 +28,9 @@ void SmallBat::Start()
 	SmallBatRender->GetTransform()->SetLocalScale(Scale);
 	SmallBatRender->CreateAnimation({ .AnimationName = "SmallBat", .SpriteName = "SmallBat", .Loop = true , .ScaleToTexture = false });
 	SmallBatRender->ChangeAnimation("SmallBat");
-	ChangeState(SmallBatState::IDLE);
+
+	SpownRender = CreateComponent<GameEngineSpriteRenderer>(1);
+	SpownRender->CreateAnimation({ .AnimationName = "SpownAni", .SpriteName = "SpownAni",.FrameInter = 0.1f, .Loop = false , .ScaleToTexture = true });
 
 	TargetAreaCol = CreateComponent<GameEngineCollision>(ColOrder::ATTACKAREA);
 	TargetAreaCol->GetTransform()->SetLocalPosition({ 0.0f,0.0f,0.f });
@@ -61,6 +63,8 @@ void SmallBat::Start()
 	BodyCol->GetTransform()->SetLocalPosition({ 0.0f,0.0f,0.f });
 	BodyCol->GetTransform()->SetLocalScale({64.0f,64.0f,0.0f});
 	BodyCol->SetColType(ColType::AABBBOX2D);
+	ChangeState(SmallBatState::IDLE);
+
 }
 
 void SmallBat::Update(float _DeltaTime)

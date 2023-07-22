@@ -97,11 +97,29 @@ void WhiteSkell::UpdateState(float _Time)
 bool IsFirstRender = false;
 void WhiteSkell::IdleStart()
 {
-	WhiteSkellRender->ChangeAnimation("WhiteSkellIdle");
+	if (SpownValue == false)
+	{
+		WhiteSkellRender->Off();
+
+	}
+	else
+	{
+		WhiteSkellRender->ChangeAnimation("WhiteSkellIdle");
+
+	}
+	SpownRender->ChangeAnimation("SpownAni");
+
 }
 
 void WhiteSkell::IdleUpdate(float _Time)
 {
+	if (SpownValue == false && SpownRender->IsAnimationEnd())
+	{
+		WhiteSkellRender->ChangeAnimation("WhiteSkellIdle");
+		SpownRender->Off();
+		WhiteSkellRender->On();
+		SpownValue = true;
+	}
 	if (SkellHP < 0)
 	{
 		ChangeState(WhiteSkellState::DEAD);

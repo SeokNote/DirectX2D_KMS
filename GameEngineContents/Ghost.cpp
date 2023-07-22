@@ -29,7 +29,8 @@ void Ghost::Start()
 	GhostRender->CreateAnimation({ .AnimationName = "GhostAttack", .SpriteName = "GhostAttack", .Loop = true , .ScaleToTexture = false });
 	GhostRender->CreateAnimation({ .AnimationName = "GhostIdle", .SpriteName = "GhostIdle", .Loop = true , .ScaleToTexture = false });
 	GhostRender->ChangeAnimation("GhostIdle");
-	ChangeState(GhostState::IDLE);
+	SpownRender = CreateComponent<GameEngineSpriteRenderer>(1);
+	SpownRender->CreateAnimation({ .AnimationName = "SpownAni", .SpriteName = "SpownAni",.FrameInter = 0.1f, .Loop = false , .ScaleToTexture = true });
 
 	TargetAreaCol = CreateComponent<GameEngineCollision>(ColOrder::ATTACKAREA);
 	TargetAreaCol->GetTransform()->SetLocalPosition({ 0.0f,0.0f,0.f });
@@ -62,6 +63,8 @@ void Ghost::Start()
 	BodyCol->GetTransform()->SetLocalPosition({ 0.0f,0.0f,0.f });
 	BodyCol->GetTransform()->SetLocalScale(Scale);
 	BodyCol->SetColType(ColType::AABBBOX2D);
+	ChangeState(GhostState::IDLE);
+
 }
 
 void Ghost::Update(float _DeltaTime)

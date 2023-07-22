@@ -70,12 +70,29 @@ void SmallBat::UpdateState(float _Time)
 
 void SmallBat::IdleStart()
 {
-	SmallBatRender->ChangeAnimation("SmallBat");
+	if (SpownValue == false)
+	{
+		SmallBatRender->Off();
+
+	}
+	else
+	{
+		SmallBatRender->ChangeAnimation("SmallBat");
+
+	}
+	SpownRender->ChangeAnimation("SpownAni");
 
 }
 
 void SmallBat::IdleUpdate(float _Time)
 {
+	if (SpownValue == false && SpownRender->IsAnimationEnd())
+	{
+		SmallBatRender->On();
+		SmallBatRender->ChangeAnimation("SmallBat");
+		SpownRender->Off();
+		SpownValue = true;
+	}
 	if (StartMove == true)
 	{
 		ChangeState(SmallBatState::MOVE);

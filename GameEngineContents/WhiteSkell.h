@@ -37,6 +37,7 @@ private:
 	std::shared_ptr<class GameEngineSpriteRenderer> WhiteSkellRender;
 	std::shared_ptr<class GameEngineSpriteRenderer> AreaInRender;
 	std::shared_ptr<class GameEngineSpriteRenderer> HpBaseRender;
+	std::shared_ptr<class GameEngineSpriteRenderer> SpownRender;
 	std::shared_ptr<class GameEngineSpriteRenderer> HpRender;
 	std::shared_ptr<class GameEngineSpriteRenderer> DeadRender;
 	std::shared_ptr<class GameEngineSpriteRenderer> ParticleRender0;
@@ -95,6 +96,7 @@ private:
 	int FlipCount = 0;
 	float Invincibilitytime = 0.0f;
 	float FallSpeed = 0.0f;
+	bool SpownValue = false;
 	//몬스터 정보
 	bool SkellBlink = false;
 	float SkellPivot = 167.0f;

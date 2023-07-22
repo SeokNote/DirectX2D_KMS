@@ -30,12 +30,14 @@ void WhiteSkell::Start()
 	WhiteSkellRender->CreateAnimation({ .AnimationName = "WhiteSkellIdle", .SpriteName = "WhiteSkellIdle", .Loop = true , .ScaleToTexture = false });
 	WhiteSkellRender->CreateAnimation({ .AnimationName = "WhiteSkellAttack", .SpriteName = "WhiteSkellAttack", .Loop = false , .ScaleToTexture = false });
 	WhiteSkellRender->ChangeAnimation("WhiteSkellIdle");
-	ChangeState(WhiteSkellState::IDLE);
 
 	TargetAreaCol = CreateComponent<GameEngineCollision>(ColOrder::ATTACKAREA);
 	TargetAreaCol->GetTransform()->SetLocalPosition({ 280.0f,-40.0f,0.f });
 	TargetAreaCol->GetTransform()->SetLocalScale(AreaPos);
 	TargetAreaCol->SetColType(ColType::AABBBOX2D);
+
+	SpownRender = CreateComponent<GameEngineSpriteRenderer>(1);
+	SpownRender->CreateAnimation({ .AnimationName = "SpownAni", .SpriteName = "SpownAni",.FrameInter = 0.1f, .Loop = false , .ScaleToTexture = true });
 
 	SkellBodyCol = CreateComponent<GameEngineCollision>(ColOrder::ATTACKAREA);
 	SkellBodyCol->GetTransform()->SetLocalPosition({ -70.0f,-40.0f,0.f });
@@ -93,6 +95,8 @@ void WhiteSkell::Start()
 	ParticleRender3->GetTransform()->SetLocalScale({ 36.0f,28.0f,0.0f });
 	ParticleRender3->GetTransform()->SetLocalPosition({ -60.0f,0.0f,0.0f });
 	ParticleRender3->Off();
+	ChangeState(WhiteSkellState::IDLE);
+
 }
 
 void WhiteSkell::Update(float _DeltaTime)

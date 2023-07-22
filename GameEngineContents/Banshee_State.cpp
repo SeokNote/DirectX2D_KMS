@@ -81,13 +81,30 @@ void Banshee::UpdateState(float _Time)
 
 void Banshee::IdleStart()
 {
-	BansheeRender->ChangeAnimation("BansheeIdle");
+	if (SpownValue == false)
+	{
+		BansheeRender->Off();
+
+	}
+	else
+	{
+		BansheeRender->ChangeAnimation("BansheeIdle");
+
+	}
+	SpownRender->ChangeAnimation("SpownAni");
 
 
 }
 
 void Banshee::IdleUpdate(float _Time)
 {
+	if (SpownValue == false && SpownRender->IsAnimationEnd())
+	{
+		BansheeRender->ChangeAnimation("BansheeIdle");
+		SpownRender->Off();
+		BansheeRender->On();
+		SpownValue = true;
+	}
 	if (Hp < 0)
 	{
 		ChangeState(BansheeState::DEAD);

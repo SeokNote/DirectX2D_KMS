@@ -30,9 +30,10 @@ void Banshee::Start()
 	BansheeRender->GetTransform()->SetLocalScale(Scale);
 	BansheeRender->CreateAnimation({ .AnimationName = "BansheeAttack", .SpriteName = "BansheeAttack", .Loop = false , .ScaleToTexture = false });
 	BansheeRender->CreateAnimation({ .AnimationName = "BansheeIdle", .SpriteName = "BansheeIdle", .Loop = true , .ScaleToTexture = false });
-	BansheeRender->ChangeAnimation("BansheeIdle");
-	ChangeState(BansheeState::IDLE);
 
+	SpownRender = CreateComponent<GameEngineSpriteRenderer>(1);
+	SpownRender->CreateAnimation({ .AnimationName = "SpownAni", .SpriteName = "SpownAni",.FrameInter=0.1f, .Loop = false , .ScaleToTexture = true });
+	
 
 	HpBaseRender = CreateComponent<GameEngineSpriteRenderer>(1);
 	HpBaseRender->SetTexture("MonsterHpBase.png");
@@ -61,6 +62,8 @@ void Banshee::Start()
 	BodyCol->GetTransform()->SetLocalScale(ColScale);
 	BodyCol->SetColType(ColType::AABBBOX2D);
 	SetDeg();
+	ChangeState(BansheeState::IDLE);
+
 }
 
 void Banshee::Update(float _DeltaTime)

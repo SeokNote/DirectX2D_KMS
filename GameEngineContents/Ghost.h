@@ -29,6 +29,8 @@ private:
 	void Flip();
 	std::shared_ptr<class GameEngineSpriteRenderer> GhostRender;
 	std::shared_ptr<class GameEngineSpriteRenderer> DeadRender;
+	std::shared_ptr<class GameEngineSpriteRenderer> SpownRender;
+
 	std::shared_ptr<class GameEngineCollision> TargetAreaCol;
 	std::shared_ptr<class GameEngineCollision> AttackAreaCol;
 	std::shared_ptr<class GameEngineCollision> BodyCol;
@@ -66,7 +68,7 @@ private:
 	float4 AreaScale = { 640.0f,640.f,0.0f };
 	float4 AttackAreaScale = { 320.0f,320.f,0.0f };
 	float4 MyPos = float4::Zero;
-
+	bool SpownValue = false;
 	int MaxHp = 50;
 	int Hp = 50;
 	int Damege = 3;

@@ -79,12 +79,29 @@ void Ghost::UpdateState(float _Time)
 
 void Ghost::IdleStart()
 {
-	GhostRender->ChangeAnimation("GhostIdle");
+	if (SpownValue == false)
+	{
+		GhostRender->Off();
+
+	}
+	else
+	{
+		GhostRender->ChangeAnimation("GhostIdle");
+
+	}
+	SpownRender->ChangeAnimation("SpownAni");
 
 }
 
 void Ghost::IdleUpdate(float _Time)
 {
+	if (SpownValue == false && SpownRender->IsAnimationEnd())
+	{
+		GhostRender->ChangeAnimation("GhostIdle");
+		SpownRender->Off();
+		GhostRender->On();
+		SpownValue = true;
+	}
 	if (StartMove == true)
 	{
 		ChangeState(GhostState::MOVE);

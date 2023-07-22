@@ -29,6 +29,8 @@ private:
 	void Flip();
 	std::shared_ptr<class GameEngineSpriteRenderer> SmallBatRender;
 	std::shared_ptr<class GameEngineSpriteRenderer> DeadRender;
+	std::shared_ptr<class GameEngineSpriteRenderer> SpownRender;
+
 	std::shared_ptr<class GameEngineCollision> TargetAreaCol;
 	std::shared_ptr<class GameEngineCollision> AttackAreaCol;
 	std::shared_ptr<class GameEngineCollision> BodyCol;
@@ -54,6 +56,7 @@ private:
 	//패턴
 	bool StartMove = false;
 	bool AttackMove = false;
+	bool SpownValue = false;
 	//몬스터 정보
 	float Invincibilitytime = 0.0f;
 	float4 Scale = { 128.0f,128.0f,0.0f };

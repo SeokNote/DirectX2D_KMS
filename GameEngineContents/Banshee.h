@@ -30,6 +30,7 @@ private:
 	void Flip();
 	std::shared_ptr<class GameEngineSpriteRenderer> BansheeRender;
 	std::shared_ptr<class GameEngineSpriteRenderer> DeadRender;
+	std::shared_ptr<class GameEngineSpriteRenderer> SpownRender;
 	std::shared_ptr<class GameEngineCollision> TargetAreaCol;
 	std::shared_ptr<class GameEngineCollision> AttackAreaCol;
 	std::shared_ptr<class GameEngineCollision> BodyCol;
@@ -77,6 +78,7 @@ private:
 	int Hp = 100;
 	float NextTime = 0.0f;
 	std::shared_ptr<class BatBullet> BulletPtr = nullptr;
+	bool SpownValue = false;
 	//공격변수
 	std::vector<float4> Degs;
 	int A_Count = 14;
