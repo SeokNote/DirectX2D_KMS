@@ -26,7 +26,6 @@ void BelialSpawner::Start()
 	BelialSpawnerRender->SetTexture("BossSpwner.png");
 //	BelialSpawnerRender->GetTransform()->SetLocalPosition(Door2Pos);
 	BelialSpawnerRender->GetTransform()->SetLocalScale(Scale);
-	BelialSpawnerRender->CreateAnimation({ .AnimationName = "BossDoor_1Idle", .SpriteName = "BossDoor_1",.Loop = false,.ScaleToTexture = false, });
 
 
 	BelialSpawnerCol = CreateComponent<GameEngineCollision>(ColOrder::Spawner);

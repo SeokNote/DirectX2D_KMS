@@ -137,7 +137,7 @@ bool GoldCoin::MiddleCheck(float4 _Pos)
 	case MyMap::Stage1_3:
 		PixelMapResultPos = Player::MainPlayer->PixelCalculation(BottomPos, { 7980.0f,0.0f,0.0f }, { 1280.f,640.0f });
 		Ptr = GameEngineTexture::Find("StageCol_3.png");
-		Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y + 80.0f));
+		Pixel = Ptr->GetPixel(static_cast<int>(PixelMapResultPos.x), static_cast<int>(PixelMapResultPos.y + 20.0f));
 		if (Pixel == MiddleGround)
 		{
 			return true;

@@ -3,6 +3,7 @@
 enum class SmallBatState
 {
 	IDLE,
+	IDLE2,
 	ATTACK,
 	MOVE,
 	DEAD,
@@ -45,6 +46,10 @@ private:
 	void IdleStart();
 	void IdleUpdate(float _Time);
 	void IdleEnd();
+
+	void Idle2Start();
+	void Idle2Update(float _Time);
+	void Idle2End();
 
 	void MoveStart();
 	void MoveUpdate(float _Time);

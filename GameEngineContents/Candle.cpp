@@ -29,7 +29,6 @@ void Candle::Start()
 	LightEffect = GetLevel()->GetMainCamera()->GetCamTarget()->CreateEffect<PointLightEffect>();
 	LightEffect->SetState(PointLightType::Circle);
 	LightEffect->LightBuffer.LightOption.x = 1.0f;
-	LightEffect->LightBuffer.LightOption.y = 150.0f;
 }
 
 void Candle::Update(float _Delta)
@@ -59,6 +58,7 @@ void Candle::Update(float _Delta)
 	else
 	{
 		LightEffect->LightBuffer.LightOption.x = 0.0f;
+		LightEffect->LightBuffer.LightOption.y = 0.0f;
 
 	}
 	

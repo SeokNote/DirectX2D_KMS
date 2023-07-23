@@ -487,6 +487,14 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="SpawnStage1_1.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="SpawnStage1_2.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Stage2_1.h">
       <SubType>
       </SubType>
@@ -968,6 +976,14 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="SpaceWeapon.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="SpawnStage1_1.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="SpawnStage1_2.cpp">
       <SubType>
       </SubType>
     </ClCompile>

@@ -25,6 +25,9 @@ void Banshee::ChangeState(BansheeState _State)
 	case BansheeState::IDLE:
 		IdleStart();
 		break;
+	case BansheeState::IDLE2:
+		Idle2Start();
+		break;
 	case BansheeState::DEAD:
 		DeadStart();
 		break;
@@ -42,6 +45,9 @@ void Banshee::ChangeState(BansheeState _State)
 	{
 	case BansheeState::IDLE:
 		IdleEnd();
+		break;
+	case BansheeState::IDLE2:
+		Idle2End();
 		break;
 	case BansheeState::DEAD:
 		DeadEnd();
@@ -65,6 +71,9 @@ void Banshee::UpdateState(float _Time)
 	case BansheeState::IDLE:
 		IdleUpdate(_Time);
 		break;
+	case BansheeState::IDLE2:
+		Idle2Update(_Time);
+		break;
 	case BansheeState::DEAD:
 		DeadUpdate(_Time);
 		break;
@@ -84,6 +93,7 @@ void Banshee::IdleStart()
 	if (SpownValue == false)
 	{
 		BansheeRender->Off();
+		SpownRender->ChangeAnimation("SpownAni");
 
 	}
 	else
@@ -91,7 +101,6 @@ void Banshee::IdleStart()
 		BansheeRender->ChangeAnimation("BansheeIdle");
 
 	}
-	SpownRender->ChangeAnimation("SpownAni");
 
 
 }
@@ -100,16 +109,31 @@ void Banshee::IdleUpdate(float _Time)
 {
 	if (SpownValue == false && SpownRender->IsAnimationEnd())
 	{
-		BansheeRender->ChangeAnimation("BansheeIdle");
 		SpownRender->Off();
 		BansheeRender->On();
 		SpownValue = true;
+		ChangeState(BansheeState::IDLE2);
 	}
+	
+}
+
+void Banshee::IdleEnd()
+{
+}
+
+void Banshee::Idle2Start()
+{
+	BansheeRender->ChangeAnimation("BansheeIdle");
+
+}
+
+void Banshee::Idle2Update(float _Time)
+{
 	if (Hp < 0)
 	{
 		ChangeState(BansheeState::DEAD);
 	}
-	if (AttackMove == true)
+	if (SpownValue = true && AttackMove == true)
 	{
 		AttackTime += _Time;
 		if (AttackTime > 3.0f)
@@ -120,7 +144,7 @@ void Banshee::IdleUpdate(float _Time)
 	}
 }
 
-void Banshee::IdleEnd()
+void Banshee::Idle2End()
 {
 }
 
@@ -162,7 +186,7 @@ void Banshee::AttackUpdate(float _Time)
 	NextTime += _Time;
 	if (NextTime > 3.f)
 	{
-		ChangeState(BansheeState::IDLE);
+		ChangeState(BansheeState::IDLE2);
 	}
 
 	if (Hp < 0)

@@ -23,6 +23,9 @@ void Ghost::ChangeState(GhostState _State)
 	case GhostState::IDLE:
 		IdleStart();
 		break;
+	case GhostState::IDLE2:
+		Idle2Start();
+		break;
 	case GhostState::MOVE:
 		MoveStart();
 		break;
@@ -40,6 +43,9 @@ void Ghost::ChangeState(GhostState _State)
 	{
 	case GhostState::IDLE:
 		IdleEnd();
+		break;
+	case GhostState::IDLE2:
+		Idle2End();
 		break;
 	case GhostState::MOVE:
 		MoveEnd();
@@ -63,6 +69,9 @@ void Ghost::UpdateState(float _Time)
 	case GhostState::IDLE:
 		IdleUpdate(_Time);
 		break;
+	case GhostState::IDLE2:
+		Idle2Update(_Time);
+		break;
 	case GhostState::MOVE:
 		MoveUpdate(_Time);
 		break;
@@ -82,6 +91,7 @@ void Ghost::IdleStart()
 	if (SpownValue == false)
 	{
 		GhostRender->Off();
+		SpownRender->ChangeAnimation("SpownAni");
 
 	}
 	else
@@ -89,7 +99,6 @@ void Ghost::IdleStart()
 		GhostRender->ChangeAnimation("GhostIdle");
 
 	}
-	SpownRender->ChangeAnimation("SpownAni");
 
 }
 
@@ -101,14 +110,34 @@ void Ghost::IdleUpdate(float _Time)
 		SpownRender->Off();
 		GhostRender->On();
 		SpownValue = true;
+		ChangeState(GhostState::IDLE2);
+
 	}
-	if (StartMove == true)
+	
+
+}
+
+void Ghost::IdleEnd()
+{
+
+}
+
+void Ghost::Idle2Start()
+{
+	GhostRender->ChangeAnimation("GhostIdle");
+
+}
+
+void Ghost::Idle2Update(float _Time)
+{
+
+	if (SpownValue = true && StartMove == true)
 	{
 		ChangeState(GhostState::MOVE);
 	}
 }
 
-void Ghost::IdleEnd()
+void Ghost::Idle2End()
 {
 }
 

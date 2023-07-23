@@ -24,6 +24,9 @@ void GiantBat::ChangeState(GiantBatState _State)
 	case GiantBatState::IDLE:
 		IdleStart();
 		break;
+	case GiantBatState::IDLE2:
+		Idle2Start();
+		break;
 	case GiantBatState::DEAD:
 		DeadStart();
 		break;
@@ -41,6 +44,9 @@ void GiantBat::ChangeState(GiantBatState _State)
 	{
 	case GiantBatState::IDLE:
 		IdleEnd();
+		break;
+	case GiantBatState::IDLE2:
+		Idle2End();
 		break;
 	case GiantBatState::DEAD:
 		DeadEnd();
@@ -64,6 +70,9 @@ void GiantBat::UpdateState(float _Time)
 	case GiantBatState::IDLE:
 		IdleUpdate(_Time);
 		break;
+	case GiantBatState::IDLE2:
+		Idle2Update(_Time);
+		break;
 	case GiantBatState::DEAD:
 		DeadUpdate(_Time);
 		break;
@@ -80,17 +89,50 @@ void GiantBat::UpdateState(float _Time)
 
 void GiantBat::IdleStart()
 {
-	GiantBatRender->ChangeAnimation("GiantBatIdle");
+	if (SpownValue == false)
+
+	{
+		GiantBatRender->Off();
+	}
+	else
+	{
+		GiantBatRender->ChangeAnimation("GiantBatIdle");
+
+	}
+	SpownRender->ChangeAnimation("SpownAni");
 
 }
 
 void GiantBat::IdleUpdate(float _Time)
 {
+	if (SpownValue == false && SpownRender->IsAnimationEnd())
+	{
+		SpownRender->Off();
+		GiantBatRender->On();
+		SpownValue = true;
+		ChangeState(GiantBatState::IDLE2);
+
+	}
+
+}
+
+void GiantBat::IdleEnd()
+{
+}
+
+void GiantBat::Idle2Start()
+{
+	GiantBatRender->ChangeAnimation("GiantBatIdle");
+
+}
+
+void GiantBat::Idle2Update(float _Time)
+{
 	if (Hp < 0)
 	{
 		ChangeState(GiantBatState::DEAD);
 	}
-	if (AttackMove == true)
+	if (SpownValue = true && AttackMove == true)
 	{
 		AttackTime += _Time;
 		if (AttackTime > 3.0f)
@@ -102,7 +144,7 @@ void GiantBat::IdleUpdate(float _Time)
 	}
 }
 
-void GiantBat::IdleEnd()
+void GiantBat::Idle2End()
 {
 }
 
@@ -147,7 +189,7 @@ void GiantBat::AttackUpdate(float _Time)
 {
 	if (true == GiantBatRender->IsAnimationEnd())
 	{
-		ChangeState(GiantBatState::IDLE);
+		ChangeState(GiantBatState::IDLE2);
 	}
 	if (Hp < 0)
 	{

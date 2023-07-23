@@ -33,7 +33,9 @@ void GiantBat::Start()
 	GiantBatRender->CreateAnimation({ .AnimationName = "GiantBatDead", .SpriteName = "GiantBatDead", .Loop = false , .ScaleToTexture = false });
 
 	GiantBatRender->ChangeAnimation("GiantBatIdle");
-	ChangeState(GiantBatState::IDLE);
+	SpownRender = CreateComponent<GameEngineSpriteRenderer>(1);
+	SpownRender->CreateAnimation({ .AnimationName = "SpownAni", .SpriteName = "SpownAni",.FrameInter = 0.1f, .Loop = false , .ScaleToTexture = true });
+
 
 
 	HpBaseRender = CreateComponent<GameEngineSpriteRenderer>(1);
@@ -63,6 +65,8 @@ void GiantBat::Start()
 	BodyCol->GetTransform()->SetLocalScale(ColScale);
 	BodyCol->SetColType(ColType::AABBBOX2D);
 	SetDeg();
+	ChangeState(GiantBatState::IDLE);
+
 }
 
 void GiantBat::Update(float _DeltaTime)

@@ -3,6 +3,7 @@
 enum class BansheeState
 {
 	IDLE,
+	IDLE2,
 	ATTACKREADY,
 	ATTACK,
 	DEAD,
@@ -45,6 +46,10 @@ private:
 	void IdleStart();
 	void IdleUpdate(float _Time);
 	void IdleEnd();
+
+	void Idle2Start();
+	void Idle2Update(float _Time);
+	void Idle2End();
 
 	void AttackReadyStart();
 	void AttackReadyUpdate(float _Time);

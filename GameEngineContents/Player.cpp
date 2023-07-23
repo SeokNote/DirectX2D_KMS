@@ -108,10 +108,6 @@ void Player::Update(float _DeltaTime)
 	UpdateState(_DeltaTime);
 	GetTransform()->AddLocalPosition(MoveDir * Data.GetMoveSpeed() * _DeltaTime);
 	Filp();
-	//if (nullptr != LightEffect)
-	//	float4 Result = GetTransform()->GetWorldPosition();
-	//	LightEffect->LightBuffer.LightPos = Result;
-	//}
 }
 
 void Player::Invincible(float _Delta)

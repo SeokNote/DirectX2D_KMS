@@ -28,6 +28,9 @@
 #include "BossDoor_2.h"
 #include "BelialSpawner.h"
 #include "TunakSpawner.h"
+#include "SpawnStage1_1.h"
+#include "SpawnStage1_2.h"
+
 #include "AbilityUI.h"
 #include "Stage_1.h"
 #include "Stage_2.h"
@@ -70,11 +73,10 @@
 #include "BelialHead.h"
 #include "Tunak.h"
 #include "GoblinBomb.h"
-#include "WhiteSkell.h"
-#include "Minotaurs.h"
 #include "Ghost.h"
+#include "WhiteSkell.h"
 #include "SmallBat.h"
-#include "SpaceWeapon.h"
+#include "Minotaurs.h"
 #include "GiantBat.h"
 #include "Banshee.h"
 
@@ -251,6 +253,8 @@ void PlayLevel::Start()
 	MonsterDir.Move("MainLevelAnimation");
 	MonsterDir.Move("Monster");
 	GameEngineSprite::LoadFolder(MonsterDir.GetPlusFileName("SmallBat").GetFullPath());
+	GameEngineSprite::LoadFolder(MonsterDir.GetPlusFileName("FireBat").GetFullPath());
+
 	MonsterDir.Move("WhiteSkell");
 	//화이트스켈
 	GameEngineSprite::LoadFolder(MonsterDir.GetPlusFileName("WhiteSkellAttack").GetFullPath());
@@ -435,58 +439,46 @@ void PlayLevel::Start()
 		std::shared_ptr<BossDoor_2> BossDoor3Ptr = CreateActor<BossDoor_2>(1);
 
 	}
-	CandlePtr_0 = CreateActor<Candle>(1);
-	CandlePtr_0->GetTransform()->SetLocalPosition({ 3409.f,-106.f,-200.0f });
-	CandlePtr_0->SetCandleColor(float4::Red);
-	CandlePtr_0->SetMyMap(MyMap::Stage1_1);
-	CandlePtr_0->Off();
-
-	CandlePtr_1 = CreateActor<Candle>(1);
-	CandlePtr_1->GetTransform()->SetLocalPosition({ 11730.f,-400.f,-200.0f });
-	CandlePtr_1->SetCandleColor(float4(0.65f,0.4f,0.917f));
-	CandlePtr_1->SetMyMap(MyMap::Stage1_Boss);
-	CandlePtr_1->Off();
-
-	CandlePtr_2 = CreateActor<Candle>(1);
-	CandlePtr_2->GetTransform()->SetLocalPosition({ 12432.f,-400.f,-200.0f });
-	CandlePtr_2->SetCandleColor(float4(0.65f, 0.4f, 0.917f));
-	CandlePtr_2->SetMyMap(MyMap::Stage1_Boss);
-	CandlePtr_2->Off();
-
-	S_CandlePtr0 = CreateActor<StandCandle>(1);
-	S_CandlePtr0->GetTransform()->SetLocalPosition({ 9925.f,-238.f,-790.0f });
-	S_CandlePtr0->SetStandCandleColor(float4(0.65f, 0.4f, 0.917f));
-	S_CandlePtr0->S_SetMyMap(MyMap::Stage1_4);
-	S_CandlePtr0->Off();
-
-	S_CandlePtr1 = CreateActor<StandCandle>(1);
-	S_CandlePtr1->GetTransform()->SetLocalPosition({ 10727.f,-238.f,-790.0f });
-	S_CandlePtr1->SetStandCandleColor(float4(0.65f, 0.4f, 0.917f));
-	S_CandlePtr1->S_SetMyMap(MyMap::Stage1_4);
-	S_CandlePtr1->Off();
+	//CandlePtr_0 = CreateActor<Candle>(1);
+	//CandlePtr_0->GetTransform()->SetLocalPosition({ 3409.f,-106.f,-200.0f });
+	//CandlePtr_0->SetCandleColor(float4::Red);
+	//CandlePtr_0->SetMyMap(MyMap::Stage1_1);
+	//CandlePtr_0->Off();
+	//
+	//CandlePtr_1 = CreateActor<Candle>(1);
+	//CandlePtr_1->GetTransform()->SetLocalPosition({ 11730.f,-400.f,-200.0f });
+	//CandlePtr_1->SetCandleColor(float4(0.65f,0.4f,0.917f));
+	//CandlePtr_1->SetMyMap(MyMap::Stage1_Boss);
+	//CandlePtr_1->Off();
+	//
+	//CandlePtr_2 = CreateActor<Candle>(1);
+	//CandlePtr_2->GetTransform()->SetLocalPosition({ 12432.f,-400.f,-200.0f });
+	//CandlePtr_2->SetCandleColor(float4(0.65f, 0.4f, 0.917f));
+	//CandlePtr_2->SetMyMap(MyMap::Stage1_Boss);
+	//CandlePtr_2->Off();
+	//
+	//S_CandlePtr0 = CreateActor<StandCandle>(1);
+	//S_CandlePtr0->GetTransform()->SetLocalPosition({ 9925.f,-238.f,-790.0f });
+	//S_CandlePtr0->SetStandCandleColor(float4(0.65f, 0.4f, 0.917f));
+	//S_CandlePtr0->S_SetMyMap(MyMap::Stage1_4);
+	//S_CandlePtr0->Off();
+	//
+	//S_CandlePtr1 = CreateActor<StandCandle>(1);
+	//S_CandlePtr1->GetTransform()->SetLocalPosition({ 10727.f,-238.f,-790.0f });
+	//S_CandlePtr1->SetStandCandleColor(float4(0.65f, 0.4f, 0.917f));
+	//S_CandlePtr1->S_SetMyMap(MyMap::Stage1_4);
+	//S_CandlePtr1->Off();
 	//보스 스포너
 	static std::shared_ptr<BelialSpawner> BelialSpawnerPtr = CreateActor<BelialSpawner>(1);
 	BelialSpawnerPtr->GetTransform()->SetLocalPosition({ 12050.0f,-350.0f,-760.0f });
 	static std::shared_ptr<TunakSpawner> TunakSpawnerPtr = CreateActor<TunakSpawner>(1);
 	TunakSpawnerPtr->GetTransform()->SetLocalPosition({ 14874.0f,-205.0f,-800.0f });
+	static std::shared_ptr<SpawnStage1_1> SpawnStage1_1Ptr = CreateActor<SpawnStage1_1>(1);
+	SpawnStage1_1Ptr->GetTransform()->SetLocalPosition({ 4353.0f,-468.0f,-800.0f });
 	//테스트
-	std::shared_ptr<WhiteSkell> WhiteSkellPtr = CreateActor<WhiteSkell>(1);
-	WhiteSkellPtr->GetTransform()->SetLocalPosition({ 4981.0f,-437.0f,-800.0f });
+	static std::shared_ptr<SpawnStage1_2> SpawnStage1_2Ptr = CreateActor<SpawnStage1_2>(1);
+	SpawnStage1_2Ptr->GetTransform()->SetLocalPosition({ 8011.0f,254.0f,-800.0f });
 	
-	std::shared_ptr<WhiteSkell> WhiteSkellPtr1 = CreateActor<WhiteSkell>(1);
-	WhiteSkellPtr1->GetTransform()->SetLocalPosition({ 5481.0f,-437.0f,-800.0f });
-	
-	std::shared_ptr<Banshee> GiantBatPtr = CreateActor<Banshee>(1);
-	GiantBatPtr->GetTransform()->SetLocalPosition({ 4981.0f,-148.0f,-790.0f });
-	
-	std::shared_ptr<Minotaurs> MinotaursPtr = CreateActor<Minotaurs>(1);
-	MinotaursPtr->GetTransform()->SetLocalPosition({ 5523.0f,258.0f,-800.0f });
-	
-	std::shared_ptr<SmallBat> SmallBatPtr = CreateActor<SmallBat>(1);
-	SmallBatPtr->GetTransform()->SetLocalPosition({ 4781.0f,-198.0f,-800.0f });
-	
-	std::shared_ptr<SmallBat> SmallBatPtr1 = CreateActor<SmallBat>(1);
-	SmallBatPtr1->GetTransform()->SetLocalPosition({ 5181.0f,-198.0f,-800.0f });
 
 
 
@@ -529,7 +521,7 @@ void PlayLevel::SetCandle()
 
 void PlayLevel::Update(float _DeltaTime)
 {
-	SetCandle();
+	//SetCandle();
 	static float Time = 0.0f;
 
 	Time += _DeltaTime;

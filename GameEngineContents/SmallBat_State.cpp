@@ -23,6 +23,9 @@ void SmallBat::ChangeState(SmallBatState _State)
 	case SmallBatState::IDLE:
 		IdleStart();
 		break;
+	case SmallBatState::IDLE2:
+		Idle2Start();
+		break;
 	case SmallBatState::MOVE:
 		MoveStart();
 		break;
@@ -37,6 +40,9 @@ void SmallBat::ChangeState(SmallBatState _State)
 	{
 	case SmallBatState::IDLE:
 		IdleEnd();
+		break;
+	case SmallBatState::IDLE2:
+		Idle2End();
 		break;
 	case SmallBatState::MOVE:
 		MoveEnd();
@@ -57,6 +63,9 @@ void SmallBat::UpdateState(float _Time)
 	case SmallBatState::IDLE:
 		IdleUpdate(_Time);
 		break;
+	case SmallBatState::IDLE2:
+		Idle2Update(_Time);
+		break;
 	case SmallBatState::MOVE:
 		MoveUpdate(_Time);
 		break;
@@ -73,14 +82,13 @@ void SmallBat::IdleStart()
 	if (SpownValue == false)
 	{
 		SmallBatRender->Off();
-
+		SpownRender->ChangeAnimation("SpownAni");
 	}
 	else
 	{
 		SmallBatRender->ChangeAnimation("SmallBat");
 
 	}
-	SpownRender->ChangeAnimation("SpownAni");
 
 }
 
@@ -88,18 +96,35 @@ void SmallBat::IdleUpdate(float _Time)
 {
 	if (SpownValue == false && SpownRender->IsAnimationEnd())
 	{
+		SpownValue = true;
 		SmallBatRender->On();
 		SmallBatRender->ChangeAnimation("SmallBat");
 		SpownRender->Off();
-		SpownValue = true;
+		ChangeState(SmallBatState::IDLE2);
+
 	}
-	if (StartMove == true)
+
+}
+
+void SmallBat::IdleEnd()
+{
+}
+
+void SmallBat::Idle2Start()
+{
+	SmallBatRender->ChangeAnimation("SmallBat");
+
+}
+
+void SmallBat::Idle2Update(float _Time)
+{
+	if (SpownValue = true && StartMove == true)
 	{
 		ChangeState(SmallBatState::MOVE);
 	}
 }
 
-void SmallBat::IdleEnd()
+void SmallBat::Idle2End()
 {
 }
 

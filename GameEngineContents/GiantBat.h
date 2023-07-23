@@ -3,6 +3,7 @@
 enum class GiantBatState
 {
 	IDLE,
+	IDLE2,
 	ATTACKREADY,
 	ATTACK,
 	DEAD,
@@ -30,6 +31,7 @@ private:
 	void Flip();
 	std::shared_ptr<class GameEngineSpriteRenderer> GiantBatRender;
 	std::shared_ptr<class GameEngineSpriteRenderer> DeadRender;
+	std::shared_ptr<class GameEngineSpriteRenderer> SpownRender;
 	std::shared_ptr<class GameEngineCollision> TargetAreaCol;
 	std::shared_ptr<class GameEngineCollision> AttackAreaCol;
 	std::shared_ptr<class GameEngineCollision> BodyCol;
@@ -44,6 +46,10 @@ private:
 	void IdleStart();
 	void IdleUpdate(float _Time);
 	void IdleEnd();
+
+	void Idle2Start();
+	void Idle2Update(float _Time);
+	void Idle2End();
 
 	void AttackReadyStart();
 	void AttackReadyUpdate(float _Time);
@@ -75,7 +81,7 @@ private:
 	bool GiantBatBlink = false;
 	int MaxHp = 100;
 	int Hp = 100;
-	
+	bool SpownValue = false;
 	std::shared_ptr<class BatBullet> BulletPtr = nullptr;
 	//공격변수
 	std::vector<float4> Degs;
