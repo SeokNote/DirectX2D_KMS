@@ -136,7 +136,10 @@ void PlayLevel::Start()
 	GameEngineSprite::LoadFolder(ObjectDir.GetPlusFileName("StandCandleIdle").GetFullPath());
 	GameEngineSprite::LoadFolder(ObjectDir.GetPlusFileName("SpownAni").GetFullPath());
 	GameEngineSprite::LoadFolder(ObjectDir.GetPlusFileName("CosmosSkill").GetFullPath());
-
+	ObjectDir.Move("SteleAni");
+	GameEngineSprite::LoadFolder(ObjectDir.GetPlusFileName("SteleClose").GetFullPath());
+	GameEngineSprite::LoadFolder(ObjectDir.GetPlusFileName("SteleIdle").GetFullPath());
+	GameEngineSprite::LoadFolder(ObjectDir.GetPlusFileName("SteleOpen").GetFullPath());
 	//무기 애니메이션
 
 	GameEngineDirectory WeaponDir;
@@ -324,10 +327,10 @@ void PlayLevel::Start()
 	std::shared_ptr<UICountBase> UICountBasePtr = CreateActor<UICountBase>(1);
 	//	Player
 	static std::shared_ptr<Player> NewPlayer = CreateActor<Player>(1);
-	//NewPlayer->GetTransform()->SetLocalPosition({ 4120.0f,-468.0f,-801.0f });
+	NewPlayer->GetTransform()->SetLocalPosition({ 4120.0f,-468.0f,-801.0f });
 
 	//NewPlayer->GetTransform()->SetLocalPosition({ 14504.0f,-194.0f,-801.0f });
-	NewPlayer->GetTransform()->SetLocalPosition({ -2390.0f,-500.0f,-801.0f });
+	//NewPlayer->GetTransform()->SetLocalPosition({ -2390.0f,-500.0f,-801.0f });
 	//NewPlayer->GetTransform()->SetLocalPosition({ 9925.0f,-254.0f,-801.0f });
 
 	{	//Town
@@ -443,8 +446,20 @@ void PlayLevel::Start()
 	}
 	//Portal
 	std::shared_ptr<Potal> PotalPtr0 = CreateActor<Potal>(1);
+	PotalPtr0->GetPotalRender()->GetTransform()->SetLocalPosition({ -20.f,30.0f,-1.0f });
+	PotalPtr0->GetPotalRender()->GetTransform()->SetLocalRotation({ 0.0f,0.0f,-90.0f });
 	PotalPtr0->GetTransform()->SetLocalPosition({ 3916.0f,-167.0f,-900.0f });
-
+	PotalPtr0->SetPTCValue(float4::Left, float4(20.0f, 120.0f, 0.0f), 10.0f,0.0f);
+	std::shared_ptr<Potal> PotalPtr1 = CreateActor<Potal>(1);
+	PotalPtr1->GetTransform()->SetLocalPosition({ 4063.0f,-468.0f,-900.0f });
+	PotalPtr1->GetPotalRender()->GetTransform()->SetLocalPosition({ 50.0f,56.0f,0.0f });
+	PotalPtr1->GetPotalRender()->GetTransform()->SetLocalRotation({ 0.0f,0.0f,-270.0f });
+	PotalPtr1->SetPTCValue(float4::Right, float4(20.0f, 110.0f, 0.0f), 10.0f,60.0f);
+	std::shared_ptr<Potal> PotalPtr2 = CreateActor<Potal>(1);
+	PotalPtr2->GetTransform()->SetLocalPosition({ 6372.0f,-558.0f,-900.0f });
+	PotalPtr2->GetPotalRender()->GetTransform()->SetLocalPosition({ -50.0f,0.0f,0.0f });
+	PotalPtr2->GetPotalRender()->GetTransform()->SetLocalRotation({ 0.0f,0.0f,-180.0f });
+	PotalPtr2->SetPTCValue(float4::Up, float4(110.0f, 20.0f, 0.0f), -30.0f, -30.0f);
 	//CandlePtr_0 = CreateActor<Candle>(1);
 	//CandlePtr_0->GetTransform()->SetLocalPosition({ 3409.f,-106.f,-200.0f });
 	//CandlePtr_0->SetCandleColor(float4::Red);
@@ -479,11 +494,11 @@ void PlayLevel::Start()
 	BelialSpawnerPtr->GetTransform()->SetLocalPosition({ 12050.0f,-350.0f,-760.0f });
 	static std::shared_ptr<TunakSpawner> TunakSpawnerPtr = CreateActor<TunakSpawner>(1);
 	TunakSpawnerPtr->GetTransform()->SetLocalPosition({ 14874.0f,-205.0f,-800.0f });
-	static std::shared_ptr<SpawnStage1_1> SpawnStage1_1Ptr = CreateActor<SpawnStage1_1>(1);
-	SpawnStage1_1Ptr->GetTransform()->SetLocalPosition({ 4353.0f,-468.0f,-800.0f });
-	//테스트
-	static std::shared_ptr<SpawnStage1_2> SpawnStage1_2Ptr = CreateActor<SpawnStage1_2>(1);
-	SpawnStage1_2Ptr->GetTransform()->SetLocalPosition({ 8011.0f,254.0f,-800.0f });
+	//static std::shared_ptr<SpawnStage1_1> SpawnStage1_1Ptr = CreateActor<SpawnStage1_1>(1);
+	//SpawnStage1_1Ptr->GetTransform()->SetLocalPosition({ 4353.0f,-468.0f,-800.0f });
+	////테스트
+	//static std::shared_ptr<SpawnStage1_2> SpawnStage1_2Ptr = CreateActor<SpawnStage1_2>(1);
+	//SpawnStage1_2Ptr->GetTransform()->SetLocalPosition({ 8011.0f,254.0f,-800.0f });
 	
 
 

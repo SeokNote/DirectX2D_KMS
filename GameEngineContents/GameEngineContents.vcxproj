@@ -946,6 +946,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Potal_State.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="PrecompileHeader.cpp">
       <SubType>
       </SubType>

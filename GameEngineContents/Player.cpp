@@ -103,7 +103,10 @@ void Player::Update(float _DeltaTime)
 	{
 		Data.PlusMonsterIndex(1);
 	}
-
+	if (GameEngineInput::IsDown("DeBugKey"))
+	{
+		Data.SubMonsterIndex(1);
+	}
 	SetPlayerCollision(_DeltaTime);
 	DashPlusCount(_DeltaTime);
 	CurMap = SetMyMap(CurMap);

@@ -773,6 +773,9 @@
     <ClCompile Include="Potal.cpp">
       <Filter>Object\UI\Portal\Portal</Filter>
     </ClCompile>
+    <ClCompile Include="Potal_State.cpp">
+      <Filter>Object\UI\Portal\Portal</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Levels">

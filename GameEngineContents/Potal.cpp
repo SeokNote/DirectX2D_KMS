@@ -21,11 +21,21 @@ Potal::~Potal()
 
 void Potal::Start()
 {
+	SteleRender = CreateComponent<GameEngineSpriteRenderer>(1);
+	SteleRender->GetTransform()->SetLocalScale(Scale);
+	SteleRender->SetTexture("SteleOpen00.png");
+	
+	SteleRender->CreateAnimation({ .AnimationName = "SteleClose", .SpriteName = "SteleClose", .Loop = false , .ScaleToTexture = false });
+	SteleRender->CreateAnimation({ .AnimationName = "SteleOpen", .SpriteName = "SteleOpen", .Loop = false , .ScaleToTexture = false });
+	SteleRender->CreateAnimation({ .AnimationName = "SteleIdle", .SpriteName = "SteleIdle", .Loop = true , .ScaleToTexture = false });
+	ChangeState(PotalState::IDLE);
 
 }
 
 void Potal::Update(float _Delta)
 {
+	float4 asd = SteleRender->GetTransform()->GetWorldPosition();
+	UpdateState(_Delta);
 	if (Player::MainPlayer->GetData().GetMonsterIndex() == 0)
 	{
 		PTCSetting(_Delta);
@@ -35,31 +45,32 @@ void Potal::Update(float _Delta)
 
 void Potal::PTCSetting(float _Delta)
 {
+	//외부에서 범위와 dir을 입력해준다,.
 	float4 MyPos = GetTransform()->GetLocalPosition();
 	CreateTime0 += _Delta;
 	CreateTime1 += _Delta;
 	CreateTime2 += _Delta;
 	if (CreateTime0 > 0.5f)
 	{
-		PortalParticle::CreatePTC(GetLevel(), { MyPos.x + 10.0f,MyPos.y,MyPos.z }, { 20.0f,120.0f,0.0f }, { -1.0f,0.0f,0.0f });
-		PortalParticle::CreatePTC(GetLevel(), { MyPos.x + 10.0f,MyPos.y,MyPos.z }, { 20.0f,120.0f,0.0f }, { -1.0f,0.0f,0.0f });
-		PortalParticle::CreatePTC(GetLevel(), { MyPos.x + 10.0f,MyPos.y,MyPos.z }, { 20.0f,120.0f,0.0f }, { -1.0f,0.0f,0.0f });
-		PortalParticle::CreatePTC(GetLevel(), { MyPos.x + 10.0f,MyPos.y,MyPos.z }, { 20.0f,120.0f,0.0f }, { -1.0f,0.0f,0.0f });
-		CreateTime0 = 0.0f;
-	}
-	if (CreateTime1 > 1.0f)
-	{
-		CreateTime1 = 0.0f;
-		PortalParticle::CreatePTC(GetLevel(), { MyPos.x + 10.0f,MyPos.y,MyPos.z }, { 20.0f,120.0f,0.0f }, { -1.0f,0.0f,0.0f });
-		PortalParticle::CreatePTC(GetLevel(), { MyPos.x + 10.0f,MyPos.y,MyPos.z }, { 20.0f,120.0f,0.0f }, { -1.0f,0.0f,0.0f });
-		PortalParticle::CreatePTC(GetLevel(), { MyPos.x + 10.0f,MyPos.y,MyPos.z }, { 20.0f,120.0f,0.0f }, { -1.0f,0.0f,0.0f });
-
-	}
-	if (CreateTime2 > 0.3f)
-	{
-		CreateTime2 = 0.0f;
-		PortalParticle::CreatePTC(GetLevel(), { MyPos.x + 10.0f,MyPos.y,MyPos.z }, { 20.0f,120.0f,0.0f }, { -1.0f,0.0f,0.0f });
-		PortalParticle::CreatePTC(GetLevel(), { MyPos.x + 10.0f,MyPos.y,MyPos.z }, { 20.0f,120.0f,0.0f }, { -1.0f,0.0f,0.0f });
+		PortalParticle::CreatePTC(GetLevel(), { MyPos.x + PivotX,MyPos.y+ PivotY,MyPos.z }, Pos,Dir);
+		PortalParticle::CreatePTC(GetLevel(), { MyPos.x + PivotX,MyPos.y+ PivotY,MyPos.z }, Pos,Dir);
+		PortalParticle::CreatePTC(GetLevel(), { MyPos.x + PivotX,MyPos.y+ PivotY,MyPos.z }, Pos,Dir);
+		PortalParticle::CreatePTC(GetLevel(), { MyPos.x + PivotX,MyPos.y+ PivotY,MyPos.z }, Pos,Dir);
+		CreateTime0 = 0.0f;							
+	}												
+	if (CreateTime1 > 1.0f)							
+	{												
+		CreateTime1 = 0.0f;							
+		PortalParticle::CreatePTC(GetLevel(), { MyPos.x + PivotX,MyPos.y + PivotY,MyPos.z }, Pos, Dir);
+		PortalParticle::CreatePTC(GetLevel(), { MyPos.x + PivotX,MyPos.y + PivotY,MyPos.z },Pos, Dir);
+		PortalParticle::CreatePTC(GetLevel(), { MyPos.x + PivotX,MyPos.y + PivotY,MyPos.z },Pos, Dir);
+														
+	}													
+	if (CreateTime2 > 0.3f)								
+	{													
+		CreateTime2 = 0.0f;								
+		PortalParticle::CreatePTC(GetLevel(), { MyPos.x + PivotX,MyPos.y + PivotY,MyPos.z }, Pos, Dir);
+		PortalParticle::CreatePTC(GetLevel(), { MyPos.x + PivotX,MyPos.y + PivotY,MyPos.z }, Pos, Dir);
 	}
 }
 
