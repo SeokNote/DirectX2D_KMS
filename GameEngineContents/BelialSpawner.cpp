@@ -2,7 +2,7 @@
 #include "ContentsEnums.h"
 #include "BelialHead.h"
 #include "BelialSpawner.h"
-
+#include "Player.h"
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEnginePlatform/GameEngineWindow.h>
 #include <GameEngineCore/GameEngineLevel.h>
@@ -40,6 +40,8 @@ void BelialSpawner::Update(float _DeltaTime)
 	{
 		static std::shared_ptr<BelialHead> BelialHeadPtr = GetLevel()->CreateActor<BelialHead>(1);
 		BelialHeadPtr->GetTransform()->SetLocalPosition({ 12050.0f,-150.0f,-760.0f });
+		Player::MainPlayer->GetData().PlusMonsterIndex(1);
+
 		BelialCreat = true;
 	}
 }

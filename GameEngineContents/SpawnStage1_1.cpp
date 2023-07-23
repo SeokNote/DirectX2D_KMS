@@ -1,7 +1,7 @@
 #include "PrecompileHeader.h"
 #include "ContentsEnums.h"
 #include "SpawnStage1_1.h"
-
+#include "Player.h"
 #include "WhiteSkell.h"
 #include "SmallBat.h"
 #include "Minotaurs.h"
@@ -63,7 +63,12 @@ void SpawnStage1_1::Update(float _DeltaTime)
 		std::shared_ptr<SmallBat> SmallBatPtr2 = GetLevel()->CreateActor<SmallBat>(1);
 		SmallBatPtr2->GetTransform()->SetLocalPosition({ 4340.0f,417.0f,-800.0f });
 
+		std::shared_ptr<SmallBat> SmallBatPtr3 = GetLevel()->CreateActor<SmallBat>(1);
+		SmallBatPtr3->GetTransform()->SetLocalPosition({ 5323.0f,358.0f,-800.0f });
 
+		std::shared_ptr<SmallBat> SmallBatPtr4 = GetLevel()->CreateActor<SmallBat>(1);
+		SmallBatPtr4->GetTransform()->SetLocalPosition({ 5723.0f,358.0f,-800.0f });
+		Player::MainPlayer->GetData().PlusMonsterIndex(9);
 
 		BelialCreat = true;
 	}

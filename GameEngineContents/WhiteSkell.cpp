@@ -182,6 +182,7 @@ bool WhiteSkell::GroundCheck(float4 _Pos,float _Pivot)
 	{
 		return false;
 	}
+
 }
 
 void WhiteSkell::FlipCheck()

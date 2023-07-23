@@ -327,10 +327,10 @@ void PlayLevel::Start()
 	std::shared_ptr<UICountBase> UICountBasePtr = CreateActor<UICountBase>(1);
 	//	Player
 	static std::shared_ptr<Player> NewPlayer = CreateActor<Player>(1);
-	NewPlayer->GetTransform()->SetLocalPosition({ 4120.0f,-468.0f,-801.0f });
+	//NewPlayer->GetTransform()->SetLocalPosition({ 11438.0f, -480.0f, -801.0f });
 
 	//NewPlayer->GetTransform()->SetLocalPosition({ 14504.0f,-194.0f,-801.0f });
-	//NewPlayer->GetTransform()->SetLocalPosition({ -2390.0f,-500.0f,-801.0f });
+	NewPlayer->GetTransform()->SetLocalPosition({ -2390.0f,-500.0f,-801.0f });
 	//NewPlayer->GetTransform()->SetLocalPosition({ 9925.0f,-254.0f,-801.0f });
 
 	{	//Town
@@ -457,9 +457,53 @@ void PlayLevel::Start()
 	PotalPtr1->SetPTCValue(float4::Right, float4(20.0f, 110.0f, 0.0f), 10.0f,60.0f);
 	std::shared_ptr<Potal> PotalPtr2 = CreateActor<Potal>(1);
 	PotalPtr2->GetTransform()->SetLocalPosition({ 6372.0f,-558.0f,-900.0f });
-	PotalPtr2->GetPotalRender()->GetTransform()->SetLocalPosition({ -50.0f,0.0f,0.0f });
+	PotalPtr2->GetPotalRender()->GetTransform()->SetLocalPosition({ 30.0f,0.0f,0.0f });
 	PotalPtr2->GetPotalRender()->GetTransform()->SetLocalRotation({ 0.0f,0.0f,-180.0f });
-	PotalPtr2->SetPTCValue(float4::Up, float4(110.0f, 20.0f, 0.0f), -30.0f, -30.0f);
+	PotalPtr2->SetPTCValue(float4::Up, float4(90.0f, 20.0f, 0.0f), -20.0f, -30.0f);
+	std::shared_ptr<Potal> PotalPtr3 = CreateActor<Potal>(1);
+	PotalPtr3->GetTransform()->SetLocalPosition({ 8024.0f,458.0f,-900.0f });
+	PotalPtr3->GetPotalRender()->GetTransform()->SetLocalPosition({ -15.0f,20.0f,0.0f });
+	PotalPtr3->GetPotalRender()->GetTransform()->SetLocalRotation({ 0.0f,0.0f,-180.0f });
+	PotalPtr3->SetPTCValue(float4::Down, float4(90.0f, 20.0f, 0.0f), -20.0f, 70.0f);
+	std::shared_ptr<Potal> PotalPtr4 = CreateActor<Potal>(1);
+	PotalPtr4->GetTransform()->SetLocalPosition({ 6872.0f,-481.0f,-900.0f });
+	PotalPtr4->GetPotalRender()->GetTransform()->SetLocalPosition({ -10.0f,60.0f,0.0f });
+	PotalPtr4->GetPotalRender()->GetTransform()->SetLocalRotation({ 0.0f,0.0f,-270.0f });
+	PotalPtr4->SetPTCValue(float4::Right, float4(20.0f, 90.0f, 0.0f), -20.0f, 70.0f);
+	std::shared_ptr<Potal> PotalPtr5 = CreateActor<Potal>(1);
+	PotalPtr5->GetTransform()->SetLocalPosition({ 11225.0f,-254.0f,-900.0f });
+	PotalPtr5->GetPotalRender()->GetTransform()->SetLocalPosition({ 10.0f,30.0f,0.0f });
+	PotalPtr5->GetPotalRender()->GetTransform()->SetLocalRotation({ 0.0f,0.0f,-90.0f });
+	PotalPtr5->SetPTCValue(float4::Left, float4(20.0f, 70.0f, 0.0f), 20.0f, 70.0f);
+	std::shared_ptr<Potal> PotalPtr6 = CreateActor<Potal>(1);
+	PotalPtr6->GetTransform()->SetLocalPosition({ 11225.0f,-254.0f,-900.0f });
+	PotalPtr6->GetPotalRender()->GetTransform()->SetLocalPosition({ 10.0f,30.0f,0.0f });
+	PotalPtr6->GetPotalRender()->GetTransform()->SetLocalRotation({ 0.0f,0.0f,-90.0f });
+	PotalPtr6->SetPTCValue(float4::Left, float4(20.0f, 70.0f, 0.0f), 20.0f, 70.0f);
+	std::shared_ptr<Potal> PotalPtr7 = CreateActor<Potal>(1);
+	PotalPtr7->GetTransform()->SetLocalPosition({ 11438.0f, -480.0f,-900.0f });
+	PotalPtr7->GetPotalRender()->GetTransform()->SetLocalPosition({ 35.0f,60.0f,0.0f });
+	PotalPtr7->GetPotalRender()->GetTransform()->SetLocalRotation({ 0.0f,0.0f,-270.0f });
+	PotalPtr7->SetPTCValue(float4::Right, float4(20.0f, 110.0f, 0.0f), 0.0f, 50.0f);
+	std::shared_ptr<Potal> PotalPtr8 = CreateActor<Potal>(1);
+	PotalPtr8->GetTransform()->SetLocalPosition({ 12763.0f, -480.0f,-900.0f });
+	PotalPtr8->GetPotalRender()->GetTransform()->SetLocalPosition({ -55.0f,60.0f,0.0f });
+	PotalPtr8->GetPotalRender()->GetTransform()->SetLocalRotation({ 0.0f,0.0f,-90.0f });
+	PotalPtr8->SetPTCValue(float4::Left, float4(20.0f, 110.0f, 0.0f), 0.0f, 50.0f);
+	std::shared_ptr<Potal> PotalPtr9 = CreateActor<Potal>(1);
+	PotalPtr9->GetTransform()->SetLocalPosition({ 14143.0f, -132.0f,-900.0f });
+	PotalPtr9->GetPotalRender()->Off();
+	PotalPtr9->SetPTCValue(float4::Left, float4(20.0f, 110.0f, 0.0f), 0.0f, 50.0f);
+	std::shared_ptr<Potal> PotalPtr10 = CreateActor<Potal>(1);
+	PotalPtr10->GetTransform()->SetLocalPosition({ 14304.0f, -194.0f,-900.0f });
+	PotalPtr10->GetPotalRender()->GetTransform()->SetLocalPosition({ -15.0f,60.0f,0.0f });
+	PotalPtr10->GetPotalRender()->GetTransform()->SetLocalRotation({ 0.0f,0.0f,-270.0f });
+	PotalPtr10->SetPTCValue(float4::Right, float4(20.0f, 110.0f, 0.0f), 0.0f, 50.0f);
+	std::shared_ptr<Potal> PotalPtr11 = CreateActor<Potal>(1);
+	PotalPtr11->GetTransform()->SetLocalPosition({ 15844.0f, -194.0f,-900.0f });
+	PotalPtr11->GetPotalRender()->GetTransform()->SetLocalPosition({ -5.0f,60.0f,0.0f });
+	PotalPtr11->GetPotalRender()->GetTransform()->SetLocalRotation({ 0.0f,0.0f,-90.0f });
+	PotalPtr11->SetPTCValue(float4::Left, float4(20.0f, 110.0f, 0.0f), 0.0f, 50.0f);
 	//CandlePtr_0 = CreateActor<Candle>(1);
 	//CandlePtr_0->GetTransform()->SetLocalPosition({ 3409.f,-106.f,-200.0f });
 	//CandlePtr_0->SetCandleColor(float4::Red);
@@ -494,11 +538,11 @@ void PlayLevel::Start()
 	BelialSpawnerPtr->GetTransform()->SetLocalPosition({ 12050.0f,-350.0f,-760.0f });
 	static std::shared_ptr<TunakSpawner> TunakSpawnerPtr = CreateActor<TunakSpawner>(1);
 	TunakSpawnerPtr->GetTransform()->SetLocalPosition({ 14874.0f,-205.0f,-800.0f });
-	//static std::shared_ptr<SpawnStage1_1> SpawnStage1_1Ptr = CreateActor<SpawnStage1_1>(1);
-	//SpawnStage1_1Ptr->GetTransform()->SetLocalPosition({ 4353.0f,-468.0f,-800.0f });
-	////테스트
-	//static std::shared_ptr<SpawnStage1_2> SpawnStage1_2Ptr = CreateActor<SpawnStage1_2>(1);
-	//SpawnStage1_2Ptr->GetTransform()->SetLocalPosition({ 8011.0f,254.0f,-800.0f });
+	static std::shared_ptr<SpawnStage1_1> SpawnStage1_1Ptr = CreateActor<SpawnStage1_1>(1);
+	SpawnStage1_1Ptr->GetTransform()->SetLocalPosition({ 4353.0f,-468.0f,-800.0f });
+	//테스트
+	static std::shared_ptr<SpawnStage1_2> SpawnStage1_2Ptr = CreateActor<SpawnStage1_2>(1);
+	SpawnStage1_2Ptr->GetTransform()->SetLocalPosition({ 8011.0f,254.0f,-800.0f });
 	
 
 

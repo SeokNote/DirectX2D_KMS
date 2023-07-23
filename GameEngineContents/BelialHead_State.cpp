@@ -196,6 +196,8 @@ void BelialHead::DeadStart()
 	DeadBGRender->On();
 	IsDeath = true;
 	HandleStop = true;
+	Player::MainPlayer->GetData().SubMonsterIndex(1);
+
 }
 void BelialHead::DeadUpdate(float _Time)
 {

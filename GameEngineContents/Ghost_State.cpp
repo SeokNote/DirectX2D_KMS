@@ -198,6 +198,7 @@ void Ghost::DeadStart()
 	HpRender->Death();
 	HpBaseRender->Death();
 	BodyCol->Off();
+	Player::MainPlayer->GetData().SubMonsterIndex(1);
 }
 
 void Ghost::DeadUpdate(float _Time)

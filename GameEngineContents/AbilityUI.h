@@ -101,6 +101,7 @@ private:
 
 	std::shared_ptr<class ContentButton> ResetButton;
 	bool IsValue = false;
+	bool ResetValue = false;
 	int Anger = 0;
 	int Fast = 0;
 	int Patience = 0;

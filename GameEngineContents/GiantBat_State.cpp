@@ -206,6 +206,7 @@ void GiantBat::DeadStart()
 	GiantBatRender->ChangeAnimation("GiantBatDead");
 	HpRender->Death();
 	HpBaseRender->Death();
+	Player::MainPlayer->GetData().SubMonsterIndex(1);
 }
 
 void GiantBat::DeadUpdate(float _Time)

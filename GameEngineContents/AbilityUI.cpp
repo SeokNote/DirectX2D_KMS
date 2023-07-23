@@ -21,14 +21,20 @@ void AbilityUI::PlusStat()
 {
 	if (IsValue == false)
 	{
-		Player::MainPlayer->GetData().SetAttackSpeed(Player::MainPlayer->GetData().GetAttackSpeed() + A_AttackSpeed);
-		Player::MainPlayer->GetData().SetMoveSpeed(Player::MainPlayer->GetData().GetMoveSpeed() + A_Speed);
-		Player::MainPlayer->GetData().SetDefense(Player::MainPlayer->GetData().GetDefense() + A_Aamor);
-		Player::MainPlayer->GetData().SetCriticalChance(Player::MainPlayer->GetData().GetCriticalChance() + A_Cri);
-		Player::MainPlayer->GetData().SetEvasion(Player::MainPlayer->GetData().GetEvasion() + static_cast<int>(A_Evasion));
-		Player::MainPlayer->GetData().SetPlayerMaxHP(Player::MainPlayer->GetData().GetPlayerMaxHP() + A_MaxHP);
+
 		IsValue = true;
 	}
+	else if (ResetValue == true)
+	{
+		Player::MainPlayer->GetData().SetAttackSpeed(Player::MainPlayer->GetData().GetAttackSpeed() - A_AttackSpeed);
+		Player::MainPlayer->GetData().SetMoveSpeed(Player::MainPlayer->GetData().GetMoveSpeed() - A_Speed);
+		Player::MainPlayer->GetData().SetDefense(Player::MainPlayer->GetData().GetDefense() - A_Aamor);
+		Player::MainPlayer->GetData().SetCriticalChance(Player::MainPlayer->GetData().GetCriticalChance() - A_Cri);
+		Player::MainPlayer->GetData().SetEvasion(Player::MainPlayer->GetData().GetEvasion() - static_cast<int>(A_Evasion));
+		Player::MainPlayer->GetData().SetPlayerMaxHP(Player::MainPlayer->GetData().GetPlayerMaxHP() - A_MaxHP);
+		ResetValue = false;
+	}
+
 
 
 }
@@ -128,6 +134,7 @@ void AbilityUI::SetCollision()
 		Button_RedRender->On();
 		if (Point != 0 && GameEngineInput::IsUp("ClickMouse"))
 		{
+
 			Point--;
 			Anger++;
 			//어빌리티 스텟 올라가는 함수
@@ -142,6 +149,9 @@ void AbilityUI::SetCollision()
 		Button_GreenRender->On();
 		if (Point != 0 && GameEngineInput::IsUp("ClickMouse")) {
 			Fast++;
+			Player::MainPlayer->GetData().SetAttackSpeed(Player::MainPlayer->GetData().GetAttackSpeed() + A_AttackSpeed);
+			Player::MainPlayer->GetData().SetMoveSpeed(Player::MainPlayer->GetData().GetMoveSpeed() + A_Speed);
+
 			Point--;
 			//어빌리티 스텟 올라가는 함수
 
@@ -156,6 +166,7 @@ void AbilityUI::SetCollision()
 		Button_WhiteRender->On();
 		if (Point != 0 && GameEngineInput::IsUp("ClickMouse")) {
 			Patience++;
+			Player::MainPlayer->GetData().SetDefense(Player::MainPlayer->GetData().GetDefense() + A_Aamor);
 			Point--;
 			//어빌리티 스텟 올라가는 함수
 
@@ -170,6 +181,8 @@ void AbilityUI::SetCollision()
 		Button_BlueRender->On();
 		if (Point != 0 && GameEngineInput::IsUp("ClickMouse")) {
 			Mystery++;
+			Player::MainPlayer->GetData().SetCriticalChance(Player::MainPlayer->GetData().GetCriticalChance() + A_Cri);
+			Player::MainPlayer->GetData().SetEvasion(Player::MainPlayer->GetData().GetEvasion() + static_cast<int>(A_Evasion));
 			Point--;
 			//어빌리티 스텟 올라가는 함수
 
@@ -184,6 +197,7 @@ void AbilityUI::SetCollision()
 		Button_YellowRender->On();
 		if (Point != 0 && GameEngineInput::IsUp("ClickMouse")) {
 			Avarice++;
+			Player::MainPlayer->GetData().SetPlayerMaxHP(Player::MainPlayer->GetData().GetPlayerMaxHP() + 2);
 			Point--;
 			//어빌리티 스텟 올라가는 함수
 
@@ -195,7 +209,7 @@ void AbilityUI::SetCollision()
 	}
 	if (GameEngineInput::IsUp("ESC"))
 	{
-		PlusStat();
+	//	PlusStat();
 		Off();
 	}
 }
@@ -524,13 +538,14 @@ void AbilityUI::ButtonCreate()
 	ResetButton->GetRender_Select()->GetTransform()->SetWorldScale({ 180.0f,68.0f,0.0f });
 	ResetButton->SetEvent([this]()
 		{
-			IsValue = false;
 			Player::MainPlayer->GetData().SetAttackSpeed(Player::MainPlayer->GetData().GetAttackSpeed() - A_AttackSpeed);
 			Player::MainPlayer->GetData().SetMoveSpeed(Player::MainPlayer->GetData().GetMoveSpeed() - A_Speed);
 			Player::MainPlayer->GetData().SetDefense(Player::MainPlayer->GetData().GetDefense() - A_Aamor);
 			Player::MainPlayer->GetData().SetCriticalChance(Player::MainPlayer->GetData().GetCriticalChance() - A_Cri);
 			Player::MainPlayer->GetData().SetEvasion(Player::MainPlayer->GetData().GetEvasion() - static_cast<int>(A_Evasion));
 			Player::MainPlayer->GetData().SetPlayerMaxHP(Player::MainPlayer->GetData().GetPlayerMaxHP() - A_MaxHP);
+			IsValue = false;
+			ResetValue = true;
 			Anger = 0;
 			Fast = 0;
 			Patience = 0;

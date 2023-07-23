@@ -158,6 +158,7 @@ void SmallBat::DeadStart()
 	HpRender->Death();
 	HpBaseRender->Death();
 	BodyCol->Off();
+	Player::MainPlayer->GetData().SubMonsterIndex(1);
 }
 
 void SmallBat::DeadUpdate(float _Time)

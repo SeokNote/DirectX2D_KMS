@@ -342,7 +342,7 @@ void WhiteSkell::AttackEnd()
 
 void WhiteSkell::DeadStart()
 {
-
+	Player::MainPlayer->GetData().SubMonsterIndex(1);
 	WhiteSkellRender->Off();
 	DeadRender->ChangeAnimation("SkellDead");
 	HpRender->Death();
@@ -355,12 +355,7 @@ void WhiteSkell::DeadStart()
 	CurFlip = IsFlip;
 	GoldCoin::CoinCreat(GetLevel(), GetTransform()->GetLocalPosition(), true);
 }
-/*
-ParticleRender0
-ParticleRender1
-ParticleRender2
-ParticleRender3
-*/
+
 void WhiteSkell::DeadUpdate(float _Time)
 {
 	float4 Posas = ParticleRender0->GetTransform()->GetWorldPosition();

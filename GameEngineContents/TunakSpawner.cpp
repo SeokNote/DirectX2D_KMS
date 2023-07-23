@@ -2,7 +2,7 @@
 #include "ContentsEnums.h"
 #include "Tunak.h"
 #include "TunakSpawner.h"
-
+#include "Player.h"
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEnginePlatform/GameEngineWindow.h>
 #include <GameEngineCore/GameEngineLevel.h>
@@ -41,6 +41,8 @@ void TunakSpawner::Update(float _DeltaTime)
 	{
 		static std::shared_ptr<Tunak> TunakPtr = GetLevel()->CreateActor<Tunak>(1);
 		TunakPtr->GetTransform()->SetLocalPosition({ 15074.0f,-25.0f,-800.0f });
+		Player::MainPlayer->GetData().PlusMonsterIndex(1);
+
 		TunakCreate = true;
 	}
 }

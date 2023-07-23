@@ -1,7 +1,7 @@
 #include "PrecompileHeader.h"
 #include "ContentsEnums.h"
 #include "SpawnStage1_2.h"
-
+#include "Player.h"
 #include "WhiteSkell.h"
 #include "Ghost.h"
 #include "Minotaurs.h"
@@ -43,8 +43,10 @@ void SpawnStage1_2::Update(float _DeltaTime)
 	{
 		std::shared_ptr<Banshee> BansheePtr = GetLevel()->CreateActor<Banshee>(1);
 		BansheePtr->GetTransform()->SetLocalPosition({ 8011.0f,207.0f,-800.0f });
+
 		std::shared_ptr<WhiteSkell> WhiteSkellPtr1 = GetLevel()->CreateActor<WhiteSkell>(1);
 		WhiteSkellPtr1->GetTransform()->SetLocalPosition({ 7951.0f,-445.0f,-800.0f });
+
 		std::shared_ptr<WhiteSkell> WhiteSkellPtr2 = GetLevel()->CreateActor<WhiteSkell>(1);
 		WhiteSkellPtr2->GetTransform()->SetLocalPosition({ 8211.0f,-445.0f,-800.0f });
 
@@ -63,7 +65,7 @@ void SpawnStage1_2::Update(float _DeltaTime)
 		std::shared_ptr<Ghost> GhostPtr3 = GetLevel()->CreateActor<Ghost>(1);
 		GhostPtr3->GetTransform()->SetLocalPosition({ 7811.0f,300.0f,-800.0f });
 
-
+		Player::MainPlayer->GetData().PlusMonsterIndex(8);
 
 		MonsterCreat = true;
 	}

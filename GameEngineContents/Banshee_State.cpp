@@ -208,7 +208,7 @@ void Banshee::DeadStart()
 	BodyCol->Off();
 	HpRender->Death();
 	HpBaseRender->Death();
-
+	Player::MainPlayer->GetData().SubMonsterIndex(1);
 }
 
 void Banshee::DeadUpdate(float _Time)

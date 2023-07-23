@@ -265,6 +265,7 @@ void Minotaurs::DeadStart()
 	MinotaursRender->Off();
 	DeadRender->ChangeAnimation("MinoDead");
 	HpRender->Death();
+	Player::MainPlayer->GetData().SubMonsterIndex(1);
 	HpBaseRender->Death();
 }
 
