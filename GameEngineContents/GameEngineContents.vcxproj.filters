@@ -880,9 +880,6 @@
     <Filter Include="Object\UI\TextBox">
       <UniqueIdentifier>{14cdba1f-9a71-406a-b55b-60b768e6e183}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Object\UI\TextBox\Select">
-      <UniqueIdentifier>{10ea4867-c7f7-4e03-83e1-064cf0f2008b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Object\UI\AbilityUI">
       <UniqueIdentifier>{9edff23f-c8f6-4da9-90ba-6eb1372a0baa}</UniqueIdentifier>
     </Filter>
@@ -1077,6 +1074,9 @@
     </Filter>
     <Filter Include="Object\UI\Portal\Portal">
       <UniqueIdentifier>{e510ab6d-a7d5-48c1-90c4-a8c38fd73bfd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\UI\TextBox\Dialog">
+      <UniqueIdentifier>{b96ec922-da10-4938-8f1e-dd2640ef7ced}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

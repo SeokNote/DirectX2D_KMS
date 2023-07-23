@@ -2,6 +2,7 @@
 #include "FoodTextBox.h"
 #include "Player.h"
 #include "UICountBase.h"
+#include "UIFontRender.h"
 #include "FoodUI.h"
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/GameEngineCamera.h>
@@ -58,10 +59,25 @@ void FoodTextBox::Start()
 	ButtonCol_2->GetTransform()->SetLocalScale(SelectTextScale);
 	ButtonCol_2->GetTransform()->SetLocalPosition({ 480.0f, -93.0f ,0.0f });
 	ButtonCol_2->SetOrder(3011);
+
+	TextStrting = CreateComponent<UIFontRender>(172);
+	TextStrting->SetFont("Aa카시오페아");
+	TextStrting->SetColor(float4::White);
+	TextStrting->SetScale(40);
+	TextStrting->SetFontFlag(FW1_LEFT);
+	TextStrting->GetTransform()->SetLocalPosition({ -590.0f,-210.0f,-100.0f });
+
 }
 bool FoodCheck = false;
 void FoodTextBox::Update(float _Delta)
 {
+	DelayTime += _Delta;
+	if (DelayTime > 0.1f)
+	{
+		TextStrting->SetText(FirstDialog.substr(0, count));
+		count += 2;
+		DelayTime = 0.0f;
+	}
 	if (ButtonCol_0->Collision(ColOrder::PlayMouse, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		FoodSelectUI->On();

@@ -185,7 +185,6 @@ void AbilityUI::SetCollision()
 			Player::MainPlayer->GetData().SetEvasion(Player::MainPlayer->GetData().GetEvasion() + static_cast<int>(A_Evasion));
 			Point--;
 			//어빌리티 스텟 올라가는 함수
-
 		}
 	}
 	else

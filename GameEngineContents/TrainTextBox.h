@@ -19,17 +19,20 @@ protected:
 	void Start();
 	void Update(float _Delta) override;
 private:
-	std::shared_ptr<class GameEngineUIRenderer> TrainTextBoxUI;
-	std::shared_ptr<class GameEngineUIRenderer> TrainTextBoxUI_S;
-	std::shared_ptr<class GameEngineUIRenderer> TrainSelectTextUI;
-	std::shared_ptr<class GameEngineUIRenderer> TrainSelectUI;
+	std::shared_ptr<class GameEngineUIRenderer> TrainTextBoxUI = nullptr;
+	std::shared_ptr<class GameEngineUIRenderer> TrainTextBoxUI_S = nullptr;
+	std::shared_ptr<class GameEngineUIRenderer> TrainSelectTextUI = nullptr;
+	std::shared_ptr<class GameEngineUIRenderer> TrainSelectUI = nullptr;
+	std::shared_ptr<class UIFontRender> TextStrting = nullptr;
 
-	std::shared_ptr<class GameEngineCollision> ButtonCol_0;
-	std::shared_ptr<class GameEngineCollision> ButtonCol_1;
-	std::shared_ptr<class GameEngineCollision> ButtonCol_2;
+	std::shared_ptr<class GameEngineCollision> ButtonCol_0 = nullptr;
+	std::shared_ptr<class GameEngineCollision> ButtonCol_1 = nullptr;
+	std::shared_ptr<class GameEngineCollision> ButtonCol_2 = nullptr;
 
 	static std::shared_ptr<class AbilityUI> AbilityUIPtr;
-
+	std::string FirstDialog = "ÀÚ³× ¿Ô±º! ÈÆ·ÃÇÒ ÅÙ°¡?";
+	int count = 0;
+	float DelayTime = 0;
 	float4 TextBoxScale = { 1280.0f,220.0f,0.0f };
 	float4 SelectBoxScale = { 320.f, 210.0f,0.0f };
 	float4 SelectTextBoxScale = { 227.f, 180.0f,0.0f };

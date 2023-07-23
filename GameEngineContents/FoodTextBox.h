@@ -19,20 +19,22 @@ protected:
 	void Start();
 	void Update(float _Delta) override;
 private:
-	std::shared_ptr<class GameEngineUIRenderer> FoodTextBoxUI;
-	std::shared_ptr<class GameEngineUIRenderer> FoodTextBoxUI_S;
-	std::shared_ptr<class GameEngineUIRenderer> FoodSelectTextUI;
-	std::shared_ptr<class GameEngineUIRenderer> FoodSelectUI;
+	std::shared_ptr<class GameEngineUIRenderer> FoodTextBoxUI = nullptr;
+	std::shared_ptr<class GameEngineUIRenderer> FoodTextBoxUI_S = nullptr;
+	std::shared_ptr<class GameEngineUIRenderer> FoodSelectTextUI = nullptr;
+	std::shared_ptr<class GameEngineUIRenderer> FoodSelectUI = nullptr;
+	std::shared_ptr<class UIFontRender> TextStrting = nullptr;
 
-	std::shared_ptr<class GameEngineCollision> ButtonCol_0;
-	std::shared_ptr<class GameEngineCollision> ButtonCol_1;
-	std::shared_ptr<class GameEngineCollision> ButtonCol_2;
+	std::shared_ptr<class GameEngineCollision> ButtonCol_0 = nullptr;
+	std::shared_ptr<class GameEngineCollision> ButtonCol_1 = nullptr;
+	std::shared_ptr<class GameEngineCollision> ButtonCol_2 = nullptr;
 	float4 TextBoxScale = { 1280.0f,220.0f,0.0f };
 	float4 SelectBoxScale = { 320.f, 210.0f,0.0f };
 	float4 SelectTextBoxScale = { 240.f, 186.0f,0.0f };
 	float4 SelectTextScale = { 290.f, 47.0f,0.0f };
 
-
-	//	float4 FoodStatUIScale = { 470.0f,250.0f,0.0f };
+	std::string FirstDialog = "오늘은 어떤 요리를 드시러 오셨나요?";
+	int count = 0;
+	float DelayTime = 0;
 };
 
