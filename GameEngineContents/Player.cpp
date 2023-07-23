@@ -77,29 +77,32 @@ void Player::Start()
 	PlayerCol->GetTransform()->SetLocalScale({ 64.0f, 76.0f });
 	PlayerCol->SetColType(ColType::AABBBOX2D);
 
-	//포인트 라이팅
-	LightEffect =  GetLevel()->GetMainCamera()->GetCamTarget()->CreateEffect<PointLightEffect>();
-	LightEffect->SetState(PointLightType::Circle);
-	LightEffect->LightBuffer.LightColor = float4(0.3f, 0.3f, 0.3f, 1.0f);
-	LightEffect->LightBuffer.LightOption.x = 1.0f;
-	LightEffect->LightBuffer.LightOption.y = 250.0f;
+	////포인트 라이팅
+	//LightEffect =  GetLevel()->GetMainCamera()->GetCamTarget()->CreateEffect<PointLightEffect>();
+	//LightEffect->SetState(PointLightType::Circle);
+	//LightEffect->LightBuffer.LightColor = float4(0.3f, 0.3f, 0.3f, 1.0f);
+	//LightEffect->LightBuffer.LightOption.x = 1.0f;
+	//LightEffect->LightBuffer.LightOption.y = 250.0f;
 
 }
 void Player::Update(float _DeltaTime)
 {
-	if (nullptr != LightEffect)
+	//if (nullptr != LightEffect)
+	//{
+	//	std::shared_ptr<GameEngineCamera> MainCam = GetLevel()->GetMainCamera();
+	//	float4 Result = GetTransform()->GetWorldPosition();
+	//	Result *= MainCam->GetView();
+	//	Result *= MainCam->GetProjection();
+	//	Result *= MainCam->GetViewPort();
+	//	LightEffect->LightBuffer.LightPos = Result;
+	//}
+
+
+
+	if (GameEngineInput::IsDown("DEBUGMODE"))
 	{
-		std::shared_ptr<GameEngineCamera> MainCam = GetLevel()->GetMainCamera();
-		float4 Result = GetTransform()->GetWorldPosition();
-		Result *= MainCam->GetView();
-		Result *= MainCam->GetProjection();
-		Result *= MainCam->GetViewPort();
-		LightEffect->LightBuffer.LightPos = Result;
+		Data.PlusMonsterIndex(1);
 	}
-
-
-
-
 
 	SetPlayerCollision(_DeltaTime);
 	DashPlusCount(_DeltaTime);

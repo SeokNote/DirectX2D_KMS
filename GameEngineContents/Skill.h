@@ -22,7 +22,7 @@ private:
 	std::shared_ptr<class GameEngineSpriteRenderer> SkillRender;
 	std::shared_ptr<class GameEngineCollision> SkillCol;
 
-	float4 Scale = { 152.0f,152.0f,0.0f };
+	float4 Scale = { 236.0f,132.0f,0.0f };
 	float4 MousePos = float4::Zero;;
 	float4 EffectPos = float4::Zero;;
 	float Time = 0.0f;

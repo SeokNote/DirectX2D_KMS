@@ -45,7 +45,7 @@ void GoldCoin::Update(float _Delta)
 	{
 		if (false == Player::MainPlayer->GroundCheck(GoldCoinRender->GetTransform()->GetWorldPosition()))
 		{
-			GoldCoinRender->GetTransform()->AddWorldPosition({ 0.0f,-_Delta * 200.0f,0.0f });
+			GoldCoinRender->GetTransform()->AddWorldPosition({ 0.0f,-_Delta * 300.0f,0.0f });
 			if (true == MiddleCheck(GoldCoinRender->GetTransform()->GetWorldPosition()))
 			{
 				GroundCheck = true;

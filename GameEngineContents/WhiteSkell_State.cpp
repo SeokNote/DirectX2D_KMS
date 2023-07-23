@@ -277,7 +277,10 @@ void WhiteSkell::AttackUpdate(float _Time)
 {
 	CurPos = GetTransform()->GetLocalPosition();
 	PlayerPos = Player::MainPlayer->GetTransform()->GetLocalPosition();
-
+	if (SkellHP < 0)
+	{
+		ChangeState(WhiteSkellState::DEAD);
+	}
 	if (IsFlip == false)
 	{
 		WhiteSkellRender->GetTransform()->SetLocalPositiveScaleX();

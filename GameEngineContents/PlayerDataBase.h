@@ -212,6 +212,18 @@ public:
 	{
 		PlayerMaxHP = _Value;
 	}
+	void PlusMonsterIndex(int _Value)
+	{
+		MonsterIndex += _Value;
+	}
+	void SubMonsterIndex(int _Value)
+	{
+		MonsterIndex -= _Value;
+	}
+	int GetMonsterIndex()
+	{
+		return MonsterIndex;
+	}
 private:
 	int PlayerLevel = 10;				//플레이어 레벨	
 	int PlayerMaxHP = PlayerLevel*2+60;
@@ -233,6 +245,7 @@ private:
 	int DashPower = 50;					// 대쉬 공격력
 	int Skillcul = 0;
 	//보스 스폰카메라 컨트롤
+	int MonsterIndex = 0;
 	bool BelialCamera = false;
 	bool TunakCamera = false;
 };

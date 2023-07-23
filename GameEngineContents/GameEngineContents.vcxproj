@@ -439,6 +439,14 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="PortalParticle.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Potal.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="PrecompileHeader.h">
       <SubType>
       </SubType>
@@ -927,6 +935,14 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="PointLightEffect.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="PortalParticle.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Potal.cpp">
       <SubType>
       </SubType>
     </ClCompile>

@@ -362,6 +362,12 @@
     <ClInclude Include="SpawnStage1_2.h">
       <Filter>Object\Door\MonsterSpawner</Filter>
     </ClInclude>
+    <ClInclude Include="PortalParticle.h">
+      <Filter>Object\UI\Portal\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="Potal.h">
+      <Filter>Object\UI\Portal\Portal</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -761,6 +767,12 @@
     <ClCompile Include="Door.cpp">
       <Filter>Object\Door</Filter>
     </ClCompile>
+    <ClCompile Include="PortalParticle.cpp">
+      <Filter>Object\UI\Portal\Particle</Filter>
+    </ClCompile>
+    <ClCompile Include="Potal.cpp">
+      <Filter>Object\UI\Portal\Portal</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Levels">
@@ -1053,6 +1065,15 @@
     </Filter>
     <Filter Include="Object\Door\MonsterSpawner">
       <UniqueIdentifier>{cbef7c92-888a-4aa2-b01b-883425276ab3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\UI\Portal">
+      <UniqueIdentifier>{bbcdf95b-6230-4bcc-90ba-d54a0da83f64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\UI\Portal\Particle">
+      <UniqueIdentifier>{52e02f05-30bf-4854-8437-137f47e8d67a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\UI\Portal\Portal">
+      <UniqueIdentifier>{e510ab6d-a7d5-48c1-90c4-a8c38fd73bfd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

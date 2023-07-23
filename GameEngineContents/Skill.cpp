@@ -19,8 +19,10 @@ void Skill::Start()
 {
 	SkillRender = CreateComponent<GameEngineSpriteRenderer>(1);
 	SkillRender->SetTexture("Skill_CosmosSwordAuror.png");
+	SkillRender->CreateAnimation({ .AnimationName = "CosmosSkill", .SpriteName = "CosmosSkill",.FrameInter = 0.1f,.Loop = true, .ScaleToTexture = false });
 	SkillRender->GetTransform()->SetLocalPosition({ 0.0f,0.f,1.f });
 	SkillRender->GetTransform()->SetLocalScale(Scale);
+	SkillRender->ChangeAnimation("CosmosSkill");
 
 	SkillCol = CreateComponent<GameEngineCollision>(ColOrder::GreatWeapon);
 	SkillCol->GetTransform()->SetLocalScale(Scale);
@@ -29,7 +31,7 @@ void Skill::Start()
 	MousePos = WeaponBase::WeaponBasePtr->GetMousePos();
 	EffectPos = (MousePos - PlayerPos).NormalizeReturn();
 	float Deg = WeaponBase::WeaponBasePtr->GetDeg();
-	SkillRender->GetTransform()->SetLocalRotation({ 0.0f,0.0f,Deg });
+	SkillRender->GetTransform()->SetLocalRotation({ 0.0f,0.0f,Deg-90.f });
 }
 
 void Skill::Update(float _Delta)
