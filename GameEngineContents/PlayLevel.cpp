@@ -56,7 +56,7 @@
 #include "GroundBelt.h"
 #include "PlatBelt.h"
 
-
+#include <GameEnginePlatform/GameEngineSound.h>
 #include <GameEngineCore/GameEngineCamera.h>
 #include <GameEngineCore/GameEngineTexture.h>
 #include <GameEnginePlatform/GameEngineInput.h>
@@ -96,7 +96,17 @@ void PlayLevel::Start()
 	GameEngineFont::Load("Aa카시오페아");
 	GameEngineFont::Load("8-bit Operator+ SC");
 	GameEngineFont::Load("8-bit Operator+");
-
+	//사운드 로드
+	GameEngineDirectory SoundDir;
+	SoundDir.MoveParentToDirectory("ContentResources");
+	SoundDir.Move("ContentResources");
+	SoundDir.Move("Sound");
+	std::vector<GameEngineFile> SoundFile = SoundDir.GetAllFile({ ".wav", });
+	for (size_t i = 0; i < SoundFile.size(); i++)
+	{
+		GameEngineSound::Load(SoundFile[i].GetFullPath());
+	}
+	//플레이어로드
 	GameEngineDirectory NewDir;
 	NewDir.MoveParentToDirectory("ContentResources");
 	NewDir.Move("ContentResources");
@@ -311,7 +321,7 @@ void PlayLevel::Start()
 		GameEngineInput::CreateKey("Skill", 'Q');
 
 	}
-
+	//
 
 	if (false == GameEngineInput::IsKey("StatUI"))
 	{
@@ -329,8 +339,8 @@ void PlayLevel::Start()
 	static std::shared_ptr<Player> NewPlayer = CreateActor<Player>(1);
 	//NewPlayer->GetTransform()->SetLocalPosition({ 11438.0f, -480.0f, -801.0f });
 
-	NewPlayer->GetTransform()->SetLocalPosition({ 14504.0f,-194.0f,-801.0f });
-	//NewPlayer->GetTransform()->SetLocalPosition({ -2390.0f,-500.0f,-801.0f });
+	//NewPlayer->GetTransform()->SetLocalPosition({ 14504.0f,-194.0f,-801.0f });
+	NewPlayer->GetTransform()->SetLocalPosition({ -2390.0f,-500.0f,-801.0f });
 	//NewPlayer->GetTransform()->SetLocalPosition({ 9925.0f,-254.0f,-801.0f });
 
 	{	//Town
@@ -355,21 +365,7 @@ void PlayLevel::Start()
 		std::shared_ptr<Stage2_1> Stage1 = CreateActor<Stage2_1>(-16);
 		std::shared_ptr<Stage2_Boss> BossStage_2 = CreateActor<Stage2_Boss>(-16);
 	}
-	{
-		//	Stage_3
-		//std::shared_ptr<Stage3_BG_1> Stage3_BG1 = CreateActor<Stage3_BG_1>(-21);
-		//std::shared_ptr<Stage3_BG_2> Stage3_BG2 = CreateActor<Stage3_BG_2>(-20);
-		//std::shared_ptr<Stage3_BG_3> Stage3_BG3 = CreateActor<Stage3_BG_3>(-19);
-		//std::shared_ptr<Stage3_BG_4> Stage3_BG4 = CreateActor<Stage3_BG_4>(-18);
-		//
-		//std::shared_ptr<Stage3_1> Stage1= CreateActor<Stage3_1>(-16);
-		//std::shared_ptr<Stage3_Boss> BossStage_3 = CreateActor<Stage3_Boss>(-16);
-		//std::shared_ptr<GroundBelt> GroundBeltPtr = CreateActor<GroundBelt>();
-		//GroundBeltPtr->GetTransform()->SetLocalPosition({ 19395.0f,-245.0f,-800.0f });
-		//std::shared_ptr<PlatBelt> PlatBeltPtr = CreateActor<PlatBelt>();
-		//PlatBeltPtr->GetTransform()->SetLocalPosition({ 19395.0f,-125.0f,-800.0f });
-		
-	}
+
 	{
 		//UI
 		std::shared_ptr<PlayerHPbar> PlayerHPbarPtr = CreateActor<PlayerHPbar>(-10);
@@ -391,21 +387,65 @@ void PlayLevel::Start()
 
 		
 	}
-	{
-		//NPC
-		std::shared_ptr<ShopNpc> ShopNpcPtr = CreateActor<ShopNpc>(1);
-		std::shared_ptr<BuilderNpc> BuilderNpcPtr = CreateActor<BuilderNpc>(1);
-		std::shared_ptr<TempleNpc> FoodNpcPtr = CreateActor<TempleNpc>(1);
-		std::shared_ptr<DungeonIn> DungeonInPtr = CreateActor<DungeonIn>(1);
+	SetUI();
+	SetMap();
+	SetPotal();
+	//CandlePtr_0 = CreateActor<Candle>(1);
+	//CandlePtr_0->GetTransform()->SetLocalPosition({ 3409.f,-106.f,-200.0f });
+	//CandlePtr_0->SetCandleColor(float4::Red);
+	//CandlePtr_0->SetMyMap(MyMap::Stage1_1);
+	//CandlePtr_0->Off();
+	//
+	//CandlePtr_1 = CreateActor<Candle>(1);
+	//CandlePtr_1->GetTransform()->SetLocalPosition({ 11730.f,-400.f,-200.0f });
+	//CandlePtr_1->SetCandleColor(float4(0.65f,0.4f,0.917f));
+	//CandlePtr_1->SetMyMap(MyMap::Stage1_Boss);
+	//CandlePtr_1->Off();
+	//
+	//CandlePtr_2 = CreateActor<Candle>(1);
+	//CandlePtr_2->GetTransform()->SetLocalPosition({ 12432.f,-400.f,-200.0f });
+	//CandlePtr_2->SetCandleColor(float4(0.65f, 0.4f, 0.917f));
+	//CandlePtr_2->SetMyMap(MyMap::Stage1_Boss);
+	//CandlePtr_2->Off();
+	//
+	//S_CandlePtr0 = CreateActor<StandCandle>(1);
+	//S_CandlePtr0->GetTransform()->SetLocalPosition({ 9925.f,-238.f,-790.0f });
+	//S_CandlePtr0->SetStandCandleColor(float4(0.65f, 0.4f, 0.917f));
+	//S_CandlePtr0->S_SetMyMap(MyMap::Stage1_4);
+	//S_CandlePtr0->Off();
+	//
+	//S_CandlePtr1 = CreateActor<StandCandle>(1);
+	//S_CandlePtr1->GetTransform()->SetLocalPosition({ 10727.f,-238.f,-790.0f });
+	//S_CandlePtr1->SetStandCandleColor(float4(0.65f, 0.4f, 0.917f));
+	//S_CandlePtr1->S_SetMyMap(MyMap::Stage1_4);
+	//S_CandlePtr1->Off();
+//	보스 스포너
+	static std::shared_ptr<BelialSpawner> BelialSpawnerPtr = CreateActor<BelialSpawner>(1);
+	BelialSpawnerPtr->GetTransform()->SetLocalPosition({ 12050.0f,-350.0f,-760.0f });
+	static std::shared_ptr<TunakSpawner> TunakSpawnerPtr = CreateActor<TunakSpawner>(1);
+	TunakSpawnerPtr->GetTransform()->SetLocalPosition({ 14874.0f,-205.0f,-800.0f });
+	static std::shared_ptr<SpawnStage1_1> SpawnStage1_1Ptr = CreateActor<SpawnStage1_1>(1);
+	SpawnStage1_1Ptr->GetTransform()->SetLocalPosition({ 4353.0f,-468.0f,-800.0f });
+	//테스트
+	static std::shared_ptr<SpawnStage1_2> SpawnStage1_2Ptr = CreateActor<SpawnStage1_2>(1);
+	SpawnStage1_2Ptr->GetTransform()->SetLocalPosition({ 8011.0f,254.0f,-800.0f });
+	
+	BGM = GameEngineSound::Play("0.Town.wav");
+	BGM.SetLoop(-1);
 
 
-	}
+
+
+}
+
+void PlayLevel::SetMap()
+{
 	{
 		//Door
 		//Stage1-1
 		std::shared_ptr<Door> DoorPtr = CreateActor<Door>(1);
 		DoorPtr->SetDoorPos({ 3916.0f,-167.0f,0.0f });
-		DoorPtr->SetNextPos({4120.0f, -468.0f, -801.0f });
+		DoorPtr->SetNextPos({ 4120.0f, -468.0f, -801.0f });
 
 		//Stage1-2
 		std::shared_ptr<Door> DoorPtr_0 = CreateActor<Door>(1);
@@ -444,6 +484,16 @@ void PlayLevel::Start()
 		std::shared_ptr<BossDoor_2> BossDoor3Ptr = CreateActor<BossDoor_2>(1);
 
 	}
+}
+void PlayLevel::SetUI()
+{
+	std::shared_ptr<ShopNpc> ShopNpcPtr = CreateActor<ShopNpc>(1);
+	std::shared_ptr<BuilderNpc> BuilderNpcPtr = CreateActor<BuilderNpc>(1);
+	std::shared_ptr<TempleNpc> FoodNpcPtr = CreateActor<TempleNpc>(1);
+	std::shared_ptr<DungeonIn> DungeonInPtr = CreateActor<DungeonIn>(1);
+}
+void PlayLevel::SetPotal()
+{
 	//Portal
 	std::shared_ptr<Potal> PotalPtr0 = CreateActor<Potal>(1);
 	PotalPtr0->GetPotalRender()->GetTransform()->SetLocalPosition({ -20.f,-50.0f,0.0f });
@@ -451,14 +501,14 @@ void PlayLevel::Start()
 	//PotalPtr0->GetPotalRender()->GetTransform()->SetLocalRotation({ 0.0f,0.0f,-90.0f });
 	PotalPtr0->GetTransform()->SetLocalPosition({ 3916.0f,-167.0f,0.0f });
 	PotalPtr0->GetTransform()->SetWorldRotation({ 0.0f,0.0f,-90.0f });
-	PotalPtr0->SetPTCValue(float4::Left, float4(20.0f, 120.0f, 0.0f), 10.0f,0.0f);
+	PotalPtr0->SetPTCValue(float4::Left, float4(20.0f, 120.0f, 0.0f), 10.0f, 0.0f);
 	std::shared_ptr<Potal> PotalPtr1 = CreateActor<Potal>(1);
 	PotalPtr1->GetTransform()->SetLocalPosition({ 4063.0f,-468.0f,-900.0f });
 	PotalPtr1->GetPotalRender()->GetTransform()->SetLocalPosition({ 50.0f,56.0f,0.0f });
 	PotalPtr1->GetPotalRender()->GetTransform()->SetLocalRotation({ 0.0f,0.0f,-270.0f });
 	PotalPtr1->GetPotalCol()->GetTransform()->SetLocalPosition({ 50.0f,56.0f,0.0f });
 	PotalPtr1->GetPotalCol()->GetTransform()->SetLocalRotation({ 0.0f,0.0f,-270.0f });
-	PotalPtr1->SetPTCValue(float4::Right, float4(20.0f, 110.0f, 0.0f), 10.0f,60.0f);
+	PotalPtr1->SetPTCValue(float4::Right, float4(20.0f, 110.0f, 0.0f), 10.0f, 60.0f);
 	std::shared_ptr<Potal> PotalPtr2 = CreateActor<Potal>(1);
 	PotalPtr2->GetTransform()->SetLocalPosition({ 6372.0f,-558.0f,-900.0f });
 	PotalPtr2->GetPotalRender()->GetTransform()->SetLocalPosition({ 30.0f,0.0f,0.0f });
@@ -509,51 +559,6 @@ void PlayLevel::Start()
 	PotalPtr11->GetPotalRender()->GetTransform()->SetLocalPosition({ 65.0f,0.0f,0.0f });
 	PotalPtr11->GetTransform()->SetWorldRotation({ 0.0f,0.0f,-270.0f });
 	PotalPtr11->SetPTCValue(float4::Left, float4(20.0f, 110.0f, 0.0f), 0.0f, 50.0f);
-	//CandlePtr_0 = CreateActor<Candle>(1);
-	//CandlePtr_0->GetTransform()->SetLocalPosition({ 3409.f,-106.f,-200.0f });
-	//CandlePtr_0->SetCandleColor(float4::Red);
-	//CandlePtr_0->SetMyMap(MyMap::Stage1_1);
-	//CandlePtr_0->Off();
-	//
-	//CandlePtr_1 = CreateActor<Candle>(1);
-	//CandlePtr_1->GetTransform()->SetLocalPosition({ 11730.f,-400.f,-200.0f });
-	//CandlePtr_1->SetCandleColor(float4(0.65f,0.4f,0.917f));
-	//CandlePtr_1->SetMyMap(MyMap::Stage1_Boss);
-	//CandlePtr_1->Off();
-	//
-	//CandlePtr_2 = CreateActor<Candle>(1);
-	//CandlePtr_2->GetTransform()->SetLocalPosition({ 12432.f,-400.f,-200.0f });
-	//CandlePtr_2->SetCandleColor(float4(0.65f, 0.4f, 0.917f));
-	//CandlePtr_2->SetMyMap(MyMap::Stage1_Boss);
-	//CandlePtr_2->Off();
-	//
-	//S_CandlePtr0 = CreateActor<StandCandle>(1);
-	//S_CandlePtr0->GetTransform()->SetLocalPosition({ 9925.f,-238.f,-790.0f });
-	//S_CandlePtr0->SetStandCandleColor(float4(0.65f, 0.4f, 0.917f));
-	//S_CandlePtr0->S_SetMyMap(MyMap::Stage1_4);
-	//S_CandlePtr0->Off();
-	//
-	//S_CandlePtr1 = CreateActor<StandCandle>(1);
-	//S_CandlePtr1->GetTransform()->SetLocalPosition({ 10727.f,-238.f,-790.0f });
-	//S_CandlePtr1->SetStandCandleColor(float4(0.65f, 0.4f, 0.917f));
-	//S_CandlePtr1->S_SetMyMap(MyMap::Stage1_4);
-	//S_CandlePtr1->Off();
-//	보스 스포너
-	static std::shared_ptr<BelialSpawner> BelialSpawnerPtr = CreateActor<BelialSpawner>(1);
-	BelialSpawnerPtr->GetTransform()->SetLocalPosition({ 12050.0f,-350.0f,-760.0f });
-	static std::shared_ptr<TunakSpawner> TunakSpawnerPtr = CreateActor<TunakSpawner>(1);
-	TunakSpawnerPtr->GetTransform()->SetLocalPosition({ 14874.0f,-205.0f,-800.0f });
-	static std::shared_ptr<SpawnStage1_1> SpawnStage1_1Ptr = CreateActor<SpawnStage1_1>(1);
-	SpawnStage1_1Ptr->GetTransform()->SetLocalPosition({ 4353.0f,-468.0f,-800.0f });
-	//테스트
-	static std::shared_ptr<SpawnStage1_2> SpawnStage1_2Ptr = CreateActor<SpawnStage1_2>(1);
-	SpawnStage1_2Ptr->GetTransform()->SetLocalPosition({ 8011.0f,254.0f,-800.0f });
-	
-
-
-
-
-
 }
 void PlayLevel::SetCandle()
 {
@@ -592,12 +597,14 @@ void PlayLevel::SetCandle()
 void PlayLevel::Update(float _DeltaTime)
 {
 	//SetCandle();
+
 	static float Time = 0.0f;
 
 	Time += _DeltaTime;
 
 	Frame++;
 	CameraMoveSet();
+	SetBGM();
 	UICtr();
 
 	if (1.0f <= Time)
@@ -633,8 +640,8 @@ void PlayLevel::Update(float _DeltaTime)
 		IsDebugSwitch();
 	}
 	
-
 }
+
 
 
 
@@ -773,6 +780,58 @@ void PlayLevel::UICtr()
 			CheckUICtr_1 = false;
 		}
 	}
+}
+void PlayLevel::SetBGM()
+{
+	PrevMap = CurMap;
+	CurMap = NextMap;
+	NextMap = PrevMap;
+	if (CurMap != NextMap)
+	{
+
+		switch (NextMap)
+		{
+		case MyMap::None:
+			break;
+		case MyMap::Town:
+			BGM.SetMute(true);
+			BGM = GameEngineSound::Play("0.Town.wav");
+			BGM.SetLoop(-1);
+			PrevMap = CurMap;
+			break;
+		case MyMap::Stage1_1:
+			BGM.SetMute(true);
+			BGM = GameEngineSound::Play("1.JailField.wav");
+			BGM.SetLoop(-1);
+			PrevMap = CurMap;
+			break;
+		case MyMap::Stage1_Boss:
+			BGM.SetMute(true);
+			BGM = GameEngineSound::Play("1.JailBoss.wav");
+			BGM.SetLoop(-1);
+			PrevMap = CurMap;
+			break;
+		case MyMap::Stage2_1:
+			BGM.SetMute(true);
+			BGM = GameEngineSound::Play("3.junglefield.wav");
+			BGM.SetLoop(-1);
+			PrevMap = CurMap;
+			break;
+		case MyMap::Stage2_Boss:
+			BGM.SetMute(true);
+			BGM = GameEngineSound::Play("3.jungleboss.wav");
+			BGM.SetLoop(-1);
+			PrevMap = CurMap;
+			break;
+		case MyMap::Stage3_1:
+			break;
+		case MyMap::Stage3_Boss:
+			break;
+		default:
+			break;
+		}
+	}
+	
 }
 void PlayLevel::LevelChangeStart()
 {

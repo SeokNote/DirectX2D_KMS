@@ -79,6 +79,7 @@ protected:
 
 private:
 	PlayerDataBase Data = PlayerDataBase();
+	GameEngineSound Walk;
 	void Filp();
 	void HitCameraShack();
 	void SetPlayerCollision(float _Delta);

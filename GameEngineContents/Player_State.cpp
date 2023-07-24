@@ -155,6 +155,7 @@ void Player::MoveStart()
 	MoveStartPoS = GetTransform()->GetLocalPosition();
 	PlayerRender->ChangeAnimation("Player_Move");
 	PlayerWalkEffectRender->ChangeAnimation("Player_WalkEffect");
+	GameEngineSound::Play("step_lth33.wav");
 }
 void Player::MoveUpdate(float _Time)
 {
@@ -162,6 +163,7 @@ void Player::MoveUpdate(float _Time)
 	if (EffectTime > 0.3f)
 	{
 		MoveStartPoS = GetTransform()->GetLocalPosition();
+		GameEngineSound::Play("step_lth33.wav");
 		PlayerWalkEffectRender->ChangeAnimation("Player_WalkEffect");
 		EffectTime = 0.0f;
 	}
@@ -256,6 +258,8 @@ void Player::JumpStart()
 	PlayerRender->ChangeAnimation("Player_Jump");
 	MoveDir.y += 3.0f;
 	PlayerJumpEffectRender->ChangeAnimation("Player_JumpEffect");
+	GameEngineSound::Play("Jumping.wav");
+
 }
 void Player::JumpUpdate(float _Time)
 {
@@ -473,6 +477,8 @@ void Player::DashStart()
 	DashCurPos = GetTransform()->GetLocalPosition();
 	PlayerRender->ChangeAnimation("Player_Jump");
 	PrevDashPos = DashVector;
+	GameEngineSound::Play("ui-sound-13-dash.wav");
+
 }
 
 void Player::DashUpdate(float _Time)

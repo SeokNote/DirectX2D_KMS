@@ -1,5 +1,6 @@
 #pragma once
 #include <GameEngineCore\GameEngineLevel.h>
+#include <GameEnginePlatform/GameEngineSound.h>
 #include "ContentsEnums.h"
 #include "PlayerStat.h"
 #include "MapTabUI.h"
@@ -33,12 +34,19 @@ protected:
 
 
 private:
+	void SetMap();
+	void SetUI();
+	void SetPotal();
 	void CameraColMove(float _X, float _X1, float _Y, float _Y1);
 	void CameraMoveSet();
 	void UICtr();
-	
+	void SetBGM();
 	float4 TownScale = float4::Zero;
 	MyMap CurMap = MyMap::None;
+	MyMap PrevMap = MyMap::None;
+	MyMap NextMap = MyMap::None;
+	MyMap aaMap = MyMap::None;
+
 	float4 WindowSizeHalf = float4::Zero;
 	MyMap CandleMap = MyMap::None;
 
@@ -51,12 +59,12 @@ private:
 	//테스트
 	float FPS = 0.0f;
 	int Frame = 0;
-
+	int asd = 0;
 	//양초
 	std::shared_ptr<class Candle> CandlePtr_0 = nullptr;
 	std::shared_ptr<class Candle> CandlePtr_1 = nullptr;
 	std::shared_ptr<class Candle> CandlePtr_2 = nullptr;
 	std::shared_ptr<class StandCandle> S_CandlePtr0 = nullptr;
 	std::shared_ptr<class StandCandle> S_CandlePtr1 = nullptr;
-
+	GameEngineSoundPlayer BGM;
 };

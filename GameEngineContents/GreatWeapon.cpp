@@ -42,6 +42,7 @@ void GreatWeapon::Update(float _Delta)
 
 void GreatWeapon::SetGreatWeapon(float _Delta)
 {
+	AttackCol += _Delta;
 	float4 CameraPos = GetLevel()->GetMainCamera()->GetTransform()->GetWorldPosition();
 	float4 PlayerPos = Player::MainPlayer->GetTransform()->GetLocalPosition();
 
@@ -90,15 +91,19 @@ void GreatWeapon::SetGreatWeapon(float _Delta)
 		}
 	}
 
-	if (index == 0 && GameEngineInput::IsDown("ATTACK"))
+	if (AttackCol>0.5f && index == 0 && GameEngineInput::IsDown("ATTACK"))
 	{
+		GameEngineSound::Play("swing.wav");
+		AttackCol = 0.0f;
 		ShakeValue = true;
 		DirCheck = true;
 		index = 1;
 		GreatWeaponEffectRender->ChangeAnimation("GreatSwordAniIdle");
 	}
-	else if (index == 1 && GameEngineInput::IsDown("ATTACK"))
+	else if (AttackCol > 0.5f && index == 1 && GameEngineInput::IsDown("ATTACK"))
 	{
+		GameEngineSound::Play("swing0.wav");
+		AttackCol = 0.0f;
 		ShakeValue = true;
 		DirCheck = false;
 		index = 0;
