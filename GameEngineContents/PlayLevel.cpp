@@ -390,35 +390,35 @@ void PlayLevel::Start()
 	SetUI();
 	SetMap();
 	SetPotal();
-	//CandlePtr_0 = CreateActor<Candle>(1);
-	//CandlePtr_0->GetTransform()->SetLocalPosition({ 3409.f,-106.f,-200.0f });
-	//CandlePtr_0->SetCandleColor(float4::Red);
-	//CandlePtr_0->SetMyMap(MyMap::Stage1_1);
-	//CandlePtr_0->Off();
-	//
-	//CandlePtr_1 = CreateActor<Candle>(1);
-	//CandlePtr_1->GetTransform()->SetLocalPosition({ 11730.f,-400.f,-200.0f });
-	//CandlePtr_1->SetCandleColor(float4(0.65f,0.4f,0.917f));
-	//CandlePtr_1->SetMyMap(MyMap::Stage1_Boss);
-	//CandlePtr_1->Off();
-	//
-	//CandlePtr_2 = CreateActor<Candle>(1);
-	//CandlePtr_2->GetTransform()->SetLocalPosition({ 12432.f,-400.f,-200.0f });
-	//CandlePtr_2->SetCandleColor(float4(0.65f, 0.4f, 0.917f));
-	//CandlePtr_2->SetMyMap(MyMap::Stage1_Boss);
-	//CandlePtr_2->Off();
-	//
-	//S_CandlePtr0 = CreateActor<StandCandle>(1);
-	//S_CandlePtr0->GetTransform()->SetLocalPosition({ 9925.f,-238.f,-790.0f });
-	//S_CandlePtr0->SetStandCandleColor(float4(0.65f, 0.4f, 0.917f));
-	//S_CandlePtr0->S_SetMyMap(MyMap::Stage1_4);
-	//S_CandlePtr0->Off();
-	//
-	//S_CandlePtr1 = CreateActor<StandCandle>(1);
-	//S_CandlePtr1->GetTransform()->SetLocalPosition({ 10727.f,-238.f,-790.0f });
-	//S_CandlePtr1->SetStandCandleColor(float4(0.65f, 0.4f, 0.917f));
-	//S_CandlePtr1->S_SetMyMap(MyMap::Stage1_4);
-	//S_CandlePtr1->Off();
+	CandlePtr_0 = CreateActor<Candle>(1);
+	CandlePtr_0->GetTransform()->SetLocalPosition({ 3409.f,-106.f,-200.0f });
+	CandlePtr_0->SetCandleColor(float4::Red);
+	CandlePtr_0->SetMyMap(MyMap::Stage1_1);
+	CandlePtr_0->Off();
+	
+	CandlePtr_1 = CreateActor<Candle>(1);
+	CandlePtr_1->GetTransform()->SetLocalPosition({ 11730.f,-400.f,-200.0f });
+	CandlePtr_1->SetCandleColor(float4(0.65f,0.4f,0.917f));
+	CandlePtr_1->SetMyMap(MyMap::Stage1_Boss);
+	CandlePtr_1->Off();
+	
+	CandlePtr_2 = CreateActor<Candle>(1);
+	CandlePtr_2->GetTransform()->SetLocalPosition({ 12432.f,-400.f,-200.0f });
+	CandlePtr_2->SetCandleColor(float4(0.65f, 0.4f, 0.917f));
+	CandlePtr_2->SetMyMap(MyMap::Stage1_Boss);
+	CandlePtr_2->Off();
+	
+	S_CandlePtr0 = CreateActor<StandCandle>(1);
+	S_CandlePtr0->GetTransform()->SetLocalPosition({ 9925.f,-238.f,-790.0f });
+	S_CandlePtr0->SetStandCandleColor(float4(0.65f, 0.4f, 0.917f));
+	S_CandlePtr0->S_SetMyMap(MyMap::Stage1_4);
+	S_CandlePtr0->Off();
+	
+	S_CandlePtr1 = CreateActor<StandCandle>(1);
+	S_CandlePtr1->GetTransform()->SetLocalPosition({ 10727.f,-238.f,-790.0f });
+	S_CandlePtr1->SetStandCandleColor(float4(0.65f, 0.4f, 0.917f));
+	S_CandlePtr1->S_SetMyMap(MyMap::Stage1_4);
+	S_CandlePtr1->Off();
 //	보스 스포너
 	static std::shared_ptr<BelialSpawner> BelialSpawnerPtr = CreateActor<BelialSpawner>(1);
 	BelialSpawnerPtr->GetTransform()->SetLocalPosition({ 12050.0f,-350.0f,-760.0f });
@@ -596,7 +596,7 @@ void PlayLevel::SetCandle()
 
 void PlayLevel::Update(float _DeltaTime)
 {
-	//SetCandle();
+	SetCandle();
 
 	static float Time = 0.0f;
 

@@ -72,7 +72,7 @@ bool ShopCheck = false;
 void ShopTextBox::Update(float _Delta)
 {
 	DelayTime += _Delta;
-	if (DelayTime > 0.1f)
+	if (DelayTime > 0.1f && FirstDialog.size() >= count)
 	{
 		TextStrting->SetText(FirstDialog.substr(0, count));
 		count += 2;
@@ -85,6 +85,7 @@ void ShopTextBox::Update(float _Delta)
 		ShopSelectUI->GetTransform()->SetLocalPosition({ 480.0f, -30.0f ,-150.0f });
 		if (GameEngineInput::IsDown("ClickMouse")) {
 
+			GameEngineSound::Play("KeyBord.wav");
 			Player::MainPlayer->SetUICount(0);
 			UICountBase::MainUICountBase->SetUICount(0);
 			Death();
