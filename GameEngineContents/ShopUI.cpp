@@ -5,6 +5,7 @@
 #include <GameEngineCore/GameEngineCamera.h>
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore/GameEngineUIRenderer.h>
+#include <GameEnginePlatform/GameEngineSound.h>
 #include "ShopButton.h"
 #include "InventoryButton.h"
 #include "ItemData.h"
@@ -62,6 +63,7 @@ void ShopUI::SetItem()
 	ItemButton0->GetExplaneRender()->GetTransform()->SetWorldScale({ 396.0f,360.0f,1.0f });
 	ItemButton0->SetEvent([this]()
 		{
+			GameEngineSound::Play("GetItem.wav");
 			InventoryUI::InventoryUIPtr->GetInven0()->SetItemData(ItemButton0->GetItemData().WeaponType);
 			ItemButton0->Death();
 			ItemRender0->Death();

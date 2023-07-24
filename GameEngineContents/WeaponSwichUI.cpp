@@ -56,6 +56,7 @@ void WeaponSwichUI::Update(float _Delta)
 	MyWeapon1 = InventoryUI::InventoryUIPtr->GetWeaponInven1()->GetData().WeaponType;
 	if (SwichValue == false && true == GameEngineInput::IsDown("WEAPONSWICH"))
 	{
+		GameEngineSound::Play("etc-sound0033_swap.wav");
 		SwichValue = true;
 		SwichTriger = true;
 		ChangePos = false;
@@ -68,10 +69,10 @@ void WeaponSwichUI::Update(float _Delta)
 		if (ChangePos == false)
 		{
 
-			M1 = float4::LerpClamp(PlayerWeaponSwichUIPos, EndPos, Ratio * 2.0f);
+			M1 = float4::LerpClamp(PlayerWeaponSwichUIPos, EndPos, Ratio * 3.0f);
 			PlayerWeaponSwichUIUI3->GetTransform()->SetWorldPosition(M1);
 			PlayerWeaponRender->GetTransform()->SetWorldPosition(M1);
-			M2 = float4::LerpClamp(PlayerWeaponSwichUIPos_B, EndPos, Ratio * 2.0f);
+			M2 = float4::LerpClamp(PlayerWeaponSwichUIPos_B, EndPos, Ratio * 3.0f);
 			PlayerWeaponSwichUIUI2->GetTransform()->SetWorldPosition(M2);
 
 			if (M1 == EndPos)
@@ -90,11 +91,11 @@ void WeaponSwichUI::Update(float _Delta)
 		}
 		else
 		{
-			M1 = float4::LerpClamp(EndPos, PlayerWeaponSwichUIPos, Ratio * 2.0f);
+			M1 = float4::LerpClamp(EndPos, PlayerWeaponSwichUIPos, Ratio * 3.0f);
 			PlayerWeaponSwichUIUI3->GetTransform()->SetWorldPosition(M1);
 			PlayerWeaponRender->GetTransform()->SetWorldPosition(M1);
 
-			M2 = float4::LerpClamp(EndPos, PlayerWeaponSwichUIPos_B, Ratio * 2.0f);
+			M2 = float4::LerpClamp(EndPos, PlayerWeaponSwichUIPos_B, Ratio * 3.0f);
 			PlayerWeaponSwichUIUI2->GetTransform()->SetWorldPosition(M2);
 
 			

@@ -737,11 +737,14 @@ void PlayLevel::UICtr()
 		{
 			Inventory = CreateActor<InventoryUI>(-10);
 		}
+		GameEngineSound::Play("OpenInventory.wav");
 		Inventory->InventoryOn();
 		CheckUICtr_2 = true;
 	}
 	else if (true == CheckUICtr_2 && GameEngineInput::IsDown("Inven"))
 	{
+		
+		GameEngineSound::Play("OpenInventory.wav");
 		Inventory->InventoryOff();
 		CheckUICtr_2 = false;
 	}

@@ -69,6 +69,9 @@ void FoodUI::Start()
 	FoodBGRender->ChangeAnimation("FoodAni");
 	SetButton();
 	SetSatieyFont();
+
+
+
 }
 void FoodUI::Update(float _Delta)
 {
@@ -114,6 +117,7 @@ void FoodUI::SetButton()
 		{
 			if (Player::MainPlayer->GetData().GetSatiety() + 50 < 100 && Player::MainPlayer->GetData().GetCoin() > 540)
 			{
+				GameEngineSound::Play("FoodEat2.wav");
 				BreadButton->GetRender()->SetTexture("FoodThank.png");
 				BreadButton->GetRender_Select()->SetTexture("FoodThank.png");
 				MoveBread = true;
@@ -141,6 +145,7 @@ void FoodUI::SetButton()
 		{	
 			if (Player::MainPlayer->GetData().GetSatiety() + 46 < 100 && Player::MainPlayer->GetData().GetCoin()>380)
 			{
+				GameEngineSound::Play("FoodEat2.wav");
 				TomatoButton->GetRender()->SetTexture("FoodThank.png");
 				TomatoButton->GetRender_Select()->SetTexture("FoodThank.png");
 				MoveTomato = true;

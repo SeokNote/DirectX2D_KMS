@@ -91,7 +91,7 @@ void GreatWeapon::SetGreatWeapon(float _Delta)
 		}
 	}
 
-	if (AttackCol>0.5f && index == 0 && GameEngineInput::IsDown("ATTACK"))
+	if (Player::MainPlayer->GetUICount()==0 &&AttackCol>0.3f && index == 0 && GameEngineInput::IsDown("ATTACK"))
 	{
 		GameEngineSound::Play("swing.wav");
 		AttackCol = 0.0f;
@@ -100,7 +100,7 @@ void GreatWeapon::SetGreatWeapon(float _Delta)
 		index = 1;
 		GreatWeaponEffectRender->ChangeAnimation("GreatSwordAniIdle");
 	}
-	else if (AttackCol > 0.5f && index == 1 && GameEngineInput::IsDown("ATTACK"))
+	else if (Player::MainPlayer->GetUICount() == 0 && AttackCol > 0.3f && index == 1 && GameEngineInput::IsDown("ATTACK"))
 	{
 		GameEngineSound::Play("swing0.wav");
 		AttackCol = 0.0f;

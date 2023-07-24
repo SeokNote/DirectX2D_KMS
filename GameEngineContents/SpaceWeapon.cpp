@@ -46,6 +46,7 @@ void SpaceWeapon::Update(float _Delta)
 
 void SpaceWeapon::SetSpaceWeapon(float _Delta)
 {
+	AttackCol += _Delta;
 	float4 CameraPos = GetLevel()->GetMainCamera()->GetTransform()->GetWorldPosition();
 	float4 PlayerPos = Player::MainPlayer->GetTransform()->GetLocalPosition();
 
@@ -94,15 +95,19 @@ void SpaceWeapon::SetSpaceWeapon(float _Delta)
 		}
 	}
 
-	if (index == 0 && GameEngineInput::IsDown("ATTACK"))
+	if (Player::MainPlayer->GetUICount() == 0 && AttackCol>0.3f && index == 0 && GameEngineInput::IsDown("ATTACK"))
 	{
+		GameEngineSound::Play("swing2.wav");
+		AttackCol = 0.0f;
 		ShakeValue = true;
 		DirCheck = true;
 		index = 1;
 		SpaceWeaponEffectRender->ChangeAnimation("SpaceSwordSwing");
 	}
-	else if (index == 1 && GameEngineInput::IsDown("ATTACK"))
+	else if (Player::MainPlayer->GetUICount() == 0 && AttackCol > 0.3f && index == 1 && GameEngineInput::IsDown("ATTACK"))
 	{
+		GameEngineSound::Play("swing3 #218160.wav");
+		AttackCol = 0.0f;
 		ShakeValue = true;
 		DirCheck = false;
 		index = 0;

@@ -51,6 +51,10 @@ public:
 		UICount = _Value;
 		return UICount;
 	}
+	int GetUICount()
+	{
+		return UICount;
+	}
 	int GetDashCount()
 	{
 		return DashCount;

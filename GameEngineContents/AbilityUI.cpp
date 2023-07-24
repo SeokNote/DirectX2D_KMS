@@ -134,7 +134,7 @@ void AbilityUI::SetCollision()
 		Button_RedRender->On();
 		if (Point != 0 && GameEngineInput::IsUp("ClickMouse"))
 		{
-
+			GameEngineSound::Play("phax_skill.wav");
 			Point--;
 			Anger++;
 			//어빌리티 스텟 올라가는 함수
@@ -151,7 +151,7 @@ void AbilityUI::SetCollision()
 			Fast++;
 			Player::MainPlayer->GetData().SetAttackSpeed(Player::MainPlayer->GetData().GetAttackSpeed() + A_AttackSpeed);
 			Player::MainPlayer->GetData().SetMoveSpeed(Player::MainPlayer->GetData().GetMoveSpeed() + A_Speed);
-
+			GameEngineSound::Play("phax_skill.wav");
 			Point--;
 			//어빌리티 스텟 올라가는 함수
 
@@ -166,6 +166,7 @@ void AbilityUI::SetCollision()
 		Button_WhiteRender->On();
 		if (Point != 0 && GameEngineInput::IsUp("ClickMouse")) {
 			Patience++;
+			GameEngineSound::Play("phax_skill.wav");
 			Player::MainPlayer->GetData().SetDefense(Player::MainPlayer->GetData().GetDefense() + A_Aamor);
 			Point--;
 			//어빌리티 스텟 올라가는 함수
@@ -181,6 +182,7 @@ void AbilityUI::SetCollision()
 		Button_BlueRender->On();
 		if (Point != 0 && GameEngineInput::IsUp("ClickMouse")) {
 			Mystery++;
+			GameEngineSound::Play("phax_skill.wav");
 			Player::MainPlayer->GetData().SetCriticalChance(Player::MainPlayer->GetData().GetCriticalChance() + A_Cri);
 			Player::MainPlayer->GetData().SetEvasion(Player::MainPlayer->GetData().GetEvasion() + static_cast<int>(A_Evasion));
 			Point--;
@@ -196,6 +198,7 @@ void AbilityUI::SetCollision()
 		Button_YellowRender->On();
 		if (Point != 0 && GameEngineInput::IsUp("ClickMouse")) {
 			Avarice++;
+			GameEngineSound::Play("phax_skill.wav");
 			Player::MainPlayer->GetData().SetPlayerMaxHP(Player::MainPlayer->GetData().GetPlayerMaxHP() + 2);
 			Point--;
 			//어빌리티 스텟 올라가는 함수
@@ -537,6 +540,7 @@ void AbilityUI::ButtonCreate()
 	ResetButton->GetRender_Select()->GetTransform()->SetWorldScale({ 180.0f,68.0f,0.0f });
 	ResetButton->SetEvent([this]()
 		{
+			GameEngineSound::Play("upward2s_end.wav");
 			Player::MainPlayer->GetData().SetAttackSpeed(Player::MainPlayer->GetData().GetAttackSpeed() - A_AttackSpeed);
 			Player::MainPlayer->GetData().SetMoveSpeed(Player::MainPlayer->GetData().GetMoveSpeed() - A_Speed);
 			Player::MainPlayer->GetData().SetDefense(Player::MainPlayer->GetData().GetDefense() - A_Aamor);

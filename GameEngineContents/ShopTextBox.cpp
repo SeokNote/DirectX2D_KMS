@@ -98,6 +98,7 @@ void ShopTextBox::Update(float _Delta)
 			int a = 0;
 			if (ShopCheck == false)
 			{
+				GameEngineSound::Play("OpenInventory.wav");
 				ShopUIPtr = GetLevel()->CreateActor<ShopUI>();
 				ShopCheck = true;
 			}

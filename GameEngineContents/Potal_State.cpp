@@ -11,6 +11,7 @@
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore/GameEngineCollision.h>
 #include <GameEngineCore/GameEngineSprite.h>
+#include <GameEnginePlatform/GameEngineSound.h>
 void Potal::ChangeState(PotalState _State)
 {
 	PotalState NextState = _State;
@@ -116,6 +117,8 @@ void Potal::Idle2End()
 void Potal::OpenStart()
 {
 	SteleRender->ChangeAnimation("SteleOpen");
+	SteleSound.SetVolume(0.01f);
+	SteleSound = GameEngineSound::Play("stoneDoor.wav");
 }
 
 void Potal::OpenUpdate(float _Time)
@@ -133,6 +136,8 @@ void Potal::OpenEnd()
 void Potal::CloseStart()
 {
 	SteleRender->ChangeAnimation("SteleClose");
+	SteleSound.SetVolume(0.01f);
+	SteleSound = GameEngineSound::Play("stoneDoor.wav");
 }
 
 void Potal::CloseUpdate(float _Time)

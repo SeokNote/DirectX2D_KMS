@@ -38,5 +38,6 @@ private:
 	float ShakeTime_0 = 0.0f;
 	bool DirCheck = false;
 	bool ShakeValue = false;
+	float AttackCol = 0.0f;
 };
 

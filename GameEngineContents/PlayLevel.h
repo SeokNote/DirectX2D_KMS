@@ -23,6 +23,7 @@ public:
 	PlayLevel& operator=(PlayLevel&& _Other) noexcept = delete;
 
 	std::shared_ptr<class FadeEffect> FEffect;
+
 	void SetCandle();
 protected:
 	void Start() override;

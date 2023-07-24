@@ -63,6 +63,7 @@ void DungeonIn::Update(float _DeltaTime)
 		Player::MainPlayer->SetUICount(1);
 		if (IndexCount == 0) 
 		{
+			GameEngineSound::Play("DungeonResult.wav");
 			IndexCount++;
 			DungeonInRender->ChangeAnimation("DungeonInIdle");
 		}

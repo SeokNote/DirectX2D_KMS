@@ -1075,8 +1075,5 @@
     <Filter Include="Object\UI\Portal\Portal">
       <UniqueIdentifier>{e510ab6d-a7d5-48c1-90c4-a8c38fd73bfd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Object\UI\TextBox\Dialog">
-      <UniqueIdentifier>{b96ec922-da10-4938-8f1e-dd2640ef7ced}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
 </Project>

@@ -4,6 +4,7 @@
 #include <GameEngineCore/GameEngineCamera.h>
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore/GameEngineUIRenderer.h>
+#include <GameEnginePlatform/GameEngineSound.h>
 #include "InventoryButton.h"
 #include "ItemData.h"
 InventoryUI* InventoryUI::InventoryUIPtr = nullptr;
@@ -93,6 +94,7 @@ void InventoryUI::SetInventory()
 		{
 			if (Inventory00->GetData().WeaponType != WeaponDatas::VACANCY)
 			{
+				GameEngineSound::Play("PickUpItem.wav");
 				Prev = PrevClick::INVENTORT0;
 			}
 		});
@@ -137,6 +139,7 @@ void InventoryUI::SetInventory()
 	WeaponInven0->GetRender_Select()->GetTransform()->SetLocalPosition(W_InventoryPos0);
 	WeaponInven0->SetClick([this]()
 		{
+			GameEngineSound::Play("PickUpItem.wav");
 			if (WeaponInven0->GetData().WeaponType != WeaponDatas::VACANCY)
 			{
 				Prev = PrevClick::W_INVENTORT0;
@@ -182,6 +185,8 @@ void InventoryUI::SetInventory()
 	WeaponInven1->GetRender_Select()->GetTransform()->SetLocalPosition(W_InventoryPos1);
 	WeaponInven1->SetClick([this]()
 		{
+			GameEngineSound::Play("PickUpItem.wav");
+
 			if (WeaponInven1->GetData().WeaponType != WeaponDatas::VACANCY)
 			{
 				Prev = PrevClick::W_INVENTORT1;

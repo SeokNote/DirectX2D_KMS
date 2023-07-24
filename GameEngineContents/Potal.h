@@ -1,5 +1,6 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
+#include <GameEnginePlatform/GameEngineSound.h>
 enum class PotalState
 {
 	IDLE,
@@ -40,6 +41,7 @@ protected:
 	void Start();
 	void Update(float _Delta) override;
 private:
+	GameEngineSoundPlayer SteleSound;
 	void PTCSetting(float _Delta);
 	void ChangeState(PotalState _State);
 	void UpdateState(float _Time);

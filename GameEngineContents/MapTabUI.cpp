@@ -125,13 +125,16 @@ void MapTabUI::Start()
 }
 void MapTabUI::Update(float _Delta)
 {
+	Player::MainPlayer->SetUICount(1);
 	if (Menu_BuilderCol->Collision(ColOrder::PlayMouse, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		Menu_Builder->Off();
 		Menu_BuilderSelect->On();
 		if (GameEngineInput::IsDown("ClickMouse")) 
 		{
+			GameEngineSound::Play("StickSpin.wav");
 			Player::MainPlayer->GetTransform()->SetLocalPosition(BuilderNpcPos1);
+			Player::MainPlayer->SetUICount(0);
 			Death();
 		}
 	}
@@ -146,7 +149,9 @@ void MapTabUI::Update(float _Delta)
 		Menu_CommanderSelect->On();
 		if (GameEngineInput::IsDown("ClickMouse")) 
 		{
+			GameEngineSound::Play("StickSpin.wav");
 			Player::MainPlayer->GetTransform()->SetLocalPosition(TrainNpcPos);
+			Player::MainPlayer->SetUICount(0);
 			Death();
 		}
 	}
@@ -161,7 +166,9 @@ void MapTabUI::Update(float _Delta)
 		Menu_DungeonSelect->On();
 		if (GameEngineInput::IsDown("ClickMouse")) 
 		{
+			GameEngineSound::Play("StickSpin.wav");
 			Player::MainPlayer->GetTransform()->SetLocalPosition(DungeonInPos1);
+			Player::MainPlayer->SetUICount(0);
 			Death();
 
 		}
@@ -177,7 +184,9 @@ void MapTabUI::Update(float _Delta)
 		Menu_ShopSelect->On();
 		if (GameEngineInput::IsDown("ClickMouse")) 
 		{
+			GameEngineSound::Play("StickSpin.wav");
 			Player::MainPlayer->GetTransform()->SetLocalPosition(ShopNpcPos1);
+			Player::MainPlayer->SetUICount(0);
 			Death();
 		}
 	}
@@ -192,7 +201,9 @@ void MapTabUI::Update(float _Delta)
 		Menu_TemPleSelect->On();
 		if (GameEngineInput::IsDown("ClickMouse")) 
 		{
+			GameEngineSound::Play("StickSpin.wav");
 			Player::MainPlayer->GetTransform()->SetLocalPosition(TempleNpcPos1);
+			Player::MainPlayer->SetUICount(0);
 			Death();
 
 		}
