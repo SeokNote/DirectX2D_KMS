@@ -28,7 +28,6 @@ private:
 	std::shared_ptr<class GameEngineCollision> ButtonCol_0 = nullptr;
 	std::shared_ptr<class GameEngineCollision> ButtonCol_1 = nullptr;
 	std::shared_ptr<class GameEngineCollision> ButtonCol_2 = nullptr;
-
 	static std::shared_ptr<class AbilityUI> AbilityUIPtr;
 	std::string FirstDialog = "ÀÚ³× ¿Ô±º! ÈÆ·ÃÇÒ ÅÙ°¡?";
 	int count = 0;
@@ -37,6 +36,5 @@ private:
 	float4 SelectBoxScale = { 320.f, 210.0f,0.0f };
 	float4 SelectTextBoxScale = { 227.f, 180.0f,0.0f };
 	float4 SelectTextScale = { 290.f, 47.0f,0.0f };
-	//	float4 FoodStatUIScale = { 470.0f,250.0f,0.0f };
 };
 

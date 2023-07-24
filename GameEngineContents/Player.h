@@ -98,6 +98,9 @@ private:
 	std::shared_ptr<class PointLightEffect> LightEffect = nullptr;
 
 	std::shared_ptr<class GameEngineCollision> PlayerCol;
+	std::shared_ptr<class GameEngineCollision> PlayerLeftCol;
+	std::shared_ptr<class GameEngineCollision> PlayerRightCol;
+
 	bool IsGround = false;
 	bool Fall = false;
 	GameEnginePixelColor Pixel = GameEnginePixelColor::Black;
@@ -180,6 +183,9 @@ private:
 	//대쉬 이펙트 관련
 	bool Effect_Check = false;
 	float DashEffectTime = 0.0f;
+	//포탈 충돌유무
+	bool IsLeftPotal = false;
+	bool IsRightPotal = false;
 
 	//플립 예아니오
 	bool FilpCheck = false;

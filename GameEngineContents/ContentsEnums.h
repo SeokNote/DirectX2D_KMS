@@ -19,6 +19,10 @@ enum class MyMap
 
 enum class ColOrder
 {
+	//플레이어 좌
+	LEFTBODY,
+	//플레이어 우
+	RIGHTBODY,
 	//몬스터 인지 범위
 	ATTACKAREA,
 	//몬스터 공격
@@ -37,5 +41,7 @@ enum class ColOrder
 	PlayMouse,
 	//코인
 	COIN,
+	POTAL,
+
 };
 

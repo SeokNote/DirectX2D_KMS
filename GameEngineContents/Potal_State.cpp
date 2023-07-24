@@ -104,6 +104,7 @@ void Potal::Idle2Update(float _Time)
 {
 	if (Player::MainPlayer->GetData().GetMonsterIndex() == 0)
 	{
+		SteleCol->Off();
 		ChangeState(PotalState::OPEN);
 	}
 }
@@ -138,6 +139,7 @@ void Potal::CloseUpdate(float _Time)
 {
 	if (true == SteleRender->IsAnimationEnd())
 	{
+		SteleCol->On();
 		ChangeState(PotalState::IDLE2);
 	}
 }

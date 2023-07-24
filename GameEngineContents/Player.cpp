@@ -77,6 +77,14 @@ void Player::Start()
 	PlayerCol->GetTransform()->SetLocalScale({ 64.0f, 76.0f });
 	PlayerCol->SetColType(ColType::AABBBOX2D);
 
+	PlayerLeftCol = CreateComponent<GameEngineCollision>(ColOrder::LEFTBODY);
+	PlayerLeftCol->GetTransform()->SetLocalScale({ 10.0f, 10.0f });
+	PlayerLeftCol->SetColType(ColType::AABBBOX2D);
+
+	PlayerRightCol = CreateComponent<GameEngineCollision>(ColOrder::RIGHTBODY);
+	PlayerRightCol->GetTransform()->SetLocalScale({ 10.0f, 10.0f });
+	PlayerRightCol->SetColType(ColType::AABBBOX2D);
+
 	////포인트 라이팅
 	//LightEffect =  GetLevel()->GetMainCamera()->GetCamTarget()->CreateEffect<PointLightEffect>();
 	//LightEffect->SetState(PointLightType::Circle);
@@ -114,6 +122,25 @@ void Player::Update(float _DeltaTime)
 	UpdateState(_DeltaTime);
 	GetTransform()->AddLocalPosition(MoveDir * Data.GetMoveSpeed() * _DeltaTime);
 	Filp();
+
+	if (PlayerLeftCol->Collision(ColOrder::POTAL, ColType::AABBBOX2D, ColType::OBBBOX2D))
+	{
+		IsLeftPotal = true;
+	}
+	else
+	{
+		IsLeftPotal = false;
+	}
+	if (PlayerRightCol->Collision(ColOrder::POTAL, ColType::AABBBOX2D, ColType::OBBBOX2D))
+	{
+		 IsRightPotal = true;
+	}
+	else
+	{
+		IsRightPotal = false;
+
+	}
+
 }
 
 void Player::Invincible(float _Delta)
@@ -991,6 +1018,9 @@ void Player::ColRenderSet()
 	float4 PlayerPos = GetTransform()->GetLocalPosition();
 
 	PlayerCol->GetTransform()->SetWorldPosition({ PlayerPos.x,PlayerPos.y-30.0f,0.0f });
+	PlayerLeftCol->GetTransform()->SetWorldPosition({ PlayerPos.x-30.0f,PlayerPos.y-30.0f,0.0f });
+	PlayerRightCol->GetTransform()->SetWorldPosition({ PlayerPos.x+30.0f,PlayerPos.y-30.0f,0.0f });
+
 	PlayerTopRender->GetTransform()->SetWorldPosition({ PlayerPos.x,PlayerPos.y + 15.0f,PlayerPos.z });
 	PlayerTopRender->Off();
 	PlayerBottoomRender->GetTransform()->SetWorldPosition({ PlayerPos.x,PlayerPos.y - 65.0f,PlayerPos.z });

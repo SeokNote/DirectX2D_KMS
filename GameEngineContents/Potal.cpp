@@ -1,5 +1,6 @@
 #include "PrecompileHeader.h"
 #include "Potal.h"
+#include "ContentsEnums.h"
 #include "Player.h"
 #include "PortalParticle.h"
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
@@ -28,19 +29,26 @@ void Potal::Start()
 	SteleRender->CreateAnimation({ .AnimationName = "SteleClose", .SpriteName = "SteleClose", .Loop = false , .ScaleToTexture = false });
 	SteleRender->CreateAnimation({ .AnimationName = "SteleOpen", .SpriteName = "SteleOpen", .Loop = false , .ScaleToTexture = false });
 	SteleRender->CreateAnimation({ .AnimationName = "SteleIdle", .SpriteName = "SteleIdle", .Loop = true , .ScaleToTexture = false });
+	
+	SteleCol = CreateComponent<GameEngineCollision>(ColOrder::POTAL);
+	SteleCol->GetTransform()->SetLocalScale(Scale);
+	SteleCol->SetColType(ColType::OBBBOX2D);
+	SteleCol->Off();
 	ChangeState(PotalState::IDLE);
 
 }
 
 void Potal::Update(float _Delta)
 {
-	float4 asd = SteleRender->GetTransform()->GetWorldPosition();
+	float4 MyPos = GetTransform()->GetWorldPosition();
+
 	UpdateState(_Delta);
 	if (Player::MainPlayer->GetData().GetMonsterIndex() == 0)
 	{
 		PTCSetting(_Delta);
 
 	}
+	SteleCol->GetTransform()->SetWorldPosition(SteleRender->GetTransform()->GetWorldPosition());
 }
 
 void Potal::PTCSetting(float _Delta)

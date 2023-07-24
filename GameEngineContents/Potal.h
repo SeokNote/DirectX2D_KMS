@@ -24,6 +24,10 @@ public:
 	{
 		return SteleRender;
 	}
+	std::shared_ptr<class GameEngineCollision> GetPotalCol()
+	{
+		return SteleCol;
+	}
 	void SetPTCValue(float4 _Dir , float4 _Pos,float _PivotX,float _PivotY)
 	{
 		Dir = _Dir;
@@ -62,6 +66,8 @@ private:
 	float PivotY = 0.0f;
 
 	std::shared_ptr<class GameEngineSpriteRenderer> SteleRender = nullptr;
+	std::shared_ptr<class GameEngineCollision> SteleCol= nullptr;
+
 	float CreateTime0 = 0.0f;
 	float CreateTime1 = 0.0f;
 	float CreateTime2 = 0.0f;

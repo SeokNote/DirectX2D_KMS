@@ -202,6 +202,10 @@ void Player::MoveUpdate(float _Time)
 		{
 			MoveDir.x = 0.0f;
 		}
+		else if (IsLeftPotal == true)
+		{
+			MoveDir.x = 0.0f;
+		}
 		else
 		{
 			MoveDir.x = -1.0f;
@@ -217,6 +221,10 @@ void Player::MoveUpdate(float _Time)
 	else if (true == GameEngineInput::IsPress("RightMove"))
 	{
 		if (true == RightSideCheck())
+		{
+			MoveDir.x = 0.0f;
+		}
+		else if (IsRightPotal == true)
 		{
 			MoveDir.x = 0.0f;
 		}
