@@ -62,10 +62,23 @@ private:
 	int Frame = 0;
 	int asd = 0;
 	//æÁ√ 
-	std::shared_ptr<class Candle> CandlePtr_0 = nullptr;
+	std::shared_ptr<class Candle> CandlePtr_0;
 	std::shared_ptr<class Candle> CandlePtr_1 = nullptr;
 	std::shared_ptr<class Candle> CandlePtr_2 = nullptr;
 	std::shared_ptr<class StandCandle> S_CandlePtr0 = nullptr;
 	std::shared_ptr<class StandCandle> S_CandlePtr1 = nullptr;
+	std::shared_ptr<class Potal> PotalPtr0 = nullptr;
+	std::shared_ptr<class Potal> PotalPtr1 = nullptr;
+	std::shared_ptr<class Potal> PotalPtr2 = nullptr;
+	std::shared_ptr<class Potal> PotalPtr3 = nullptr;
+	std::shared_ptr<class Potal> PotalPtr4 = nullptr;
+	std::shared_ptr<class Potal> PotalPtr5 = nullptr;
+	std::shared_ptr<class Potal> PotalPtr6 = nullptr;
+	std::shared_ptr<class Potal> PotalPtr7 = nullptr;
+	std::shared_ptr<class Potal> PotalPtr8 = nullptr;
+	std::shared_ptr<class Potal> PotalPtr9 = nullptr;
+	std::shared_ptr<class Potal> PotalPtr10 = nullptr;
+	std::shared_ptr<class Potal> PotalPtr11 = nullptr;
+
 	GameEngineSoundPlayer BGM;
 };

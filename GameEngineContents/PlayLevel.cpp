@@ -390,35 +390,11 @@ void PlayLevel::Start()
 	SetUI();
 	SetMap();
 	SetPotal();
-	CandlePtr_0 = CreateActor<Candle>(1);
-	CandlePtr_0->GetTransform()->SetLocalPosition({ 3409.f,-106.f,-200.0f });
-	CandlePtr_0->SetCandleColor(float4::Red);
-	CandlePtr_0->SetMyMap(MyMap::Stage1_1);
-	CandlePtr_0->Off();
+
 	
-	CandlePtr_1 = CreateActor<Candle>(1);
-	CandlePtr_1->GetTransform()->SetLocalPosition({ 11730.f,-400.f,-200.0f });
-	CandlePtr_1->SetCandleColor(float4(0.65f,0.4f,0.917f));
-	CandlePtr_1->SetMyMap(MyMap::Stage1_Boss);
-	CandlePtr_1->Off();
-	
-	CandlePtr_2 = CreateActor<Candle>(1);
-	CandlePtr_2->GetTransform()->SetLocalPosition({ 12432.f,-400.f,-200.0f });
-	CandlePtr_2->SetCandleColor(float4(0.65f, 0.4f, 0.917f));
-	CandlePtr_2->SetMyMap(MyMap::Stage1_Boss);
-	CandlePtr_2->Off();
-	
-	S_CandlePtr0 = CreateActor<StandCandle>(1);
-	S_CandlePtr0->GetTransform()->SetLocalPosition({ 9925.f,-238.f,-790.0f });
-	S_CandlePtr0->SetStandCandleColor(float4(0.65f, 0.4f, 0.917f));
-	S_CandlePtr0->S_SetMyMap(MyMap::Stage1_4);
-	S_CandlePtr0->Off();
-	
-	S_CandlePtr1 = CreateActor<StandCandle>(1);
-	S_CandlePtr1->GetTransform()->SetLocalPosition({ 10727.f,-238.f,-790.0f });
-	S_CandlePtr1->SetStandCandleColor(float4(0.65f, 0.4f, 0.917f));
-	S_CandlePtr1->S_SetMyMap(MyMap::Stage1_4);
-	S_CandlePtr1->Off();
+
+
+
 //	보스 스포너
 	static std::shared_ptr<BelialSpawner> BelialSpawnerPtr = CreateActor<BelialSpawner>(1);
 	BelialSpawnerPtr->GetTransform()->SetLocalPosition({ 12050.0f,-350.0f,-760.0f });
@@ -484,6 +460,7 @@ void PlayLevel::SetMap()
 		std::shared_ptr<BossDoor_2> BossDoor3Ptr = CreateActor<BossDoor_2>(1);
 
 	}
+
 }
 void PlayLevel::SetUI()
 {
@@ -495,109 +472,16 @@ void PlayLevel::SetUI()
 void PlayLevel::SetPotal()
 {
 	//Portal
-	std::shared_ptr<Potal> PotalPtr0 = CreateActor<Potal>(1);
-	PotalPtr0->GetPotalRender()->GetTransform()->SetLocalPosition({ -20.f,-50.0f,0.0f });
-	PotalPtr0->GetPotalCol()->GetTransform()->SetLocalPosition({ -20.f,30.0f,0.0f });
-	//PotalPtr0->GetPotalRender()->GetTransform()->SetLocalRotation({ 0.0f,0.0f,-90.0f });
-	PotalPtr0->GetTransform()->SetLocalPosition({ 3916.0f,-167.0f,0.0f });
-	PotalPtr0->GetTransform()->SetWorldRotation({ 0.0f,0.0f,-90.0f });
-	PotalPtr0->SetPTCValue(float4::Left, float4(20.0f, 120.0f, 0.0f), 10.0f, 0.0f);
-	std::shared_ptr<Potal> PotalPtr1 = CreateActor<Potal>(1);
-	PotalPtr1->GetTransform()->SetLocalPosition({ 4063.0f,-468.0f,-900.0f });
-	PotalPtr1->GetPotalRender()->GetTransform()->SetLocalPosition({ 50.0f,56.0f,0.0f });
-	PotalPtr1->GetPotalRender()->GetTransform()->SetLocalRotation({ 0.0f,0.0f,-270.0f });
-	PotalPtr1->GetPotalCol()->GetTransform()->SetLocalPosition({ 50.0f,56.0f,0.0f });
-	PotalPtr1->GetPotalCol()->GetTransform()->SetLocalRotation({ 0.0f,0.0f,-270.0f });
-	PotalPtr1->SetPTCValue(float4::Right, float4(20.0f, 110.0f, 0.0f), 10.0f, 60.0f);
-	std::shared_ptr<Potal> PotalPtr2 = CreateActor<Potal>(1);
-	PotalPtr2->GetTransform()->SetLocalPosition({ 6372.0f,-558.0f,-900.0f });
-	PotalPtr2->GetPotalRender()->GetTransform()->SetLocalPosition({ 30.0f,0.0f,0.0f });
-	PotalPtr2->GetPotalRender()->GetTransform()->SetLocalRotation({ 0.0f,0.0f,-180.0f });
-	PotalPtr2->SetPTCValue(float4::Up, float4(90.0f, 20.0f, 0.0f), -20.0f, -30.0f);
-	std::shared_ptr<Potal> PotalPtr3 = CreateActor<Potal>(1);
-	PotalPtr3->GetTransform()->SetLocalPosition({ 8024.0f,458.0f,-900.0f });
-	PotalPtr3->GetPotalRender()->GetTransform()->SetLocalPosition({ -15.0f,20.0f,0.0f });
-	PotalPtr3->GetPotalRender()->GetTransform()->SetLocalRotation({ 0.0f,0.0f,-180.0f });
-	PotalPtr3->SetPTCValue(float4::Down, float4(90.0f, 20.0f, 0.0f), -20.0f, 70.0f);
-	std::shared_ptr<Potal> PotalPtr4 = CreateActor<Potal>(1);
-	PotalPtr4->GetTransform()->SetLocalPosition({ 6872.0f,-481.0f,-900.0f });
-	PotalPtr4->GetPotalRender()->GetTransform()->SetLocalPosition({ -10.0f,60.0f,0.0f });
-	PotalPtr4->GetPotalRender()->GetTransform()->SetLocalRotation({ 0.0f,0.0f,-270.0f });
-	PotalPtr4->SetPTCValue(float4::Right, float4(20.0f, 90.0f, 0.0f), -20.0f, 70.0f);
-	std::shared_ptr<Potal> PotalPtr5 = CreateActor<Potal>(1);
-	PotalPtr5->GetTransform()->SetLocalPosition({ 11225.0f,-254.0f,-900.0f });
-	PotalPtr5->GetPotalRender()->GetTransform()->SetLocalPosition({ 10.0f,30.0f,0.0f });
-	PotalPtr5->GetPotalRender()->GetTransform()->SetLocalRotation({ 0.0f,0.0f,-90.0f });
-	PotalPtr5->SetPTCValue(float4::Left, float4(20.0f, 70.0f, 0.0f), 20.0f, 70.0f);
-	std::shared_ptr<Potal> PotalPtr6 = CreateActor<Potal>(1);
-	PotalPtr6->GetTransform()->SetLocalPosition({ 11225.0f,-254.0f,-900.0f });
-	PotalPtr6->GetPotalRender()->GetTransform()->SetLocalPosition({ 10.0f,30.0f,0.0f });
-	PotalPtr6->GetPotalRender()->GetTransform()->SetLocalRotation({ 0.0f,0.0f,-90.0f });
-	PotalPtr6->SetPTCValue(float4::Left, float4(20.0f, 70.0f, 0.0f), 20.0f, 70.0f);
-	std::shared_ptr<Potal> PotalPtr7 = CreateActor<Potal>(1);
-	PotalPtr7->GetTransform()->SetLocalPosition({ 11438.0f, -480.0f,-900.0f });
-	PotalPtr7->GetPotalRender()->GetTransform()->SetLocalPosition({ 60.0f,-20.0f,0.0f });
-	PotalPtr7->GetTransform()->SetWorldRotation({ 0.0f,0.0f,-270.0f });
-	PotalPtr7->SetPTCValue(float4::Right, float4(20.0f, 110.0f, 0.0f), 0.0f, 50.0f);
-	std::shared_ptr<Potal> PotalPtr8 = CreateActor<Potal>(1);
-	PotalPtr8->GetTransform()->SetLocalPosition({ 12763.0f, -480.0f,-900.0f });
-	PotalPtr8->GetPotalRender()->GetTransform()->SetLocalPosition({ -60.0f,-80.0f,0.0f });
-	PotalPtr8->GetTransform()->SetWorldRotation({ 0.0f,0.0f,-90.0f });
-	PotalPtr8->SetPTCValue(float4::Left, float4(20.0f, 110.0f, 0.0f), 0.0f, 50.0f);
-	std::shared_ptr<Potal> PotalPtr9 = CreateActor<Potal>(1);
-	PotalPtr9->GetTransform()->SetLocalPosition({ 14143.0f, -132.0f,-900.0f });
-	PotalPtr9->GetPotalRender()->Off();
-	PotalPtr9->GetPotalCol()->Off();
-	PotalPtr9->SetPTCValue(float4::Left, float4(20.0f, 110.0f, 0.0f), 0.0f, 50.0f);
-	std::shared_ptr<Potal> PotalPtr10 = CreateActor<Potal>(1);
-	PotalPtr10->GetTransform()->SetLocalPosition({ 14304.0f, -194.0f,-900.0f });
-	PotalPtr10->GetPotalRender()->GetTransform()->SetLocalPosition({ -65.0f,0.0f,0.0f });
-	PotalPtr10->GetTransform()->SetWorldRotation({ 0.0f,0.0f,-90.0f });
-	PotalPtr10->SetPTCValue(float4::Right, float4(20.0f, 110.0f, 0.0f), 0.0f, 50.0f);
-	std::shared_ptr<Potal> PotalPtr11 = CreateActor<Potal>(1);
-	PotalPtr11->GetTransform()->SetLocalPosition({ 15844.0f, -194.0f,-900.0f });
-	PotalPtr11->GetPotalRender()->GetTransform()->SetLocalPosition({ 65.0f,0.0f,0.0f });
-	PotalPtr11->GetTransform()->SetWorldRotation({ 0.0f,0.0f,-270.0f });
-	PotalPtr11->SetPTCValue(float4::Left, float4(20.0f, 110.0f, 0.0f), 0.0f, 50.0f);
-}
-void PlayLevel::SetCandle()
-{
-	CandleMap = Player::MainPlayer->SetMyMap(CandleMap);
-	if (CandleMap == MyMap::Stage1_1)
-	{
-		CandlePtr_0->On();
-	}
-	else
-	{
-		CandlePtr_0->Off();
-	}
-	if (CandleMap == MyMap::Stage1_Boss)
-	{
-		CandlePtr_1->On();
-		CandlePtr_2->On();
 
-	}
-	else
-	{
-		CandlePtr_1->Off();
-		CandlePtr_2->Off();
-	}
-	if (CandleMap == MyMap::Stage1_4)
-	{
-		S_CandlePtr0->On();
-		S_CandlePtr1->On();
-	}
-	else
-	{
-		S_CandlePtr0->Off();
-		S_CandlePtr1->Off();
-	}
+
+
+
+
+
 }
 
 void PlayLevel::Update(float _DeltaTime)
 {
-	SetCandle();
-
 	static float Time = 0.0f;
 
 	Time += _DeltaTime;
@@ -797,30 +681,137 @@ void PlayLevel::SetBGM()
 		case MyMap::None:
 			break;
 		case MyMap::Town:
+
 			BGM.SetMute(true);
 			BGM = GameEngineSound::Play("0.Town.wav");
 			BGM.SetLoop(-1);
 			PrevMap = CurMap;
 			break;
 		case MyMap::Stage1_1:
+			CandlePtr_0 = CreateActor<Candle>(1);
+			CandlePtr_0->GetTransform()->SetLocalPosition({ 3409.f,-106.f,-200.0f });
+			CandlePtr_0->SetCandleColor(float4::Red);
+			CandlePtr_0->SetMyMap(MyMap::Stage1_1);
+			PotalPtr0 = CreateActor<Potal>(1);
+			PotalPtr0->GetPotalRender()->GetTransform()->SetLocalPosition({ -20.f,-50.0f,0.0f });
+			PotalPtr0->GetPotalCol()->GetTransform()->SetLocalPosition({ -20.f,30.0f,0.0f });
+			PotalPtr0->GetTransform()->SetLocalPosition({ 3916.0f,-167.0f,0.0f });
+			PotalPtr0->GetTransform()->SetWorldRotation({ 0.0f,0.0f,-90.0f });
+			PotalPtr0->SetPTCValue(float4::Left, float4(20.0f, 120.0f, 0.0f), 10.0f, 0.0f);
 			BGM.SetMute(true);
 			BGM = GameEngineSound::Play("1.JailField.wav");
 			BGM.SetLoop(-1);
 			PrevMap = CurMap;
 			break;
+		case MyMap::Stage1_2:
+			PotalPtr1 = CreateActor<Potal>(1);
+			PotalPtr1->GetTransform()->SetLocalPosition({ 4063.0f,-468.0f,-900.0f });
+			PotalPtr1->GetPotalRender()->GetTransform()->SetLocalPosition({ 50.0f,56.0f,0.0f });
+			PotalPtr1->GetPotalRender()->GetTransform()->SetLocalRotation({ 0.0f,0.0f,-270.0f });
+			PotalPtr1->GetPotalCol()->GetTransform()->SetLocalPosition({ 50.0f,56.0f,0.0f });
+			PotalPtr1->GetPotalCol()->GetTransform()->SetLocalRotation({ 0.0f,0.0f,-270.0f });
+			PotalPtr1->SetPTCValue(float4::Right, float4(20.0f, 110.0f, 0.0f), 10.0f, 60.0f);
+			PotalPtr2 = CreateActor<Potal>(1);
+			PotalPtr2->GetTransform()->SetLocalPosition({ 6372.0f,-558.0f,-900.0f });
+			PotalPtr2->GetPotalRender()->GetTransform()->SetLocalPosition({ 30.0f,0.0f,0.0f });
+			PotalPtr2->GetPotalRender()->GetTransform()->SetLocalRotation({ 0.0f,0.0f,-180.0f });
+			PotalPtr2->SetPTCValue(float4::Up, float4(90.0f, 20.0f, 0.0f), -20.0f, -30.0f);
+			CandlePtr_0->Death();
+			PotalPtr0->Death();
+			break;
+		case MyMap::Stage1_3:
+			PotalPtr2->Death();
+			PotalPtr1->Death();
+			PotalPtr3 = CreateActor<Potal>(1);
+			PotalPtr3->GetTransform()->SetLocalPosition({ 8024.0f,458.0f,-900.0f });
+			PotalPtr3->GetPotalRender()->GetTransform()->SetLocalPosition({ -15.0f,20.0f,0.0f });
+			PotalPtr3->GetPotalRender()->GetTransform()->SetLocalRotation({ 0.0f,0.0f,-180.0f });
+			PotalPtr3->SetPTCValue(float4::Down, float4(90.0f, 20.0f, 0.0f), -20.0f, 70.0f);
+			PotalPtr4 = CreateActor<Potal>(1);
+			PotalPtr4->GetTransform()->SetLocalPosition({ 6872.0f,-481.0f,-900.0f });
+			PotalPtr4->GetPotalRender()->GetTransform()->SetLocalPosition({ -10.0f,60.0f,0.0f });
+			PotalPtr4->GetPotalRender()->GetTransform()->SetLocalRotation({ 0.0f,0.0f,-270.0f });
+			PotalPtr4->SetPTCValue(float4::Right, float4(20.0f, 90.0f, 0.0f), -20.0f, 70.0f);
+			break;
+		case MyMap::Stage1_4:
+			PotalPtr3->Death();
+			PotalPtr4->Death();
+			PotalPtr5 = CreateActor<Potal>(1);
+			PotalPtr5->GetTransform()->SetLocalPosition({ 11225.0f,-254.0f,-900.0f });
+			PotalPtr5->GetPotalRender()->GetTransform()->SetLocalPosition({ 10.0f,30.0f,0.0f });
+			PotalPtr5->GetPotalRender()->GetTransform()->SetLocalRotation({ 0.0f,0.0f,-90.0f });
+			PotalPtr5->SetPTCValue(float4::Left, float4(20.0f, 70.0f, 0.0f), 20.0f, 70.0f);
+			PotalPtr6 = CreateActor<Potal>(1);
+			PotalPtr6->GetTransform()->SetLocalPosition({ 9383.0f,-254.0f,-900.0f });
+			PotalPtr6->GetPotalRender()->GetTransform()->SetLocalPosition({ 10.0f,30.0f,0.0f });
+			PotalPtr6->GetPotalRender()->GetTransform()->SetLocalRotation({ 0.0f,0.0f,-90.0f });
+			PotalPtr6->SetPTCValue(float4::Left, float4(20.0f, 70.0f, 0.0f), 20.0f, 70.0f);
+			S_CandlePtr0 = CreateActor<StandCandle>(1);
+			S_CandlePtr0->GetTransform()->SetLocalPosition({ 9925.f,-238.f,-790.0f });
+			S_CandlePtr0->SetStandCandleColor(float4(0.65f, 0.4f, 0.917f));
+			S_CandlePtr0->S_SetMyMap(MyMap::Stage1_4);
+
+			S_CandlePtr1 = CreateActor<StandCandle>(1);
+			S_CandlePtr1->GetTransform()->SetLocalPosition({ 10727.f,-238.f,-790.0f });
+			S_CandlePtr1->SetStandCandleColor(float4(0.65f, 0.4f, 0.917f));
+			S_CandlePtr1->S_SetMyMap(MyMap::Stage1_4);
+			break;
 		case MyMap::Stage1_Boss:
+			S_CandlePtr0->Death();
+			S_CandlePtr1->Death();
+			PotalPtr5->Death();
+			PotalPtr6->Death();
+			PotalPtr7 = CreateActor<Potal>(1);
+			PotalPtr7->GetTransform()->SetLocalPosition({ 11438.0f, -480.0f,-900.0f });
+			PotalPtr7->GetPotalRender()->GetTransform()->SetLocalPosition({ 60.0f,-20.0f,0.0f });
+			PotalPtr7->GetTransform()->SetWorldRotation({ 0.0f,0.0f,-270.0f });
+			PotalPtr7->SetPTCValue(float4::Right, float4(20.0f, 110.0f, 0.0f), 0.0f, 50.0f);
+			PotalPtr8 = CreateActor<Potal>(1);
+			PotalPtr8->GetTransform()->SetLocalPosition({ 12763.0f, -480.0f,-900.0f });
+			PotalPtr8->GetPotalRender()->GetTransform()->SetLocalPosition({ -60.0f,-80.0f,0.0f });
+			PotalPtr8->GetTransform()->SetWorldRotation({ 0.0f,0.0f,-90.0f });
+			PotalPtr8->SetPTCValue(float4::Left, float4(20.0f, 110.0f, 0.0f), 0.0f, 50.0f);
+			CandlePtr_1 = CreateActor<Candle>(1);
+			CandlePtr_1->GetTransform()->SetLocalPosition({ 11730.f,-400.f,-200.0f });
+			CandlePtr_1->SetCandleColor(float4(0.65f, 0.4f, 0.917f));
+			CandlePtr_1->SetMyMap(MyMap::Stage1_Boss);
+			CandlePtr_2 = CreateActor<Candle>(1);
+			CandlePtr_2->GetTransform()->SetLocalPosition({ 12432.f,-400.f,-200.0f });
+			CandlePtr_2->SetCandleColor(float4(0.65f, 0.4f, 0.917f));
+			CandlePtr_2->SetMyMap(MyMap::Stage1_Boss);
 			BGM.SetMute(true);
 			BGM = GameEngineSound::Play("1.JailBoss.wav");
 			BGM.SetLoop(-1);
 			PrevMap = CurMap;
 			break;
 		case MyMap::Stage2_1:
+
+			PotalPtr7->Death();
+			PotalPtr8->Death();
+			CandlePtr_1->Death();
+			CandlePtr_2->Death();
+			PotalPtr9 = CreateActor<Potal>(1);
+			PotalPtr9->GetTransform()->SetLocalPosition({ 14143.0f, -132.0f,-900.0f });
+			PotalPtr9->GetPotalRender()->Off();
+			PotalPtr9->GetPotalCol()->Off();
+			PotalPtr9->SetPTCValue(float4::Left, float4(20.0f, 110.0f, 0.0f), 0.0f, 50.0f);
 			BGM.SetMute(true);
 			BGM = GameEngineSound::Play("3.junglefield.wav");
 			BGM.SetLoop(-1);
 			PrevMap = CurMap;
 			break;
 		case MyMap::Stage2_Boss:
+			PotalPtr9->Death();
+			PotalPtr10 = CreateActor<Potal>(1);
+			PotalPtr10->GetTransform()->SetLocalPosition({ 14304.0f, -194.0f,-900.0f });
+			PotalPtr10->GetPotalRender()->GetTransform()->SetLocalPosition({ -65.0f,0.0f,0.0f });
+			PotalPtr10->GetTransform()->SetWorldRotation({ 0.0f,0.0f,-90.0f });
+			PotalPtr10->SetPTCValue(float4::Right, float4(20.0f, 110.0f, 0.0f), 0.0f, 50.0f);
+			PotalPtr11 = CreateActor<Potal>(1);
+			PotalPtr11->GetTransform()->SetLocalPosition({ 15844.0f, -194.0f,-900.0f });
+			PotalPtr11->GetPotalRender()->GetTransform()->SetLocalPosition({ 65.0f,0.0f,0.0f });
+			PotalPtr11->GetTransform()->SetWorldRotation({ 0.0f,0.0f,-270.0f });
+			PotalPtr11->SetPTCValue(float4::Left, float4(20.0f, 110.0f, 0.0f), 0.0f, 50.0f);
 			BGM.SetMute(true);
 			BGM = GameEngineSound::Play("3.jungleboss.wav");
 			BGM.SetLoop(-1);

@@ -114,6 +114,7 @@ void Player::Update(float _DeltaTime)
 	if (GameEngineInput::IsDown("DeBugKey"))
 	{
 		Data.SubMonsterIndex(1);
+		GetTransform()->SetLocalPosition({ 3716.0f,-167.0f,-801.0f });
 	}
 	SetPlayerCollision(_DeltaTime);
 	DashPlusCount(_DeltaTime);
