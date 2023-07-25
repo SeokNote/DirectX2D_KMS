@@ -38,11 +38,10 @@ void PortalParticle::Start()
 
 void PortalParticle::Update(float _DeltaTime)
 {
-	Ratio += _DeltaTime;
-	ParticleRender->GetTransform()->AddLocalPosition({ Dir.x * Ratio*0.5f,Dir.y * Ratio,0.0f });
+	ParticleRender->GetTransform()->AddLocalPosition({ Dir.x * _DeltaTime *50.f,Dir.y * _DeltaTime,0.0f });
 	if (ParticleRender->ColorOptionValue.MulColor.a > 0)
 	{
-		ParticleRender->ColorOptionValue.MulColor.a -= Ratio*0.01f;
+		ParticleRender->ColorOptionValue.MulColor.a -= _DeltaTime;
 	}
 	else
 	{

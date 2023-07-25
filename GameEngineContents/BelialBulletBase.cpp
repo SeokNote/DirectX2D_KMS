@@ -53,6 +53,6 @@ void BelialBulletBase::Update(float _DeltaTime)
 	RDir_B = BelialBulletBaseRender_1->GetTransform()->GetWorldPosition();
 	UDir_B = BelialBulletBaseRender_2->GetTransform()->GetWorldPosition();
 	DDir_B = BelialBulletBaseRender_3->GetTransform()->GetWorldPosition();
-	GetTransform()->AddLocalRotation({ 0.0f,0.0f,0.5f });
+	GetTransform()->AddLocalRotation({ 0.0f,0.0f,100.0f* _DeltaTime });
 }
 
