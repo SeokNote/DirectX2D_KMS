@@ -14,9 +14,9 @@ public:
 	SpawnStage1_1(SpawnStage1_1&& _Other) noexcept = delete;
 	SpawnStage1_1& operator=(const SpawnStage1_1& _Other) = delete;
 	SpawnStage1_1& operator=(SpawnStage1_1&& _Other) noexcept = delete;
-	bool GetBelialCreat()
+	bool GetMonsterCreate()
 	{
-		return BelialCreat;
+		return MonsterCreate;
 	}
 
 protected:
@@ -27,6 +27,6 @@ private:
 	std::shared_ptr<class GameEngineCollision> SpawnStage1_1Col = nullptr;
 	std::shared_ptr<class SmallBat> MinoBat = nullptr;
 	float4 Scale = { 128.0f,128.0f,0.0f };
-	bool BelialCreat = false;
+	bool MonsterCreate = false;
 };
 

@@ -62,6 +62,7 @@ void GoldCoin::SetCollision()
 
 	if (BodyCol->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
+		GameEngineSound::Play("EC Collect.wav");
 		TextUI::TextCreat(GetLevel(), { CurPos.x,CurPos.y+50.0f,-802.f }, {1.f, 0.5840f, 0.235f}, "100G", false,32);
 		Player::MainPlayer->GetData().PlusCoin(100);
 		Death();

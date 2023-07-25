@@ -354,6 +354,7 @@ void WhiteSkell::DeadStart()
 	Pos1 = ParticleRender0->GetTransform()->GetWorldPosition();
 	CurFlip = IsFlip;
 	GoldCoin::CoinCreat(GetLevel(), GetTransform()->GetLocalPosition(), true);
+	GameEngineSound::Play("MonsterDie.wav");
 }
 
 void WhiteSkell::DeadUpdate(float _Time)

@@ -207,6 +207,8 @@ void GiantBat::DeadStart()
 	HpRender->Death();
 	HpBaseRender->Death();
 	Player::MainPlayer->GetData().SubMonsterIndex(1);
+	GameEngineSound::Play("monster-sound2_bat.wav");
+
 }
 
 void GiantBat::DeadUpdate(float _Time)

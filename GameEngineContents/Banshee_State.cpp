@@ -150,6 +150,7 @@ void Banshee::Idle2End()
 
 void Banshee::AttackReadyStart()
 {
+	GameEngineSound::Play("high_pitch_scream_gverb.wav");
 	BansheeRender->ChangeAnimation("BansheeAttack");
 	Count = 0;
 }
@@ -209,6 +210,7 @@ void Banshee::DeadStart()
 	HpRender->Death();
 	HpBaseRender->Death();
 	Player::MainPlayer->GetData().SubMonsterIndex(1);
+	GameEngineSound::Play("MonsterDie.wav");
 }
 
 void Banshee::DeadUpdate(float _Time)

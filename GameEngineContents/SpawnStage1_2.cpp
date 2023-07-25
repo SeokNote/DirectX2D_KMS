@@ -41,6 +41,7 @@ void SpawnStage1_2::Update(float _DeltaTime)
 {
 	if (MonsterCreat == false && SpawnStage1_2Col->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
+		GameEngineSound::Play("SpawnMonster.wav");
 		std::shared_ptr<Banshee> BansheePtr = GetLevel()->CreateActor<Banshee>(1);
 		BansheePtr->GetTransform()->SetLocalPosition({ 8011.0f,207.0f,-800.0f });
 

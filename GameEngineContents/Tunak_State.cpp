@@ -812,6 +812,7 @@ void Tunak::HalfHp_EUpdate(float _Time)
 		else
 		{
 			ShackStart = true;
+			GetTransform()->SetLocalPosition({ TunakPos.x,-25.0f,TunakPos.z });
 			ChangeState(TunakState::IDLE);
 		}
 	}

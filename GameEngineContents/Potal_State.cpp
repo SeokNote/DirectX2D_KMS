@@ -116,8 +116,19 @@ void Potal::Idle2End()
 
 void Potal::OpenStart()
 {
+	
 	SteleRender->ChangeAnimation("SteleOpen");
-	SteleSound.SetVolume(0.01f);
+	if (true == SteleSound.IsValid())
+	{
+		bool IsPlayValue = false;
+		SteleSound.isPlaying(&IsPlayValue);
+		if (IsPlayValue == true)
+		{
+			return;
+		}
+		
+
+	}
 	SteleSound = GameEngineSound::Play("stoneDoor.wav");
 }
 
@@ -136,7 +147,17 @@ void Potal::OpenEnd()
 void Potal::CloseStart()
 {
 	SteleRender->ChangeAnimation("SteleClose");
-	SteleSound.SetVolume(0.01f);
+	if (true == SteleSound.IsValid())
+	{
+		bool IsPlayValue = false;
+		SteleSound.isPlaying(&IsPlayValue);
+		if (IsPlayValue == true)
+		{
+			return;
+		}
+
+
+	}
 	SteleSound = GameEngineSound::Play("stoneDoor.wav");
 }
 

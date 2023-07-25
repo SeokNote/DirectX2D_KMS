@@ -128,6 +128,7 @@ void Minotaurs::IdleEnd()
 
 void Minotaurs::MoveStart()
 {
+	GameEngineSound::Play("minotaur_dashready.wav");
 	MinotaursRender->ChangeAnimation("MinotaursTakcle");
 	IsFlip = IsFlipCheck();
 	PrevPos = GetTransform()->GetLocalPosition();
@@ -166,9 +167,10 @@ void Minotaurs::MoveUpdate(float _Time)
 				if (CurPos.x > EndPos.x)
 				{
 					DustTime += _Time;
-					if (DustTime > 0.1f)
+					if (DustTime > 0.15f)
 					{
 						DustRender = GetLevel()->CreateActor<TunakDust_D>();
+						GameEngineSound::Play("minotaur_dash.wav");
 						DustRender->GetTransform()->SetLocalPosition({ CurPos.x,CurPos.y-45.0f,CurPos.z+10.0f});
 						DustTime = 0.0f;
 					}
@@ -222,6 +224,8 @@ void Minotaurs::MoveEnd()
 
 void Minotaurs::AttackStart()
 {
+	GameEngineSound::Play("minotaur_attack.wav");
+
 	TakcleCol->Off();
 	AttackCol->On();
 	if (IsFlip == true)
@@ -267,6 +271,7 @@ void Minotaurs::DeadStart()
 	HpRender->Death();
 	Player::MainPlayer->GetData().SubMonsterIndex(1);
 	HpBaseRender->Death();
+	GameEngineSound::Play("MonsterDie.wav");
 }
 
 void Minotaurs::DeadUpdate(float _Time)

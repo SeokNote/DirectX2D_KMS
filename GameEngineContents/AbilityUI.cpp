@@ -128,6 +128,7 @@ void AbilityUI::Update(float _Delta)
 
 void AbilityUI::SetCollision()
 {
+	Player::MainPlayer->SetUICount(1);
 	if (Button_RedCol->Collision(ColOrder::PlayMouse, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 
@@ -211,7 +212,7 @@ void AbilityUI::SetCollision()
 	}
 	if (GameEngineInput::IsUp("ESC"))
 	{
-	//	PlusStat();
+		Player::MainPlayer->SetUICount(0);
 		Off();
 	}
 }

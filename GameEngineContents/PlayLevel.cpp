@@ -737,12 +737,12 @@ void PlayLevel::SetBGM()
 			PotalPtr3->Death();
 			PotalPtr4->Death();
 			PotalPtr5 = CreateActor<Potal>(1);
-			PotalPtr5->GetTransform()->SetLocalPosition({ 11225.0f,-254.0f,-900.0f });
+			PotalPtr5->GetTransform()->SetLocalPosition({ 11225.0f,-254.0f,0.0f });
 			PotalPtr5->GetPotalRender()->GetTransform()->SetLocalPosition({ 10.0f,30.0f,0.0f });
 			PotalPtr5->GetPotalRender()->GetTransform()->SetLocalRotation({ 0.0f,0.0f,-90.0f });
 			PotalPtr5->SetPTCValue(float4::Left, float4(20.0f, 70.0f, 0.0f), 20.0f, 70.0f);
 			PotalPtr6 = CreateActor<Potal>(1);
-			PotalPtr6->GetTransform()->SetLocalPosition({ 9383.0f,-254.0f,-900.0f });
+			PotalPtr6->GetTransform()->SetLocalPosition({ 9383.0f,-254.0f,0.0f });
 			PotalPtr6->GetPotalRender()->GetTransform()->SetLocalPosition({ 10.0f,30.0f,0.0f });
 			PotalPtr6->GetPotalRender()->GetTransform()->SetLocalRotation({ 0.0f,0.0f,-90.0f });
 			PotalPtr6->SetPTCValue(float4::Left, float4(20.0f, 70.0f, 0.0f), 20.0f, 70.0f);
@@ -762,12 +762,12 @@ void PlayLevel::SetBGM()
 			PotalPtr5->Death();
 			PotalPtr6->Death();
 			PotalPtr7 = CreateActor<Potal>(1);
-			PotalPtr7->GetTransform()->SetLocalPosition({ 11438.0f, -480.0f,-900.0f });
+			PotalPtr7->GetTransform()->SetLocalPosition({ 11438.0f, -480.0f,0.0f });
 			PotalPtr7->GetPotalRender()->GetTransform()->SetLocalPosition({ 60.0f,-20.0f,0.0f });
 			PotalPtr7->GetTransform()->SetWorldRotation({ 0.0f,0.0f,-270.0f });
 			PotalPtr7->SetPTCValue(float4::Right, float4(20.0f, 110.0f, 0.0f), 0.0f, 50.0f);
 			PotalPtr8 = CreateActor<Potal>(1);
-			PotalPtr8->GetTransform()->SetLocalPosition({ 12763.0f, -480.0f,-900.0f });
+			PotalPtr8->GetTransform()->SetLocalPosition({ 12763.0f, -480.0f,0.0f });
 			PotalPtr8->GetPotalRender()->GetTransform()->SetLocalPosition({ -60.0f,-80.0f,0.0f });
 			PotalPtr8->GetTransform()->SetWorldRotation({ 0.0f,0.0f,-90.0f });
 			PotalPtr8->SetPTCValue(float4::Left, float4(20.0f, 110.0f, 0.0f), 0.0f, 50.0f);
@@ -791,7 +791,7 @@ void PlayLevel::SetBGM()
 			CandlePtr_1->Death();
 			CandlePtr_2->Death();
 			PotalPtr9 = CreateActor<Potal>(1);
-			PotalPtr9->GetTransform()->SetLocalPosition({ 14143.0f, -132.0f,-900.0f });
+			PotalPtr9->GetTransform()->SetLocalPosition({ 14143.0f, -132.0f,0.0f });
 			PotalPtr9->GetPotalRender()->Off();
 			PotalPtr9->GetPotalCol()->Off();
 			PotalPtr9->SetPTCValue(float4::Left, float4(20.0f, 110.0f, 0.0f), 0.0f, 50.0f);
@@ -803,12 +803,12 @@ void PlayLevel::SetBGM()
 		case MyMap::Stage2_Boss:
 			PotalPtr9->Death();
 			PotalPtr10 = CreateActor<Potal>(1);
-			PotalPtr10->GetTransform()->SetLocalPosition({ 14304.0f, -194.0f,-900.0f });
+			PotalPtr10->GetTransform()->SetLocalPosition({ 14304.0f, -194.0f,0.0f });
 			PotalPtr10->GetPotalRender()->GetTransform()->SetLocalPosition({ -65.0f,0.0f,0.0f });
 			PotalPtr10->GetTransform()->SetWorldRotation({ 0.0f,0.0f,-90.0f });
 			PotalPtr10->SetPTCValue(float4::Right, float4(20.0f, 110.0f, 0.0f), 0.0f, 50.0f);
 			PotalPtr11 = CreateActor<Potal>(1);
-			PotalPtr11->GetTransform()->SetLocalPosition({ 15844.0f, -194.0f,-900.0f });
+			PotalPtr11->GetTransform()->SetLocalPosition({ 15844.0f, -194.0f,0.0f });
 			PotalPtr11->GetPotalRender()->GetTransform()->SetLocalPosition({ 65.0f,0.0f,0.0f });
 			PotalPtr11->GetTransform()->SetWorldRotation({ 0.0f,0.0f,-270.0f });
 			PotalPtr11->SetPTCValue(float4::Left, float4(20.0f, 110.0f, 0.0f), 0.0f, 50.0f);

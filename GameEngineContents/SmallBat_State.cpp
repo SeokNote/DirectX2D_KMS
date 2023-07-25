@@ -159,6 +159,8 @@ void SmallBat::DeadStart()
 	HpBaseRender->Death();
 	BodyCol->Off();
 	Player::MainPlayer->GetData().SubMonsterIndex(1);
+	GameEngineSound::Play("Bat2.wav");
+
 }
 
 void SmallBat::DeadUpdate(float _Time)

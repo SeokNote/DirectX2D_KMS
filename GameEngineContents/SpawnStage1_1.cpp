@@ -40,8 +40,10 @@ void SpawnStage1_1::Start()
 
 void SpawnStage1_1::Update(float _DeltaTime)
 {
-	if (BelialCreat == false && SpawnStage1_1Col->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	if (MonsterCreate == false && SpawnStage1_1Col->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
+		GameEngineSound::Play("SpawnMonster.wav"); 
+
 		std::shared_ptr<WhiteSkell> WhiteSkellPtr = GetLevel()->CreateActor<WhiteSkell>(1);
 		WhiteSkellPtr->GetTransform()->SetLocalPosition({ 4981.0f,-437.0f,-800.0f });
 
@@ -70,7 +72,7 @@ void SpawnStage1_1::Update(float _DeltaTime)
 		SmallBatPtr4->GetTransform()->SetLocalPosition({ 5723.0f,358.0f,-800.0f });
 		Player::MainPlayer->GetData().PlusMonsterIndex(9);
 
-		BelialCreat = true;
+		MonsterCreate = true;
 	}
 }
 

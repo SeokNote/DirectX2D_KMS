@@ -1037,6 +1037,7 @@ void Player::SetPlayerCollision(float _DeltaTime)
 	int Maxhp = Data.GetPlayerMaxHP();
 	if (PlayerCol->Collision(ColOrder::MONSTERATTACK, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
+		GameEngineSound::Play("Hit_Player.wav");
 		PlayerHitRender->On();
 		PlayerCol->Off();
 		IsInvincible = true;

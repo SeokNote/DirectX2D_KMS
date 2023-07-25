@@ -12,6 +12,7 @@
 #include <GameEngineCore/GameEngineSprite.h>
 #include <GameEngineCore/GameEngineUIRenderer.h>
 #include <GameEngineCore/GameEngineCollision.h>
+GameEngineSoundPlayer Potal::SteleSound;
 Potal::Potal() 
 {
 }

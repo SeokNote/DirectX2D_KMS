@@ -94,6 +94,7 @@ void Ghost::SetCollision(float _DeltaTime)
 		HpBaseRender->On();
 		if (GhostBlink == false)
 		{
+			GameEngineSound::Play("ghostHit.wav"); 
 			//나중에 ui작업때 캐릭터가 갖고있는 swich로 무기에 따라 정해주자.
 			Hp -= WeaponBase::WeaponBasePtr->GetWeaponStrength(Weapon::GreatWeapon_E);
 			TextUI::TextCreat(GetLevel(), GetTransform()->GetLocalPosition(), float4::White,
