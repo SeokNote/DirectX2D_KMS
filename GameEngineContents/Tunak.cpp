@@ -12,6 +12,7 @@
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore/GameEngineSprite.h>
 #include <GameEngineCore/GameEngineCollision.h>
+#include <GameEnginePlatform/GameEngineSound.h>
 Tunak* Tunak::MainTunak = nullptr;
 Tunak::Tunak()
 {
@@ -156,6 +157,7 @@ void Tunak::DeadEvent(float _DeltaTime)
 			IsDead = true;
 			if (TimeCheck_D > 0.2f)
 			{
+				GameEngineSound::Play("MonsterDie.wav");
 				TunakCurPos.y -= 100.0f;
 				TunakCurPos.z = -850.0f;
 				BossDeadEffectPtr = GetLevel()->CreateActor<BossDeadEffect>();
@@ -219,6 +221,7 @@ void Tunak::TunakCollision(float _DeltaTime)
 	{
 		if (TunakHitCheck == false)
 		{
+			GameEngineSound::Play("Hit_Monster.wav");
 			//나중에 ui작업때 캐릭터가 갖고있는 swich로 무기에 따라 정해주자.
 			TunakHP -= WeaponBase::WeaponBasePtr->GetWeaponStrength(Weapon::GreatWeapon_E);
 			//여기서 hp클립

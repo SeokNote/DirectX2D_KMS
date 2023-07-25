@@ -232,5 +232,8 @@ private:
 	int TunakHP = 1500;
 	float Invincibilitytime = 0.0f; //무적시간
 	float RatioValue = 0.0f; //폭팔후 이펙트 비율
+	//사운드 불값
+	bool FirstSound = false;
+	bool SecoundSound = false;
 };
 

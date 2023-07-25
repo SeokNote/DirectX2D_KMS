@@ -156,6 +156,7 @@ void BelialHead::MoveUpdate(float _Time)
 	}
 	if (IsBullet == true && BulletTime > 0.15f)
 	{
+		GameEngineSound::Play("BelialBullet.wav");
 		BelialBulletRender = GetLevel()->CreateActor<BelialBullet>();
 		BulletTime = 0.0f;
 	}
@@ -214,6 +215,7 @@ void BelialHead::DeadUpdate(float _Time)
 		DeadEffectTime += _Time;
 		if (DeadEffectTime > 0.1f)
 		{
+			GameEngineSound::Play("MonsterDie.wav");
 			BossDead::CreateSubBG(GetLevel(), CurPod);
 			DeadEffectTime = 0.0f;
 		}
@@ -226,6 +228,7 @@ void BelialHead::DeadEnd()
 void BelialHead::EventStart()
 {
 	BelialHeadRender->ChangeAnimation("HeadIdle");
+	GameEngineSound::Play("beliallaugh_rev.wav");
 }
 
 void BelialHead::EventUpdate(float _Time)

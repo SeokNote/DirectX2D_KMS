@@ -129,6 +129,7 @@ void GoblinBomb::CreatBomb(float _DeltaTime)
 	}
 	if (BombPos.y <= -153 && IsCheck_1 ==false)
 	{
+		GameEngineSound::Play("explodeBrighter.wav");
 		GoblinBombCol->On();
 		GoblinBombRender->Off();
 		GoblinBombCol->GetTransform()->SetLocalPosition({ BombPos.x,BombPos.y+60.0f,0.0f});

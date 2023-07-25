@@ -286,7 +286,6 @@ void Tunak::IdleUpdate(float _Time)
 				ChangeState(TunakState::TACKLE);
 			}
 		
-
 			TestTime = 0.0f;
 		}
 	}
@@ -423,6 +422,7 @@ void Tunak::SPIKE_EEnd()
 
 void Tunak::OverPowerStart()
 {
+	GameEngineSound::Play("tunakSmashCharge.wav");
 	float4 PlayerPos = Player::MainPlayer->GetTransform()->GetLocalPosition();
 	TunakRender->ChangeAnimation("TunakOverPower");
 	GroundBombPtr_0 = GetLevel()->CreateActor<GroundBomb>();
@@ -456,10 +456,24 @@ void Tunak::DoubleAttackStart()
 	TunakRender->ChangeAnimation("TunakDoubleAttack");
 	TunakDoubleAttackCol->Off();
 	DoubleTime = 0.0f;
+	FirstSound = false;
+	SecoundSound = false;
 }
 
 void Tunak::DoubleAttackUpdate(float _Time)
 {
+	size_t CurFrame = TunakRender->GetCurrentFrame();
+	if (SecoundSound == false && CurFrame == 5)
+	{
+		GameEngineSound::Play("tunakPowerSwing.wav");
+		SecoundSound = true;
+	}
+	if (FirstSound == false && CurFrame == 10)
+	{
+		GameEngineSound::Play("tunakPowerSwing.wav");
+		FirstSound = true;
+	}
+
 	DoubleTime += _Time;
 	if (DoubleTime > 0.1f)
 	{
@@ -515,6 +529,7 @@ void Tunak::DoubleAttackEnd()
 
 void Tunak::ShoutStart()
 {
+	GameEngineSound::Play("tunakWindShout.wav");	
 	TunakRender->ChangeAnimation("TunakShout");
 
 	if (IsFilp == false)
@@ -631,6 +646,7 @@ void Tunak::GoblinBombStart()
 	TunakRender->ChangeAnimation("TunakBombCall");
 	IsGoblin = false;
 	GoblinPosX = GameEngineRandom::MainRandom.RandomFloat(14700.0f, 15340.0f);
+	GameEngineSound::Play("tunakPointing.wav");
 }	 
 
 
@@ -688,6 +704,7 @@ void Tunak::TackleUpdate(float _Time)
 			DustTime += _Time;
 			if (DustTime > 0.2)
 			{
+				GameEngineSound::Play("tunakDash.wav");
 				TunakDustDPtr = GetLevel()->CreateActor<TunakDust_D>();
 				TunakDustDPtr->GetTransform()->SetLocalPosition(TunakPos+ LeftDustPos);
 				DustTime = 0.0f;
@@ -766,6 +783,7 @@ void Tunak::HalfHp_SUpdate(float _Time)
 			if (GoblinTime > 0.4f && GoblinCount < 15)
 			{
 				GoblinCount++;
+				GameEngineSound::Play("laserRifleBeam.wav");
 				GoblinBomb_0 = GetLevel()->CreateActor<GoblinBomb>();
 				GoblinBomb_0->GetTransform()->SetLocalPosition({ GoblinPosX ,-75.0f,-800.0f });
 				GoblinTime = 0.0f;
@@ -811,6 +829,7 @@ void Tunak::HalfHp_EUpdate(float _Time)
 		}
 		else
 		{
+			GameEngineSound::Play("tunakRunawayJump.wav");
 			ShackStart = true;
 			GetTransform()->SetLocalPosition({ TunakPos.x,-25.0f,TunakPos.z });
 			ChangeState(TunakState::IDLE);
@@ -848,6 +867,7 @@ void Tunak::TunakDeadUpdate(float _Time)
 		DeadEffectTime += _Time;
 		if (DeadEffectTime > 0.1f)
 		{
+			GameEngineSound::Play("MonsterDie.wav");
 			BossDead::CreateSubBG(GetLevel(), TunakCurPos);
 			DeadEffectTime = 0.0f;
 		}
@@ -862,6 +882,7 @@ void Tunak::EventStart()
 {
 	TunakRender->GetTransform()->SetLocalPosition({ 0.0f,700.0f,0.0f });
 	TunakRender->ChangeAnimation("TunakJumpAttack");
+
 }
 bool IsValue_0 = false;
 void Tunak::EventUpdate(float _Time)
@@ -908,6 +929,7 @@ void Tunak::EventEnd()
 void Tunak::Event2Start()
 {
 	TunakRender->ChangeAnimation("TunakShout");
+	GameEngineSound::Play("tunakShout01.wav");
 
 
 }

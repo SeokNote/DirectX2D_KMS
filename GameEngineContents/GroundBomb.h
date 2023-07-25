@@ -1,5 +1,6 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
+#include <GameEnginePlatform/GameEngineSound.h>
 
 // 설명 :
 class GroundBomb :public GameEngineActor
@@ -30,6 +31,7 @@ private:
 
 
 	//변수
+	GameEngineSoundPlayer GroundBombBGM;
 	float4 BGScale = { 150.0f,800.0f,0.0f };
 	float4 BombScale = { 300.0f,800.0f,0.0f };
 	float4 BombColScale = { 200.0f,800.0f,0.0f };

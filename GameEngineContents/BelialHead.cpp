@@ -146,6 +146,7 @@ void BelialHead::DeathEvent(float _DeltaTime)
 			IsCreateHead = true;
 			if (TimeCheck_D > 0.2f)
 			{
+				GameEngineSound::Play("MonsterDie.wav");
 				CurPos.x += 50.0f;
 				CurPos.y -= 100.0f;
 				CurPos.z = -850.0f;
@@ -188,6 +189,7 @@ void BelialHead::BelialCollision(float _DeltaTime)
 	{
 		if (HitCheck == false)
 		{
+			GameEngineSound::Play("Hit_Monster.wav");
 			//나중에 ui작업때 캐릭터가 갖고있는 swich로 무기에 따라 정해주자.
 			BelialHp -= WeaponBase::WeaponBasePtr->GetWeaponStrength(Weapon::GreatWeapon_E);
 			//여기서 hp클립
@@ -220,12 +222,12 @@ void BelialHead::BelialSwordPlay(float _Time)
 {
 	SwordTime += _Time;
 
-	if (SwordTime > 0.3f)
+	if (SwordTime > 0.2f)
 	{
 		SwordIndex++;
 		if (SwordIndex < 6)
 		{
-
+			GameEngineSound::Play("LaserBow.wav");
 			BossSwordPtr_0 = GetLevel()->CreateActor<BossSword>();
 			BossSwordPtr_0->GetTransform()->SetWorldPosition({ StartX - YInvers ,50.0f,-801.0f });
 			YInvers -= 100.0f;

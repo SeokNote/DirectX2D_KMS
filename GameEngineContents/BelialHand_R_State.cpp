@@ -153,6 +153,7 @@ void BelialHand_R::LasorUpdate(float _Time)
 	size_t Frame = RightHandRender->GetCurrentFrame();
 	if (FirstLasor == false && Frame == 8)
 	{
+		GameEngineSound::Play("jumperLaserFire.wav");
 		LasorPtr_1 = GetLevel()->CreateActor<BelialLasor_R>();
 		LasorPtr_1->GetTransform()->SetLocalPosition({ CurPos.x - 630.0f,CurPos.y - 20.0f,-850.0f });
 		FirstLasor = true;

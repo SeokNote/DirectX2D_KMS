@@ -99,7 +99,8 @@ void InventoryUI::SetInventory()
 			}
 		});
 	Inventory00->SetDropItem([this]()
-		{
+		{				
+			GameEngineSound::Play("chainmail1.wav");
 			switch (Prev)
 			{
 			case PrevClick::NONE:
@@ -151,6 +152,7 @@ void InventoryUI::SetInventory()
 		});
 	WeaponInven0->SetDropItem([this]()
 		{
+			GameEngineSound::Play("chainmail1.wav");
 			switch (Prev)
 			{
 			case PrevClick::NONE:
@@ -198,6 +200,7 @@ void InventoryUI::SetInventory()
 		});
 	WeaponInven1->SetDropItem([this]()
 		{
+			GameEngineSound::Play("chainmail1.wav");
 			switch (Prev)
 			{
 			case PrevClick::NONE:
