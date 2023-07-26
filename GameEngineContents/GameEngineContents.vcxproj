@@ -403,6 +403,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="MyContentSpriteRenderer.h" />
+    <ClInclude Include="MyMapUI.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="PixelCollision.h">
       <SubType>
       </SubType>
@@ -905,6 +909,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="MyContentSpriteRenderer.cpp" />
+    <ClCompile Include="MyMapUI.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="PixelCollision.cpp">
       <SubType>
       </SubType>

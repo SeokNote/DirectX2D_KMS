@@ -934,7 +934,7 @@ void Tunak::Event2Start()
 
 	std::shared_ptr<BossText> test = GetLevel()->CreateActor<BossText>();
 	test->GetTransform()->SetLocalPosition({ -500.0f,-200.f,0.0f });
-	test->SetStatFont("Åõ³«", "¸®ÀÚµå¸ÇÀÇ ¿Õ");
+	test->SetExPlaneFont("Åõ³«", "¸®ÀÚµå¸ÇÀÇ ¿Õ");
 }
 void Tunak::Event2Update(float _Time)
 {

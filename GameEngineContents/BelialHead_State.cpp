@@ -231,7 +231,7 @@ void BelialHead::EventStart()
 	GameEngineSound::Play("beliallaugh_rev.wav");
 	std::shared_ptr<BossText> test = GetLevel()->CreateActor<BossText>();
 	test->GetTransform()->SetLocalPosition({ -500.0f,-200.f,0.0f });
-	test->SetStatFont("벨리알", "감옥의 수문장");
+	test->SetExPlaneFont("벨리알", "감옥의 수문장");
 }
 
 void BelialHead::EventUpdate(float _Time)

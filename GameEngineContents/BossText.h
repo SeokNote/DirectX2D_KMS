@@ -13,7 +13,7 @@ public:
 	BossText(BossText&& _Other) noexcept = delete;
 	BossText& operator=(const BossText& _Other) = delete;
 	BossText& operator=(BossText&& _Other) noexcept = delete;
-	void SetStatFont(std::string _BossName , std::string _Explane);
+	void SetExPlaneFont(std::string _BossName , std::string _Explane);
 
 protected:
 	void Start() override;

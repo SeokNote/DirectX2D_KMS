@@ -213,7 +213,7 @@
       <Filter>Object\Boss\Tunak\AfterEffect</Filter>
     </ClInclude>
     <ClInclude Include="Tunak.h">
-      <Filter>Object\Boss\Tunak\Tunak</Filter>
+      <Filter>Object\Boss\Tunak\TunakBullet\Tunak</Filter>
     </ClInclude>
     <ClInclude Include="GroundBomb.h">
       <Filter>Object\Boss\Tunak\TunakBullet\GroundBomb</Filter>
@@ -370,6 +370,9 @@
     </ClInclude>
     <ClInclude Include="BossText.h">
       <Filter>Object\Boss\BossBase</Filter>
+    </ClInclude>
+    <ClInclude Include="MyMapUI.h">
+      <Filter>Object\UI\TextUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -597,7 +600,7 @@
       <Filter>Object\Boss\Tunak\AfterEffect</Filter>
     </ClCompile>
     <ClCompile Include="Tunak.cpp">
-      <Filter>Object\Boss\Tunak\Tunak</Filter>
+      <Filter>Object\Boss\Tunak\TunakBullet\Tunak</Filter>
     </ClCompile>
     <ClCompile Include="GroundBomb.cpp">
       <Filter>Object\Boss\Tunak\TunakBullet\GroundBomb</Filter>
@@ -660,7 +663,7 @@
       <Filter>Object\Door\BossSpawner\Tunak</Filter>
     </ClCompile>
     <ClCompile Include="Tunak_State.cpp">
-      <Filter>Object\Boss\Tunak\Tunak</Filter>
+      <Filter>Object\Boss\Tunak\TunakBullet\Tunak</Filter>
     </ClCompile>
     <ClCompile Include="WhiteSkell.cpp">
       <Filter>Object\Monster\WhiteSkell</Filter>
@@ -781,6 +784,9 @@
     </ClCompile>
     <ClCompile Include="BossText.cpp">
       <Filter>Object\Boss\BossBase</Filter>
+    </ClCompile>
+    <ClCompile Include="MyMapUI.cpp">
+      <Filter>Object\UI\TextUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -921,9 +927,6 @@
     </Filter>
     <Filter Include="Object\Boss\Tunak\AfterEffect">
       <UniqueIdentifier>{dfee8960-6c50-4cc2-a98e-f4d375e9fe09}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object\Boss\Tunak\Tunak">
-      <UniqueIdentifier>{1f2ab131-70a2-4979-86e3-a45587f5279b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Object\Boss\Tunak\TunakBullet">
       <UniqueIdentifier>{4fd96881-1f89-4b90-ab51-dfed87d3c4cb}</UniqueIdentifier>
@@ -1080,6 +1083,9 @@
     </Filter>
     <Filter Include="Object\UI\Portal\Portal">
       <UniqueIdentifier>{e510ab6d-a7d5-48c1-90c4-a8c38fd73bfd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Boss\Tunak\TunakBullet\Tunak">
+      <UniqueIdentifier>{1f2ab131-70a2-4979-86e3-a45587f5279b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

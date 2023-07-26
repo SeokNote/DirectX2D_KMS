@@ -27,5 +27,6 @@ private:
 	float4 Color = float4::Zero;
 	float4 FontColor = float4::Black;
 	float Ratio = 0.0f;
+	float Time = 0.0f;
 };
 

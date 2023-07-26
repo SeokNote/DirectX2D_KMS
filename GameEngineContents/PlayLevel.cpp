@@ -344,8 +344,8 @@ void PlayLevel::Start()
 	//NewPlayer->GetTransform()->SetLocalPosition({ 11438.0f, -480.0f, -801.0f });
 
 	//NewPlayer->GetTransform()->SetLocalPosition({ 14504.0f,-194.0f,-801.0f });
-	//NewPlayer->GetTransform()->SetLocalPosition({ -2390.0f,-500.0f,-801.0f });
-	NewPlayer->GetTransform()->SetLocalPosition({ 9925.0f,-254.0f,-801.0f });
+	NewPlayer->GetTransform()->SetLocalPosition({ -2390.0f,-500.0f,-801.0f });
+	//NewPlayer->GetTransform()->SetLocalPosition({ 9925.0f,-254.0f,-801.0f });
 
 	{	//Town
 		std::shared_ptr<Sky> SkyBG = CreateActor<Sky>(1);
@@ -393,7 +393,6 @@ void PlayLevel::Start()
 	}
 	SetUI();
 	SetMap();
-	SetPotal();
 
 	
 
@@ -473,16 +472,6 @@ void PlayLevel::SetUI()
 	std::shared_ptr<TempleNpc> FoodNpcPtr = CreateActor<TempleNpc>(1);
 	std::shared_ptr<DungeonIn> DungeonInPtr = CreateActor<DungeonIn>(1);
 }
-void PlayLevel::SetPotal()
-{
-	//Portal
-
-
-
-
-
-
-}
 
 void PlayLevel::Update(float _DeltaTime)
 {
@@ -492,7 +481,7 @@ void PlayLevel::Update(float _DeltaTime)
 
 	Frame++;
 	CameraMoveSet();
-	//SetBGM();
+	SetBGM();
 	UICtr();
 
 	if (1.0f <= Time)

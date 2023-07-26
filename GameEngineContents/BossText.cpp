@@ -13,7 +13,7 @@ BossText::~BossText()
 {
 }
 
-void BossText::SetStatFont(std::string _BossName, std::string _Explane)
+void BossText::SetExPlaneFont(std::string _BossName, std::string _Explane)
 {
 	BossName->SetText(_BossName);
 	BossName1->SetText(_BossName);

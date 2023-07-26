@@ -24,7 +24,6 @@ public:
 
 	std::shared_ptr<class FadeEffect> FEffect;
 
-	void SetCandle();
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
@@ -37,7 +36,6 @@ protected:
 private:
 	void SetMap();
 	void SetUI();
-	void SetPotal();
 	void CameraColMove(float _X, float _X1, float _Y, float _Y1);
 	void CameraMoveSet();
 	void UICtr();
