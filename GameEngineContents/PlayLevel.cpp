@@ -55,7 +55,7 @@
 #include "Stage3_Boss.h"
 #include "GroundBelt.h"
 #include "PlatBelt.h"
-
+#include "MyMapUI.h"
 #include <GameEnginePlatform/GameEngineSound.h>
 #include <GameEngineCore/GameEngineCamera.h>
 #include <GameEngineCore/GameEngineTexture.h>
@@ -403,17 +403,18 @@ void PlayLevel::Start()
 	BelialSpawnerPtr->GetTransform()->SetLocalPosition({ 12050.0f,-350.0f,-760.0f });
 	static std::shared_ptr<TunakSpawner> TunakSpawnerPtr = CreateActor<TunakSpawner>(1);
 	TunakSpawnerPtr->GetTransform()->SetLocalPosition({ 14874.0f,-205.0f,-800.0f });
-	//static std::shared_ptr<SpawnStage1_1> SpawnStage1_1Ptr = CreateActor<SpawnStage1_1>(1);
-	//SpawnStage1_1Ptr->GetTransform()->SetLocalPosition({ 4353.0f,-468.0f,-800.0f });
-	////Å×½ºÆ®
-	//static std::shared_ptr<SpawnStage1_2> SpawnStage1_2Ptr = CreateActor<SpawnStage1_2>(1);
-	//SpawnStage1_2Ptr->GetTransform()->SetLocalPosition({ 8011.0f,254.0f,-800.0f });
+	static std::shared_ptr<SpawnStage1_1> SpawnStage1_1Ptr = CreateActor<SpawnStage1_1>(1);
+	SpawnStage1_1Ptr->GetTransform()->SetLocalPosition({ 4353.0f,-468.0f,-800.0f });
+	//Å×½ºÆ®
+	static std::shared_ptr<SpawnStage1_2> SpawnStage1_2Ptr = CreateActor<SpawnStage1_2>(1);
+	SpawnStage1_2Ptr->GetTransform()->SetLocalPosition({ 8011.0f,254.0f,-800.0f });
 	
 	BGM = GameEngineSound::Play("0.Town.wav");
 	BGM.SetLoop(-1);
 
 
-
+	std::shared_ptr<MyMapUI> text1 = CreateActor<MyMapUI>();
+	text1->SetMapText("¸¶À»");
 
 }
 
@@ -681,6 +682,8 @@ void PlayLevel::SetBGM()
 			PrevMap = CurMap;
 			break;
 		case MyMap::Stage1_1:
+			BelialText = CreateActor<MyMapUI>();
+			BelialText->SetMapText("1Ãþ : º§¸®¾ËÀÇ °ü¹®");
 			CandlePtr_0 = CreateActor<Candle>(1);
 			CandlePtr_0->GetTransform()->SetLocalPosition({ 3409.f,-106.f,-200.0f });
 			CandlePtr_0->SetCandleColor(float4::Red);
@@ -778,7 +781,8 @@ void PlayLevel::SetBGM()
 			PrevMap = CurMap;
 			break;
 		case MyMap::Stage2_1:
-
+			TunakText = CreateActor<MyMapUI>();
+			TunakText->SetMapText("2Ãþ : Åõ³«ÀÇ ¼Ò±¼");
 			PotalPtr7->Death();
 			PotalPtr8->Death();
 			CandlePtr_1->Death();

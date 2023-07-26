@@ -973,8 +973,7 @@ void Player::SetDebugKey()
 	}
 	if (GameEngineInput::IsDown("ABS"))
 	{
-		std::shared_ptr<MyMapUI> text = GetLevel()->CreateActor< MyMapUI>();
-		text->SetMapText("¸¶À»");
+
 	}
 	if (GameEngineInput::IsDown("MovePlayer"))
 	{

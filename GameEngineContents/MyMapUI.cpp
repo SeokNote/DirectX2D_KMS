@@ -46,20 +46,24 @@ void MyMapUI::Update(float _Delta)
 void MyMapUI::SecoundBezierPos(float _Delta)
 {
 	Time2 += _Delta;
-	float4 M0 = float4::LerpClamp({ 0.0f,50.0f,0.0f }, { -740.0f,50.0f,0.0f }, Time2);
-	float4 M1 = float4::LerpClamp({ -740.0f,50.0f,0.0f }, { 740.0f,50.0f,0.0f }, Time2);
+	float4 M0 = float4::LerpClamp({ 0.0f,150.0f,0.0f }, { -840.0f,150.0f,0.0f }, Time2);
+	float4 M1 = float4::LerpClamp({ -840.0f,150.0f,0.0f }, { 840.0f,150.0f,0.0f }, Time2);
 	float4 Pos = float4::LerpClamp(M0, M1, Time2);
 	MapExplane->GetTransform()->SetWorldPosition(Pos);
+	if (MapExplane->GetTransform()->GetWorldPosition() == float4(840.0f, 150.0f, 0.0f))
+	{
+		Death();
+	}
 }
 
 void MyMapUI::FirstBezierPos(float _Delta)
 {
 	Time += _Delta;
-	float4 M0 = float4::LerpClamp({-740.0f,50.0f,0.0f}, { 740.0f,50.0f,0.0f }, Time);
-	float4 M1 = float4::LerpClamp({ 740.0f,50.0f,0.0f }, {0.0f,50.0f,0.0f}, Time);
+	float4 M0 = float4::LerpClamp({-840.0f,150.0f,0.0f}, { 840.0f,150.0f,0.0f }, Time);
+	float4 M1 = float4::LerpClamp({ 840.0f,150.0f,0.0f }, {0.0f,150.0f,0.0f}, Time);
 	float4 Pos = float4::LerpClamp(M0, M1, Time);
 	MapExplane->GetTransform()->SetWorldPosition(Pos);
-	if (MapExplane->GetTransform()->GetWorldPosition() == float4(0.0f, 50.0f, 0.0f))
+	if (MapExplane->GetTransform()->GetWorldPosition() == float4(0.0f,150.0f, 0.0f))
 	{
 		IsValue = true;
 	}

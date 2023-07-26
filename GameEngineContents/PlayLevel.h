@@ -77,6 +77,7 @@ private:
 	std::shared_ptr<class Potal> PotalPtr9 = nullptr;
 	std::shared_ptr<class Potal> PotalPtr10 = nullptr;
 	std::shared_ptr<class Potal> PotalPtr11 = nullptr;
-
+	std::shared_ptr<class MyMapUI> BelialText = nullptr;
+	std::shared_ptr<class MyMapUI> TunakText = nullptr;
 	GameEngineSoundPlayer BGM;
 };
