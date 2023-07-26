@@ -104,18 +104,7 @@ void Player::Update(float _DeltaTime)
 		Result *= MainCam->GetViewPort();
 		LightEffect->LightBuffer.LightPos = Result;
 	}
-
-
-
-	if (GameEngineInput::IsDown("DEBUGMODE"))
-	{
-		Data.PlusMonsterIndex(1);
-	}
-	if (GameEngineInput::IsDown("DeBugKey"))
-	{
-		Data.SubMonsterIndex(1);
-		GetTransform()->SetLocalPosition({ 3716.0f,-167.0f,-801.0f });
-	}
+	SetDebugKey();
 	SetPlayerCollision(_DeltaTime);
 	DashPlusCount(_DeltaTime);
 	CurMap = SetMyMap(CurMap);
@@ -966,6 +955,42 @@ float4 Player::PixelCalculation(float4 _TargetPos, float4 _MapCenterPos, float4 
 	PixelMapResultPos.x = _TargetPos.x + _TransColPos.x - _MapCenterPos.x;
 	PixelMapResultPos.y = _TransColPos.y - _TargetPos.y;
 	return PixelMapResultPos;
+}
+void Player::SetDebugKey()
+{
+
+	if (GameEngineInput::IsDown("LevelUP"))
+	{
+		Data.SetPlayerMaxHP(80);
+		Data.SetPlayerHP(80);
+		Data.PlusPlayerLevel(9);
+	}
+	if (GameEngineInput::IsDown("HPSUB"))
+	{
+		Data.SetPlayerHP(60);
+	}
+	if (GameEngineInput::IsDown("ABS"))
+	{
+	
+	}
+	if (GameEngineInput::IsDown("MovePlayer"))
+	{
+		GameEngineCamera* Camera = PlayerRender->GetCamera();
+
+		// ·£´õ·¯ 
+		float4x4 ViewPort = Camera->GetViewPort();
+		float4x4 Proj = Camera->GetProjection();
+		float4x4 View = Camera->GetView();
+
+		float4 Mouse = GameEngineInput::GetMousePosition();
+
+		Mouse *= ViewPort.InverseReturn();
+		Mouse *= Proj.InverseReturn();
+		Mouse *= View.InverseReturn();
+
+		GetTransform()->SetLocalPosition(Mouse);
+	}
+
 }
 void Player::Filp()
 {

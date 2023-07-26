@@ -82,6 +82,7 @@ protected:
 
 
 private:
+	void SetDebugKey();
 	PlayerDataBase Data = PlayerDataBase();
 	GameEngineSound Walk;
 	void Filp();

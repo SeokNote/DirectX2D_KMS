@@ -10,7 +10,7 @@
 #include "TunakJumpEffect.h"
 #include "TunakWave.h"
 #include "BossDead.h"
-
+#include "BossText.h"
 #include <GameEngineCore/GameEngineTexture.h>
 #include <GameEngineCore/GameEngineSpriteRenderer.h>
 #include <GameEnginePlatform/GameEngineWindow.h>
@@ -883,6 +883,7 @@ void Tunak::EventStart()
 	TunakRender->GetTransform()->SetLocalPosition({ 0.0f,700.0f,0.0f });
 	TunakRender->ChangeAnimation("TunakJumpAttack");
 
+
 }
 bool IsValue_0 = false;
 void Tunak::EventUpdate(float _Time)
@@ -931,7 +932,9 @@ void Tunak::Event2Start()
 	TunakRender->ChangeAnimation("TunakShout");
 	GameEngineSound::Play("tunakShout01.wav");
 
-
+	std::shared_ptr<BossText> test = GetLevel()->CreateActor<BossText>();
+	test->GetTransform()->SetLocalPosition({ -500.0f,-200.f,0.0f });
+	test->SetStatFont("Åõ³«", "¸®ÀÚµå¸ÇÀÇ ¿Õ");
 }
 void Tunak::Event2Update(float _Time)
 {

@@ -319,6 +319,10 @@ void PlayLevel::Start()
 		GameEngineInput::CreateKey("DeBugKey", 'Q');
 		GameEngineInput::CreateKey("WEAPONSWICH", VK_OEM_3);
 		GameEngineInput::CreateKey("Skill", 'Q');
+		GameEngineInput::CreateKey("LevelUP", VK_F1);
+		GameEngineInput::CreateKey("HPSUB", VK_F2);
+		GameEngineInput::CreateKey("ABS", VK_F3);
+		GameEngineInput::CreateKey("MovePlayer", VK_F9);
 
 	}
 	//
@@ -340,8 +344,8 @@ void PlayLevel::Start()
 	//NewPlayer->GetTransform()->SetLocalPosition({ 11438.0f, -480.0f, -801.0f });
 
 	//NewPlayer->GetTransform()->SetLocalPosition({ 14504.0f,-194.0f,-801.0f });
-	NewPlayer->GetTransform()->SetLocalPosition({ -2390.0f,-500.0f,-801.0f });
-	//NewPlayer->GetTransform()->SetLocalPosition({ 9925.0f,-254.0f,-801.0f });
+	//NewPlayer->GetTransform()->SetLocalPosition({ -2390.0f,-500.0f,-801.0f });
+	NewPlayer->GetTransform()->SetLocalPosition({ 9925.0f,-254.0f,-801.0f });
 
 	{	//Town
 		std::shared_ptr<Sky> SkyBG = CreateActor<Sky>(1);

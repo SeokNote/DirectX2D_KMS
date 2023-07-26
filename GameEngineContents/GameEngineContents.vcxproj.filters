@@ -368,6 +368,9 @@
     <ClInclude Include="Potal.h">
       <Filter>Object\UI\Portal\Portal</Filter>
     </ClInclude>
+    <ClInclude Include="BossText.h">
+      <Filter>Object\Boss\BossBase</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -775,6 +778,9 @@
     </ClCompile>
     <ClCompile Include="Potal_State.cpp">
       <Filter>Object\UI\Portal\Portal</Filter>
+    </ClCompile>
+    <ClCompile Include="BossText.cpp">
+      <Filter>Object\Boss\BossBase</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

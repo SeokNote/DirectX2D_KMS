@@ -16,6 +16,10 @@ public:
 	PlayMouse& operator=(const PlayMouse& _Other) = delete;
 	PlayMouse& operator=(PlayMouse&& _Other) noexcept = delete;
 	static PlayMouse* MainPlayMouse;
+	std::shared_ptr<class GameEngineUIRenderer> GetMouseRender()
+	{
+		return PlayMouseRender;
+	}
 protected:
 
 	void Start() override;

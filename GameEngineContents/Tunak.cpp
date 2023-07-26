@@ -91,7 +91,7 @@ void Tunak::Start()
 	BossHpBar->GetTransform()->SetWorldPosition(HPPos);
 	BossHpBar->GetTransform()->SetLocalScale(HPBarScale);
 	BossHpBar->Off();
-	BossLayout = CreateComponent<GameEngineUIRenderer>(999);
+	BossLayout = CreateComponent<GameEngineUIRenderer>(997);
 	BossLayout->SetTexture("BossLayout.png");
 	BossLayout->GetTransform()->SetWorldPosition(LayoutPos);
 	BossLayout->GetTransform()->SetLocalScale({ 1280.0f,720.0f,0.0f });

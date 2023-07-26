@@ -20,20 +20,6 @@
 #include <GameEngineCore/GameEngineCollision.h>
 
 BelialHead* BelialHead::MainBelialHead = nullptr;
-/*
-데미지가 25라고 하면 
-2.5퍼센트가 깎여야함
-
-
-그럼 a값은
-
-(1000-25)/100 값으로
-(최대체력 - 현재체력)/100
-을 공용기능으로 넣자.
-이번주까지 보스들과의 전투는 마무리 된 후에 이제 몬스터들 찍어낼듯.
-그 다음주에 이제 몬스터 찍어내고 전투까지하고
-그다음주에 이제 ui들 넣고 맵 애니메이션 
-*/
 //테스트
 #include "BelialHand_L.h"
 #include "BelialHand_R.h"
@@ -95,7 +81,7 @@ void BelialHead::Start()
 	DeadBGRender->GetTransform()->SetLocalScale({ 1280.0f,720.0f,0.0f });
 	DeadBGRender->Off();
 
-	BossLayout = CreateComponent<GameEngineUIRenderer>(999);
+	BossLayout = CreateComponent<GameEngineUIRenderer>(997);
 	BossLayout->SetTexture("BossLayout.png");
 	BossLayout->GetTransform()->SetWorldPosition(LayoutPos);
 	BossLayout->GetTransform()->SetLocalScale({ 1280.0f,720.0f,0.0f });

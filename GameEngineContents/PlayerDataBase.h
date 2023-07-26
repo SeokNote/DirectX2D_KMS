@@ -27,6 +27,10 @@ public:
 	{
 		return PlayerHP;
 	}
+	void SetPlayerHP(int _Value)
+	{
+		 PlayerHP = _Value;
+	}
 	void SubPlayerHP(int _Value)
 	{
 		PlayerHP -= _Value;
@@ -225,9 +229,9 @@ public:
 		return MonsterIndex;
 	}
 private:
-	int PlayerLevel = 10;				//플레이어 레벨	
-	int PlayerMaxHP = PlayerLevel*2+60;
-	int PlayerHP = 40;					//플레이어 체력
+	int PlayerLevel = 1;				//플레이어 레벨	
+	int PlayerMaxHP = (PlayerLevel-1)*2+60;
+	int PlayerHP = 60;					//플레이어 체력
 	int Coin = 5000;						//돈
 	int DashCunt = 3;					//대쉬카운터
 	int Satiety = 0;					//포만감

@@ -13,7 +13,7 @@
 #include <GameEngineCore/GameEngineCollision.h>
 #include "PixelCollision.h"
 #include <GameEngineCore/GameEngineSprite.h>
-
+#include "BossText.h"
 // State
 void BelialHead::ChangeState(BossHeadState _State)
 {
@@ -229,6 +229,9 @@ void BelialHead::EventStart()
 {
 	BelialHeadRender->ChangeAnimation("HeadIdle");
 	GameEngineSound::Play("beliallaugh_rev.wav");
+	std::shared_ptr<BossText> test = GetLevel()->CreateActor<BossText>();
+	test->GetTransform()->SetLocalPosition({ -500.0f,-200.f,0.0f });
+	test->SetStatFont("벨리알", "감옥의 수문장");
 }
 
 void BelialHead::EventUpdate(float _Time)
@@ -272,6 +275,7 @@ void BelialHead::EventEnd()
 
 void BelialHead::Event2Start()
 {
+	
 }
 
 void BelialHead::Event2Update(float _Time)
