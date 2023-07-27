@@ -654,6 +654,7 @@ void Tunak::GoblinBombUpdate(float _Time)
 {
 	if (TunakRender->GetCurrentFrame() == 4 && IsGoblin ==false)
 	{
+		GameEngineSound::Play("laserRifleBeam.wav");
 		GoblinBomb_0 = GetLevel()->CreateActor<GoblinBomb>();
 		GoblinBomb_0->GetTransform()->SetLocalPosition({ GoblinPosX ,-75.0f,-800.0f });
 		GoblinBomb_1 = GetLevel()->CreateActor<GoblinBomb>();
@@ -721,6 +722,7 @@ void Tunak::TackleUpdate(float _Time)
 			DustTime += _Time;
 			if (DustTime > 0.2)
 			{
+				GameEngineSound::Play("tunakDash.wav");
 				TunakDustDPtr = GetLevel()->CreateActor<TunakDust_D>();
 				TunakDustDPtr->GetTransform()->SetLocalNegativeScaleX();
 				TunakDustDPtr->GetTransform()->SetLocalPosition(TunakPos+ RightDustPos);

@@ -10,7 +10,7 @@
 #include <GameEngineCore/GameEngineSprite.h>
 #include <GameEngineCore/GameEngineCollision.h>
 #include <GameEngineBase/GameEngineRandom.h>
-
+GameEngineSoundPlayer GoblinBomb::GoblimBombBGM;
 GoblinBomb::GoblinBomb() 
 {
 }
@@ -51,6 +51,23 @@ void GoblinBomb::Update(float _DeltaTime)
 	CreatBomb(_DeltaTime);
 	BombDeath(_DeltaTime);
 	GoblinCollision();
+}
+
+void GoblinBomb::BGMSet()
+{
+	if (true == GoblimBombBGM.IsValid())
+	{
+		bool IsPlayValue = false;
+		GoblimBombBGM.isPlaying(&IsPlayValue);
+		if (IsPlayValue == true)
+		{
+
+			return;
+		}
+
+
+	}
+	GoblimBombBGM = GameEngineSound::Play("explodeBrighter.wav");
 }
 
 void GoblinBomb::GoblinCollision()
@@ -129,7 +146,7 @@ void GoblinBomb::CreatBomb(float _DeltaTime)
 	}
 	if (BombPos.y <= -153 && IsCheck_1 ==false)
 	{
-		GameEngineSound::Play("explodeBrighter.wav");
+		BGMSet();
 		GoblinBombCol->On();
 		GoblinBombRender->Off();
 		GoblinBombCol->GetTransform()->SetLocalPosition({ BombPos.x,BombPos.y+60.0f,0.0f});

@@ -213,7 +213,7 @@
       <Filter>Object\Boss\Tunak\AfterEffect</Filter>
     </ClInclude>
     <ClInclude Include="Tunak.h">
-      <Filter>Object\Boss\Tunak\TunakBullet\Tunak</Filter>
+      <Filter>Object\Boss\Tunak\Tunak</Filter>
     </ClInclude>
     <ClInclude Include="GroundBomb.h">
       <Filter>Object\Boss\Tunak\TunakBullet\GroundBomb</Filter>
@@ -600,7 +600,7 @@
       <Filter>Object\Boss\Tunak\AfterEffect</Filter>
     </ClCompile>
     <ClCompile Include="Tunak.cpp">
-      <Filter>Object\Boss\Tunak\TunakBullet\Tunak</Filter>
+      <Filter>Object\Boss\Tunak\Tunak</Filter>
     </ClCompile>
     <ClCompile Include="GroundBomb.cpp">
       <Filter>Object\Boss\Tunak\TunakBullet\GroundBomb</Filter>
@@ -663,7 +663,7 @@
       <Filter>Object\Door\BossSpawner\Tunak</Filter>
     </ClCompile>
     <ClCompile Include="Tunak_State.cpp">
-      <Filter>Object\Boss\Tunak\TunakBullet\Tunak</Filter>
+      <Filter>Object\Boss\Tunak\Tunak</Filter>
     </ClCompile>
     <ClCompile Include="WhiteSkell.cpp">
       <Filter>Object\Monster\WhiteSkell</Filter>
@@ -1084,7 +1084,7 @@
     <Filter Include="Object\UI\Portal\Portal">
       <UniqueIdentifier>{e510ab6d-a7d5-48c1-90c4-a8c38fd73bfd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Object\Boss\Tunak\TunakBullet\Tunak">
+    <Filter Include="Object\Boss\Tunak\Tunak">
       <UniqueIdentifier>{1f2ab131-70a2-4979-86e3-a45587f5279b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>

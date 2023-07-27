@@ -74,6 +74,7 @@ void ShopTextBox::Update(float _Delta)
 	DelayTime += _Delta;
 	if (DelayTime > 0.1f && FirstDialog.size() >= count)
 	{
+		GameEngineSound::Play("KeyBord.wav");
 		TextStrting->SetText(FirstDialog.substr(0, count));
 		count += 2;
 		DelayTime = 0.0f;

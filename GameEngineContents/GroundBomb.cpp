@@ -131,7 +131,6 @@ void GroundBomb::CreatBomb(float _DeltaTime)
 		if (StartBomb > 0.4f)
 		{
 			GroundBombBGM =	GameEngineSound::Play("tunakPowerGeyser.wav");
-			GroundBombBGM.SetVolume(0.3F);
 			GroundBombRender->ChangeAnimation("GroundBomb");
 			GroundBombCol->On();
 			GroundBombCol->GetTransform()->SetLocalPosition(Pos);

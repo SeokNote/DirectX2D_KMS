@@ -115,6 +115,7 @@ void SpaceWeapon::SetSpaceWeapon(float _Delta)
 	}
 	if (SpaceSkill::MainSkillPtr->GetSkillIndex() == 1 && index == 0 && GameEngineInput::IsDown("Skill"))
 	{
+		GameEngineSound::Play("mace skill.wav");
 		SkillPtr = GetLevel()->CreateActor<Skill>();
 		SkillPtr->GetTransform()->SetLocalPosition(PlayerPos);
 		ShakeValue = true;
@@ -124,6 +125,7 @@ void SpaceWeapon::SetSpaceWeapon(float _Delta)
 	}
 	else if (SpaceSkill::MainSkillPtr->GetSkillIndex() == 1 && index == 1 && GameEngineInput::IsDown("Skill"))
 	{
+		GameEngineSound::Play("mace skill.wav");
 		SkillPtr = GetLevel()->CreateActor<Skill>();
 		SkillPtr->GetTransform()->SetLocalPosition(PlayerPos);
 		ShakeValue = true;

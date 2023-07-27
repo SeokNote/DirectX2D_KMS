@@ -1,6 +1,6 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
-
+#include <GameEnginePlatform/GameEngineSound.h>
 // Ό³Έν :
 class GoblinBomb :public GameEngineActor
 {
@@ -19,6 +19,8 @@ protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
 private:
+	void BGMSet();
+	static GameEngineSoundPlayer GoblimBombBGM;
 	void GoblinCollision();
 	void SetGroundBG(float _DeltaTime);
 	void CreatBomb(float _DeltaTime);

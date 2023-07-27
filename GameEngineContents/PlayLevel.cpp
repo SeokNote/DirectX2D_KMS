@@ -343,8 +343,8 @@ void PlayLevel::Start()
 	static std::shared_ptr<Player> NewPlayer = CreateActor<Player>(1);
 	//NewPlayer->GetTransform()->SetLocalPosition({ 11438.0f, -480.0f, -801.0f });
 
-	//NewPlayer->GetTransform()->SetLocalPosition({ 14504.0f,-194.0f,-801.0f });
-	NewPlayer->GetTransform()->SetLocalPosition({ -2390.0f,-500.0f,-801.0f });
+	NewPlayer->GetTransform()->SetLocalPosition({ 14504.0f,-194.0f,-801.0f });
+	//NewPlayer->GetTransform()->SetLocalPosition({ -2390.0f,-500.0f,-801.0f });
 	//NewPlayer->GetTransform()->SetLocalPosition({ 9925.0f,-254.0f,-801.0f });
 
 	{	//Town
@@ -482,7 +482,7 @@ void PlayLevel::Update(float _DeltaTime)
 
 	Frame++;
 	CameraMoveSet();
-	SetBGM();
+	//SetBGM();
 	UICtr();
 
 	if (1.0f <= Time)
@@ -741,7 +741,7 @@ void PlayLevel::SetBGM()
 			PotalPtr6->GetTransform()->SetLocalPosition({ 9383.0f,-254.0f,0.0f });
 			PotalPtr6->GetPotalRender()->GetTransform()->SetLocalPosition({ 10.0f,30.0f,0.0f });
 			PotalPtr6->GetPotalRender()->GetTransform()->SetLocalRotation({ 0.0f,0.0f,-90.0f });
-			PotalPtr6->SetPTCValue(float4::Left, float4(20.0f, 70.0f, 0.0f), 20.0f, 70.0f);
+			PotalPtr6->SetPTCValue(float4::Right, float4(20.0f, 70.0f, 0.0f), 20.0f, 70.0f);
 			S_CandlePtr0 = CreateActor<StandCandle>(1);
 			S_CandlePtr0->GetTransform()->SetLocalPosition({ 9925.f,-238.f,-790.0f });
 			S_CandlePtr0->SetStandCandleColor(float4(0.65f, 0.4f, 0.917f));
