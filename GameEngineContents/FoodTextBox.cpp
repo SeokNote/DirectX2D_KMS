@@ -1,4 +1,5 @@
 #include "PrecompileHeader.h"
+#include "PlayLevel.h"
 #include "FoodTextBox.h"
 #include "Player.h"
 #include "UICountBase.h"
@@ -98,8 +99,10 @@ void FoodTextBox::Update(float _Delta)
 			int a = 0;
 			if (FoodCheck == false)
 			{
+				//레벨에서 돌리는 bgm을 끄고 
 				GetLevel()->CreateActor<FoodUI>();
 				FoodCheck = true;
+
 			}
 			Player::MainPlayer->SetUICount(1);
 			UICountBase::MainUICountBase->SetUICount(1);

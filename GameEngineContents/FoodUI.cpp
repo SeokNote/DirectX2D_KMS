@@ -69,7 +69,8 @@ void FoodUI::Start()
 	FoodBGRender->ChangeAnimation("FoodAni");
 	SetButton();
 	SetSatieyFont();
-
+	PlayLevel::BGM.SetPause(true);
+	FoodBGM = GameEngineSound::Play("Foodshop.wav");
 
 
 }
@@ -81,6 +82,8 @@ void FoodUI::Update(float _Delta)
 		ExitButtonSelectRender->On();
 		if (GameEngineInput::IsDown("ClickMouse"))
 		{
+			PlayLevel::BGM.SetPause(false);
+			FoodBGM.Stop();
 			Player::MainPlayer->SetUICount(0);
 			UICountBase::MainUICountBase->SetUICount(0);
 			Death();

@@ -1,5 +1,6 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
+#include <GameEnginePlatform/GameEngineSound.h>
 #include"TempleNpc.h"
 // Ό³Έν :
 class FoodUI : public GameEngineActor
@@ -41,6 +42,7 @@ private:
 	std::shared_ptr<class GameEngineCollision> FoodUIExitCol;
 	float4 ExitButtonPos = { 590.0f, 315.0f, 0.0f };
 	std::shared_ptr<class TempleNpc> TempleNpcPtr;
+	GameEngineSoundPlayer FoodBGM;
 
 
 	std::shared_ptr<class ContentButton> BreadButton;
