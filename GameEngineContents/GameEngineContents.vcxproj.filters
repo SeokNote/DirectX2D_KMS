@@ -1009,9 +1009,6 @@
     <Filter Include="Object\UI\Stat\Stat">
       <UniqueIdentifier>{dfd6f66d-03a2-42af-95ea-0d64da4661c1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Object\UI\ContentButton">
-      <UniqueIdentifier>{2bd29f46-cd5d-4a81-b09c-1b72045bd16c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Object\UI\Stat\StatBase">
       <UniqueIdentifier>{224a2156-405d-4876-9115-cff3b54f61b1}</UniqueIdentifier>
     </Filter>

@@ -235,5 +235,8 @@ private:
 	//사운드 불값
 	bool FirstSound = false;
 	bool SecoundSound = false;
+	GameEngineSoundPlayer DashBGM;
+	GameEngineSoundPlayer DoubleAttackBGM;
+
 };
 

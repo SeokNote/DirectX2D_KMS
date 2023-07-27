@@ -465,12 +465,14 @@ void Tunak::DoubleAttackUpdate(float _Time)
 	size_t CurFrame = TunakRender->GetCurrentFrame();
 	if (SecoundSound == false && CurFrame == 5)
 	{
-		GameEngineSound::Play("tunakPowerSwing.wav");
+		DoubleAttackBGM = GameEngineSound::Play("tunakPowerSwing.wav");
+		DoubleAttackBGM.SetVolume(5.0f);
 		SecoundSound = true;
 	}
 	if (FirstSound == false && CurFrame == 10)
 	{
-		GameEngineSound::Play("tunakPowerSwing.wav");
+		DoubleAttackBGM = GameEngineSound::Play("tunakPowerSwing.wav");
+		DoubleAttackBGM.SetVolume(5.0f);
 		FirstSound = true;
 	}
 
@@ -705,7 +707,8 @@ void Tunak::TackleUpdate(float _Time)
 			DustTime += _Time;
 			if (DustTime > 0.2)
 			{
-				GameEngineSound::Play("tunakDash.wav");
+				DashBGM = GameEngineSound::Play("tunakDash.wav");
+				DashBGM.SetVolume(5.0f);
 				TunakDustDPtr = GetLevel()->CreateActor<TunakDust_D>();
 				TunakDustDPtr->GetTransform()->SetLocalPosition(TunakPos+ LeftDustPos);
 				DustTime = 0.0f;
@@ -722,7 +725,8 @@ void Tunak::TackleUpdate(float _Time)
 			DustTime += _Time;
 			if (DustTime > 0.2)
 			{
-				GameEngineSound::Play("tunakDash.wav");
+				DashBGM = GameEngineSound::Play("tunakDash.wav");
+				DashBGM.SetVolume(5.0f);				
 				TunakDustDPtr = GetLevel()->CreateActor<TunakDust_D>();
 				TunakDustDPtr->GetTransform()->SetLocalNegativeScaleX();
 				TunakDustDPtr->GetTransform()->SetLocalPosition(TunakPos+ RightDustPos);
