@@ -76,7 +76,7 @@ void Ghost::Update(float _DeltaTime)
 void Ghost::SetCollision(float _DeltaTime)
 {
 	HpRender->ImageClippingX(static_cast<float>(Hp) / static_cast<float>(MaxHp), ClipXDir::Left);
-	if (BodyCol->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	if (Player::MainPlayer->GetABSValue() == false && BodyCol->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		Player::MainPlayer->GetData().SubPlayerHP(Damege);
 	}

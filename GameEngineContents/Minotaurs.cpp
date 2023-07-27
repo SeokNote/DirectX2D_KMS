@@ -105,11 +105,11 @@ void Minotaurs::SetCollision(float _Delta)
 {
 	HpRender->ImageClippingX(static_cast<float>(MinoHp) / static_cast<float>(MaxMinoHp), ClipXDir::Left);
 
-	if (TakcleCol->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	if (Player::MainPlayer->GetABSValue() == false && TakcleCol->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		Player::MainPlayer->GetData().SubPlayerHP(MinoTackle);
 	}
-	if (TakcleCol->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	if (Player::MainPlayer->GetABSValue() == false && TakcleCol->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		Player::MainPlayer->GetData().SubPlayerHP(MinoAttack);
 	}

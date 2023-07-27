@@ -42,7 +42,7 @@ void BelialLasor::Update(float _DeltaTime)
 }
 void BelialLasor::CollisionCheck(float _DeltaTime)
 {
-	if (LasorOnOff_1==false && BelialLasorCol_L->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	if (Player::MainPlayer->GetABSValue() == false && LasorOnOff_1==false && BelialLasorCol_L->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		LasorOnOff_1 = true;
 		Player::MainPlayer->GetData().SubPlayerHP(LasorDamage);

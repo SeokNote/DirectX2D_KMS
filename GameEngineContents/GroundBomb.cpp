@@ -70,7 +70,7 @@ void GroundBomb::Update(float _DeltaTime)
 
 void GroundBomb::GroundBombCollision()
 {
-	if (FirstAttack == false && GroundBombCol->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	if (Player::MainPlayer->GetABSValue() == false && FirstAttack == false && GroundBombCol->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		Player::MainPlayer->GetData().SubPlayerHP(GroundBombDamage);
 		FirstAttack = true;

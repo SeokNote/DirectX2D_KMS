@@ -232,7 +232,7 @@ private:
 	int PlayerLevel = 1;				//플레이어 레벨	
 	int PlayerMaxHP = (PlayerLevel-1)*2+60;
 	int PlayerHP = 60;					//플레이어 체력
-	int Coin = 5000;						//돈
+	int Coin = 0;						//돈
 	int DashCunt = 3;					//대쉬카운터
 	int Satiety = 0;					//포만감
 	int MaxSatiety = 100;

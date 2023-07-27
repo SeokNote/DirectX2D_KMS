@@ -38,6 +38,10 @@ public:
 	{
 		return InventoryUIRender;
 	}
+	std::shared_ptr<class UIFontRender> GetInventoryMoney()
+	{
+		return InvenMoney;
+	}
 	void InventoryOn();
 	void InventoryOff();
 	bool IsOnOff()
@@ -56,10 +60,10 @@ private:
 	std::shared_ptr<class GameEngineUIRenderer> InventoryUIRender;
 	std::shared_ptr<class GameEngineUIRenderer> MapTabBaseBG;
 
-	std::shared_ptr<class InventoryButton> Inventory00;
-	std::shared_ptr<class InventoryButton> WeaponInven0;
-	std::shared_ptr<class InventoryButton> WeaponInven1;
-
+	std::shared_ptr<class InventoryButton> Inventory00 = nullptr;
+	std::shared_ptr<class InventoryButton> WeaponInven0 = nullptr;
+	std::shared_ptr<class InventoryButton> WeaponInven1 = nullptr;
+	std::shared_ptr<class UIFontRender> InvenMoney =nullptr;
 
 	float4 InventoryPos00 = { 235.0f,-30.0f,0.0f };
 	float4 ExplanePos00 = { 30.0f,-130.0f,0.0f };

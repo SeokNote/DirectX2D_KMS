@@ -43,14 +43,20 @@ void IntroLevel::Start()
 	std::shared_ptr<Intro> IntroPtr = CreateActor<Intro>();
 
 
-
 }
 
 void IntroLevel::Update(float _DeltaTime)
 {
 	NextTime += _DeltaTime;
+	if (IsValue == false && NextTime > 1.0f)
+	{
+		IntroBGM = GameEngineSound::Play("IntroSound.wav");
+		IsValue = true;
+	}
 	if (NextTime>3.5f)
 	{
+	
+		IntroBGM.Stop();
 		GameEngineCore::ChangeLevel("TitleLevel");
 	}
 

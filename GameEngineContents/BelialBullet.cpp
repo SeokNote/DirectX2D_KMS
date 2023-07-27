@@ -96,22 +96,22 @@ void BelialBullet::SetBullet(float _DeltaTime)
 	BelialBulletCol_2->GetTransform()->SetLocalPosition(BelialBulletRender_U->GetTransform()->GetLocalPosition());
 	BelialBulletCol_3->GetTransform()->SetLocalPosition(BelialBulletRender_D->GetTransform()->GetLocalPosition());
 
-	if (OnOffValue_0 ==false && BelialBulletCol_0->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	if (Player::MainPlayer->GetABSValue() == false && OnOffValue_0 ==false && BelialBulletCol_0->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		Player::MainPlayer->GetData().SubPlayerHP(BulletDamage);
 		OnOffValue_0 = true;
 	}
-	if (OnOffValue_1 ==false && BelialBulletCol_1->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	if (Player::MainPlayer->GetABSValue() == false && OnOffValue_1 ==false && BelialBulletCol_1->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		Player::MainPlayer->GetData().SubPlayerHP(BulletDamage);
 		OnOffValue_1 = true;
 	}
-	if (OnOffValue_2==false && BelialBulletCol_2->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	if (Player::MainPlayer->GetABSValue() == false && OnOffValue_2==false && BelialBulletCol_2->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		Player::MainPlayer->GetData().SubPlayerHP(BulletDamage);
 		OnOffValue_2 = true;
 	}
-	if (OnOffValue_3 ==false && BelialBulletCol_3->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	if (Player::MainPlayer->GetABSValue() == false && OnOffValue_3 ==false && BelialBulletCol_3->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		Player::MainPlayer->GetData().SubPlayerHP(BulletDamage);
 		OnOffValue_3 = true;

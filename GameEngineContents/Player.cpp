@@ -86,7 +86,13 @@ void Player::Start()
 	PlayerRightCol = CreateComponent<GameEngineCollision>(ColOrder::RIGHTBODY);
 	PlayerRightCol->GetTransform()->SetLocalScale({ 10.0f, 10.0f });
 	PlayerRightCol->SetColType(ColType::AABBBOX2D);
-
+	ABSfont = CreateComponent<GameEngineFontRenderer>(1);
+	ABSfont->SetFont("Aa카시오페아");
+	ABSfont->SetFontFlag(FW1_CENTER);
+	ABSfont->SetScale(28);
+	ABSfont->SetText("무적");
+	ABSfont->SetColor(float4::Red);
+	ABSfont->Off();
 	//포인트 라이팅
 	LightEffect =  GetLevel()->GetMainCamera()->GetCamTarget()->CreateEffect<PointLightEffect>();
 	LightEffect->SetState(PointLightType::Circle);
@@ -970,10 +976,22 @@ void Player::SetDebugKey()
 	if (GameEngineInput::IsDown("HPSUB"))
 	{
 		Data.SetPlayerHP(60);
+		Data.PlusCoin(7000);
 	}
 	if (GameEngineInput::IsDown("ABS"))
 	{
-
+		ABSCount++;
+		if (ABSCount % 2 == 0)
+		{
+			IsAbsoult = false;
+			ABSfont->Off();
+		}
+		else
+		{
+			IsAbsoult = true;
+			ABSfont->On();
+		}
+	
 	}
 	if (GameEngineInput::IsDown("MovePlayer"))
 	{
@@ -1048,7 +1066,7 @@ void Player::ColRenderSet()
 	PlayerCol->GetTransform()->SetWorldPosition({ PlayerPos.x,PlayerPos.y-30.0f,0.0f });
 	PlayerLeftCol->GetTransform()->SetWorldPosition({ PlayerPos.x-30.0f,PlayerPos.y-30.0f,0.0f });
 	PlayerRightCol->GetTransform()->SetWorldPosition({ PlayerPos.x+30.0f,PlayerPos.y-30.0f,0.0f });
-
+	ABSfont->GetTransform()->SetWorldPosition({ PlayerPos.x,PlayerPos.y + 50.0f,-801.0f });
 	PlayerTopRender->GetTransform()->SetWorldPosition({ PlayerPos.x,PlayerPos.y + 15.0f,PlayerPos.z });
 	PlayerTopRender->Off();
 	PlayerBottoomRender->GetTransform()->SetWorldPosition({ PlayerPos.x,PlayerPos.y - 65.0f,PlayerPos.z });

@@ -62,7 +62,7 @@ void BansheeBullet::Update(float _DeltaTime)
 }
 void BansheeBullet::SetCollison()
 {
-	if (AttackCol->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	if (Player::MainPlayer->GetABSValue() ==false && AttackCol->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		Player::MainPlayer->GetData().SubPlayerHP(Damege);
 		Death();

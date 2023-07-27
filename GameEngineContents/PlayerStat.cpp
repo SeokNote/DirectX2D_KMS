@@ -2,12 +2,15 @@
 #include "ContentsEnums.h"
 #include "Player.h"
 #include "PlayerStat.h"
+#include "InventoryUI.h"
+#include "InventoryButton.h"
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/GameEngineCamera.h>
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore/GameEngineCollision.h>
 #include "ContentButton.h"
 #include "UIFontRender.h"
+#include "ItemData.h"
 
 PlayerStat::PlayerStat()
 {
@@ -262,7 +265,7 @@ void PlayerStat::SetButton()
 void PlayerStat::UpdateStat()
 {
 	PowButton->SetStatFont({ .Name = "무기공격력(위력)",.ExplaneName = "위력은 무기공격력을 기반으로 추가",.TwoExplaneName = "피해량에 영향을 줍니다.",
-	.Value = "임시 ~ 임시",.Index = 1});
+	.Value = InventoryUI::InventoryUIPtr->GetWeaponInven0()->GetData().ItemPower,.Index = 1});
 	
 	DefButton->SetStatFont({ .Name = "방어력",.ExplaneName = "받는 피해를 경감시켜줍니다.",
 	.Value = SubString(std::to_string(Player::MainPlayer->GetData().GetDefense()),1) });

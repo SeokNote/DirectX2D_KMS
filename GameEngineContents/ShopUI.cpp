@@ -1,5 +1,6 @@
 #include "PrecompileHeader.h"
 #include "ShopUI.h"
+#include "Player.h"
 #include "InventoryUI.h"
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/GameEngineCamera.h>
@@ -65,6 +66,7 @@ void ShopUI::SetItem()
 		{
 			GameEngineSound::Play("GetItem.wav");
 			InventoryUI::InventoryUIPtr->GetInven0()->SetItemData(ItemButton0->GetItemData().WeaponType);
+			Player::MainPlayer->GetData().SubCoin(5400);
 			ItemButton0->Death();
 			ItemRender0->Death();
 		});

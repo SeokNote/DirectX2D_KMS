@@ -114,12 +114,11 @@ void Tunak::Update(float _DeltaTime)
 
 void Tunak::DamegeCheck()
 {
-	//숄더태클 데미지 계산
-	if (TunakTackleCol->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	if (Player::MainPlayer->GetABSValue() == false && TunakTackleCol->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		Player::MainPlayer->GetData().SubPlayerHP(TakcleDamage);
 	}
-	if (TunakDoubleAttackCol->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	if (Player::MainPlayer->GetABSValue() == false && TunakDoubleAttackCol->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		Player::MainPlayer->GetData().SubPlayerHP(DoubleAttackDamege);
 	}

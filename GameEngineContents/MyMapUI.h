@@ -21,6 +21,11 @@ private:
 	void FirstBezierPos(float _Delta);
 	void SecoundBezierPos(float _Delta);
 	std::shared_ptr<class UIFontRender> MapExplane;
+	std::shared_ptr<class UIFontRender> MapExplane1;
+	std::shared_ptr<class UIFontRender> MapExplane2;
+	std::shared_ptr<class UIFontRender> MapExplane3;
+	std::shared_ptr<class UIFontRender> MapExplane4;
+
 	float Time = 0.0f;
 	float Time1 = 0.0f;
 	float Time2 = 0.0f;

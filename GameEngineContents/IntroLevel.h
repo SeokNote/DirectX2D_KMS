@@ -1,6 +1,6 @@
 #pragma once
 #include <GameEngineCore\GameEngineLevel.h>
-
+#include <GameEnginePlatform/GameEngineSound.h>
 // Ό³Έν :
 class IntroLevel : public GameEngineLevel
 {
@@ -23,5 +23,7 @@ protected:
 
 private:
 	float NextTime = 0.0f;
+	GameEngineSoundPlayer IntroBGM;
+	bool IsValue = false;
 };
 

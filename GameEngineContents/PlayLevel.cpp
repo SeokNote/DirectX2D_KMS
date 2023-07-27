@@ -96,16 +96,7 @@ void PlayLevel::Start()
 	GameEngineFont::Load("Aa카시오페아");
 	GameEngineFont::Load("8-bit Operator+ SC");
 	GameEngineFont::Load("8-bit Operator+");
-	//사운드 로드
-	GameEngineDirectory SoundDir;
-	SoundDir.MoveParentToDirectory("ContentResources");
-	SoundDir.Move("ContentResources");
-	SoundDir.Move("Sound");
-	std::vector<GameEngineFile> SoundFile = SoundDir.GetAllFile({ ".wav", });
-	for (size_t i = 0; i < SoundFile.size(); i++)
-	{
-		GameEngineSound::Load(SoundFile[i].GetFullPath());
-	}
+	
 	//플레이어로드
 	GameEngineDirectory NewDir;
 	NewDir.MoveParentToDirectory("ContentResources");
@@ -408,9 +399,7 @@ void PlayLevel::Start()
 	//테스트
 	static std::shared_ptr<SpawnStage1_2> SpawnStage1_2Ptr = CreateActor<SpawnStage1_2>(1);
 	SpawnStage1_2Ptr->GetTransform()->SetLocalPosition({ 8011.0f,254.0f,-800.0f });
-	
-	BGM = GameEngineSound::Play("0.Town.wav");
-	BGM.SetLoop(-1);
+
 
 
 	std::shared_ptr<MyMapUI> text1 = CreateActor<MyMapUI>();
@@ -482,7 +471,7 @@ void PlayLevel::Update(float _DeltaTime)
 
 	Frame++;
 	CameraMoveSet();
-	//SetBGM();
+	SetBGM();
 	UICtr();
 
 	if (1.0f <= Time)
@@ -826,6 +815,8 @@ void PlayLevel::SetBGM()
 }
 void PlayLevel::LevelChangeStart()
 {
+	BGM = GameEngineSound::Play("0.Town.wav");
+	BGM.SetLoop(-1);
 	GameEngineLevel::LevelChangeStart();
 	int a = 0;
 }

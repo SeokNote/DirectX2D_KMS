@@ -71,7 +71,10 @@ public:
 	{
 		return Data;
 	}
-
+	bool GetABSValue()
+	{
+		return IsAbsoult;
+	}
 	void Invincible(float _Delta);
 protected:
 	void Start();
@@ -115,9 +118,8 @@ private:
 	MyMap CurMap = MyMap::None;
 	PixelCollision* NomalPixel = nullptr;
 
-
-	std::shared_ptr<class GameEngineSpriteRenderer> TestColMap;
-
+	std::shared_ptr<class GameEngineSpriteRenderer> TestColMap = nullptr;
+	std::shared_ptr<class GameEngineFontRenderer> ABSfont =nullptr;
 	float4 MapCenter = float4::Zero;
 	float4 TransColPos = float4::Zero;
 	float4 TargetPos = float4::Zero;
@@ -196,4 +198,7 @@ private:
 	//플립 예아니오
 	bool FilpCheck = false;
 	bool BeltCheck = false;
+	//무적
+	bool IsAbsoult = false;
+	int ABSCount = 0;
 };

@@ -92,7 +92,6 @@ void TitleLevel::Start()
 	
 		std::shared_ptr<TitleMouse> TitleMousePtr = CreateActor<TitleMouse>(ColOrder::PlayMouse);
 
-
 }
 
 void TitleLevel::Update(float _DeltaTime)
@@ -108,11 +107,14 @@ void TitleLevel::Update(float _DeltaTime)
 
 void TitleLevel::LevelChangeStart()
 {
-	FEffect->FadeOut();
+	FEffect->FadeOut();	
+
+	TitleBGM = GameEngineSound::Play("title.wav");
 	GameEngineLevel::LevelChangeStart();
 }
 
 void TitleLevel::LevelChangeEnd()
 {
+	TitleBGM.Stop();
 	GameEngineLevel::LevelChangeEnd();
 }

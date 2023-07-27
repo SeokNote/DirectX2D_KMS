@@ -72,7 +72,7 @@ void GoblinBomb::BGMSet()
 
 void GoblinBomb::GoblinCollision()
 {
-	if (FirstAttack == false && GoblinBombCol->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	if (Player::MainPlayer->GetABSValue() == false && FirstAttack == false && GoblinBombCol->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		Player::MainPlayer->GetData().SubPlayerHP(GoblinDamage);
 		FirstAttack = true;

@@ -1,10 +1,12 @@
 #include "PrecompileHeader.h"
 #include "InventoryUI.h"
+#include "Player.h"
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/GameEngineCamera.h>
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore/GameEngineUIRenderer.h>
 #include <GameEnginePlatform/GameEngineSound.h>
+#include "UIFontRender.h"
 #include "InventoryButton.h"
 #include "ItemData.h"
 InventoryUI* InventoryUI::InventoryUIPtr = nullptr;
@@ -32,6 +34,7 @@ void InventoryUI::InventoryOn()
 	Inventory00->GetItmeRender()->On();
 	Inventory00->GetRender_Select()->On();
 	Inventory00->GetRender()->On();
+	InvenMoney->On();
 	IsOff = true;
 }
 
@@ -50,6 +53,7 @@ void InventoryUI::InventoryOff()
 	Inventory00->GetItmeRender()->Off();
 	Inventory00->GetRender_Select()->Off();
 	Inventory00->GetRender()->Off();
+	InvenMoney->Off();
 	IsOff = false;
 
 }
@@ -65,12 +69,19 @@ void InventoryUI::Start()
 	InventoryUIRender->SetTexture("InventoryBase.png");
 	InventoryUIRender->GetTransform()->SetLocalPosition({400.0f,0.0f,0.0f });
 	InventoryUIRender->GetTransform()->SetLocalScale(InventoryUIScale);
-
+	InvenMoney = CreateComponent<UIFontRender>(151);
+	InvenMoney->SetFont("8-bit Operator+ SC");
+	InvenMoney->SetFontFlag(FW1_RIGHT);
+	InvenMoney->SetScale(40);
+	InvenMoney->SetText("0");
+	InvenMoney->SetColor(float4::White);
+	InvenMoney->GetTransform()->SetLocalPosition({ 570.0f,-272.0f,0.0f });
 	SetInventory();
 
 }
 void InventoryUI::Update(float _Delta)
 {
+	InvenMoney->SetText(std::to_string(Player::MainPlayer->GetData().GetCoin()));
 	Inventory00->GetExplaneRender()->SetTexture(Inventory00->GetData().ItemExplaneRender);
 	Inventory00->GetItmeRender()->SetTexture(Inventory00->GetData().ItemRender);
 	WeaponInven0->GetExplaneRender()->SetTexture(WeaponInven0->GetData().ItemExplaneRender);

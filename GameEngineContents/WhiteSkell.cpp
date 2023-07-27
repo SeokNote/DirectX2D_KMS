@@ -119,7 +119,7 @@ void WhiteSkell::SetCollision(float _DeltaTime)
 {
 	HpRender->ImageClippingX(static_cast<float>(SkellHP) / static_cast<float>(MaxHP), ClipXDir::Left);
 
-	if (AttackAreaCol->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
+	if (Player::MainPlayer->GetABSValue() == false && AttackAreaCol->Collision(ColOrder::PlayerBody, ColType::AABBBOX2D, ColType::AABBBOX2D))
 	{
 		Player::MainPlayer->GetData().SubPlayerHP(Damege);
 	}
