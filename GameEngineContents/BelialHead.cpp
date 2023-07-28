@@ -132,7 +132,8 @@ void BelialHead::DeathEvent(float _DeltaTime)
 			IsCreateHead = true;
 			if (TimeCheck_D > 0.2f)
 			{
-				GameEngineSound::Play("MonsterDie.wav");
+				DeadBGM = GameEngineSound::Play("MonsterDie.wav");
+				DeadBGM.SetVolume(0.7f);
 				CurPos.x += 50.0f;
 				CurPos.y -= 100.0f;
 				CurPos.z = -850.0f;

@@ -215,7 +215,8 @@ void BelialHead::DeadUpdate(float _Time)
 		DeadEffectTime += _Time;
 		if (DeadEffectTime > 0.1f)
 		{
-			GameEngineSound::Play("MonsterDie.wav");
+			DeadBGM = GameEngineSound::Play("MonsterDie.wav");
+			DeadBGM.SetVolume(0.7f);
 			BossDead::CreateSubBG(GetLevel(), CurPod);
 			DeadEffectTime = 0.0f;
 		}

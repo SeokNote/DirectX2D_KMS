@@ -237,6 +237,10 @@ private:
 	bool SecoundSound = false;
 	GameEngineSoundPlayer DashBGM;
 	GameEngineSoundPlayer DoubleAttackBGM;
+	GameEngineSoundPlayer DeadBGM;
+	GameEngineSoundPlayer ShoutBGM;
+	GameEngineSoundPlayer ShoutBGM1;
+	GameEngineSoundPlayer OverPowerBGM;
 
 };
 

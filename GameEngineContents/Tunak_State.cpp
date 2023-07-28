@@ -422,7 +422,8 @@ void Tunak::SPIKE_EEnd()
 
 void Tunak::OverPowerStart()
 {
-	GameEngineSound::Play("tunakSmashCharge.wav");
+	OverPowerBGM = GameEngineSound::Play("tunakSmashCharge.wav");
+	OverPowerBGM.SetVolume(2.0f);
 	float4 PlayerPos = Player::MainPlayer->GetTransform()->GetLocalPosition();
 	TunakRender->ChangeAnimation("TunakOverPower");
 	GroundBombPtr_0 = GetLevel()->CreateActor<GroundBomb>();
@@ -531,7 +532,8 @@ void Tunak::DoubleAttackEnd()
 
 void Tunak::ShoutStart()
 {
-	GameEngineSound::Play("tunakWindShout.wav");	
+	ShoutBGM1 = GameEngineSound::Play("tunakWindShout.wav");
+	ShoutBGM1.SetVolume(2.0f);
 	TunakRender->ChangeAnimation("TunakShout");
 
 	if (IsFilp == false)
@@ -873,7 +875,8 @@ void Tunak::TunakDeadUpdate(float _Time)
 		DeadEffectTime += _Time;
 		if (DeadEffectTime > 0.1f)
 		{
-			GameEngineSound::Play("MonsterDie.wav");
+			DeadBGM = GameEngineSound::Play("MonsterDie.wav");
+			DeadBGM.SetVolume(0.7f);
 			BossDead::CreateSubBG(GetLevel(), TunakCurPos);
 			DeadEffectTime = 0.0f;
 		}
@@ -936,8 +939,8 @@ void Tunak::EventEnd()
 void Tunak::Event2Start()
 {
 	TunakRender->ChangeAnimation("TunakShout");
-	GameEngineSound::Play("tunakShout01.wav");
-
+	ShoutBGM = GameEngineSound::Play("tunakShout01.wav");
+	ShoutBGM.SetVolume(2.0f);
 	std::shared_ptr<BossText> test = GetLevel()->CreateActor<BossText>();
 	test->GetTransform()->SetLocalPosition({ -500.0f,-200.f,0.0f });
 	test->SetExPlaneFont("Åõ³«", "¸®ÀÚµå¸ÇÀÇ ¿Õ");

@@ -156,7 +156,8 @@ void Tunak::DeadEvent(float _DeltaTime)
 			IsDead = true;
 			if (TimeCheck_D > 0.2f)
 			{
-				GameEngineSound::Play("MonsterDie.wav");
+				DeadBGM = GameEngineSound::Play("MonsterDie.wav");
+				DeadBGM.SetVolume(0.7f);
 				TunakCurPos.y -= 100.0f;
 				TunakCurPos.z = -850.0f;
 				BossDeadEffectPtr = GetLevel()->CreateActor<BossDeadEffect>();

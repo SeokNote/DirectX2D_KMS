@@ -140,6 +140,7 @@ private:
 	std::shared_ptr<class BossSword> BossSwordPtr_5 = nullptr;
 	std::shared_ptr<class GameEngineUIRenderer> DeadBGRender;
 	std::shared_ptr<class GameEngineUIRenderer> BossLayout;
+	GameEngineSoundPlayer DeadBGM;
 	//Ä«¸Þ¶ó
 	float4 ZoomPos = float4::Zero;
 	bool CameraCtrl = false;

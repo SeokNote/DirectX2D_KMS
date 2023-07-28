@@ -153,6 +153,7 @@ void FoodUI::SetButton()
 				TomatoButton->GetRender_Select()->SetTexture("FoodThank.png");
 				MoveTomato = true;
 				Player::MainPlayer->GetData().PlusCriticalChance(7.1f);
+				Player::MainPlayer->GetData().PlusDefense(9.f);
 				Player::MainPlayer->GetData().PlusSatiety(46);
 				float PlusHp = static_cast<float>(Player::MainPlayer->GetData().GetPlayerMaxHP()) * 0.092f;
 				Player::MainPlayer->GetData().PlusPlayerHP(static_cast<int>(PlusHp));
