@@ -344,6 +344,7 @@ void WhiteSkell::DeadStart()
 {
 	Player::MainPlayer->GetData().SubMonsterIndex(1);
 	WhiteSkellRender->Off();
+	AreaInRender->Off();
 	DeadRender->ChangeAnimation("SkellDead");
 	HpRender->Death();
 	HpBaseRender->Death();
