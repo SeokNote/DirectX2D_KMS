@@ -2,6 +2,7 @@
 #include "BuildTextBox.h"
 #include "Trainning.h"
 #include "Player.h"
+#include "BuildScreen.h"
 #include "UICountBase.h"
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/GameEngineCamera.h>
@@ -98,7 +99,7 @@ void BuildTextBox::Update(float _Delta)
 			int a = 0;
 			if (BuildCheck == false)
 			{
-				GetLevel()->CreateActor<Trainning>();
+				GetLevel()->CreateActor<BuildScreen>();
 				BuildCheck = true;
 			}
 			Player::MainPlayer->SetUICount(0);

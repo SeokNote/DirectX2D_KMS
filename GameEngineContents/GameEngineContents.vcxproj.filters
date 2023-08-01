@@ -374,6 +374,9 @@
     <ClInclude Include="MyMapUI.h">
       <Filter>Object\UI\TextUI</Filter>
     </ClInclude>
+    <ClInclude Include="BuildScreen.h">
+      <Filter>Object\UI\BuildBase</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ContentsCore.cpp" />
@@ -788,6 +791,9 @@
     <ClCompile Include="MyMapUI.cpp">
       <Filter>Object\UI\TextUI</Filter>
     </ClCompile>
+    <ClCompile Include="BuildScreen.cpp">
+      <Filter>Object\UI\BuildBase</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Levels">
@@ -1083,6 +1089,9 @@
     </Filter>
     <Filter Include="Object\Boss\Tunak\Tunak">
       <UniqueIdentifier>{1f2ab131-70a2-4979-86e3-a45587f5279b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\UI\BuildBase">
+      <UniqueIdentifier>{6fb151d3-42dd-44c1-98a1-d2c567b76509}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

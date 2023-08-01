@@ -96,14 +96,7 @@ void FoodUI::Update(float _Delta)
 	MoveFood(_Delta);
 	FontUpdate();
 }
-/*음식 클릭시 해야할 행동들
 
-배고픔 차기
-설명에 따른 능력치 오르기(0) (위력은 무기가 완성된 후에 적용시키기)
-돈깎기
-고마워요 뜨기(0)
-음식이 왼쪽 아래로 가면서 스르륵 사라지기 불값 주고 스르륵 움직이게 하기.
-*/
 void FoodUI::SetButton()
 {
 	BreadButton = GetLevel()->CreateActor<ContentButton>();
